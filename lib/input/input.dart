@@ -1,4 +1,5 @@
 import 'package:alpha_ui/input/style.dart';
+import 'package:alpha_ui/theme.dart';
 import 'package:flutter/material.dart';
 
 enum Type { email, password }
@@ -15,7 +16,7 @@ extension TypeExtension on Type {
 }
 
 class Input extends StatelessWidget {
-  const Input({
+  Input({
     super.key,
     this.type,
     this.controller,
@@ -31,6 +32,8 @@ class Input extends StatelessWidget {
   final String? description;
   final TextEditingController? controller;
   final bool? disabled;
+
+  final ThemeUI theme = DefaultThemeUI();
 
   @override
   Widget build(BuildContext context) {

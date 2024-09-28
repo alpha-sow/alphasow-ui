@@ -101,20 +101,14 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 10.0),
-                    const Button(
+                    Button(
                       onPressed: null,
                       child: IntrinsicWidth(
                         child: Row(
                           children: [
-                            SizedBox(
-                              width: 14.0,
-                              height: 14.0,
-                              child: CircularProgressIndicator(
-                                strokeWidth: 2.0,
-                              ),
-                            ),
-                            SizedBox(width: 10.0),
-                            Text('Please wait'),
+                            ButtonCircularLoader(),
+                            const SizedBox(width: 10.0),
+                            const Text('Please wait'),
                           ],
                         ),
                       ),
@@ -128,18 +122,18 @@ class HomePage extends StatelessWidget {
                     style: Theme.of(context).textTheme.displayMedium,
                   ),
                 ),
-                const Input(hintText: 'Email'),
+                Input(hintText: 'Email'),
                 const SizedBox(height: 10.0),
-                const Input(hintText: 'Email', disabled: true),
+                Input(hintText: 'Email', disabled: true),
                 const SizedBox(height: 10.0),
-                const Input(
+                Input(
                   label: 'Username',
                   hintText: 'alpha_ui',
                 ),
                 const SizedBox(height: 10.0),
                 Row(
                   children: [
-                    const Flexible(
+                    Flexible(
                       child: Input(
                         hintText: 'Email',
                       ),
@@ -156,7 +150,7 @@ class HomePage extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Input(
+                      Input(
                         label: 'Username',
                         hintText: 'alpha_ui',
                         description: 'This is your public display name.',

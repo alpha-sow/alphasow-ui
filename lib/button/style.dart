@@ -7,6 +7,7 @@ buttonStyle({
   bool outline = false,
   bool underline = false,
 }) {
+  final ThemeUI theme = DefaultThemeUI();
   return ElevatedButton.styleFrom(
     elevation: 0.0,
     foregroundColor: color,
@@ -19,10 +20,10 @@ buttonStyle({
     overlayColor: underline ? Colors.transparent : null,
     shadowColor: Colors.transparent,
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(ThemeUI().radius),
+      borderRadius: BorderRadius.circular(theme.radius),
       side: outline
           ? BorderSide(
-              color: ThemeUI().secondary,
+              color: theme.secondary,
               width: 1.0,
               style: BorderStyle.solid,
             )

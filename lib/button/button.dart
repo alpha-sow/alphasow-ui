@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 enum Variant { secondary, destructive, outline, ghost, link }
 
 extension VariantExtension on Variant {
-  ButtonStyle style(ThemeUI theme) {
+  ButtonStyle style() {
+    final ThemeUI theme = DefaultThemeUI();
     switch (this) {
       case Variant.secondary:
         return buttonStyle(
@@ -39,7 +40,7 @@ extension VariantExtension on Variant {
 }
 
 class Button extends StatelessWidget {
-  const Button({
+  Button({
     super.key,
     required this.child,
     required this.onPressed,
@@ -51,14 +52,16 @@ class Button extends StatelessWidget {
   final void Function()? onPressed;
   final bool isLoading;
 
+  final ThemeUI theme = DefaultThemeUI();
+
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: isLoading ? null : onPressed,
-      style: variant?.style(ThemeUI()) ??
+      style: variant?.style() ??
           buttonStyle(
             color: Colors.white,
-            backgroundColor: ThemeUI().primary,
+            backgroundColor: theme.primary,
           ),
       child: child,
     );
