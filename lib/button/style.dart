@@ -1,4 +1,4 @@
-import 'package:alpha_ui/theme.dart';
+import 'package:alpha_ui/theme/theme.dart';
 import 'package:flutter/material.dart';
 
 buttonStyle({
@@ -7,7 +7,6 @@ buttonStyle({
   bool outline = false,
   bool underline = false,
 }) {
-  final ThemeUI theme = DefaultThemeUI();
   return ElevatedButton.styleFrom(
     elevation: 0.0,
     foregroundColor: color,

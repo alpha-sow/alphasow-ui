@@ -1,8 +1,7 @@
-import 'package:alpha_ui/theme.dart';
+import 'package:alpha_ui/theme/theme.dart';
 import 'package:flutter/material.dart';
 
 inputStyle({String? hintText}) {
-  final ThemeUI theme = DefaultThemeUI();
   return InputDecoration(
     contentPadding: const EdgeInsets.symmetric(
       vertical: 4.0,

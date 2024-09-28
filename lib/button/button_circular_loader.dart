@@ -1,10 +1,8 @@
-import 'package:alpha_ui/theme.dart';
+import 'package:alpha_ui/theme/theme.dart';
 import 'package:flutter/material.dart';
 
 class ButtonCircularLoader extends StatelessWidget {
-  ButtonCircularLoader({super.key});
-
-  final ThemeUI theme = DefaultThemeUI();
+  const ButtonCircularLoader({super.key});
 
   @override
   Widget build(BuildContext context) {

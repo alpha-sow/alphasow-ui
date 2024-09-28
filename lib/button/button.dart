@@ -1,5 +1,5 @@
 import 'package:alpha_ui/button/style.dart';
-import 'package:alpha_ui/theme.dart';
+import 'package:alpha_ui/theme/theme.dart';
 import 'package:flutter/material.dart';
 
 enum Variant { secondary, destructive, outline, ghost, link }
@@ -40,7 +40,7 @@ extension VariantExtension on Variant {
 }
 
 class Button extends StatelessWidget {
-  Button({
+  const Button({
     super.key,
     required this.child,
     required this.onPressed,
@@ -51,8 +51,6 @@ class Button extends StatelessWidget {
   final Variant? variant;
   final void Function()? onPressed;
   final bool isLoading;
-
-  final ThemeUI theme = DefaultThemeUI();
 
   @override
   Widget build(BuildContext context) {

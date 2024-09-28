@@ -1,4 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+
+GetIt getIt = GetIt.instance;
+
+setTheme({ThemeUI? theme}) =>
+    getIt.registerSingleton(theme ?? DefaultThemeUI());
+
+get theme => getIt<ThemeUI>();
 
 abstract class ThemeUI {
   Color get primary;
