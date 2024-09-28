@@ -3,31 +3,27 @@ import 'package:get_it/get_it.dart';
 
 GetIt getIt = GetIt.instance;
 
-setTheme({ThemeUI? theme}) =>
-    getIt.registerSingleton(theme ?? DefaultThemeUI());
-
 get theme => getIt<ThemeUI>();
 
-abstract class ThemeUI {
-  Color get primary;
-  Color get secondary;
-  double get radius;
-}
+class ThemeUI {
+  const ThemeUI({
+    required this.primary,
+    required this.secondary,
+    required this.radius,
+  });
 
-class DefaultThemeUI implements ThemeUI {
-  @override
-  Color get primary => Colors.black;
-  @override
-  Color get secondary => Colors.grey;
-  @override
-  double get radius => 6.0;
-}
+  final Color primary;
+  final Color secondary;
+  final double radius;
 
-class OrangeThemeUI implements ThemeUI {
-  @override
-  Color get primary => Colors.orange;
-  @override
-  Color get secondary => Colors.grey;
-  @override
-  double get radius => 6.0;
+  factory ThemeUI.set({ThemeUI? theme}) {
+    final result = theme ??
+        const ThemeUI(
+          primary: Colors.black,
+          secondary: Colors.grey,
+          radius: 6.0,
+        );
+    getIt.registerSingleton(result);
+    return result;
+  }
 }

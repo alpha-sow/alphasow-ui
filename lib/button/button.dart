@@ -6,7 +6,6 @@ enum Variant { secondary, destructive, outline, ghost, link }
 
 extension VariantExtension on Variant {
   ButtonStyle style() {
-    final ThemeUI theme = DefaultThemeUI();
     switch (this) {
       case Variant.secondary:
         return buttonStyle(

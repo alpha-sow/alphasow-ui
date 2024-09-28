@@ -2,7 +2,7 @@ import 'package:alpha_ui/alpha_ui.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  setTheme();
+  ThemeUI.set();
   runApp(const MyApp());
 }
 
@@ -102,14 +102,14 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 10.0),
-                    Button(
+                    const Button(
                       onPressed: null,
                       child: IntrinsicWidth(
                         child: Row(
                           children: [
                             ButtonCircularLoader(),
-                            const SizedBox(width: 10.0),
-                            const Text('Please wait'),
+                            SizedBox(width: 10.0),
+                            Text('Please wait'),
                           ],
                         ),
                       ),
@@ -123,18 +123,18 @@ class HomePage extends StatelessWidget {
                     style: Theme.of(context).textTheme.displayMedium,
                   ),
                 ),
-                Input(hintText: 'Email'),
+                const Input(hintText: 'Email'),
                 const SizedBox(height: 10.0),
-                Input(hintText: 'Email', disabled: true),
+                const Input(hintText: 'Email', disabled: true),
                 const SizedBox(height: 10.0),
-                Input(
+                const Input(
                   label: 'Username',
                   hintText: 'alpha_ui',
                 ),
                 const SizedBox(height: 10.0),
                 Row(
                   children: [
-                    Flexible(
+                    const Flexible(
                       child: Input(
                         hintText: 'Email',
                       ),
@@ -151,7 +151,7 @@ class HomePage extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Input(
+                      const Input(
                         label: 'Username',
                         hintText: 'alpha_ui',
                         description: 'This is your public display name.',
