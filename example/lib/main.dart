@@ -107,7 +107,7 @@ class HomePage extends StatelessWidget {
                       child: IntrinsicWidth(
                         child: Row(
                           children: [
-                            ButtonCircularLoader(),
+                            CircularProgressIndicatorUI(),
                             SizedBox(width: 10.0),
                             Text('Please wait'),
                           ],
