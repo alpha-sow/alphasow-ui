@@ -89,17 +89,10 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 10.0),
-                    Button(
+                    ButtonIcon(
                       onPressed: () {},
-                      child: const IntrinsicWidth(
-                        child: Row(
-                          children: [
-                            Icon(Icons.mail_outline, size: 18.0),
-                            SizedBox(width: 10.0),
-                            Text('Login with Email'),
-                          ],
-                        ),
-                      ),
+                      text: 'Login with Email',
+                      icon: Icons.mail_outline,
                     ),
                     const SizedBox(height: 10.0),
                     const Button(
@@ -172,7 +165,6 @@ class HomePage extends StatelessWidget {
                 ),
                 Label(
                   title: 'Accept terms and conditions',
-                  value: true,
                   onChanged: (value) {},
                 )
               ],
