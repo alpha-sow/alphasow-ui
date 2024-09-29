@@ -1,8 +1,8 @@
 import 'package:alpha_ui/theme/theme.dart';
 import 'package:flutter/material.dart';
 
-class ButtonCircularLoader extends StatelessWidget {
-  const ButtonCircularLoader({
+class CircularProgressIndicatorUI extends StatelessWidget {
+  const CircularProgressIndicatorUI({
     super.key,
     this.size,
     this.strokeWidth,
