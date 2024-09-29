@@ -12,13 +12,17 @@ class CheckboxUI extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Checkbox(
-      value: value,
-      onChanged: onChanged,
-      activeColor: theme.primary,
-      splashRadius: 0.0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(theme.radius),
+    return SizedBox(
+      width: 20.0,
+      height: 20.0,
+      child: Checkbox(
+        value: value,
+        onChanged: onChanged,
+        activeColor: theme.primary,
+        splashRadius: 0.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(theme.radius),
+        ),
       ),
     );
   }

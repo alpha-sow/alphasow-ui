@@ -5,10 +5,12 @@ class Label extends StatefulWidget {
   const Label({
     super.key,
     required this.title,
+    this.description,
     this.value,
     required this.onChanged,
   });
   final String title;
+  final String? description;
   final bool? value;
   final void Function(bool?)? onChanged;
 
@@ -37,14 +39,34 @@ class _LabelState extends State<Label> {
   @override
   Widget build(BuildContext context) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CheckboxUI(
           value: checkboxValue,
           onChanged: onChanged,
         ),
-        GestureDetector(
-          child: Text(widget.title),
-          onTap: () => onChanged(!checkboxValue),
+        const SizedBox(width: 4.0),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            GestureDetector(
+              child: Text(
+                widget.title,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              onTap: () => onChanged(!checkboxValue),
+            ),
+            widget.description != null
+                ? Text(
+                    widget.description!,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w100,
+                    ),
+                  )
+                : const SizedBox.shrink(),
+          ],
         ),
       ],
     );

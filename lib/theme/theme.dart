@@ -3,7 +3,7 @@ import 'package:get_it/get_it.dart';
 
 GetIt getIt = GetIt.instance;
 
-get theme => getIt<ThemeUI>();
+ThemeUI get theme => getIt<ThemeUI>();
 
 class ThemeUI {
   const ThemeUI({
