@@ -162,6 +162,18 @@ class HomePage extends StatelessWidget {
                       )
                     ],
                   ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Text(
+                    'Label',
+                    style: Theme.of(context).textTheme.displayMedium,
+                  ),
+                ),
+                Label(
+                  title: 'Accept terms and conditions',
+                  value: true,
+                  onChanged: (value) {},
                 )
               ],
             ),
