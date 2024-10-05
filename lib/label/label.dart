@@ -61,6 +61,7 @@ class _LabelState extends State<Label> {
             widget.description != null
                 ? Text(
                     widget.description!,
+                    overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
                       fontWeight: FontWeight.w100,
                     ),

@@ -1,5 +1,6 @@
 library alpha_ui;
 
+export 'alert_dialog/index.dart';
 export 'button/index.dart';
 export 'input/index.dart';
 export 'theme/theme.dart';

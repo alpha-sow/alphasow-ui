@@ -2,6 +2,7 @@ import 'package:alpha_ui/alpha_ui.dart';
 import 'package:example/button_widget.dart';
 import 'package:example/input_widget.dart';
 import 'package:example/label_widget.dart';
+import 'package:example/show_alert_dailog.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -45,6 +46,7 @@ class HomePage extends StatelessWidget {
                 ButtonWidget(),
                 InputWidget(),
                 LabelWidget(),
+                ShowAlertDailog(),
               ],
             ),
           ),
