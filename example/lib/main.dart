@@ -1,5 +1,6 @@
 import 'package:alpha_ui/alpha_ui.dart';
 import 'package:example/button_widget.dart';
+import 'package:example/input_widget.dart';
 import 'package:example/label_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -36,60 +37,14 @@ class HomePage extends StatelessWidget {
         title: Text(title),
       ),
       body: ListView(
-        children: [
+        children: const [
           Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding: EdgeInsets.all(20.0),
             child: Column(
               children: [
-                const ButtonWidget(),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Text(
-                    'Input UI',
-                    style: Theme.of(context).textTheme.displayMedium,
-                  ),
-                ),
-                const Input(hintText: 'Email'),
-                const SizedBox(height: 10.0),
-                const Input(hintText: 'Email', disabled: true),
-                const SizedBox(height: 10.0),
-                const Input(
-                  label: 'Username',
-                  hintText: 'alpha_ui',
-                ),
-                const SizedBox(height: 10.0),
-                Row(
-                  children: [
-                    const Flexible(
-                      child: Input(
-                        hintText: 'Email',
-                      ),
-                    ),
-                    const SizedBox(width: 4.0),
-                    Button(
-                      child: const Text('Subscribe'),
-                      onPressed: () {},
-                    )
-                  ],
-                ),
-                const SizedBox(height: 10.0),
-                Form(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Input(
-                        label: 'Username',
-                        hintText: 'alpha_ui',
-                        description: 'This is your public display name.',
-                      ),
-                      Button(
-                        child: const Text('Submit'),
-                        onPressed: () {},
-                      )
-                    ],
-                  ),
-                ),
-                const LabelWidget(),
+                ButtonWidget(),
+                InputWidget(),
+                LabelWidget(),
               ],
             ),
           ),
