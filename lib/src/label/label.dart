@@ -1,4 +1,4 @@
-import 'package:alpha_ui/checkbox_ui/checkbox_ui.dart';
+import 'package:alpha_ui/src/checkbox_ui/checkbox_ui.dart';
 import 'package:flutter/material.dart';
 
 class Label extends StatefulWidget {

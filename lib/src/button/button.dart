@@ -1,5 +1,5 @@
-import 'package:alpha_ui/button/style.dart';
-import 'package:alpha_ui/circular_progress_indicator_ui/index.dart';
+import 'package:alpha_ui/src/button/style.dart';
+import 'package:alpha_ui/src/circular_progress_indicator_ui/index.dart';
 import 'package:alpha_ui/theme/theme.dart';
 import 'package:flutter/material.dart';
 

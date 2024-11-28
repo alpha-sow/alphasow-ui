@@ -1,4 +1,4 @@
-import 'package:alpha_ui/input/style.dart';
+import 'package:alpha_ui/src/input/style.dart';
 import 'package:flutter/material.dart';
 
 enum Type { email, password }

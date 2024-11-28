@@ -1,4 +1,4 @@
-import 'package:alpha_ui/button/index.dart';
+import 'package:alpha_ui/src/button/index.dart';
 import 'package:flutter/material.dart';
 
 class ButtonIcon extends StatelessWidget {
