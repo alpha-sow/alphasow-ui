@@ -59,16 +59,15 @@ class Button extends StatelessWidget {
             color: Colors.white,
             backgroundColor: theme.primary,
           ),
-      child: IntrinsicWidth(
-        child: Row(
-          children: [
-            isLoading
-                ? const CircularProgressIndicatorUI()
-                : const SizedBox.shrink(),
-            isLoading ? const SizedBox(width: 10.0) : const SizedBox.shrink(),
-            child,
-          ],
-        ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          isLoading
+              ? const CircularProgressIndicatorUI()
+              : const SizedBox.shrink(),
+          isLoading ? const SizedBox(width: 10.0) : const SizedBox.shrink(),
+          child,
+        ],
       ),
     );
   }
