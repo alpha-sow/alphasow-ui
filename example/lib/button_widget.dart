@@ -63,8 +63,8 @@ class ButtonWidget extends StatelessWidget {
             const SizedBox(height: 10.0),
             ButtonIcon(
               onPressed: () {},
-              text: 'Login with Email',
-              icon: Icons.mail_outline,
+              label: const Text('Login with Email'),
+              icon: const Icon(Icons.mail_outline),
             ),
             const SizedBox(height: 10.0),
             Button(
