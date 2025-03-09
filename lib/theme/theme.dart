@@ -1,29 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 
-GetIt getIt = GetIt.instance;
-
-ThemeUI get theme => getIt<ThemeUI>();
+final theme = ThemeUI.instance();
 
 class ThemeUI {
-  const ThemeUI({
+  ThemeUI._internal({
     required this.primary,
     required this.secondary,
     required this.radius,
   });
 
+  static late ThemeUI _instance;
+
   final Color primary;
   final Color secondary;
   final double radius;
 
-  factory ThemeUI.set({ThemeUI? theme}) {
-    final result = theme ??
-        const ThemeUI(
-          primary: Colors.black,
-          secondary: Colors.grey,
-          radius: 6.0,
-        );
-    getIt.registerSingleton(result);
-    return result;
+  static ThemeUI instance() => _instance;
+
+  factory ThemeUI.init({
+    Color? primary,
+    Color? secondary,
+    double? radius,
+  }) {
+    _instance = ThemeUI._internal(
+      primary: primary ?? Colors.black,
+      secondary: secondary ?? Colors.grey,
+      radius: radius ?? 6.0,
+    );
+    return _instance;
   }
 }

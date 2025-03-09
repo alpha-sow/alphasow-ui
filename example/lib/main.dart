@@ -6,7 +6,7 @@ import 'package:example/show_alert_dailog.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  ThemeUI.set();
+  ThemeUI.init();
   runApp(const MyApp());
 }
 
