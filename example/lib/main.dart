@@ -52,6 +52,13 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
+      persistentFooterAlignment: AlignmentDirectional.center,
+      persistentFooterButtons: [
+        Button(
+          child: const Text('Button'),
+          onPressed: () {},
+        ),
+      ],
     );
   }
 }

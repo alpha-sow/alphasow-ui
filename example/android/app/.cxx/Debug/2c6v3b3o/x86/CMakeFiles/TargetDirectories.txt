@@ -1,0 +1,2 @@
+/Users/alphasow/IdeaProjects/alpha_ui/example/android/app/.cxx/Debug/2c6v3b3o/x86/CMakeFiles/edit_cache.dir
+/Users/alphasow/IdeaProjects/alpha_ui/example/android/app/.cxx/Debug/2c6v3b3o/x86/CMakeFiles/rebuild_cache.dir
