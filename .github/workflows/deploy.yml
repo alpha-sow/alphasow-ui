@@ -27,16 +27,9 @@ jobs:
         run: flutter test
 
       - name: Setup pub credentials
-        run: |
-          mkdir -p ~/.pub-cache
-          cat <<EOF > ~/.pub-cache/credentials.json
-          {
-            "accessToken": "${{ secrets.PUB_ACCESS_TOKEN }}",
-            "refreshToken": "${{ secrets.PUB_REFRESH_TOKEN }}",
-            "tokenEndpoint": "https://repo.alphasow.dev/artifactory/api/pub/repo-pub/api/packages/versions/newUploadFinish",
-            "scopes": ["https://repo.alphasow.dev/artifactory/api/pub/repo-pub"]
-          }
-          EOF
+        run: dart pub token add https://repo.alphasow.dev/artifactory/api/pub/repo-pub --env-var PUB_TOKEN
+        env:
+          PUB_TOKEN: ${{ secrets.PUB_ACCESS_TOKEN }}
 
       - name: Check publish warnings
         run: flutter pub publish --dry-run
