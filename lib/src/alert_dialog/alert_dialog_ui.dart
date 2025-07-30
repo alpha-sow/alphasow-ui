@@ -1,7 +1,7 @@
 import 'package:alphasow_ui/theme/theme.dart';
 import 'package:flutter/material.dart';
 
-alertDialogUI({
+Future<T?> alertDialogUI<T>({
   required BuildContext context,
   Widget? title,
   Widget? content,
