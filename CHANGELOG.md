@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/alpha-sow/alphasow-ui/compare/v1.0.0...v1.0.1) (2025-07-30)
+
+
+### Bug Fixes
+
+* change pub token ([69c8586](https://github.com/alpha-sow/alphasow-ui/commit/69c8586c29d17f3687246bac6c98355a986a11f0))
+
 # 1.0.0 (2025-07-30)
 
 
