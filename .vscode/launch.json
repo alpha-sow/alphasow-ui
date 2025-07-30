@@ -5,18 +5,18 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "alpha_ui",
+      "name": "alphasow_ui",
       "request": "launch",
       "type": "dart"
     },
     {
-      "name": "alpha_ui (profile mode)",
+      "name": "alphasow_ui (profile mode)",
       "request": "launch",
       "type": "dart",
       "flutterMode": "profile"
     },
     {
-      "name": "alpha_ui (release mode)",
+      "name": "alphasow_ui (release mode)",
       "request": "launch",
       "type": "dart",
       "flutterMode": "release"

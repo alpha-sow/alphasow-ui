@@ -1,4 +1,4 @@
-import 'package:alpha_ui/alpha_ui.dart';
+import 'package:alphasow_ui/theme/theme.dart';
 import 'package:flutter/material.dart';
 
 alertDialogUI({

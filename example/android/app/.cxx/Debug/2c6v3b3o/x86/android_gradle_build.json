@@ -6,14 +6,14 @@
     [
       "/Users/alphasow/Library/Android/sdk/cmake/3.22.1/bin/ninja",
       "-C",
-      "/Users/alphasow/IdeaProjects/alpha_ui/example/android/app/.cxx/Debug/2c6v3b3o/x86",
+      "/Users/alphasow/IdeaProjects/alphasow_ui/example/android/app/.cxx/Debug/2c6v3b3o/x86",
       "clean"
     ]
   ],
   "buildTargetsCommandComponents": [
     "/Users/alphasow/Library/Android/sdk/cmake/3.22.1/bin/ninja",
     "-C",
-    "/Users/alphasow/IdeaProjects/alpha_ui/example/android/app/.cxx/Debug/2c6v3b3o/x86",
+    "/Users/alphasow/IdeaProjects/alphasow_ui/example/android/app/.cxx/Debug/2c6v3b3o/x86",
     "{LIST_OF_TARGETS_TO_BUILD}"
   ],
   "libraries": {},

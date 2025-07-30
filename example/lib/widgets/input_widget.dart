@@ -1,4 +1,4 @@
-import 'package:alpha_ui/alpha_ui.dart';
+import 'package:alphasow_ui/alphasow_ui.dart';
 import 'package:flutter/material.dart';
 
 class InputWidget extends StatelessWidget {
@@ -21,7 +21,7 @@ class InputWidget extends StatelessWidget {
         const SizedBox(height: 10.0),
         const Input(
           label: 'Username',
-          hintText: 'alpha_ui',
+          hintText: 'alphasow_ui',
         ),
         const SizedBox(height: 10.0),
         Row(
@@ -45,7 +45,7 @@ class InputWidget extends StatelessWidget {
             children: [
               const Input(
                 label: 'Username',
-                hintText: 'alpha_ui',
+                hintText: 'alphasow_ui',
                 description: 'This is your public display name.',
               ),
               Button(

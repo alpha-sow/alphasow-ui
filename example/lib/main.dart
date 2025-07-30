@@ -1,8 +1,5 @@
-import 'package:alpha_ui/alpha_ui.dart';
-import 'package:example/button_widget.dart';
-import 'package:example/input_widget.dart';
-import 'package:example/label_widget.dart';
-import 'package:example/show_alert_dailog.dart';
+import 'package:alphasow_ui/alphasow_ui.dart';
+import 'package:example/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -20,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: theme.primary,
       ),
-      home: const HomePage(title: 'alpha_ui'),
+      home: const HomePage(title: 'alphasow_ui'),
     );
   }
 }
@@ -46,7 +43,7 @@ class HomePage extends StatelessWidget {
                 ButtonWidget(),
                 InputWidget(),
                 LabelWidget(),
-                ShowAlertDailog(),
+                ShowAlertDialog(),
               ],
             ),
           ),
