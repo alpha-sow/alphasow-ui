@@ -51,7 +51,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup pub credentials
-        run: dart pub token add https://repo.alphasow.dev/artifactory/api/pub/repo-pub --env-var PUB_TOKEN
+        run: dart pub token add "https://repo.alphasow.dev/artifactory/api/pub/repo-pub" --env-var PUB_TOKEN
         env:
           PUB_TOKEN: ${{ secrets.PUB_TOKEN }}
           PUB_HOSTED_URL: "https://repo.alphasow.dev/artifactory/api/pub/repo-pub"
