@@ -6,17 +6,20 @@ class ButtonIcon extends StatelessWidget {
     super.key,
     this.onPressed,
     required this.icon,
-    required this.label,
+    this.label,
     this.isLoading = false,
+    this.variant,
   });
   final void Function()? onPressed;
   final Icon icon;
-  final Text label;
+  final Text? label;
   final bool isLoading;
+  final Variant? variant;
 
   @override
   Widget build(BuildContext context) {
     return Button(
+      variant: variant,
       onPressed: () {},
       isLoading: isLoading,
       child: IntrinsicWidth(
@@ -24,7 +27,7 @@ class ButtonIcon extends StatelessWidget {
           children: [
             isLoading ? const SizedBox.shrink() : icon,
             isLoading ? const SizedBox.shrink() : const SizedBox(width: 10.0),
-            label,
+            if (label != null) label!,
           ],
         ),
       ),
