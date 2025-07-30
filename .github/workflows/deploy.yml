@@ -30,13 +30,10 @@ jobs:
         run: dart pub token add https://repo.alphasow.dev/artifactory/api/pub/repo-pub --env-var PUB_TOKEN
         env:
           PUB_TOKEN: ${{ secrets.PUB_ACCESS_TOKEN }}
+          PUB_HOSTED_URL: "https://repo.alphasow.dev/artifactory/api/pub/repo-pub"
 
       - name: Check publish warnings
         run: flutter pub publish --dry-run
-        env:
-          PUB_HOSTED_URL: "https://repo.alphasow.dev/artifactory/api/pub/repo-pub"
 
       - name: Publish to Alphasow Repository
         run: flutter pub publish --force
-        env:
-          PUB_HOSTED_URL: "https://repo.alphasow.dev/artifactory/api/pub/repo-pub"
