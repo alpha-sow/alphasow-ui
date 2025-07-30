@@ -1,0 +1,49 @@
+name: Deploy to Alphasow Repository
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.24.0"
+          channel: "stable"
+
+      - name: Get dependencies
+        run: flutter pub get
+
+      - name: Run analyzer
+        run: flutter analyze
+
+      - name: Run tests
+        run: flutter test
+
+      - name: Setup pub credentials
+        run: |
+          mkdir -p ~/.pub-cache
+          cat <<EOF > ~/.pub-cache/credentials.json
+          {
+            "accessToken": "${{ secrets.PUB_ACCESS_TOKEN }}",
+            "refreshToken": "${{ secrets.PUB_REFRESH_TOKEN }}",
+            "tokenEndpoint": "https://repo.alphasow.dev/artifactory/api/pub/repo-pub/api/packages/versions/newUploadFinish",
+            "scopes": ["https://repo.alphasow.dev/artifactory/api/pub/repo-pub"]
+          }
+          EOF
+
+      - name: Check publish warnings
+        run: flutter pub publish --dry-run
+        env:
+          PUB_HOSTED_URL: "https://repo.alphasow.dev/artifactory/api/pub/repo-pub"
+
+      - name: Publish to Alphasow Repository
+        run: flutter pub publish --force
+        env:
+          PUB_HOSTED_URL: "https://repo.alphasow.dev/artifactory/api/pub/repo-pub"
