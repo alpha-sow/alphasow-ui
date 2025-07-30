@@ -1,39 +1,94 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# Alphasow UI
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+A Flutter package that provides a collection of reusable UI components with a consistent theming system.
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+- **Button Components**: Multiple variants including secondary, destructive, outline, ghost, and link buttons
+- **Input Fields**: Customizable input components for forms
+- **Labels**: Consistent text labeling components
+- **Checkboxes**: Styled checkbox components
+- **Circular Progress Indicators**: Loading indicators
+- **Alert Dialogs**: Modal dialog components
+- **Theme System**: Centralized theming with primary, secondary colors and radius configuration
 
-## Getting started
+## Getting Started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+Add this package to your `pubspec.yaml`:
+
+```yaml
+dependencies:
+  alphasow_ui: ^1.0.0
+```
+
+Then run:
+```bash
+flutter pub get
+```
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+### Initialize Theme
+
+Before using any components, initialize the theme:
 
 ```dart
-const like = 'sample';
+import 'package:alphasow_ui/alphasow_ui.dart';
+
+void main() {
+  ThemeUI.init();
+  runApp(MyApp());
+}
 ```
 
-## Additional information
+### Basic Components
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+```dart
+import 'package:alphasow_ui/alphasow_ui.dart';
+
+// Button variants
+ButtonUI(text: 'Primary Button')
+ButtonUI.secondary(text: 'Secondary Button')
+ButtonUI.destructive(text: 'Destructive Button')
+ButtonUI.outline(text: 'Outline Button')
+ButtonUI.ghost(text: 'Ghost Button')
+ButtonUI.link(text: 'Link Button')
+
+// Input field
+InputUI(hintText: 'Enter text here')
+
+// Checkbox
+CheckboxUI(value: true, onChanged: (value) {})
+
+// Label
+LabelUI(text: 'Label Text')
+
+// Progress indicator
+CircularProgressIndicatorUI()
+```
+
+## Example
+
+Check out the `/example` folder for a complete demonstration of all available components.
+
+To run the example:
+
+```bash
+cd example
+flutter pub get
+flutter run
+```
+
+## Architecture
+
+- **ThemeUI**: Singleton class managing global theme configuration
+- **Component Structure**: Each component follows the pattern `[name].dart` (export) and `[name]_ui.dart` (implementation)
+- **Consistent Styling**: All components use the centralized theme system for colors and styling
+
+## Additional Information
+
+- **Version**: 1.0.0
+- **Flutter SDK**: >=3.16.0
+- **Dart SDK**: ^3.5.3
+
+For issues and contributions, please refer to the project repository.
