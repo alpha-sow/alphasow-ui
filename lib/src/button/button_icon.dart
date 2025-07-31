@@ -1,5 +1,5 @@
 import 'package:alphasow_ui/alphasow_ui.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class ButtonIcon extends StatelessWidget {
   const ButtonIcon({
@@ -11,25 +11,26 @@ class ButtonIcon extends StatelessWidget {
     this.variant,
   });
   final void Function()? onPressed;
-  final Icon icon;
-  final Text? label;
+  final Widget icon;
+  final Widget? label;
   final bool isLoading;
   final Variant? variant;
 
   @override
   Widget build(BuildContext context) {
     return Button(
-      variant: variant,
-      onPressed: () {},
+      onPressed: onPressed,
       isLoading: isLoading,
-      child: IntrinsicWidth(
-        child: Row(
-          children: [
-            isLoading ? const SizedBox.shrink() : icon,
-            isLoading ? const SizedBox.shrink() : const SizedBox(width: 10.0),
-            if (label != null) label!,
+      variant: variant,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (!isLoading) ...[
+            icon,
+            if (label != null) const SizedBox(width: 8.0),
           ],
-        ),
+          if (label != null) label!,
+        ],
       ),
     );
   }
