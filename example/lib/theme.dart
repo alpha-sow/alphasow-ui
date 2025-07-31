@@ -1,13 +1,12 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
+import 'package:flutter/material.dart';
 
-final theme = FlexThemeData.light(
+final ThemeData theme = FlexThemeData.light(
   scheme: FlexScheme.blue,
-  useMaterial3: true,
   surfaceMode: FlexSurfaceMode.levelSurfacesLowScaffold,
   blendLevel: 7,
   subThemesData: const FlexSubThemesData(
     blendOnLevel: 10,
-    blendOnColors: false,
     useM2StyleDividerInM3: true,
     alignedDropdown: true,
     useInputDecoratorThemeInDialogs: true,
@@ -17,9 +16,8 @@ final theme = FlexThemeData.light(
   swapLegacyOnMaterial3: true,
 );
 
-final themeDark = FlexThemeData.dark(
+final ThemeData themeDark = FlexThemeData.dark(
   scheme: FlexScheme.blue,
-  useMaterial3: true,
   surfaceMode: FlexSurfaceMode.levelSurfacesLowScaffold,
   blendLevel: 13,
   subThemesData: const FlexSubThemesData(

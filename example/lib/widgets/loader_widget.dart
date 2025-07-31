@@ -7,7 +7,7 @@ class LoaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      spacing: 10.0,
+      spacing: 10,
       children: [
         Text(
           'Loader',

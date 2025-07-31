@@ -1,6 +1,6 @@
 import 'package:alphasow_ui/alphasow_ui.dart';
-import 'package:example/widgets/widgets.dart';
 import 'package:example/theme.dart';
+import 'package:example/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -40,10 +40,10 @@ class _MyAppState extends State<MyApp> {
 
 class HomePage extends StatelessWidget {
   const HomePage({
-    super.key,
     required this.title,
     required this.onThemeToggle,
     required this.isDarkMode,
+    super.key,
   });
 
   final String title;
@@ -66,9 +66,9 @@ class HomePage extends StatelessWidget {
       body: ListView(
         children: const [
           Padding(
-            padding: EdgeInsets.all(20.0),
+            padding: EdgeInsets.all(20),
             child: Column(
-              spacing: 8.0,
+              spacing: 8,
               children: [
                 ButtonWidget(),
                 InputWidget(),

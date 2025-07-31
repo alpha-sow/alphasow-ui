@@ -9,19 +9,19 @@ environment:
   sdk: ^3.5.3
 
 dependencies:
-  flutter:
-    sdk: flutter
   alphasow_ui:
     path: ../
-  flex_color_scheme: ^8.0.2
 
   cupertino_icons: ^1.0.8
-
-dev_dependencies:
-  flutter_test:
+  flex_color_scheme: ^8.0.2
+  flutter:
     sdk: flutter
 
+dev_dependencies:
   flutter_lints: ^4.0.0
+  flutter_test:
+    sdk: flutter
+  very_good_analysis: ^9.0.0
 
 flutter:
   uses-material-design: true

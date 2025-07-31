@@ -9,7 +9,7 @@ class ButtonWidget extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(20),
           child: Text(
             'Button UI',
             style: Theme.of(context).textTheme.displayMedium,
@@ -24,7 +24,7 @@ class ButtonWidget extends StatelessWidget {
               ),
               child: const Text('Button'),
             ),
-            const SizedBox(height: 10.0),
+            const SizedBox(height: 10),
             Button.secondary(
               onPressed: () => context.showBanner(
                 message: 'Button clicked successfully!',
@@ -32,7 +32,7 @@ class ButtonWidget extends StatelessWidget {
               ),
               child: const Text('Secondary'),
             ),
-            const SizedBox(height: 10.0),
+            const SizedBox(height: 10),
             Button.destructive(
               onPressed: () => context.showBanner(
                 message: 'Button clicked successfully!',
@@ -40,35 +40,35 @@ class ButtonWidget extends StatelessWidget {
               ),
               child: const Text('Destructive'),
             ),
-            const SizedBox(height: 10.0),
+            const SizedBox(height: 10),
             Button.outline(
               onPressed: () {},
               child: const Text('Outline'),
             ),
-            const SizedBox(height: 10.0),
+            const SizedBox(height: 10),
             Button.ghost(
               onPressed: () {},
               child: const Text('Ghost'),
             ),
-            const SizedBox(height: 10.0),
+            const SizedBox(height: 10),
             Button.link(
               onPressed: () {},
               child: const Text('Link'),
             ),
-            const SizedBox(height: 10.0),
+            const SizedBox(height: 10),
             Button.outline(
               onPressed: () {},
               child: const Icon(
                 Icons.arrow_forward_ios,
-                size: 10.0,
+                size: 10,
               ),
             ),
-            const SizedBox(height: 10.0),
+            const SizedBox(height: 10),
             Button.ghost(
               onPressed: () {},
               child: const Icon(Icons.mail_outline),
             ),
-            const SizedBox(height: 10.0),
+            const SizedBox(height: 10),
             Button(
               onPressed: () {},
               isLoading: true,

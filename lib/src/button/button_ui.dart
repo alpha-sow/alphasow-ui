@@ -2,23 +2,65 @@ import 'package:alphasow_ui/alphasow_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-enum Variant { secondary, destructive, outline, ghost, link }
+/// Defines the visual variants available for buttons.
+/// 
+/// Each variant provides different styling to match various UI contexts.
+enum Variant {
+  /// Secondary button with muted colors
+  secondary,
+  
+  /// Destructive button with error/danger colors
+  destructive,
+  
+  /// Outline button with transparent background and border
+  outline,
+  
+  /// Ghost button with transparent background and no border
+  ghost,
+  
+  /// Link-style button with underlined text
+  link
+}
 
+/// Holds the color configuration for button styling.
+/// 
+/// This class encapsulates all visual properties needed to style
+/// a button according to its variant.
 class ButtonColors {
-  final Color textColor;
-  final Color backgroundColor;
-  final bool outline;
-  final bool underline;
-
+  /// Creates a button color configuration.
+  /// 
+  /// [textColor] The color of text and icons in the button
+  /// [backgroundColor] The background color of the button
+  /// [outline] Whether the button should have a border outline
+  /// [underline] Whether the text should be underlined
   const ButtonColors({
     required this.textColor,
     required this.backgroundColor,
     this.outline = false,
     this.underline = false,
   });
+  
+  /// The color used for text and icons
+  final Color textColor;
+  
+  /// The background color of the button
+  final Color backgroundColor;
+  
+  /// Whether to display an outline border
+  final bool outline;
+  
+  /// Whether to underline the button text
+  final bool underline;
 }
 
+/// Extension providing color configuration for each button variant.
+/// 
+/// This private extension maps each variant to its appropriate colors
+/// based on the current theme.
 extension _VariantExtension on Variant {
+  /// Returns the color configuration for this variant.
+  /// 
+  /// [context] The build context for accessing theme colors
   ButtonColors getColors(BuildContext context) {
     final theme = Theme.of(context);
 
@@ -54,52 +96,82 @@ extension _VariantExtension on Variant {
   }
 }
 
+/// A customizable button widget with multiple visual variants.
+/// 
+/// The Button widget provides a consistent interface for various button styles
+/// including primary, secondary, destructive, outline, ghost, and link variants.
+/// It supports loading states and haptic feedback.
 class Button extends StatefulWidget {
+  /// Creates a primary button (default variant).
+  /// 
+  /// [child] The widget to display inside the button
+  /// [onPressed] Callback executed when button is tapped (null disables button)
+  /// [isLoading] Whether to show loading indicator (defaults to false)
   const Button({
-    super.key,
-    required this.child,
-    required this.onPressed,
+    required this.child, required this.onPressed, super.key,
     this.isLoading = false,
   }) : _variant = null;
 
+  /// Creates a secondary button with muted styling.
+  /// 
+  /// [child] The widget to display inside the button
+  /// [onPressed] Callback executed when button is tapped (null disables button)
+  /// [isLoading] Whether to show loading indicator (defaults to false)
   const Button.secondary({
-    super.key,
-    required this.child,
-    required this.onPressed,
+    required this.child, required this.onPressed, super.key,
     this.isLoading = false,
   }) : _variant = Variant.secondary;
 
+  /// Creates a destructive button with error/danger styling.
+  /// 
+  /// [child] The widget to display inside the button
+  /// [onPressed] Callback executed when button is tapped (null disables button)
+  /// [isLoading] Whether to show loading indicator (defaults to false)
   const Button.destructive({
-    super.key,
-    required this.child,
-    required this.onPressed,
+    required this.child, required this.onPressed, super.key,
     this.isLoading = false,
   }) : _variant = Variant.destructive;
 
+  /// Creates an outline button with transparent background and border.
+  /// 
+  /// [child] The widget to display inside the button
+  /// [onPressed] Callback executed when button is tapped (null disables button)
+  /// [isLoading] Whether to show loading indicator (defaults to false)
   const Button.outline({
-    super.key,
-    required this.child,
-    required this.onPressed,
+    required this.child, required this.onPressed, super.key,
     this.isLoading = false,
   }) : _variant = Variant.outline;
 
+  /// Creates a ghost button with transparent background and no border.
+  /// 
+  /// [child] The widget to display inside the button
+  /// [onPressed] Callback executed when button is tapped (null disables button)
+  /// [isLoading] Whether to show loading indicator (defaults to false)
   const Button.ghost({
-    super.key,
-    required this.child,
-    required this.onPressed,
+    required this.child, required this.onPressed, super.key,
     this.isLoading = false,
   }) : _variant = Variant.ghost;
 
+  /// Creates a link-style button with underlined text.
+  /// 
+  /// [child] The widget to display inside the button
+  /// [onPressed] Callback executed when button is tapped (null disables button)
+  /// [isLoading] Whether to show loading indicator (defaults to false)
   const Button.link({
-    super.key,
-    required this.child,
-    required this.onPressed,
+    required this.child, required this.onPressed, super.key,
     this.isLoading = false,
   }) : _variant = Variant.link;
 
+  /// The widget to display inside the button (typically Text or Icon)
   final Widget child;
+  
+  /// Callback executed when the button is tapped (null disables the button)
   final void Function()? onPressed;
+  
+  /// Whether to show a loading indicator instead of the child widget
   final bool isLoading;
+  
+  /// The internal variant determining the button's visual style
   final Variant? _variant;
 
   @override
@@ -141,14 +213,13 @@ class _ButtonState extends State<Button> {
               widget.onPressed?.call();
             },
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         decoration: BoxDecoration(
           color: finalBackgroundColor,
-          borderRadius: BorderRadius.circular(8.0),
+          borderRadius: BorderRadius.circular(8),
           border: colors.outline
               ? Border.all(
                   color: theme.colorScheme.outline,
-                  width: 1.0,
                 )
               : null,
         ),
@@ -158,12 +229,12 @@ class _ButtonState extends State<Button> {
           children: [
             if (widget.isLoading) ...[
               LoadingCircular(color: finalTextColor),
-              const SizedBox(width: 8.0),
+              const SizedBox(width: 8),
             ],
             DefaultTextStyle(
               style: TextStyle(
                 color: finalTextColor,
-                fontSize: 14.0,
+                fontSize: 14,
                 fontWeight: FontWeight.w500,
                 decoration: colors.underline ? TextDecoration.underline : null,
               ),

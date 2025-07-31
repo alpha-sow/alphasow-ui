@@ -9,14 +9,14 @@ class ShowAlertDialog extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(20),
           child: Text(
             'Alert Dialog',
             style: Theme.of(context).textTheme.displayMedium,
           ),
         ),
         Button.outline(
-          onPressed: () => context.showAlertDialog(
+          onPressed: () => context.showAlertDialog<void>(
             title: const Text(
               'Are you absolutely sure?',
               style: TextStyle(
@@ -24,7 +24,8 @@ class ShowAlertDialog extends StatelessWidget {
               ),
             ),
             content: const Text(
-                'This action cannot be undone. This will permanently delete your account and remove your data from our servers.'),
+                'This action cannot be undone. This will permanently delete '
+                'your account and remove your data from our servers.'),
             actions: <Widget>[
               Button.outline(
                 child: const Text('Cancel'),

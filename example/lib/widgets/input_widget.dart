@@ -15,21 +15,21 @@ class _InputWidgetState extends State<InputWidget> {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(20),
           child: Text(
             'Input UI',
             style: Theme.of(context).textTheme.displayMedium,
           ),
         ),
         const Input(hintText: 'Email'),
-        const SizedBox(height: 10.0),
+        const SizedBox(height: 10),
         const Input(hintText: 'Email', disabled: true),
-        const SizedBox(height: 10.0),
+        const SizedBox(height: 10),
         const Input(
           label: 'Username',
           hintText: 'alphasow_ui',
         ),
-        const SizedBox(height: 10.0),
+        const SizedBox(height: 10),
         Row(
           children: [
             Flexible(
@@ -40,7 +40,7 @@ class _InputWidgetState extends State<InputWidget> {
                     context.showBanner(message: _textInputControl.text),
               ),
             ),
-            const SizedBox(width: 4.0),
+            const SizedBox(width: 4),
             Button(
               child: const Text('Subscribe'),
               onPressed: () {
@@ -49,7 +49,7 @@ class _InputWidgetState extends State<InputWidget> {
             )
           ],
         ),
-        const SizedBox(height: 10.0),
+        const SizedBox(height: 10),
         Form(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

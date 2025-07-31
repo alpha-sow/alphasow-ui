@@ -1,7 +1,17 @@
-import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
+import 'package:flutter/material.dart';
+
+/// A circular loading indicator with customizable appearance.
+/// 
+/// This widget displays an animated arc that rotates continuously to indicate
+/// loading state. The size, color, and stroke width can be customized.
 class LoadingCircular extends StatefulWidget {
+  /// Creates a circular loading indicator.
+  /// 
+  /// [size] The diameter of the loading circle (auto-calculated if null)
+  /// [color] The color of the loading arc (uses theme primary color if null)
+  /// [strokeWidth] The width of the loading arc line (defaults to 4.0)
   const LoadingCircular({
     super.key,
     this.size,
@@ -9,8 +19,13 @@ class LoadingCircular extends StatefulWidget {
     this.strokeWidth = 4.0,
   });
 
+  /// The diameter of the loading circle (auto-calculated if null)
   final double? size;
+  
+  /// The color of the loading arc (uses theme primary color if null)
   final Color? color;
+  
+  /// The width of the loading arc line
   final double strokeWidth;
 
   @override
@@ -40,7 +55,7 @@ class _LoadingCircularState extends State<LoadingCircular>
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        final double effectiveSize = widget.size ??
+        final effectiveSize = widget.size ??
             (constraints.hasBoundedWidth && constraints.hasBoundedHeight
                 ? (constraints.maxWidth < constraints.maxHeight
                         ? constraints.maxWidth
@@ -69,17 +84,35 @@ class _LoadingCircularState extends State<LoadingCircular>
   }
 }
 
+/// Custom painter for drawing the animated circular loading arc.
+/// 
+/// This painter draws a partial circle arc that rotates based on the
+/// animation progress to create the loading effect.
 class _CircularLoaderPainter extends CustomPainter {
+  /// Creates a circular loader painter.
+  /// 
+  /// [progress] The animation progress (0.0 to 1.0) for rotation
+  /// [color] The color to paint the loading arc
+  /// [strokeWidth] The width of the arc stroke
   const _CircularLoaderPainter({
     required this.progress,
     required this.color,
     required this.strokeWidth,
   });
 
+  /// The current animation progress (0.0 to 1.0)
   final double progress;
+  
+  /// The color of the loading arc
   final Color color;
+  
+  /// The width of the arc stroke
   final double strokeWidth;
 
+  /// Paints the circular loading arc on the canvas.
+  /// 
+  /// [canvas] The canvas to draw on
+  /// [size] The size of the drawing area
   @override
   void paint(Canvas canvas, Size size) {
     final center = Offset(size.width / 2, size.height / 2);
@@ -103,6 +136,9 @@ class _CircularLoaderPainter extends CustomPainter {
     );
   }
 
+  /// Determines whether the painter should repaint.
+  /// 
+  /// Returns true if any visual properties have changed.
   @override
   bool shouldRepaint(_CircularLoaderPainter oldDelegate) {
     return oldDelegate.progress != progress ||

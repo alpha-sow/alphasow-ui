@@ -9,7 +9,7 @@ class LabelWidget extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(20),
           child: Text(
             'Label',
             style: Theme.of(context).textTheme.displayMedium,
@@ -19,7 +19,7 @@ class LabelWidget extends StatelessWidget {
           title: 'Accept terms and conditions',
           onChanged: (value) {},
         ),
-        const SizedBox(height: 10.0),
+        const SizedBox(height: 10),
         Label(
           title: 'Accept terms and conditions',
           onChanged: (value) {},

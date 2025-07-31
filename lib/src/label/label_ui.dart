@@ -1,18 +1,36 @@
 import 'package:alphasow_ui/alphasow_ui.dart';
 import 'package:flutter/material.dart';
 
+/// A labeled checkbox widget combining text and checkbox functionality.
+///
+/// This widget creates a checkbox with an associated title and optional
+/// description. The entire label area is tappable to toggle the checkbox.
 class Label extends StatefulWidget {
+  /// Creates a labeled checkbox.
+  ///
+  /// [title] The main label text displayed next to the checkbox
+  /// [onChanged] Callback executed when the checkbox state changes
+  /// [description] Optional description text displayed below the title
+  /// [value] The initial state of the checkbox
   const Label({
-    super.key,
     required this.title,
+    required this.onChanged,
+    super.key,
     this.description,
     this.value,
-    required this.onChanged,
   });
+
+  /// The main label text displayed next to the checkbox
   final String title;
+
+  /// Optional description text displayed below the title
   final String? description;
+
+  /// The current state of the checkbox
   final bool? value;
-  final void Function(bool?)? onChanged;
+
+  /// Callback executed when the checkbox state changes
+  final ValueChanged<bool?>? onChanged;
 
   @override
   State<Label> createState() => _LabelState();
@@ -27,7 +45,10 @@ class _LabelState extends State<Label> {
     super.initState();
   }
 
-  void onChanged(bool? value) {
+  /// Handles checkbox state changes and notifies the parent widget.
+  ///
+  /// [value] The new checkbox state
+  void onChanged({bool? value}) {
     if (value != null) {
       setState(() {
         checkboxValue = value;
@@ -43,9 +64,9 @@ class _LabelState extends State<Label> {
       children: [
         CheckboxUI(
           value: checkboxValue,
-          onChanged: onChanged,
+          onChanged: (value) => onChanged(value: value),
         ),
-        const SizedBox(width: 4.0),
+        const SizedBox(width: 4),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -56,17 +77,18 @@ class _LabelState extends State<Label> {
                   fontWeight: FontWeight.w700,
                 ),
               ),
-              onTap: () => onChanged(!checkboxValue),
+              onTap: () => onChanged(value: !checkboxValue),
             ),
-            widget.description != null
-                ? Text(
-                    widget.description!,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w100,
-                    ),
-                  )
-                : const SizedBox.shrink(),
+            if (widget.description != null)
+              Text(
+                widget.description!,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w100,
+                ),
+              )
+            else
+              const SizedBox.shrink(),
           ],
         ),
       ],
