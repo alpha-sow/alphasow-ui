@@ -7,23 +7,47 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  bool isDarkMode = true;
+
+  void toggleTheme() {
+    setState(() {
+      isDarkMode = !isDarkMode;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return AlphasowUiApp(
       title: 'Flutter Demo',
-      theme: themeDark,
-      home: const HomePage(title: 'alphasow_ui'),
+      theme: isDarkMode ? themeDark : theme,
+      home: HomePage(
+        title: 'alphasow_ui',
+        onThemeToggle: toggleTheme,
+        isDarkMode: isDarkMode,
+      ),
     );
   }
 }
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key, required this.title});
+  const HomePage({
+    super.key,
+    required this.title,
+    required this.onThemeToggle,
+    required this.isDarkMode,
+  });
 
   final String title;
+  final VoidCallback onThemeToggle;
+  final bool isDarkMode;
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +57,8 @@ class HomePage extends StatelessWidget {
         title: Text(title),
         actions: [
           Button.ghost(
-            child: const Icon(Icons.sunny),
-            onPressed: () {},
+            onPressed: onThemeToggle,
+            child: Icon(isDarkMode ? Icons.light_mode : Icons.dark_mode),
           )
         ],
       ),
@@ -43,11 +67,13 @@ class HomePage extends StatelessWidget {
           Padding(
             padding: EdgeInsets.all(20.0),
             child: Column(
+              spacing: 8.0,
               children: [
                 ButtonWidget(),
                 InputWidget(),
                 LabelWidget(),
                 ShowAlertDialog(),
+                LoaderWidget(),
               ],
             ),
           ),

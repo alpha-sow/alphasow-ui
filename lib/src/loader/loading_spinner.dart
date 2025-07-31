@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 class LoadingSpinner extends StatefulWidget {
   const LoadingSpinner({
-    super.key, 
-    required this.color,
+    super.key,
+    this.color,
     this.size,
   });
 
-  final Color color;
+  final Color? color;
   final double? size;
 
   @override
@@ -38,16 +38,17 @@ class _LoadingSpinnerState extends State<LoadingSpinner>
     return LayoutBuilder(
       builder: (context, constraints) {
         // Determine the size based on available space or explicit size
-        final double effectiveSize = widget.size ?? 
+        final double effectiveSize = widget.size ??
             (constraints.hasBoundedWidth && constraints.hasBoundedHeight
-                ? (constraints.maxWidth < constraints.maxHeight 
-                    ? constraints.maxWidth 
-                    : constraints.maxHeight).clamp(12.0, 48.0)
+                ? (constraints.maxWidth < constraints.maxHeight
+                        ? constraints.maxWidth
+                        : constraints.maxHeight)
+                    .clamp(12.0, 48.0)
                 : 16.0);
-        
+
         // Calculate stroke width based on size (responsive)
         final double strokeWidth = (effectiveSize * 0.125).clamp(1.5, 4.0);
-        
+
         return SizedBox(
           width: effectiveSize,
           height: effectiveSize,
@@ -62,7 +63,8 @@ class _LoadingSpinnerState extends State<LoadingSpinner>
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(
-                      color: widget.color.withValues(alpha: 0.3),
+                      color:
+                          Theme.of(context).primaryColor.withValues(alpha: 0.3),
                       width: strokeWidth,
                     ),
                   ),
@@ -72,8 +74,8 @@ class _LoadingSpinnerState extends State<LoadingSpinner>
                       shape: BoxShape.circle,
                       gradient: SweepGradient(
                         colors: [
-                          widget.color,
-                          widget.color.withValues(alpha: 0.1),
+                          Theme.of(context).primaryColor,
+                          Theme.of(context).primaryColor.withValues(alpha: 0.1),
                         ],
                         stops: const [0.0, 1.0],
                       ),

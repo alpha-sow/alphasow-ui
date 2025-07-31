@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'dart:math' as math;
 
@@ -5,12 +6,12 @@ class LoadingCircular extends StatefulWidget {
   const LoadingCircular({
     super.key,
     this.size,
-    required this.color,
+    this.color,
     this.strokeWidth = 2.0,
   });
 
   final double? size;
-  final Color color;
+  final Color? color;
   final double strokeWidth;
 
   @override
@@ -57,7 +58,7 @@ class _LoadingCircularState extends State<LoadingCircular>
               return CustomPaint(
                 painter: _CircularLoaderPainter(
                   progress: _controller.value,
-                  color: widget.color,
+                  color: widget.color ?? Theme.of(context).primaryColor,
                   strokeWidth: widget.strokeWidth,
                 ),
               );
