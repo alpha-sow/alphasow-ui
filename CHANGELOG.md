@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.6.0...v1.7.0) (2025-07-31)
+
+
+### Features
+
+* rename components ([2ee2439](https://github.com/alpha-sow/alphasow-ui/commit/2ee24397fa8e131e13c478d57d6c2ed6cc4d00fa))
+
 # [1.6.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.5.1...v1.6.0) (2025-07-31)
 
 
