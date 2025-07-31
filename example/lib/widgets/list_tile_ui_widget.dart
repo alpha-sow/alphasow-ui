@@ -1,0 +1,87 @@
+import 'package:alphasow_ui/alphasow_ui.dart';
+import 'package:flutter/material.dart';
+
+class ListTileUiWidget extends StatelessWidget {
+  const ListTileUiWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(20),
+          child: Text(
+            'List Tile UI',
+            style: Theme.of(context).textTheme.displayMedium,
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            children: ListTileUI.divideTiles(
+              tiles: [
+                ListTileUI(
+                  title: const Text('Basic List Tile'),
+                  onTap: () => context.showBanner(
+                    message: 'Basic list tile tapped!',
+                  ),
+                ),
+                ListTileUI(
+                  title: const Text('With Leading Icon'),
+                  leading: const Icon(Icons.person),
+                  onTap: () => context.showBanner(
+                    message: 'List tile with leading icon tapped!',
+                    type: AlertType.success,
+                  ),
+                ),
+                ListTileUI(
+                  title: const Text('With Subtitle'),
+                  subtitle: const Text(
+                      'This is a subtitle with additional information'),
+                  leading: const Icon(Icons.mail),
+                  onTap: () => context.showBanner(
+                    message: 'List tile with subtitle tapped!',
+                    type: AlertType.warning,
+                  ),
+                ),
+                ListTileUI(
+                  title: const Text('With Trailing'),
+                  subtitle: const Text('Swipe right for more actions'),
+                  leading: const Icon(Icons.settings),
+                  trailing: const Icon(Icons.arrow_forward_ios),
+                  onTap: () => context.showBanner(
+                    message: 'List tile with trailing tapped!',
+                    type: AlertType.error,
+                  ),
+                ),
+                ListTileUI(
+                  title: const Text('Dense Layout'),
+                  subtitle: const Text('Compact spacing'),
+                  leading: const Icon(Icons.compress),
+                  trailing: const Icon(Icons.more_vert),
+                  dense: true,
+                  onTap: () => context.showBanner(
+                    message: 'Dense list tile tapped!',
+                  ),
+                ),
+                const ListTileUI(
+                  title: Text('Disabled Tile'),
+                  subtitle: Text('This tile is disabled'),
+                  leading: Icon(Icons.block),
+                  trailing: Icon(Icons.info_outline),
+                  enabled: false,
+                ),
+                const ListTileUI(
+                  title: Text('Non-interactive'),
+                  subtitle: Text('No tap action defined'),
+                  leading: Icon(Icons.info),
+                  trailing: Icon(Icons.help_outline),
+                ),
+              ],
+            ).toList(),
+          ),
+        ),
+      ],
+    );
+  }
+}
