@@ -51,19 +51,13 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup pub credentials
-        run: dart pub token add "https://repo.alphasow.dev/artifactory/api/pub/repo-pub-local" --env-var PUB_TOKEN
+        run: dart pub token add "https://repo.alphasow.dev/artifactory/api/pub/repo-pub" --env-var PUB_TOKEN
         env:
           PUB_TOKEN: ${{ secrets.PUB_TOKEN }}
-          PUB_HOSTED_URL: "https://repo.alphasow.dev/artifactory/api/pub/repo-pub-local"
+          PUB_HOSTED_URL: "https://repo.alphasow.dev/artifactory/api/pub/repo-pub"
 
       - name: Check publish warnings
         run: flutter pub publish --dry-run
-        env:
-          PUB_TOKEN: ${{ secrets.PUB_TOKEN }}
-          PUB_HOSTED_URL: "https://repo.alphasow.dev/artifactory/api/pub/repo-pub-local"
 
       - name: Publish to Alphasow Repository
         run: flutter pub publish --force
-        env:
-          PUB_TOKEN: ${{ secrets.PUB_TOKEN }}
-          PUB_HOSTED_URL: "https://repo.alphasow.dev/artifactory/api/pub/repo-pub-local"
