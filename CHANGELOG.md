@@ -1,3 +1,15 @@
+# [1.3.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.2.0...v1.3.0) (2025-07-31)
+
+
+### Bug Fixes
+
+* button variant ([0716112](https://github.com/alpha-sow/alphasow-ui/commit/0716112ec1f81bdb2e391ebcaa4b48bc3fc5adfb))
+
+
+### Features
+
+* add loading circular ([c380823](https://github.com/alpha-sow/alphasow-ui/commit/c3808231c841abfc525881f3318eff8c55b6e402))
+
 # [1.2.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.1.2...v1.2.0) (2025-07-31)
 
 
