@@ -1,4 +1,3 @@
-import 'package:alphasow_ui/theme/theme.dart';
 import 'package:flutter/material.dart';
 
 Future<T?> alertDialogUI<T>({
@@ -14,9 +13,6 @@ Future<T?> alertDialogUI<T>({
         color: Colors.black54,
         child: AlertDialog(
           elevation: 0.0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(theme.radius),
-          ),
           title: title,
           content: Container(
             constraints: const BoxConstraints(maxWidth: 500),

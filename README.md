@@ -2,15 +2,27 @@
 
 A Flutter package that provides a collection of reusable UI components with a consistent theming system.
 
-## Features
+#### Configure pub to use repo.alphasow.dev
 
-- **Button Components**: Multiple variants including secondary, destructive, outline, ghost, and link buttons
-- **Input Fields**: Customizable input components for forms
-- **Labels**: Consistent text labeling components
-- **Checkboxes**: Styled checkbox components
-- **Circular Progress Indicators**: Loading indicators
-- **Alert Dialogs**: Modal dialog components
-- **Theme System**: Centralized theming with primary, secondary colors and radius configuration
+Create or update your pub credentials configuration:
+
+```bash
+# Set the hosted URL for pub
+flutter pub deps --hosted-url=https://repo.alphasow.dev/artifactory/api/pub/repo-pub
+```
+
+Or configure it globally by creating/editing `~/.pub-cache/credentials.json`:
+
+```json
+{
+  "hosted": [
+    {
+      "name": "repo.alphasow.dev",
+      "url": "https://repo.alphasow.dev/artifactory/api/pub/repo-pub"
+    }
+  ]
+}
+```
 
 ## Getting Started
 
@@ -41,32 +53,6 @@ void main() {
 }
 ```
 
-### Basic Components
-
-```dart
-import 'package:alphasow_ui/alphasow_ui.dart';
-
-// Button variants
-ButtonUI(text: 'Primary Button')
-ButtonUI.secondary(text: 'Secondary Button')
-ButtonUI.destructive(text: 'Destructive Button')
-ButtonUI.outline(text: 'Outline Button')
-ButtonUI.ghost(text: 'Ghost Button')
-ButtonUI.link(text: 'Link Button')
-
-// Input field
-InputUI(hintText: 'Enter text here')
-
-// Checkbox
-CheckboxUI(value: true, onChanged: (value) {})
-
-// Label
-LabelUI(text: 'Label Text')
-
-// Progress indicator
-CircularProgressIndicatorUI()
-```
-
 ## Example
 
 Check out the `/example` folder for a complete demonstration of all available components.
@@ -84,6 +70,37 @@ flutter run
 - **ThemeUI**: Singleton class managing global theme configuration
 - **Component Structure**: Each component follows the pattern `[name].dart` (export) and `[name]_ui.dart` (implementation)
 - **Consistent Styling**: All components use the centralized theme system for colors and styling
+
+## Configuration
+
+### Using Custom Repository Host
+
+This package is hosted on a private repository. To use `pub get` with the custom host `repo.alphasow.dev`, you need to configure your pub client.
+
+
+
+#### Installing the package
+
+Once configured, install the package normally:
+
+```yaml
+dependencies:
+  alphasow_ui: ^1.0.0
+```
+
+```bash
+flutter pub get
+```
+
+**Steps to update:**
+
+1. Open `pubspec.yaml` in your project root
+2. Locate the `publish_to` field (currently points to `https://repo.alphasow.dev/artifactory/api/pub/repo-pub`)
+3. Replace with your new repository URL
+4. Update `homepage`, `repository`, and `documentation` URLs if needed
+5. Run `flutter pub get` to apply changes
+
+**Note:** Make sure your new repository URL supports Dart package publishing and you have proper authentication configured.
 
 ## Additional Information
 

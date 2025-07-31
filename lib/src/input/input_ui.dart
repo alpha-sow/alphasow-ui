@@ -55,7 +55,7 @@ class Input extends StatelessWidget {
             cursorHeight: 14.0,
             enabled: disabled != null ? !disabled! : null,
             style: const TextStyle(fontSize: 14.0),
-            decoration: inputStyle(hintText: hintText),
+            decoration: inputStyle(context, hintText: hintText),
           ),
         ),
         description != null

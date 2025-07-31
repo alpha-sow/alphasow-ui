@@ -4,32 +4,39 @@ import 'package:flutter/material.dart';
 enum Variant { secondary, destructive, outline, ghost, link }
 
 extension VariantExtension on Variant {
-  ButtonStyle style() {
+  ButtonStyle style(BuildContext context) {
+    final theme = Theme.of(context);
+    
     switch (this) {
       case Variant.secondary:
         return buttonStyle(
-          color: Colors.black,
-          backgroundColor: theme.secondary,
+          context,
+          color: theme.colorScheme.onSecondary,
+          backgroundColor: theme.colorScheme.secondary,
         );
       case Variant.destructive:
         return buttonStyle(
+          context,
           color: Colors.white,
-          backgroundColor: Colors.red,
+          backgroundColor: theme.colorScheme.error,
         );
       case Variant.outline:
         return buttonStyle(
-          color: Colors.black,
+          context,
+          color: theme.colorScheme.onSurface,
           backgroundColor: Colors.transparent,
           outline: true,
         );
       case Variant.ghost:
         return buttonStyle(
-          color: Colors.black,
+          context,
+          color: theme.colorScheme.onSurface,
           backgroundColor: Colors.transparent,
         );
       case Variant.link:
         return buttonStyle(
-          color: Colors.black,
+          context,
+          color: theme.colorScheme.primary,
           backgroundColor: Colors.transparent,
           underline: true,
         );
@@ -52,12 +59,15 @@ class Button extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    
     return ElevatedButton(
       onPressed: isLoading ? null : onPressed,
-      style: variant?.style() ??
+      style: variant?.style(context) ??
           buttonStyle(
-            color: Colors.white,
-            backgroundColor: theme.primary,
+            context,
+            color: theme.colorScheme.onPrimary,
+            backgroundColor: theme.colorScheme.primary,
           ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,

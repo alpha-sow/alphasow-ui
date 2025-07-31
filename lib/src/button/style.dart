@@ -1,12 +1,14 @@
-import 'package:alphasow_ui/alphasow_ui.dart';
 import 'package:flutter/material.dart';
 
-buttonStyle({
+ButtonStyle buttonStyle(
+  BuildContext context, {
   required Color color,
   required Color backgroundColor,
   bool outline = false,
   bool underline = false,
 }) {
+  final theme = Theme.of(context);
+  
   return ElevatedButton.styleFrom(
     elevation: 0.0,
     foregroundColor: color,
@@ -19,10 +21,10 @@ buttonStyle({
     overlayColor: underline ? Colors.transparent : null,
     shadowColor: Colors.transparent,
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(theme.radius),
+      borderRadius: BorderRadius.circular(8.0),
       side: outline
           ? BorderSide(
-              color: theme.secondary,
+              color: theme.colorScheme.outline,
               width: 1.0,
               style: BorderStyle.solid,
             )

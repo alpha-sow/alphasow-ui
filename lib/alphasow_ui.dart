@@ -2,4 +2,3 @@
 library alphasow_ui;
 
 export 'src/src.dart';
-export 'theme/theme.dart';
