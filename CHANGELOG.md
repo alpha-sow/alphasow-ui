@@ -1,3 +1,11 @@
+# [1.2.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.1.2...v1.2.0) (2025-07-31)
+
+
+### Features
+
+* add alert ([bfbacec](https://github.com/alpha-sow/alphasow-ui/commit/bfbacecb19ba56ccbaec5165cc8e93deda172c3e))
+* add banner manager ([3174596](https://github.com/alpha-sow/alphasow-ui/commit/3174596b391899dc0d31a4a223fcf4fc86da9937))
+
 ## [1.1.2](https://github.com/alpha-sow/alphasow-ui/compare/v1.1.1...v1.1.2) (2025-07-31)
 
 
