@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 /// DividerUI provides consistent spacing and visual separation
 /// between list tile items, following Material Design guidelines.
 /// Supports both horizontal and vertical orientations.
-class DividerUI extends StatelessWidget {
+class ASDivider extends StatelessWidget {
   /// Creates a list tile divider.
   ///
   /// [height] The height of the divider including padding (defaults to 1.0)
@@ -14,7 +14,7 @@ class DividerUI extends StatelessWidget {
   /// [endIndent] The amount of empty space to the right of the divider (horizontal) or bottom (vertical)
   /// [color] The color to use when painting the divider line
   /// [orientation] The orientation of the divider (horizontal or vertical, defaults to horizontal)
-  const DividerUI({
+  const ASDivider({
     super.key,
     this.height = 1.0,
     this.thickness = 1.0,

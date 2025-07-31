@@ -1,2 +1,2 @@
-export 'divider_ui.dart';
-export 'list_tile_ui.dart';
+export 'as_divider.dart';
+export 'as_list_tile.dart';

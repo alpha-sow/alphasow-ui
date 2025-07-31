@@ -13,18 +13,18 @@ class BannerWidget extends StatelessWidget {
           'Banner',
           style: Theme.of(context).textTheme.displayMedium,
         ),
-        const AlertBanner(
+        const ASAlertBanner(
           message: 'Banner',
         ),
-        const AlertBanner(
+        const ASAlertBanner(
           type: AlertType.success,
           message: 'Success',
         ),
-        const AlertBanner(
+        const ASAlertBanner(
           type: AlertType.warning,
           message: 'Warning',
         ),
-        const AlertBanner(
+        const ASAlertBanner(
           type: AlertType.error,
           message: 'Error',
         ),

@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 ///
 /// This widget provides a styled checkbox that integrates with the app's
 /// theme and maintains consistent sizing and appearance.
-class CheckboxUI extends StatelessWidget {
+class ASCheckbox extends StatelessWidget {
   /// Creates a themed checkbox.
   ///
   /// [onChanged] Callback executed when the checkbox state changes
   /// [value] The current state of the checkbox (true, false, or null for indeterminate)
-  const CheckboxUI({
+  const ASCheckbox({
     required this.onChanged,
     super.key,
     this.value,

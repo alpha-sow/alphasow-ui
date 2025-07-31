@@ -1,44 +1,44 @@
 import 'package:flutter/material.dart';
 
 /// Defines the different types of alerts available for banners and dialogs.
-/// 
+///
 /// Each type determines the visual styling (colors, icons) of the alert.
 enum AlertType {
   /// Information alert with blue styling and info icon
   info,
-  
+
   /// Success alert with green styling and check icon
   success,
-  
+
   /// Warning alert with orange styling and warning icon
   warning,
-  
+
   /// Error alert with red styling and error icon
   error
 }
 
 /// A singleton manager for handling banner notifications throughout the app.
-/// 
+///
 /// This class manages the display and dismissal of banner notifications,
 /// ensuring only one instance exists across the entire application.
-class BannerManager extends ChangeNotifier {
+class _BannerManager extends ChangeNotifier {
   /// Factory constructor that returns the singleton instance
-  factory BannerManager() => _instance;
-  
+  factory _BannerManager() => _instance;
+
   /// Private constructor for singleton pattern
-  BannerManager._internal();
-  
+  _BannerManager._internal();
+
   /// The singleton instance of BannerManager
-  static final BannerManager _instance = BannerManager._internal();
+  static final _BannerManager _instance = _BannerManager._internal();
 
   /// Internal list storing all active banners
-  final List<BannerItem> _banners = [];
-  
+  final List<_BannerItem> _banners = [];
+
   /// Read-only access to the list of active banners
-  List<BannerItem> get banners => List.unmodifiable(_banners);
+  List<_BannerItem> get banners => List.unmodifiable(_banners);
 
   /// Displays a new banner with the specified configuration.
-  /// 
+  ///
   /// [message] The text content to display in the banner
   /// [type] The alert type determining visual styling (defaults to info)
   /// [duration] How long the banner stays visible (defaults to 4 seconds)
@@ -53,7 +53,7 @@ class BannerManager extends ChangeNotifier {
     VoidCallback? onDismiss,
     double opacity = 0.5,
   }) {
-    final banner = BannerItem(
+    final banner = _BannerItem(
       id: DateTime.now().millisecondsSinceEpoch.toString(),
       message: message,
       type: type,
@@ -74,7 +74,7 @@ class BannerManager extends ChangeNotifier {
   }
 
   /// Dismisses a specific banner by its unique identifier.
-  /// 
+  ///
   /// [id] The unique identifier of the banner to dismiss
   void dismissBanner(String id) {
     _banners.removeWhere((banner) => banner.id == id);
@@ -89,19 +89,19 @@ class BannerManager extends ChangeNotifier {
 }
 
 /// Represents a single banner item with all its configuration.
-/// 
+///
 /// This class holds all the data needed to display and manage a banner,
 /// including its content, styling, and behavior.
-class BannerItem {
+class _BannerItem {
   /// Creates a new banner item with the specified configuration.
-  /// 
+  ///
   /// [id] Unique identifier for this banner
   /// [message] The text content to display
   /// [type] The alert type for styling
   /// [action] Optional action widget
   /// [onDismiss] Callback for dismissal
   /// [opacity] Background opacity (defaults to 0.5)
-  BannerItem({
+  _BannerItem({
     required this.id,
     required this.message,
     required this.type,
@@ -109,33 +109,33 @@ class BannerItem {
     this.onDismiss,
     this.opacity = 0.5,
   });
-  
+
   /// Unique identifier for this banner instance
   final String id;
-  
+
   /// The text message displayed in the banner
   final String message;
-  
+
   /// The type of alert determining visual styling
   final AlertType type;
-  
+
   /// Optional action widget (button, link, etc.)
   final Widget? action;
-  
+
   /// Callback executed when banner is dismissed
   final VoidCallback? onDismiss;
-  
+
   /// Background opacity of the banner (0.0 to 1.0)
   final double opacity;
 }
 
 /// Extension on BuildContext to provide convenient banner display methods.
-/// 
+///
 /// This extension allows any widget to easily show banners by calling
 /// `context.showBanner()` directly.
 extension AlertBannerExtention on BuildContext {
   /// Shows a banner notification from any BuildContext.
-  /// 
+  ///
   /// [message] The text content to display in the banner
   /// [type] The alert type determining visual styling (defaults to info)
   /// [duration] How long the banner stays visible
@@ -148,7 +148,7 @@ extension AlertBannerExtention on BuildContext {
     Widget? action,
     VoidCallback? onDismiss,
   }) {
-    BannerManager().showBanner(
+    _BannerManager().showBanner(
       message: message,
       type: type,
       duration: duration,
@@ -160,13 +160,13 @@ extension AlertBannerExtention on BuildContext {
 }
 
 /// A widget that overlays banners on top of its child widget.
-/// 
+///
 /// This widget should wrap your app's main content to enable banner
 /// notifications to appear as overlays. It automatically listens to
 /// the BannerManager and displays active banners.
 class BannerOverlay extends StatelessWidget {
   /// Creates a banner overlay that wraps the given child.
-  /// 
+  ///
   /// [child] The widget to display beneath the banner overlay
   const BannerOverlay({required this.child, super.key});
 
@@ -183,23 +183,23 @@ class BannerOverlay extends StatelessWidget {
           left: 16,
           right: 16,
           child: ListenableBuilder(
-            listenable: BannerManager(),
+            listenable: _BannerManager(),
             builder: (context, _) {
-              final banners = BannerManager().banners;
+              final banners = _BannerManager().banners;
               return Column(
                 children: banners.map((banner) {
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 8),
                     child: AnimatedContainer(
                       duration: const Duration(milliseconds: 300),
-                      child: AlertBanner(
+                      child: ASAlertBanner(
                         message: banner.message,
                         type: banner.type,
                         action: banner.action,
                         opacity: banner.opacity,
                         onDismiss: () {
                           banner.onDismiss?.call();
-                          BannerManager().dismissBanner(banner.id);
+                          _BannerManager().dismissBanner(banner.id);
                         },
                       ),
                     ),
@@ -215,20 +215,21 @@ class BannerOverlay extends StatelessWidget {
 }
 
 /// A customizable alert banner widget for displaying notifications.
-/// 
+///
 /// This widget creates a styled banner with icon, message, and optional
 /// action button. The styling automatically adapts based on the alert type.
-class AlertBanner extends StatelessWidget {
+class ASAlertBanner extends StatelessWidget {
   /// Creates an alert banner with the specified configuration.
-  /// 
+  ///
   /// [message] The text content to display (required)
   /// [type] The alert type for styling (defaults to info)
   /// [onDismiss] Callback when dismiss button is tapped
   /// [isDismissible] Whether to show a dismiss button (defaults to true)
   /// [action] Optional action widget to display
   /// [opacity] Background opacity (defaults to 0.5)
-  const AlertBanner({
-    required this.message, super.key,
+  const ASAlertBanner({
+    required this.message,
+    super.key,
     this.type = AlertType.info,
     this.onDismiss,
     this.isDismissible = true,
@@ -238,19 +239,19 @@ class AlertBanner extends StatelessWidget {
 
   /// The text message displayed in the banner
   final String message;
-  
+
   /// The type of alert determining visual styling
   final AlertType type;
-  
+
   /// Callback executed when dismiss button is tapped
   final VoidCallback? onDismiss;
-  
+
   /// Whether the banner can be dismissed by the user
   final bool isDismissible;
-  
+
   /// Optional action widget (button, link, etc.)
   final Widget? action;
-  
+
   /// Background opacity of the banner (0.0 to 1.0)
   final double opacity;
 
@@ -308,7 +309,7 @@ class AlertBanner extends StatelessWidget {
   }
 
   /// Returns the appropriate color scheme for the given alert type.
-  /// 
+  ///
   /// [context] The build context for accessing theme colors
   /// [type] The alert type to get colors for
   _AlertColors _getColorsForType(BuildContext context, AlertType type) {
@@ -347,7 +348,7 @@ class AlertBanner extends StatelessWidget {
   }
 
   /// Returns the appropriate icon for the given alert type.
-  /// 
+  ///
   /// [type] The alert type to get an icon for
   IconData _getIconForType(AlertType type) {
     switch (type) {
@@ -364,12 +365,12 @@ class AlertBanner extends StatelessWidget {
 }
 
 /// Internal class holding color scheme for alert banners.
-/// 
+///
 /// This private class encapsulates all the colors needed to style
 /// an alert banner consistently.
 class _AlertColors {
   /// Creates a color scheme for alert styling.
-  /// 
+  ///
   /// [backgroundColor] The background color of the banner
   /// [borderColor] The border color of the banner
   /// [textColor] The text color for content
@@ -380,16 +381,16 @@ class _AlertColors {
     required this.textColor,
     required this.iconColor,
   });
-  
+
   /// Background color of the banner
   final Color backgroundColor;
-  
+
   /// Border color of the banner
   final Color borderColor;
-  
+
   /// Text color for the message content
   final Color textColor;
-  
+
   /// Color used for icons in the banner
   final Color iconColor;
 }

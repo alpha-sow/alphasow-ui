@@ -21,11 +21,11 @@ class _InputWidgetState extends State<InputWidget> {
             style: Theme.of(context).textTheme.displayMedium,
           ),
         ),
-        const Input(hintText: 'Email'),
+        const ASTextField(hintText: 'Email'),
         const SizedBox(height: 10),
-        const Input(hintText: 'Email', disabled: true),
+        const ASTextField(hintText: 'Email', disabled: true),
         const SizedBox(height: 10),
-        const Input(
+        const ASTextField(
           label: 'Username',
           hintText: 'alphasow_ui',
         ),
@@ -33,7 +33,7 @@ class _InputWidgetState extends State<InputWidget> {
         Row(
           children: [
             Flexible(
-              child: Input(
+              child: ASTextField(
                 controller: _textInputControl,
                 hintText: 'Email',
                 onSubmitted: (_) =>
@@ -41,7 +41,7 @@ class _InputWidgetState extends State<InputWidget> {
               ),
             ),
             const SizedBox(width: 4),
-            Button(
+            ASButton(
               child: const Text('Subscribe'),
               onPressed: () {
                 context.showBanner(message: _textInputControl.text);
@@ -54,12 +54,12 @@ class _InputWidgetState extends State<InputWidget> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Input(
+              const ASTextField(
                 label: 'Username',
                 hintText: 'alphasow_ui',
                 description: 'This is your public display name.',
               ),
-              Button(
+              ASButton(
                 child: const Text('Submit'),
                 onPressed: () {},
               )

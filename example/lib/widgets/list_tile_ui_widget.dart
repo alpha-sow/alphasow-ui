@@ -18,15 +18,15 @@ class ListTileUiWidget extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(
-            children: ListTileUI.divideTiles(
+            children: ASListTile.divideTiles(
               tiles: [
-                ListTileUI(
+                ASListTile(
                   title: const Text('Basic List Tile'),
                   onTap: () => context.showBanner(
                     message: 'Basic list tile tapped!',
                   ),
                 ),
-                ListTileUI(
+                ASListTile(
                   title: const Text('With Leading Icon'),
                   leading: const Icon(Icons.person),
                   onTap: () => context.showBanner(
@@ -34,7 +34,7 @@ class ListTileUiWidget extends StatelessWidget {
                     type: AlertType.success,
                   ),
                 ),
-                ListTileUI(
+                ASListTile(
                   title: const Text('With Subtitle'),
                   subtitle: const Text(
                       'This is a subtitle with additional information'),
@@ -44,7 +44,7 @@ class ListTileUiWidget extends StatelessWidget {
                     type: AlertType.warning,
                   ),
                 ),
-                ListTileUI(
+                ASListTile(
                   title: const Text('With Trailing'),
                   subtitle: const Text('Swipe right for more actions'),
                   leading: const Icon(Icons.settings),
@@ -54,7 +54,7 @@ class ListTileUiWidget extends StatelessWidget {
                     type: AlertType.error,
                   ),
                 ),
-                ListTileUI(
+                ASListTile(
                   title: const Text('Dense Layout'),
                   subtitle: const Text('Compact spacing'),
                   leading: const Icon(Icons.compress),
@@ -64,14 +64,14 @@ class ListTileUiWidget extends StatelessWidget {
                     message: 'Dense list tile tapped!',
                   ),
                 ),
-                const ListTileUI(
+                const ASListTile(
                   title: Text('Disabled Tile'),
                   subtitle: Text('This tile is disabled'),
                   leading: Icon(Icons.block),
                   trailing: Icon(Icons.info_outline),
                   enabled: false,
                 ),
-                const ListTileUI(
+                const ASListTile(
                   title: Text('Non-interactive'),
                   subtitle: Text('No tap action defined'),
                   leading: Icon(Icons.info),

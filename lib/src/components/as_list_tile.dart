@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 ///
 /// ListTileUI provides a flexible way to display information in a list format
 /// with support for leading icons, titles, subtitles, trailing widgets, and tap actions.
-class ListTileUI extends StatefulWidget {
+class ASListTile extends StatefulWidget {
   /// Creates a list tile.
   ///
   /// [title] The primary content of the list item
@@ -16,7 +16,7 @@ class ListTileUI extends StatefulWidget {
   /// [trailing] Optional widget displayed after the title (typically an icon or button)
   /// [enabled] Whether the tile is interactive (defaults to true)
   /// [dense] Whether to use a more compact layout (defaults to false)
-  const ListTileUI({
+  const ASListTile({
     required this.title,
     super.key,
     this.onTap,
@@ -52,8 +52,8 @@ class ListTileUI extends StatefulWidget {
   /// inserted between them.
   ///
   /// This is a convenience method that mimics Flutter's [ListTile.divideTiles].
-  /// It takes an iterable of widgets (typically [ListTileUI] widgets) and returns
-  /// an iterable with [DividerUI] widgets inserted between each tile.
+  /// It takes an iterable of widgets (typically [ASListTile] widgets) and returns
+  /// an iterable with [ASDivider] widgets inserted between each tile.
   ///
   /// The dividers can be customized by providing optional parameters:
   /// - [height]: The height of the divider (defaults to 1.0)
@@ -88,7 +88,7 @@ class ListTileUI extends StatefulWidget {
     if (isNotEmpty) {
       yield iterator.current;
       while (iterator.moveNext()) {
-        yield DividerUI(
+        yield ASDivider(
           height: height,
           thickness: thickness,
           indent: indent,
@@ -101,10 +101,10 @@ class ListTileUI extends StatefulWidget {
   }
 
   @override
-  State<ListTileUI> createState() => _ListTileUIState();
+  State<ASListTile> createState() => _ASListTileState();
 }
 
-class _ListTileUIState extends State<ListTileUI> {
+class _ASListTileState extends State<ASListTile> {
   bool _isPressed = false;
 
   @override

@@ -13,8 +13,8 @@ class LoaderWidget extends StatelessWidget {
           'Loader',
           style: Theme.of(context).textTheme.displayMedium,
         ),
-        const LoadingCircular(),
-        const LoadingSpinner(
+        const ASLoadingCircular(),
+        const ASLoadingSpinner(
           size: 25,
         ),
       ],

@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 ///
 /// This widget creates a checkbox with an associated title and optional
 /// description. The entire label area is tappable to toggle the checkbox.
-class Label extends StatefulWidget {
+class ASLabel extends StatefulWidget {
   /// Creates a labeled checkbox.
   ///
   /// [title] The main label text displayed next to the checkbox
   /// [onChanged] Callback executed when the checkbox state changes
   /// [description] Optional description text displayed below the title
   /// [value] The initial state of the checkbox
-  const Label({
+  const ASLabel({
     required this.title,
     required this.onChanged,
     super.key,
@@ -33,10 +33,10 @@ class Label extends StatefulWidget {
   final ValueChanged<bool?>? onChanged;
 
   @override
-  State<Label> createState() => _LabelState();
+  State<ASLabel> createState() => _ASLabelState();
 }
 
-class _LabelState extends State<Label> {
+class _ASLabelState extends State<ASLabel> {
   late bool checkboxValue;
 
   @override
@@ -62,7 +62,7 @@ class _LabelState extends State<Label> {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        CheckboxUI(
+        ASCheckbox(
           value: checkboxValue,
           onChanged: (value) => onChanged(value: value),
         ),

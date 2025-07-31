@@ -1,2 +1,2 @@
-export 'loading_circular.dart';
-export 'loading_spinner.dart';
+export 'as_loading_circular.dart';
+export 'as_loading_spinner.dart';

@@ -15,12 +15,12 @@ class LabelWidget extends StatelessWidget {
             style: Theme.of(context).textTheme.displayMedium,
           ),
         ),
-        Label(
+        ASLabel(
           title: 'Accept terms and conditions',
           onChanged: (value) {},
         ),
         const SizedBox(height: 10),
-        Label(
+        ASLabel(
           title: 'Accept terms and conditions',
           onChanged: (value) {},
           description: 'You agree to our Terms of Service and Privacy Policy.',

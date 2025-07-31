@@ -17,7 +17,7 @@ class ButtonWidget extends StatelessWidget {
         ),
         Column(
           children: [
-            Button(
+            ASButton(
               onPressed: () => context.showBanner(
                 message: 'Button clicked successfully!',
                 type: AlertType.success,
@@ -25,7 +25,7 @@ class ButtonWidget extends StatelessWidget {
               child: const Text('Button'),
             ),
             const SizedBox(height: 10),
-            Button.secondary(
+            ASButton.secondary(
               onPressed: () => context.showBanner(
                 message: 'Button clicked successfully!',
                 type: AlertType.warning,
@@ -33,7 +33,7 @@ class ButtonWidget extends StatelessWidget {
               child: const Text('Secondary'),
             ),
             const SizedBox(height: 10),
-            Button.destructive(
+            ASButton.destructive(
               onPressed: () => context.showBanner(
                 message: 'Button clicked successfully!',
                 type: AlertType.error,
@@ -41,22 +41,22 @@ class ButtonWidget extends StatelessWidget {
               child: const Text('Destructive'),
             ),
             const SizedBox(height: 10),
-            Button.outline(
+            ASButton.outline(
               onPressed: () {},
               child: const Text('Outline'),
             ),
             const SizedBox(height: 10),
-            Button.ghost(
+            ASButton.ghost(
               onPressed: () {},
               child: const Text('Ghost'),
             ),
             const SizedBox(height: 10),
-            Button.link(
+            ASButton.link(
               onPressed: () {},
               child: const Text('Link'),
             ),
             const SizedBox(height: 10),
-            Button.outline(
+            ASButton.outline(
               onPressed: () {},
               child: const Icon(
                 Icons.arrow_forward_ios,
@@ -64,12 +64,12 @@ class ButtonWidget extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-            Button.ghost(
+            ASButton.ghost(
               onPressed: () {},
               child: const Icon(Icons.mail_outline),
             ),
             const SizedBox(height: 10),
-            Button(
+            ASButton(
               onPressed: () {},
               isLoading: true,
               child: const Text('Please wait'),

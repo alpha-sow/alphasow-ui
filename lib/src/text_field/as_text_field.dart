@@ -6,19 +6,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 /// Defines the input types with specific keyboard and behavior configurations.
-/// 
+///
 /// Each type automatically configures the appropriate keyboard type and
 /// handles specific input behaviors like password obscuring.
 enum Type {
   /// Email input type with email keyboard
   email,
-  
+
   /// Password input type with obscured text
   password
 }
 
 /// Extension providing keyboard type mapping for input types.
-/// 
+///
 /// This extension automatically maps input types to their appropriate
 /// keyboard configurations for better user experience.
 extension TypeExtension on Type {
@@ -34,23 +34,23 @@ extension TypeExtension on Type {
 }
 
 /// A comprehensive input widget with built-in styling and label support.
-/// 
+///
 /// This widget provides a consistent text input experience with automatic
 /// styling, label management, and support for various input types. It wraps
 /// Flutter's TextField with additional functionality like automatic password
 /// obscuring and themed styling.
-class Input extends StatelessWidget {
+class ASTextField extends StatelessWidget {
   /// Creates a customizable input field with extensive configuration options.
-  /// 
+  ///
   /// [type] Preset input type (email, password) with automatic configuration
   /// [controller] Text editing controller for managing input value
   /// [label] Optional label text displayed above the input
   /// [hintText] Placeholder text shown when input is empty
   /// [description] Optional description text displayed below the input
   /// [disabled] Whether the input is disabled (deprecated, use enabled instead)
-  /// 
+  ///
   /// All other parameters correspond to TextField parameters with the same names.
-  const Input({
+  const ASTextField({
     super.key,
     this.type,
     this.controller,
@@ -118,187 +118,187 @@ class Input extends StatelessWidget {
 
   /// The preset input type (email, password) with automatic configuration
   final Type? type;
-  
+
   /// Optional label text displayed above the input field
   final String? label;
-  
+
   /// Placeholder text shown when the input is empty
   final String? hintText;
-  
+
   /// Optional description text displayed below the input field
   final String? description;
-  
+
   /// Controller for managing the input's text value
   final TextEditingController? controller;
-  
+
   /// Whether the input is disabled (deprecated, use enabled instead)
   final bool? disabled;
-  
+
   /// Focus node for managing input focus state
   final FocusNode? focusNode;
-  
+
   /// Custom input decoration (overrides default styling)
   final InputDecoration? decoration;
-  
+
   /// The type of keyboard to display (overrides type-based keyboard)
   final TextInputType? keyboardType;
-  
+
   /// The action button to display on the keyboard
   final TextInputAction? textInputAction;
-  
+
   /// How to capitalize text being entered
   final TextCapitalization textCapitalization;
-  
+
   /// The style to use for the input text
   final TextStyle? style;
-  
+
   /// The strut style to use for the input text
   final StrutStyle? strutStyle;
-  
+
   /// How to align the text horizontally
   final TextAlign textAlign;
-  
+
   /// How to align the text vertically
   final TextAlignVertical? textAlignVertical;
-  
+
   /// The directionality of the text
   final TextDirection? textDirection;
-  
+
   /// Whether the input is read-only
   final bool readOnly;
-  
+
   /// Whether to show the cursor
   final bool? showCursor;
-  
+
   /// Whether the input should be focused initially
   final bool autofocus;
-  
+
   /// Character used to obscure text in password fields
   final String obscuringCharacter;
-  
+
   /// Whether to obscure the entered text (overrides type-based obscuring)
   final bool? obscureText;
-  
+
   /// Whether to enable autocorrect
   final bool autocorrect;
-  
+
   /// Configuration for smart dashes
   final SmartDashesType? smartDashesType;
-  
+
   /// Configuration for smart quotes
   final SmartQuotesType? smartQuotesType;
-  
+
   /// Whether to show input suggestions
   final bool enableSuggestions;
-  
+
   /// Maximum number of lines for the input
   final int? maxLines;
-  
+
   /// Minimum number of lines for the input
   final int? minLines;
-  
+
   /// Whether the input should expand to fill available space
   final bool expands;
-  
+
   /// Maximum number of characters allowed
   final int? maxLength;
-  
+
   /// How to enforce the maximum length
   final MaxLengthEnforcement? maxLengthEnforcement;
-  
+
   /// Callback called when the input value changes
   final ValueChanged<String>? onChanged;
-  
+
   /// Callback called when editing is complete
   final VoidCallback? onEditingComplete;
-  
+
   /// Callback called when the input is submitted
   final ValueChanged<String>? onSubmitted;
-  
+
   /// Callback for handling app private commands
   final AppPrivateCommandCallback? onAppPrivateCommand;
-  
+
   /// List of input formatters to apply
   final List<TextInputFormatter>? inputFormatters;
-  
+
   /// Whether the input is enabled
   final bool? enabled;
-  
+
   /// Width of the cursor
   final double cursorWidth;
-  
+
   /// Height of the cursor
   final double? cursorHeight;
-  
+
   /// Radius of the cursor corners
   final Radius? cursorRadius;
-  
+
   /// Color of the cursor
   final Color? cursorColor;
-  
+
   /// How to handle the height of selected text
   final BoxHeightStyle selectionHeightStyle;
-  
+
   /// How to handle the width of selected text
   final BoxWidthStyle selectionWidthStyle;
-  
+
   /// Brightness of the keyboard
   final Brightness? keyboardAppearance;
-  
+
   /// Padding around the scrollable area
   final EdgeInsets scrollPadding;
-  
+
   /// How to handle drag start behavior
   final DragStartBehavior dragStartBehavior;
-  
+
   /// Whether to enable interactive text selection
   final bool? enableInteractiveSelection;
-  
+
   /// Custom text selection controls
   final TextSelectionControls? selectionControls;
-  
+
   /// Callback called when the input is tapped
   final GestureTapCallback? onTap;
-  
+
   /// Callback called when tapping outside the input
   final TapRegionCallback? onTapOutside;
-  
+
   /// The mouse cursor to display
   final MouseCursor? mouseCursor;
-  
+
   /// Builder for the character counter widget
   final InputCounterWidgetBuilder? buildCounter;
-  
+
   /// Controller for scrolling behavior
   final ScrollController? scrollController;
-  
+
   /// Physics for scrolling behavior
   final ScrollPhysics? scrollPhysics;
-  
+
   /// Hints for autofill behavior
   final Iterable<String>? autofillHints;
-  
+
   /// Configuration for content insertion
   final ContentInsertionConfiguration? contentInsertionConfiguration;
-  
+
   /// How to clip the input content
   final Clip clipBehavior;
-  
+
   /// Restoration ID for state restoration
   final String? restorationId;
-  
+
   /// Whether to enable stylus handwriting
   final bool stylusHandwritingEnabled;
-  
+
   /// Whether to enable IME personalized learning
   final bool enableIMEPersonalizedLearning;
-  
+
   /// Whether the input can request focus
   final bool canRequestFocus;
-  
+
   /// Configuration for spell checking
   final SpellCheckConfiguration? spellCheckConfiguration;
-  
+
   /// Configuration for text magnification
   final TextMagnifierConfiguration? magnifierConfiguration;
 
@@ -307,13 +307,16 @@ class Input extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (label != null) Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8),
-                child: Text(
-                  label!,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ) else const SizedBox.shrink(),
+        if (label != null)
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8),
+            child: Text(
+              label!,
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+          )
+        else
+          const SizedBox.shrink(),
         SizedBox(
           height: 42,
           child: TextField(
@@ -396,17 +399,19 @@ class Input extends StatelessWidget {
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                        color: Theme.of(context).colorScheme.primary,
-                        width: 2),
+                        color: Theme.of(context).colorScheme.primary, width: 2),
                     borderRadius: BorderRadius.circular(8),
                   ),
                 ),
           ),
         ),
-        if (description != null) Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8),
-                child: Text(description!),
-              ) else const SizedBox.shrink(),
+        if (description != null)
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8),
+            child: Text(description!),
+          )
+        else
+          const SizedBox.shrink(),
       ],
     );
   }

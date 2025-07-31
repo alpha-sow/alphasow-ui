@@ -57,7 +57,7 @@ class HomePage extends StatelessWidget {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(title),
         actions: [
-          Button.ghost(
+          ASButton.ghost(
             onPressed: onThemeToggle,
             child: Icon(isDarkMode ? Icons.light_mode : Icons.dark_mode),
           )

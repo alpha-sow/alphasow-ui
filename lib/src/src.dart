@@ -5,4 +5,4 @@ export 'checkbox/checkbox.dart';
 export 'components/components.dart';
 export 'label/label.dart';
 export 'loader/loader.dart';
-export 'text_input/text_input.dart';
+export 'text_field/text_field.dart';
