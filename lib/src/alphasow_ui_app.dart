@@ -64,32 +64,39 @@ class AlphasowUiApp extends StatelessWidget {
     
     return Theme(
       data: appTheme,
-      child: WidgetsApp(
-        key: key,
-        navigatorKey: navigatorKey,
-        home: home,
-        routes: routes,
-        initialRoute: initialRoute,
-        onGenerateRoute: onGenerateRoute,
-        onGenerateInitialRoutes: onGenerateInitialRoutes,
-        onUnknownRoute: onUnknownRoute,
-        navigatorObservers: navigatorObservers,
-        builder: builder,
-        title: title,
-        onGenerateTitle: onGenerateTitle,
-        color: appTheme.primaryColor,
-        locale: locale,
-        localizationsDelegates: _buildLocalizationsDelegates(),
-        localeListResolutionCallback: localeListResolutionCallback,
-        localeResolutionCallback: localeResolutionCallback,
-        supportedLocales: supportedLocales,
-        showPerformanceOverlay: showPerformanceOverlay,
-        showSemanticsDebugger: showSemanticsDebugger,
-        debugShowCheckedModeBanner: debugShowCheckedModeBanner,
-        shortcuts: shortcuts,
-        actions: actions,
-        restorationScopeId: restorationScopeId,
-        pageRouteBuilder: pageRouteBuilder ?? _defaultPageRouteBuilder,
+      child: Builder(
+        builder: (context) {
+          return WidgetsApp(
+            key: key,
+            navigatorKey: navigatorKey,
+            home: home != null ? Material(child: home!) : null,
+            routes: _wrapRoutesWithMaterial(routes),
+            initialRoute: initialRoute,
+            onGenerateRoute: _wrapRouteWithMaterial(onGenerateRoute),
+            onGenerateInitialRoutes: onGenerateInitialRoutes,
+            onUnknownRoute: _wrapRouteWithMaterial(onUnknownRoute),
+            navigatorObservers: navigatorObservers,
+            builder: builder != null ? (context, child) {
+              final wrappedChild = child != null ? Material(child: child) : null;
+              return builder!(context, wrappedChild);
+            } : (context, child) => Material(child: child ?? Container()),
+            title: title,
+            onGenerateTitle: onGenerateTitle,
+            color: appTheme.primaryColor,
+            locale: locale,
+            localizationsDelegates: _buildLocalizationsDelegates(),
+            localeListResolutionCallback: localeListResolutionCallback,
+            localeResolutionCallback: localeResolutionCallback,
+            supportedLocales: supportedLocales,
+            showPerformanceOverlay: showPerformanceOverlay,
+            showSemanticsDebugger: showSemanticsDebugger,
+            debugShowCheckedModeBanner: debugShowCheckedModeBanner,
+            shortcuts: shortcuts,
+            actions: actions,
+            restorationScopeId: restorationScopeId,
+            pageRouteBuilder: pageRouteBuilder ?? _defaultPageRouteBuilder,
+          );
+        },
       ),
     );
   }
@@ -108,13 +115,42 @@ class AlphasowUiApp extends StatelessWidget {
     return delegates;
   }
 
+  Map<String, WidgetBuilder> _wrapRoutesWithMaterial(Map<String, WidgetBuilder> routes) {
+    return routes.map((key, builder) => MapEntry(
+      key,
+      (context) => Material(child: builder(context)),
+    ));
+  }
+
+  RouteFactory? _wrapRouteWithMaterial(RouteFactory? routeFactory) {
+    if (routeFactory == null) return null;
+    return (settings) {
+      final route = routeFactory(settings);
+      if (route is PageRoute && route is MaterialPageRoute) {
+        return PageRouteBuilder(
+          settings: route.settings,
+          pageBuilder: (context, animation, secondaryAnimation) {
+            return Material(child: route.builder(context));
+          },
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(
+              opacity: animation,
+              child: child,
+            );
+          },
+        );
+      }
+      return route;
+    };
+  }
+
   static PageRoute<T> _defaultPageRouteBuilder<T extends Object?>(
     RouteSettings settings,
     WidgetBuilder builder,
   ) {
     return PageRouteBuilder<T>(
       settings: settings,
-      pageBuilder: (context, animation, secondaryAnimation) => builder(context),
+      pageBuilder: (context, animation, secondaryAnimation) => Material(child: builder(context)),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         return FadeTransition(
           opacity: animation,
