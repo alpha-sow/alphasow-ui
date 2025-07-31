@@ -1,7 +1,7 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 
 final theme = FlexThemeData.light(
-  scheme: FlexScheme.green,
+  scheme: FlexScheme.blue,
   useMaterial3: true,
   surfaceMode: FlexSurfaceMode.levelSurfacesLowScaffold,
   blendLevel: 7,
@@ -18,7 +18,7 @@ final theme = FlexThemeData.light(
 );
 
 final themeDark = FlexThemeData.dark(
-  scheme: FlexScheme.green,
+  scheme: FlexScheme.blue,
   useMaterial3: true,
   surfaceMode: FlexSurfaceMode.levelSurfacesLowScaffold,
   blendLevel: 13,
