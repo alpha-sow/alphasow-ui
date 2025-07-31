@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/alpha-sow/alphasow-ui/compare/v1.0.3...v1.0.4) (2025-07-31)
+
+
+### Bug Fixes
+
+* add env token ([891b3ed](https://github.com/alpha-sow/alphasow-ui/commit/891b3ed6da47927df109d101200dc44cadc69327))
+
 ## [1.0.3](https://github.com/alpha-sow/alphasow-ui/compare/v1.0.2...v1.0.3) (2025-07-30)
 
 
