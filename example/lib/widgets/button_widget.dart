@@ -34,13 +34,35 @@ class ButtonWidget extends StatelessWidget {
             ),
             const SizedBox(height: 10.0),
             Button(
-              onPressed: () {},
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: AlertBanner(
+                      message: 'Button clicked successfully!',
+                      type: AlertType.warning,
+                    ),
+                    backgroundColor: Colors.transparent,
+                    elevation: 0,
+                  ),
+                );
+              },
               variant: Variant.secondary,
               child: const Text('Secondary'),
             ),
             const SizedBox(height: 10.0),
             Button(
-              onPressed: () {},
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: AlertBanner(
+                      message: 'Button clicked successfully!',
+                      type: AlertType.error,
+                    ),
+                    backgroundColor: Colors.transparent,
+                    elevation: 0,
+                  ),
+                );
+              },
               variant: Variant.destructive,
               child: const Text('Destructive'),
             ),
