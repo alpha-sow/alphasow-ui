@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.4.0...v1.5.0) (2025-07-31)
+
+
+### Features
+
+* alert banner opacity ([0491cd6](https://github.com/alpha-sow/alphasow-ui/commit/0491cd6e7019d334ec459aea412d415b10165027))
+
 # [1.4.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.3.0...v1.4.0) (2025-07-31)
 
 
