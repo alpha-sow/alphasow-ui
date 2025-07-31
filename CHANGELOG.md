@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/alpha-sow/alphasow-ui/compare/v1.0.4...v1.0.5) (2025-07-31)
+
+
+### Bug Fixes
+
+* repo url ([a99c804](https://github.com/alpha-sow/alphasow-ui/commit/a99c8047bdfb1262de6c141a66c04626e5dba9d4))
+
 ## [1.0.4](https://github.com/alpha-sow/alphasow-ui/compare/v1.0.3...v1.0.4) (2025-07-31)
 
 
