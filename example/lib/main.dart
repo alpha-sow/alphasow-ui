@@ -26,6 +26,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return AlphasowUiApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: isDarkMode ? themeDark : theme,
       home: HomePage(
@@ -79,13 +80,6 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      persistentFooterAlignment: AlignmentDirectional.center,
-      persistentFooterButtons: [
-        Button(
-          child: const Text('Button'),
-          onPressed: () {},
-        ),
-      ],
     );
   }
 }

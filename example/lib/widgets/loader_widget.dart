@@ -7,16 +7,16 @@ class LoaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      spacing: 10.0,
       children: [
-        Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Text(
-            'Loader',
-            style: Theme.of(context).textTheme.displayMedium,
-          ),
+        Text(
+          'Loader',
+          style: Theme.of(context).textTheme.displayMedium,
         ),
         const LoadingCircular(),
-        const LoadingSpinner(),
+        const LoadingSpinner(
+          size: 25,
+        ),
       ],
     );
   }
