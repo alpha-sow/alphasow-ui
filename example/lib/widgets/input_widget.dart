@@ -1,9 +1,15 @@
 import 'package:alphasow_ui/alphasow_ui.dart';
 import 'package:flutter/material.dart';
 
-class InputWidget extends StatelessWidget {
+class InputWidget extends StatefulWidget {
   const InputWidget({super.key});
 
+  @override
+  State<InputWidget> createState() => _InputWidgetState();
+}
+
+class _InputWidgetState extends State<InputWidget> {
+  final TextEditingController _textInputControl = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -26,15 +32,20 @@ class InputWidget extends StatelessWidget {
         const SizedBox(height: 10.0),
         Row(
           children: [
-            const Flexible(
+            Flexible(
               child: Input(
+                controller: _textInputControl,
                 hintText: 'Email',
+                onSubmitted: (_) =>
+                    context.showBanner(message: _textInputControl.text),
               ),
             ),
             const SizedBox(width: 4.0),
             Button(
               child: const Text('Subscribe'),
-              onPressed: () {},
+              onPressed: () {
+                context.showBanner(message: _textInputControl.text);
+              },
             )
           ],
         ),
