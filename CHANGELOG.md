@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/alpha-sow/alphasow-ui/compare/v1.1.0...v1.1.1) (2025-07-31)
+
+
+### Bug Fixes
+
+* material scaffold message ([621d05b](https://github.com/alpha-sow/alphasow-ui/commit/621d05b7d94a6edcbba56aa3299017422c2470ed))
+
 # [1.1.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.0.6...v1.1.0) (2025-07-31)
 
 
