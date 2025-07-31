@@ -157,7 +157,7 @@ class _ButtonState extends State<Button> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             if (widget.isLoading) ...[
-              LoadingSpinner(color: finalTextColor),
+              LoadingCircular(color: finalTextColor),
               const SizedBox(width: 8.0),
             ],
             DefaultTextStyle(
