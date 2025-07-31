@@ -6,7 +6,7 @@ class LoadingCircular extends StatefulWidget {
     super.key,
     this.size,
     this.color,
-    this.strokeWidth = 2.0,
+    this.strokeWidth = 4.0,
   });
 
   final double? size;
