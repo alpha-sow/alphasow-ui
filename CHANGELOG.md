@@ -1,3 +1,15 @@
+# [1.6.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.5.1...v1.6.0) (2025-07-31)
+
+
+### Bug Fixes
+
+* update import ([1719116](https://github.com/alpha-sow/alphasow-ui/commit/171911620cc8e188cc14a09151455bc3c6f895dd))
+
+
+### Features
+
+* add list tile and divider ([d60dc8d](https://github.com/alpha-sow/alphasow-ui/commit/d60dc8df0c9b6a98966ad4f5a9da76058e9991c9))
+
 ## [1.5.1](https://github.com/alpha-sow/alphasow-ui/compare/v1.5.0...v1.5.1) (2025-07-31)
 
 
