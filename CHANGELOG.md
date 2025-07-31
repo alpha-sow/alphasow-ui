@@ -1,3 +1,11 @@
+## [1.0.6](https://github.com/alpha-sow/alphasow-ui/compare/v1.0.5...v1.0.6) (2025-07-31)
+
+
+### Bug Fixes
+
+*  setup pub credentials for all env ([26e3515](https://github.com/alpha-sow/alphasow-ui/commit/26e3515f0c42e22ce4cc717d9a4e62ed3f5aa4ef))
+* setup credentials before pub get ([acc12fe](https://github.com/alpha-sow/alphasow-ui/commit/acc12fe8eaacf12791d293621addd53c6c69d4a0))
+
 ## [1.0.5](https://github.com/alpha-sow/alphasow-ui/compare/v1.0.4...v1.0.5) (2025-07-31)
 
 
