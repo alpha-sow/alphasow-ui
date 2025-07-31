@@ -18,51 +18,27 @@ class ButtonWidget extends StatelessWidget {
         Column(
           children: [
             Button(
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: AlertBanner(
-                      message: 'Button clicked successfully!',
-                      type: AlertType.success,
-                    ),
-                    backgroundColor: Colors.transparent,
-                    elevation: 0,
-                  ),
-                );
-              },
+              onPressed: () => context.showBanner(
+                message: 'Button clicked successfully!',
+                type: AlertType.success,
+              ),
               child: const Text('Button'),
             ),
             const SizedBox(height: 10.0),
             Button(
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: AlertBanner(
-                      message: 'Button clicked successfully!',
-                      type: AlertType.warning,
-                    ),
-                    backgroundColor: Colors.transparent,
-                    elevation: 0,
-                  ),
-                );
-              },
+              onPressed: () => context.showBanner(
+                message: 'Button clicked successfully!',
+                type: AlertType.warning,
+              ),
               variant: Variant.secondary,
               child: const Text('Secondary'),
             ),
             const SizedBox(height: 10.0),
             Button(
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: AlertBanner(
-                      message: 'Button clicked successfully!',
-                      type: AlertType.error,
-                    ),
-                    backgroundColor: Colors.transparent,
-                    elevation: 0,
-                  ),
-                );
-              },
+              onPressed: () => context.showBanner(
+                message: 'Button clicked successfully!',
+                type: AlertType.error,
+              ),
               variant: Variant.destructive,
               child: const Text('Destructive'),
             ),

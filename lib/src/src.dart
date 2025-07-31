@@ -1,4 +1,4 @@
-export 'alert_dialog/alert_dialog.dart';
+export 'alert/alert.dart';
 export 'alphasow_ui_app.dart';
 export 'button/button.dart';
 export 'checkbox/checkbox.dart';

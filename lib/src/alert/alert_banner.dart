@@ -2,6 +2,21 @@ import 'package:flutter/material.dart';
 
 enum AlertType { info, success, warning, error }
 
+extension AlertBannerExtention on BuildContext {
+  showBanner({required String message, AlertType type = AlertType.info}) {
+    ScaffoldMessenger.of(this).showSnackBar(
+      SnackBar(
+        content: AlertBanner(
+          message: message,
+          type: type,
+        ),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
+    );
+  }
+}
+
 class AlertBanner extends StatelessWidget {
   const AlertBanner({
     super.key,
@@ -79,29 +94,29 @@ class AlertBanner extends StatelessWidget {
         return _AlertColors(
           backgroundColor: theme.colorScheme.primary,
           borderColor: theme.colorScheme.primary,
-          textColor: theme.colorScheme.onSurface,
-          iconColor: theme.colorScheme.primary,
+          textColor: theme.colorScheme.onPrimary,
+          iconColor: theme.colorScheme.onPrimary,
         );
       case AlertType.success:
         return _AlertColors(
           backgroundColor: Colors.green,
           borderColor: Colors.green,
-          textColor: theme.colorScheme.onSurface,
-          iconColor: Colors.green,
+          textColor: Colors.white,
+          iconColor: Colors.white,
         );
       case AlertType.warning:
         return _AlertColors(
           backgroundColor: Colors.orange,
           borderColor: Colors.orange,
-          textColor: theme.colorScheme.onSurface,
-          iconColor: Colors.orange,
+          textColor: Colors.white,
+          iconColor: Colors.white,
         );
       case AlertType.error:
         return _AlertColors(
           backgroundColor: theme.colorScheme.error,
           borderColor: theme.colorScheme.error,
-          textColor: theme.colorScheme.onSurface,
-          iconColor: theme.colorScheme.error,
+          textColor: theme.colorScheme.onError,
+          iconColor: theme.colorScheme.onError,
         );
     }
   }

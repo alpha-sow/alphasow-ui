@@ -17,8 +17,7 @@ class ShowAlertDialog extends StatelessWidget {
         ),
         Button(
           variant: Variant.outline,
-          onPressed: () => alertDialogUI(
-            context: context,
+          onPressed: () => context.showAlertDialog(
             title: const Text(
               'Are you absolutely sure?',
               style: TextStyle(
