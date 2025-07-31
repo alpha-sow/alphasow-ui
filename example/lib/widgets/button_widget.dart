@@ -18,7 +18,18 @@ class ButtonWidget extends StatelessWidget {
         Column(
           children: [
             Button(
-              onPressed: () {},
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: AlertBanner(
+                      message: 'Button clicked successfully!',
+                      type: AlertType.success,
+                    ),
+                    backgroundColor: Colors.transparent,
+                    elevation: 0,
+                  ),
+                );
+              },
               child: const Text('Button'),
             ),
             const SizedBox(height: 10.0),

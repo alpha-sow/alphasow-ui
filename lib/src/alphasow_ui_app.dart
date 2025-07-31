@@ -78,8 +78,12 @@ class AlphasowUiApp extends StatelessWidget {
             navigatorObservers: navigatorObservers,
             builder: builder != null ? (context, child) {
               final wrappedChild = child != null ? Material(child: child) : null;
-              return builder!(context, wrappedChild);
-            } : (context, child) => Material(child: child ?? Container()),
+              return ScaffoldMessenger(
+                child: builder!(context, wrappedChild),
+              );
+            } : (context, child) => ScaffoldMessenger(
+              child: Material(child: child ?? Container()),
+            ),
             title: title,
             onGenerateTitle: onGenerateTitle,
             color: appTheme.primaryColor,
