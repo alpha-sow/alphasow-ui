@@ -1,3 +1,11 @@
+# [1.1.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.0.6...v1.1.0) (2025-07-31)
+
+
+### Features
+
+* create app ui ([7f03c08](https://github.com/alpha-sow/alphasow-ui/commit/7f03c08c822f362b2580b180c1d37fa0afe071bb))
+* loading spinner ([71bf701](https://github.com/alpha-sow/alphasow-ui/commit/71bf7011a74061f5362e61071626d8a723603331))
+
 ## [1.0.6](https://github.com/alpha-sow/alphasow-ui/compare/v1.0.5...v1.0.6) (2025-07-31)
 
 
