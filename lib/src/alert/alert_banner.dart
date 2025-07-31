@@ -2,17 +2,125 @@ import 'package:flutter/material.dart';
 
 enum AlertType { info, success, warning, error }
 
+class BannerManager extends ChangeNotifier {
+  static final BannerManager _instance = BannerManager._internal();
+  factory BannerManager() => _instance;
+  BannerManager._internal();
+
+  final List<BannerItem> _banners = [];
+  List<BannerItem> get banners => List.unmodifiable(_banners);
+
+  void showBanner({
+    required String message,
+    AlertType type = AlertType.info,
+    Duration? duration,
+    Widget? action,
+    VoidCallback? onDismiss,
+  }) {
+    final banner = BannerItem(
+      id: DateTime.now().millisecondsSinceEpoch.toString(),
+      message: message,
+      type: type,
+      action: action,
+      onDismiss: onDismiss,
+    );
+
+    _banners.add(banner);
+    notifyListeners();
+
+    if (duration != null) {
+      Future.delayed(duration, () => dismissBanner(banner.id));
+    } else {
+      Future.delayed(const Duration(seconds: 4), () => dismissBanner(banner.id));
+    }
+  }
+
+  void dismissBanner(String id) {
+    _banners.removeWhere((banner) => banner.id == id);
+    notifyListeners();
+  }
+
+  void dismissAll() {
+    _banners.clear();
+    notifyListeners();
+  }
+}
+
+class BannerItem {
+  final String id;
+  final String message;
+  final AlertType type;
+  final Widget? action;
+  final VoidCallback? onDismiss;
+
+  BannerItem({
+    required this.id,
+    required this.message,
+    required this.type,
+    this.action,
+    this.onDismiss,
+  });
+}
+
 extension AlertBannerExtention on BuildContext {
-  showBanner({required String message, AlertType type = AlertType.info}) {
-    ScaffoldMessenger.of(this).showSnackBar(
-      SnackBar(
-        content: AlertBanner(
-          message: message,
-          type: type,
+  void showBanner({
+    required String message,
+    AlertType type = AlertType.info,
+    Duration? duration,
+    Widget? action,
+    VoidCallback? onDismiss,
+  }) {
+    BannerManager().showBanner(
+      message: message,
+      type: type,
+      duration: duration,
+      action: action,
+      onDismiss: onDismiss,
+    );
+  }
+}
+
+class BannerOverlay extends StatelessWidget {
+  const BannerOverlay({super.key, required this.child});
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        child,
+        Positioned(
+          top: MediaQuery.of(context).padding.top + 16,
+          left: 16,
+          right: 16,
+          child: ListenableBuilder(
+            listenable: BannerManager(),
+            builder: (context, _) {
+              final banners = BannerManager().banners;
+              return Column(
+                children: banners.map((banner) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 300),
+                      child: AlertBanner(
+                        message: banner.message,
+                        type: banner.type,
+                        action: banner.action,
+                        onDismiss: () {
+                          banner.onDismiss?.call();
+                          BannerManager().dismissBanner(banner.id);
+                        },
+                      ),
+                    ),
+                  );
+                }).toList(),
+              );
+            },
+          ),
         ),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
+      ],
     );
   }
 }

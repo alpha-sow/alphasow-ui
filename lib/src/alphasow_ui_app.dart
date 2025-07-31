@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'alert/alert_banner.dart';
 
 class AlphasowUiApp extends StatelessWidget {
   const AlphasowUiApp({
@@ -79,10 +80,14 @@ class AlphasowUiApp extends StatelessWidget {
             builder: builder != null ? (context, child) {
               final wrappedChild = child != null ? Material(child: child) : null;
               return ScaffoldMessenger(
-                child: builder!(context, wrappedChild),
+                child: BannerOverlay(
+                  child: builder!(context, wrappedChild),
+                ),
               );
             } : (context, child) => ScaffoldMessenger(
-              child: Material(child: child ?? Container()),
+              child: BannerOverlay(
+                child: Material(child: child ?? Container()),
+              ),
             ),
             title: title,
             onGenerateTitle: onGenerateTitle,
