@@ -1,5 +1,6 @@
 import 'package:alphasow_ui/alphasow_ui.dart';
 import 'package:example/widgets/widgets.dart';
+import 'package:example/theme.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,13 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlphasowUiApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.green,
-          brightness: Brightness.light,
-        ),
-        useMaterial3: true,
-      ),
+      theme: themeDark,
       home: const HomePage(title: 'alphasow_ui'),
     );
   }
@@ -36,6 +31,13 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(title),
+        actions: [
+          Button(
+            variant: Variant.ghost,
+            child: const Icon(Icons.sunny),
+            onPressed: () {},
+          )
+        ],
       ),
       body: ListView(
         children: const [
