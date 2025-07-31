@@ -1,3 +1,16 @@
+# [1.4.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.3.0...v1.4.0) (2025-07-31)
+
+
+### Bug Fixes
+
+* input param ([c85101b](https://github.com/alpha-sow/alphasow-ui/commit/c85101b34138f17c535bdcc1ee61d3bec9a6eb42))
+* remove un use import ([056cb4e](https://github.com/alpha-sow/alphasow-ui/commit/056cb4e4cf56bf0cbd4cb337d192b51e6ae9f955))
+
+
+### Features
+
+* loader color not required ([1af8bd1](https://github.com/alpha-sow/alphasow-ui/commit/1af8bd15e4c0033c603f14f08f404ad918bfd25e))
+
 # [1.3.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.2.0...v1.3.0) (2025-07-31)
 
 
