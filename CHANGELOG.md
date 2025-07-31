@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/alpha-sow/alphasow-ui/compare/v1.5.0...v1.5.1) (2025-07-31)
+
+
+### Bug Fixes
+
+* stroke circular default to 4 ([7a84a71](https://github.com/alpha-sow/alphasow-ui/commit/7a84a716ee00fe3beee9aaa3190556feb77bac05))
+
 # [1.5.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.4.0...v1.5.0) (2025-07-31)
 
 
