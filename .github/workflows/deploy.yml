@@ -58,6 +58,12 @@ jobs:
 
       - name: Check publish warnings
         run: flutter pub publish --dry-run
+        env:
+          PUB_TOKEN: ${{ secrets.PUB_TOKEN }}
+          PUB_HOSTED_URL: "https://repo.alphasow.dev/artifactory/api/pub/repo-pub-local"
 
       - name: Publish to Alphasow Repository
         run: flutter pub publish --force
+        env:
+          PUB_TOKEN: ${{ secrets.PUB_TOKEN }}
+          PUB_HOSTED_URL: "https://repo.alphasow.dev/artifactory/api/pub/repo-pub-local"
