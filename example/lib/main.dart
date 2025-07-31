@@ -32,8 +32,7 @@ class HomePage extends StatelessWidget {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(title),
         actions: [
-          Button(
-            variant: Variant.ghost,
+          Button.ghost(
             child: const Icon(Icons.sunny),
             onPressed: () {},
           )

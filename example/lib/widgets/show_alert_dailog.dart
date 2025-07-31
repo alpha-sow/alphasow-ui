@@ -15,8 +15,7 @@ class ShowAlertDialog extends StatelessWidget {
             style: Theme.of(context).textTheme.displayMedium,
           ),
         ),
-        Button(
-          variant: Variant.outline,
+        Button.outline(
           onPressed: () => context.showAlertDialog(
             title: const Text(
               'Are you absolutely sure?',
@@ -27,8 +26,7 @@ class ShowAlertDialog extends StatelessWidget {
             content: const Text(
                 'This action cannot be undone. This will permanently delete your account and remove your data from our servers.'),
             actions: <Widget>[
-              Button(
-                variant: Variant.outline,
+              Button.outline(
                 child: const Text('Cancel'),
                 onPressed: () => Navigator.pop(context),
               ),

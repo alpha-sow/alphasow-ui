@@ -25,55 +25,48 @@ class ButtonWidget extends StatelessWidget {
               child: const Text('Button'),
             ),
             const SizedBox(height: 10.0),
-            Button(
+            Button.secondary(
               onPressed: () => context.showBanner(
                 message: 'Button clicked successfully!',
                 type: AlertType.warning,
               ),
-              variant: Variant.secondary,
               child: const Text('Secondary'),
             ),
             const SizedBox(height: 10.0),
-            Button(
+            Button.destructive(
               onPressed: () => context.showBanner(
                 message: 'Button clicked successfully!',
                 type: AlertType.error,
               ),
-              variant: Variant.destructive,
               child: const Text('Destructive'),
             ),
             const SizedBox(height: 10.0),
-            Button(
+            Button.outline(
               onPressed: () {},
-              variant: Variant.outline,
               child: const Text('Outline'),
             ),
             const SizedBox(height: 10.0),
-            Button(
+            Button.ghost(
               onPressed: () {},
-              variant: Variant.ghost,
               child: const Text('Ghost'),
             ),
             const SizedBox(height: 10.0),
-            Button(
+            Button.link(
               onPressed: () {},
-              variant: Variant.link,
               child: const Text('Link'),
             ),
             const SizedBox(height: 10.0),
-            Button(
+            Button.outline(
               onPressed: () {},
-              variant: Variant.outline,
               child: const Icon(
                 Icons.arrow_forward_ios,
                 size: 10.0,
               ),
             ),
             const SizedBox(height: 10.0),
-            ButtonIcon(
+            Button.ghost(
               onPressed: () {},
-              label: const Text('Login with Email'),
-              icon: const Icon(Icons.mail_outline),
+              child: const Icon(Icons.mail_outline),
             ),
             const SizedBox(height: 10.0),
             Button(

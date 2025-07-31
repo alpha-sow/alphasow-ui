@@ -18,7 +18,7 @@ class ButtonColors {
   });
 }
 
-extension VariantExtension on Variant {
+extension _VariantExtension on Variant {
   ButtonColors getColors(BuildContext context) {
     final theme = Theme.of(context);
 
@@ -60,12 +60,47 @@ class Button extends StatefulWidget {
     required this.child,
     required this.onPressed,
     this.isLoading = false,
-    this.variant,
-  });
+  }) : _variant = null;
+
+  const Button.secondary({
+    super.key,
+    required this.child,
+    required this.onPressed,
+    this.isLoading = false,
+  }) : _variant = Variant.secondary;
+
+  const Button.destructive({
+    super.key,
+    required this.child,
+    required this.onPressed,
+    this.isLoading = false,
+  }) : _variant = Variant.destructive;
+
+  const Button.outline({
+    super.key,
+    required this.child,
+    required this.onPressed,
+    this.isLoading = false,
+  }) : _variant = Variant.outline;
+
+  const Button.ghost({
+    super.key,
+    required this.child,
+    required this.onPressed,
+    this.isLoading = false,
+  }) : _variant = Variant.ghost;
+
+  const Button.link({
+    super.key,
+    required this.child,
+    required this.onPressed,
+    this.isLoading = false,
+  }) : _variant = Variant.link;
+
   final Widget child;
   final void Function()? onPressed;
   final bool isLoading;
-  final Variant? variant;
+  final Variant? _variant;
 
   @override
   State<Button> createState() => _ButtonState();
@@ -77,7 +112,7 @@ class _ButtonState extends State<Button> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final colors = widget.variant?.getColors(context) ??
+    final colors = widget._variant?.getColors(context) ??
         ButtonColors(
           textColor: theme.colorScheme.onPrimary,
           backgroundColor: theme.colorScheme.primary,
