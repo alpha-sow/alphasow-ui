@@ -75,6 +75,7 @@ class HomePage extends StatelessWidget {
                 LabelWidget(),
                 ShowAlertDialog(),
                 LoaderWidget(),
+                BannerWidget(),
               ],
             ),
           ),

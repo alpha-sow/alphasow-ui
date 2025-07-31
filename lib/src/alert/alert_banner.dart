@@ -16,6 +16,7 @@ class BannerManager extends ChangeNotifier {
     Duration? duration,
     Widget? action,
     VoidCallback? onDismiss,
+    double opacity = 0.5,
   }) {
     final banner = BannerItem(
       id: DateTime.now().millisecondsSinceEpoch.toString(),
@@ -23,6 +24,7 @@ class BannerManager extends ChangeNotifier {
       type: type,
       action: action,
       onDismiss: onDismiss,
+      opacity: opacity,
     );
 
     _banners.add(banner);
@@ -31,7 +33,8 @@ class BannerManager extends ChangeNotifier {
     if (duration != null) {
       Future.delayed(duration, () => dismissBanner(banner.id));
     } else {
-      Future.delayed(const Duration(seconds: 4), () => dismissBanner(banner.id));
+      Future.delayed(
+          const Duration(seconds: 4), () => dismissBanner(banner.id));
     }
   }
 
@@ -52,6 +55,7 @@ class BannerItem {
   final AlertType type;
   final Widget? action;
   final VoidCallback? onDismiss;
+  final double opacity;
 
   BannerItem({
     required this.id,
@@ -59,6 +63,7 @@ class BannerItem {
     required this.type,
     this.action,
     this.onDismiss,
+    this.opacity = 0.5,
   });
 }
 
@@ -76,6 +81,7 @@ extension AlertBannerExtention on BuildContext {
       duration: duration,
       action: action,
       onDismiss: onDismiss,
+      opacity: 1.0,
     );
   }
 }
@@ -108,6 +114,7 @@ class BannerOverlay extends StatelessWidget {
                         message: banner.message,
                         type: banner.type,
                         action: banner.action,
+                        opacity: banner.opacity,
                         onDismiss: () {
                           banner.onDismiss?.call();
                           BannerManager().dismissBanner(banner.id);
@@ -133,6 +140,7 @@ class AlertBanner extends StatelessWidget {
     this.onDismiss,
     this.isDismissible = true,
     this.action,
+    this.opacity = 0.5,
   });
 
   final String message;
@@ -140,6 +148,7 @@ class AlertBanner extends StatelessWidget {
   final VoidCallback? onDismiss;
   final bool isDismissible;
   final Widget? action;
+  final double opacity;
 
   @override
   Widget build(BuildContext context) {
@@ -149,11 +158,11 @@ class AlertBanner extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(16.0),
       decoration: BoxDecoration(
-        color: colors.backgroundColor,
+        color: colors.backgroundColor.withValues(alpha: opacity),
         borderRadius: BorderRadius.circular(8.0),
         border: Border.all(
           color: colors.borderColor,
-          width: 1.0,
+          width: 0.5,
         ),
       ),
       child: Row(
