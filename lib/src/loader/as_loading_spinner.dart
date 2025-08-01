@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 ///
 /// This widget displays a rotating circular spinner with a gradient effect
 /// to indicate loading state. The size and color can be customized.
-class ASLoadingSpinner extends StatefulWidget {
+class AsLoadingSpinner extends StatefulWidget {
   /// Creates a spinning loading indicator.
   ///
   /// [color] The primary color for the spinner (uses theme primary color if null)
   /// [size] The diameter of the spinner (auto-calculated if null)
-  const ASLoadingSpinner({
+  const AsLoadingSpinner({
     super.key,
     this.color,
     this.size,
@@ -22,10 +22,10 @@ class ASLoadingSpinner extends StatefulWidget {
   final double? size;
 
   @override
-  State<ASLoadingSpinner> createState() => _ASLoadingSpinnerState();
+  State<AsLoadingSpinner> createState() => _AsLoadingSpinnerState();
 }
 
-class _ASLoadingSpinnerState extends State<ASLoadingSpinner>
+class _AsLoadingSpinnerState extends State<AsLoadingSpinner>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
 

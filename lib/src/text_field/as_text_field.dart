@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:alphasow_ui/alphasow_ui.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -39,7 +40,7 @@ extension TypeExtension on Type {
 /// styling, label management, and support for various input types. It wraps
 /// Flutter's TextField with additional functionality like automatic password
 /// obscuring and themed styling.
-class ASTextField extends StatelessWidget {
+class AsTextField extends StatelessWidget {
   /// Creates a customizable input field with extensive configuration options.
   ///
   /// [type] Preset input type (email, password) with automatic configuration
@@ -50,7 +51,7 @@ class ASTextField extends StatelessWidget {
   /// [disabled] Whether the input is disabled (deprecated, use enabled instead)
   ///
   /// All other parameters correspond to TextField parameters with the same names.
-  const ASTextField({
+  const AsTextField({
     super.key,
     this.type,
     this.controller,
@@ -319,91 +320,116 @@ class ASTextField extends StatelessWidget {
           const SizedBox.shrink(),
         SizedBox(
           height: 42,
-          child: TextField(
-            controller: controller,
-            focusNode: focusNode,
-            keyboardType:
-                keyboardType ?? type?.keyboardType ?? TextInputType.text,
-            textInputAction: textInputAction,
-            textCapitalization: textCapitalization,
-            style: style ?? const TextStyle(fontSize: 14),
-            strutStyle: strutStyle,
-            textAlign: textAlign,
-            textAlignVertical: textAlignVertical,
-            textDirection: textDirection,
-            readOnly: readOnly,
-            showCursor: showCursor,
-            autofocus: autofocus,
-            obscuringCharacter: obscuringCharacter,
-            obscureText: obscureText ?? (type == Type.password),
-            autocorrect: autocorrect,
-            smartDashesType: smartDashesType,
-            smartQuotesType: smartQuotesType,
-            enableSuggestions: enableSuggestions,
-            maxLines: maxLines,
-            minLines: minLines,
-            expands: expands,
-            maxLength: maxLength,
-            maxLengthEnforcement: maxLengthEnforcement,
-            onChanged: onChanged,
-            onEditingComplete: onEditingComplete,
-            onSubmitted: onSubmitted,
-            onAppPrivateCommand: onAppPrivateCommand,
-            inputFormatters: inputFormatters,
-            enabled: enabled ?? (disabled != null ? !disabled! : null),
-            cursorWidth: cursorWidth,
-            cursorHeight: cursorHeight ?? 14.0,
-            cursorRadius: cursorRadius,
-            cursorColor: cursorColor,
-            selectionHeightStyle: selectionHeightStyle,
-            selectionWidthStyle: selectionWidthStyle,
-            keyboardAppearance: keyboardAppearance,
-            scrollPadding: scrollPadding,
-            dragStartBehavior: dragStartBehavior,
-            enableInteractiveSelection: enableInteractiveSelection,
-            selectionControls: selectionControls,
-            onTap: onTap,
-            onTapOutside: onTapOutside,
-            mouseCursor: mouseCursor,
-            buildCounter: buildCounter,
-            scrollController: scrollController,
-            scrollPhysics: scrollPhysics,
-            autofillHints: autofillHints,
-            contentInsertionConfiguration: contentInsertionConfiguration,
-            clipBehavior: clipBehavior,
-            restorationId: restorationId,
-            stylusHandwritingEnabled: stylusHandwritingEnabled,
-            enableIMEPersonalizedLearning: enableIMEPersonalizedLearning,
-            canRequestFocus: canRequestFocus,
-            spellCheckConfiguration: spellCheckConfiguration,
-            magnifierConfiguration: magnifierConfiguration,
-            decoration: decoration ??
-                InputDecoration(
-                  contentPadding: const EdgeInsets.symmetric(
-                    vertical: 4,
-                    horizontal: 14,
-                  ),
-                  fillColor: Theme.of(context).colorScheme.surface,
+          child: PlatformType.currentPlatform() == PlatformType.cupertino
+              ? _CupertinoTextFieldWidget(
+                  controller: controller,
+                  focusNode: focusNode,
+                  keyboardType:
+                      keyboardType ?? type?.keyboardType ?? TextInputType.text,
+                  textInputAction: textInputAction,
+                  textCapitalization: textCapitalization,
+                  style: style ?? const TextStyle(fontSize: 14),
+                  strutStyle: strutStyle,
+                  textAlign: textAlign,
+                  textAlignVertical: textAlignVertical,
+                  textDirection: textDirection,
+                  readOnly: readOnly,
+                  showCursor: showCursor,
+                  autofocus: autofocus,
+                  obscuringCharacter: obscuringCharacter,
+                  obscureText: obscureText ?? (type == Type.password),
+                  autocorrect: autocorrect,
+                  smartDashesType: smartDashesType,
+                  smartQuotesType: smartQuotesType,
+                  enableSuggestions: enableSuggestions,
+                  maxLines: maxLines,
+                  minLines: minLines,
+                  expands: expands,
+                  maxLength: maxLength,
+                  maxLengthEnforcement: maxLengthEnforcement,
+                  onChanged: onChanged,
+                  onEditingComplete: onEditingComplete,
+                  onSubmitted: onSubmitted,
+                  inputFormatters: inputFormatters,
+                  enabled: enabled ?? (disabled != null ? !disabled! : null),
+                  cursorWidth: cursorWidth,
+                  cursorHeight: cursorHeight,
+                  cursorRadius: cursorRadius,
+                  cursorColor: cursorColor,
+                  keyboardAppearance: keyboardAppearance,
+                  scrollPadding: scrollPadding,
+                  dragStartBehavior: dragStartBehavior,
+                  enableInteractiveSelection: enableInteractiveSelection,
+                  onTap: onTap,
+                  scrollController: scrollController,
+                  scrollPhysics: scrollPhysics,
+                  autofillHints: autofillHints,
+                  clipBehavior: clipBehavior,
+                  restorationId: restorationId,
+                  enableIMEPersonalizedLearning: enableIMEPersonalizedLearning,
                   hintText: hintText,
-                  disabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        color: Theme.of(context).colorScheme.outline,
-                        width: 1.5),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        color: Theme.of(context).colorScheme.outline,
-                        width: 1.5),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                        color: Theme.of(context).colorScheme.primary, width: 2),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
+                )
+              : _MaterialTextFieldWidget(
+                  controller: controller,
+                  focusNode: focusNode,
+                  decoration: decoration,
+                  keyboardType:
+                      keyboardType ?? type?.keyboardType ?? TextInputType.text,
+                  textInputAction: textInputAction,
+                  textCapitalization: textCapitalization,
+                  style: style ?? const TextStyle(fontSize: 14),
+                  strutStyle: strutStyle,
+                  textAlign: textAlign,
+                  textAlignVertical: textAlignVertical,
+                  textDirection: textDirection,
+                  readOnly: readOnly,
+                  showCursor: showCursor,
+                  autofocus: autofocus,
+                  obscuringCharacter: obscuringCharacter,
+                  obscureText: obscureText ?? (type == Type.password),
+                  autocorrect: autocorrect,
+                  smartDashesType: smartDashesType,
+                  smartQuotesType: smartQuotesType,
+                  enableSuggestions: enableSuggestions,
+                  maxLines: maxLines,
+                  minLines: minLines,
+                  expands: expands,
+                  maxLength: maxLength,
+                  maxLengthEnforcement: maxLengthEnforcement,
+                  onChanged: onChanged,
+                  onEditingComplete: onEditingComplete,
+                  onSubmitted: onSubmitted,
+                  onAppPrivateCommand: onAppPrivateCommand,
+                  inputFormatters: inputFormatters,
+                  enabled: enabled ?? (disabled != null ? !disabled! : null),
+                  cursorWidth: cursorWidth,
+                  cursorHeight: cursorHeight,
+                  cursorRadius: cursorRadius,
+                  cursorColor: cursorColor,
+                  selectionHeightStyle: selectionHeightStyle,
+                  selectionWidthStyle: selectionWidthStyle,
+                  keyboardAppearance: keyboardAppearance,
+                  scrollPadding: scrollPadding,
+                  dragStartBehavior: dragStartBehavior,
+                  enableInteractiveSelection: enableInteractiveSelection,
+                  selectionControls: selectionControls,
+                  onTap: onTap,
+                  onTapOutside: onTapOutside,
+                  mouseCursor: mouseCursor,
+                  buildCounter: buildCounter,
+                  scrollController: scrollController,
+                  scrollPhysics: scrollPhysics,
+                  autofillHints: autofillHints,
+                  contentInsertionConfiguration: contentInsertionConfiguration,
+                  clipBehavior: clipBehavior,
+                  restorationId: restorationId,
+                  stylusHandwritingEnabled: stylusHandwritingEnabled,
+                  enableIMEPersonalizedLearning: enableIMEPersonalizedLearning,
+                  canRequestFocus: canRequestFocus,
+                  spellCheckConfiguration: spellCheckConfiguration,
+                  magnifierConfiguration: magnifierConfiguration,
+                  hintText: hintText,
                 ),
-          ),
         ),
         if (description != null)
           Padding(
@@ -413,6 +439,369 @@ class ASTextField extends StatelessWidget {
         else
           const SizedBox.shrink(),
       ],
+    );
+  }
+}
+
+class _CupertinoTextFieldWidget extends StatelessWidget {
+  const _CupertinoTextFieldWidget({
+    this.controller,
+    this.focusNode,
+    this.keyboardType,
+    this.textInputAction,
+    this.textCapitalization = TextCapitalization.none,
+    this.style,
+    this.strutStyle,
+    this.textAlign = TextAlign.start,
+    this.textAlignVertical,
+    this.textDirection,
+    this.readOnly = false,
+    this.showCursor,
+    this.autofocus = false,
+    this.obscuringCharacter = '•',
+    this.obscureText = false,
+    this.autocorrect = true,
+    this.smartDashesType,
+    this.smartQuotesType,
+    this.enableSuggestions = true,
+    this.maxLines = 1,
+    this.minLines,
+    this.expands = false,
+    this.maxLength,
+    this.maxLengthEnforcement,
+    this.onChanged,
+    this.onEditingComplete,
+    this.onSubmitted,
+    this.inputFormatters,
+    this.enabled,
+    this.cursorWidth = 2.0,
+    this.cursorHeight,
+    this.cursorRadius,
+    this.cursorColor,
+    this.keyboardAppearance,
+    this.scrollPadding = const EdgeInsets.all(20),
+    this.dragStartBehavior = DragStartBehavior.start,
+    this.enableInteractiveSelection,
+    this.onTap,
+    this.scrollController,
+    this.scrollPhysics,
+    this.autofillHints,
+    this.clipBehavior = Clip.hardEdge,
+    this.restorationId,
+    this.enableIMEPersonalizedLearning = true,
+    this.hintText,
+  });
+
+  final TextEditingController? controller;
+  final FocusNode? focusNode;
+  final TextInputType? keyboardType;
+  final TextInputAction? textInputAction;
+  final TextCapitalization textCapitalization;
+  final TextStyle? style;
+  final StrutStyle? strutStyle;
+  final TextAlign textAlign;
+  final TextAlignVertical? textAlignVertical;
+  final TextDirection? textDirection;
+  final bool readOnly;
+  final bool? showCursor;
+  final bool autofocus;
+  final String obscuringCharacter;
+  final bool obscureText;
+  final bool autocorrect;
+  final SmartDashesType? smartDashesType;
+  final SmartQuotesType? smartQuotesType;
+  final bool enableSuggestions;
+  final int? maxLines;
+  final int? minLines;
+  final bool expands;
+  final int? maxLength;
+  final MaxLengthEnforcement? maxLengthEnforcement;
+  final ValueChanged<String>? onChanged;
+  final VoidCallback? onEditingComplete;
+  final ValueChanged<String>? onSubmitted;
+  final List<TextInputFormatter>? inputFormatters;
+  final bool? enabled;
+  final double cursorWidth;
+  final double? cursorHeight;
+  final Radius? cursorRadius;
+  final Color? cursorColor;
+  final Brightness? keyboardAppearance;
+  final EdgeInsets scrollPadding;
+  final DragStartBehavior dragStartBehavior;
+  final bool? enableInteractiveSelection;
+  final GestureTapCallback? onTap;
+  final ScrollController? scrollController;
+  final ScrollPhysics? scrollPhysics;
+  final Iterable<String>? autofillHints;
+  final Clip clipBehavior;
+  final String? restorationId;
+  final bool enableIMEPersonalizedLearning;
+  final String? hintText;
+
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoTextField(
+      controller: controller,
+      focusNode: focusNode,
+      keyboardType: keyboardType,
+      textInputAction: textInputAction,
+      textCapitalization: textCapitalization,
+      style: style,
+      strutStyle: strutStyle,
+      textAlign: textAlign,
+      textAlignVertical: textAlignVertical,
+      textDirection: textDirection,
+      readOnly: readOnly,
+      showCursor: showCursor,
+      autofocus: autofocus,
+      obscuringCharacter: obscuringCharacter,
+      obscureText: obscureText,
+      autocorrect: autocorrect,
+      smartDashesType: smartDashesType,
+      smartQuotesType: smartQuotesType,
+      enableSuggestions: enableSuggestions,
+      maxLines: maxLines,
+      minLines: minLines,
+      expands: expands,
+      maxLength: maxLength,
+      maxLengthEnforcement: maxLengthEnforcement,
+      onChanged: onChanged,
+      onEditingComplete: onEditingComplete,
+      onSubmitted: onSubmitted,
+      inputFormatters: inputFormatters,
+      enabled: enabled ?? true,
+      cursorWidth: cursorWidth,
+      cursorHeight: cursorHeight ?? 14,
+      cursorRadius: cursorRadius ?? const Radius.circular(2),
+      cursorColor: cursorColor,
+      keyboardAppearance: keyboardAppearance ?? Brightness.light,
+      scrollPadding: scrollPadding,
+      dragStartBehavior: dragStartBehavior,
+      enableInteractiveSelection: enableInteractiveSelection,
+      onTap: onTap,
+      scrollController: scrollController,
+      scrollPhysics: scrollPhysics,
+      autofillHints: autofillHints ?? const <String>[],
+      clipBehavior: clipBehavior,
+      restorationId: restorationId,
+      enableIMEPersonalizedLearning: enableIMEPersonalizedLearning,
+      placeholder: hintText,
+      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 14),
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: CupertinoColors.systemGrey4,
+          width: 1.5,
+        ),
+        borderRadius: BorderRadius.circular(8),
+      ),
+    );
+  }
+}
+
+class _MaterialTextFieldWidget extends StatelessWidget {
+  const _MaterialTextFieldWidget({
+    this.controller,
+    this.focusNode,
+    this.decoration,
+    this.keyboardType,
+    this.textInputAction,
+    this.textCapitalization = TextCapitalization.none,
+    this.style,
+    this.strutStyle,
+    this.textAlign = TextAlign.start,
+    this.textAlignVertical,
+    this.textDirection,
+    this.readOnly = false,
+    this.showCursor,
+    this.autofocus = false,
+    this.obscuringCharacter = '•',
+    this.obscureText = false,
+    this.autocorrect = true,
+    this.smartDashesType,
+    this.smartQuotesType,
+    this.enableSuggestions = true,
+    this.maxLines = 1,
+    this.minLines,
+    this.expands = false,
+    this.maxLength,
+    this.maxLengthEnforcement,
+    this.onChanged,
+    this.onEditingComplete,
+    this.onSubmitted,
+    this.onAppPrivateCommand,
+    this.inputFormatters,
+    this.enabled,
+    this.cursorWidth = 2.0,
+    this.cursorHeight,
+    this.cursorRadius,
+    this.cursorColor,
+    this.selectionHeightStyle = BoxHeightStyle.tight,
+    this.selectionWidthStyle = BoxWidthStyle.tight,
+    this.keyboardAppearance,
+    this.scrollPadding = const EdgeInsets.all(20),
+    this.dragStartBehavior = DragStartBehavior.start,
+    this.enableInteractiveSelection,
+    this.selectionControls,
+    this.onTap,
+    this.onTapOutside,
+    this.mouseCursor,
+    this.buildCounter,
+    this.scrollController,
+    this.scrollPhysics,
+    this.autofillHints,
+    this.contentInsertionConfiguration,
+    this.clipBehavior = Clip.hardEdge,
+    this.restorationId,
+    this.stylusHandwritingEnabled = true,
+    this.enableIMEPersonalizedLearning = true,
+    this.canRequestFocus = true,
+    this.spellCheckConfiguration,
+    this.magnifierConfiguration,
+    this.hintText,
+  });
+
+  final TextEditingController? controller;
+  final FocusNode? focusNode;
+  final InputDecoration? decoration;
+  final TextInputType? keyboardType;
+  final TextInputAction? textInputAction;
+  final TextCapitalization textCapitalization;
+  final TextStyle? style;
+  final StrutStyle? strutStyle;
+  final TextAlign textAlign;
+  final TextAlignVertical? textAlignVertical;
+  final TextDirection? textDirection;
+  final bool readOnly;
+  final bool? showCursor;
+  final bool autofocus;
+  final String obscuringCharacter;
+  final bool obscureText;
+  final bool autocorrect;
+  final SmartDashesType? smartDashesType;
+  final SmartQuotesType? smartQuotesType;
+  final bool enableSuggestions;
+  final int? maxLines;
+  final int? minLines;
+  final bool expands;
+  final int? maxLength;
+  final MaxLengthEnforcement? maxLengthEnforcement;
+  final ValueChanged<String>? onChanged;
+  final VoidCallback? onEditingComplete;
+  final ValueChanged<String>? onSubmitted;
+  final AppPrivateCommandCallback? onAppPrivateCommand;
+  final List<TextInputFormatter>? inputFormatters;
+  final bool? enabled;
+  final double cursorWidth;
+  final double? cursorHeight;
+  final Radius? cursorRadius;
+  final Color? cursorColor;
+  final BoxHeightStyle selectionHeightStyle;
+  final BoxWidthStyle selectionWidthStyle;
+  final Brightness? keyboardAppearance;
+  final EdgeInsets scrollPadding;
+  final DragStartBehavior dragStartBehavior;
+  final bool? enableInteractiveSelection;
+  final TextSelectionControls? selectionControls;
+  final GestureTapCallback? onTap;
+  final TapRegionCallback? onTapOutside;
+  final MouseCursor? mouseCursor;
+  final InputCounterWidgetBuilder? buildCounter;
+  final ScrollController? scrollController;
+  final ScrollPhysics? scrollPhysics;
+  final Iterable<String>? autofillHints;
+  final ContentInsertionConfiguration? contentInsertionConfiguration;
+  final Clip clipBehavior;
+  final String? restorationId;
+  final bool stylusHandwritingEnabled;
+  final bool enableIMEPersonalizedLearning;
+  final bool canRequestFocus;
+  final SpellCheckConfiguration? spellCheckConfiguration;
+  final TextMagnifierConfiguration? magnifierConfiguration;
+  final String? hintText;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      controller: controller,
+      focusNode: focusNode,
+      keyboardType: keyboardType,
+      textInputAction: textInputAction,
+      textCapitalization: textCapitalization,
+      style: style,
+      strutStyle: strutStyle,
+      textAlign: textAlign,
+      textAlignVertical: textAlignVertical,
+      textDirection: textDirection,
+      readOnly: readOnly,
+      showCursor: showCursor,
+      autofocus: autofocus,
+      obscuringCharacter: obscuringCharacter,
+      obscureText: obscureText,
+      autocorrect: autocorrect,
+      smartDashesType: smartDashesType,
+      smartQuotesType: smartQuotesType,
+      enableSuggestions: enableSuggestions,
+      maxLines: maxLines,
+      minLines: minLines,
+      expands: expands,
+      maxLength: maxLength,
+      maxLengthEnforcement: maxLengthEnforcement,
+      onChanged: onChanged,
+      onEditingComplete: onEditingComplete,
+      onSubmitted: onSubmitted,
+      onAppPrivateCommand: onAppPrivateCommand,
+      inputFormatters: inputFormatters,
+      enabled: enabled,
+      cursorWidth: cursorWidth,
+      cursorHeight: cursorHeight ?? 14,
+      cursorRadius: cursorRadius,
+      cursorColor: cursorColor,
+      selectionHeightStyle: selectionHeightStyle,
+      selectionWidthStyle: selectionWidthStyle,
+      keyboardAppearance: keyboardAppearance,
+      scrollPadding: scrollPadding,
+      dragStartBehavior: dragStartBehavior,
+      enableInteractiveSelection: enableInteractiveSelection,
+      selectionControls: selectionControls,
+      onTap: onTap,
+      onTapOutside: onTapOutside,
+      mouseCursor: mouseCursor,
+      buildCounter: buildCounter,
+      scrollController: scrollController,
+      scrollPhysics: scrollPhysics,
+      autofillHints: autofillHints,
+      contentInsertionConfiguration: contentInsertionConfiguration,
+      clipBehavior: clipBehavior,
+      restorationId: restorationId,
+      stylusHandwritingEnabled: stylusHandwritingEnabled,
+      enableIMEPersonalizedLearning: enableIMEPersonalizedLearning,
+      canRequestFocus: canRequestFocus,
+      spellCheckConfiguration: spellCheckConfiguration,
+      magnifierConfiguration: magnifierConfiguration,
+      decoration: decoration ??
+          InputDecoration(
+            contentPadding: const EdgeInsets.symmetric(
+              vertical: 4,
+              horizontal: 14,
+            ),
+            fillColor: Theme.of(context).colorScheme.surface,
+            hintText: hintText,
+            disabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                  color: Theme.of(context).colorScheme.outline, width: 1.5),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                  color: Theme.of(context).colorScheme.outline, width: 1.5),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                  color: Theme.of(context).colorScheme.primary, width: 2),
+              borderRadius: BorderRadius.circular(8),
+            ),
+          ),
     );
   }
 }

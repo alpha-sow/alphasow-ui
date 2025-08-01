@@ -1,3 +1,4 @@
+export 'avatar_page.dart';
 export 'banner_page.dart';
 export 'button_page.dart';
 export 'input_page.dart';

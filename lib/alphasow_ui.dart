@@ -29,3 +29,4 @@
 library;
 
 export 'src/src.dart';
+export 'utils/utils.dart';

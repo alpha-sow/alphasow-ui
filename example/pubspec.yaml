@@ -13,6 +13,7 @@ dependencies:
     path: ../
 
   cupertino_icons: ^1.0.8
+  faker: ^2.2.0
   flex_color_scheme: ^8.0.2
   flutter:
     sdk: flutter

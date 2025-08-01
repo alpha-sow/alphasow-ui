@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 ///
 /// This widget creates a checkbox with an associated title and optional
 /// description. The entire label area is tappable to toggle the checkbox.
-class ASLabel extends StatefulWidget {
+class AsLabel extends StatefulWidget {
   /// Creates a labeled checkbox.
   ///
   /// [title] The main label text displayed next to the checkbox
   /// [onChanged] Callback executed when the checkbox state changes
   /// [description] Optional description text displayed below the title
   /// [value] The initial state of the checkbox
-  const ASLabel({
+  const AsLabel({
     required this.title,
     required this.onChanged,
     super.key,
@@ -33,10 +33,10 @@ class ASLabel extends StatefulWidget {
   final ValueChanged<bool?>? onChanged;
 
   @override
-  State<ASLabel> createState() => _ASLabelState();
+  State<AsLabel> createState() => _AsLabelState();
 }
 
-class _ASLabelState extends State<ASLabel> {
+class _AsLabelState extends State<AsLabel> {
   late bool checkboxValue;
 
   @override
@@ -62,7 +62,7 @@ class _ASLabelState extends State<ASLabel> {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        ASCheckbox(
+        AsCheckbox(
           value: checkboxValue,
           onChanged: (value) => onChanged(value: value),
         ),
@@ -73,7 +73,8 @@ class _ASLabelState extends State<ASLabel> {
             GestureDetector(
               child: Text(
                 widget.title,
-                style: const TextStyle(
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onSurface,
                   fontWeight: FontWeight.w700,
                 ),
               ),
@@ -83,7 +84,8 @@ class _ASLabelState extends State<ASLabel> {
               Text(
                 widget.description!,
                 overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onSurface,
                   fontWeight: FontWeight.w100,
                 ),
               )

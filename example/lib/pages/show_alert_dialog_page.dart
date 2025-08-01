@@ -6,7 +6,8 @@ class ShowAlertDialogPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return ListView(
+      padding: const EdgeInsets.all(20),
       children: [
         Padding(
           padding: const EdgeInsets.all(20),
@@ -15,7 +16,7 @@ class ShowAlertDialogPage extends StatelessWidget {
             style: Theme.of(context).textTheme.displayMedium,
           ),
         ),
-        ASButton.outline(
+        AsButton.outlined(
           onPressed: () => context.showASAlertDialog<void>(
             title: const Text(
               'Are you absolutely sure?',
@@ -27,11 +28,11 @@ class ShowAlertDialogPage extends StatelessWidget {
                 'This action cannot be undone. This will permanently delete '
                 'your account and remove your data from our servers.'),
             actions: <Widget>[
-              ASButton.outline(
+              AsButton.outlined(
                 child: const Text('Cancel'),
                 onPressed: () => Navigator.pop(context),
               ),
-              ASButton(
+              AsButton(
                 child: const Text('Continue'),
                 onPressed: () => Navigator.pop(context),
               ),

@@ -53,7 +53,7 @@ class ASListTile extends StatefulWidget {
   ///
   /// This is a convenience method that mimics Flutter's [ListTile.divideTiles].
   /// It takes an iterable of widgets (typically [ASListTile] widgets) and returns
-  /// an iterable with [ASDivider] widgets inserted between each tile.
+  /// an iterable with [AsDivider] widgets inserted between each tile.
   ///
   /// The dividers can be customized by providing optional parameters:
   /// - [height]: The height of the divider (defaults to 1.0)
@@ -88,7 +88,7 @@ class ASListTile extends StatefulWidget {
     if (isNotEmpty) {
       yield iterator.current;
       while (iterator.moveNext()) {
-        yield ASDivider(
+        yield AsDivider(
           height: height,
           thickness: thickness,
           indent: indent,

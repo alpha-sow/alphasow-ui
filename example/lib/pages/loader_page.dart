@@ -6,15 +6,19 @@ class LoaderPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      spacing: 10,
+    return ListView(
+      padding: const EdgeInsets.all(20),
       children: [
-        Text(
-          'Loader',
-          style: Theme.of(context).textTheme.displayMedium,
+        Padding(
+          padding: const EdgeInsets.all(20),
+          child: Text(
+            'Loader',
+            style: Theme.of(context).textTheme.displayMedium,
+          ),
         ),
-        const ASLoadingCircular(),
-        const ASLoadingSpinner(
+        const Center(child: AsLoadingCircular()),
+        const SizedBox(height: 20),
+        const AsLoadingSpinner(
           size: 25,
         ),
       ],

@@ -6,24 +6,30 @@ class BannerPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      spacing: 10,
+    return ListView(
+      padding: const EdgeInsets.all(20),
       children: [
-        Text(
-          'Banner',
-          style: Theme.of(context).textTheme.displayMedium,
+        Padding(
+          padding: const EdgeInsets.all(20),
+          child: Text(
+            'Banner',
+            style: Theme.of(context).textTheme.displayMedium,
+          ),
         ),
         const ASAlertBanner(
           message: 'Banner',
         ),
+        const SizedBox(height: 10),
         const ASAlertBanner(
           type: AlertType.success,
           message: 'Success',
         ),
+        const SizedBox(height: 10),
         const ASAlertBanner(
           type: AlertType.warning,
           message: 'Warning',
         ),
+        const SizedBox(height: 10),
         const ASAlertBanner(
           type: AlertType.error,
           message: 'Error',

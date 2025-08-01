@@ -6,13 +6,13 @@ import 'package:flutter/material.dart';
 ///
 /// This widget displays an animated arc that rotates continuously to indicate
 /// loading state. The size, color, and stroke width can be customized.
-class ASLoadingCircular extends StatefulWidget {
+class AsLoadingCircular extends StatefulWidget {
   /// Creates a circular loading indicator.
   ///
   /// [size] The diameter of the loading circle (auto-calculated if null)
   /// [color] The color of the loading arc (uses theme primary color if null)
   /// [strokeWidth] The width of the loading arc line (defaults to 4.0)
-  const ASLoadingCircular({
+  const AsLoadingCircular({
     super.key,
     this.size,
     this.color,
@@ -29,10 +29,10 @@ class ASLoadingCircular extends StatefulWidget {
   final double strokeWidth;
 
   @override
-  State<ASLoadingCircular> createState() => _ASLoadingCircularState();
+  State<AsLoadingCircular> createState() => _AsLoadingCircularState();
 }
 
-class _ASLoadingCircularState extends State<ASLoadingCircular>
+class _AsLoadingCircularState extends State<AsLoadingCircular>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
 

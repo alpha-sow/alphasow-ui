@@ -6,7 +6,7 @@ class ButtonPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return ListView(
       children: [
         Padding(
           padding: const EdgeInsets.all(20),
@@ -17,7 +17,7 @@ class ButtonPage extends StatelessWidget {
         ),
         Column(
           children: [
-            ASButton(
+            AsButton(
               onPressed: () => context.showBanner(
                 message: 'Button clicked successfully!',
                 type: AlertType.success,
@@ -25,7 +25,7 @@ class ButtonPage extends StatelessWidget {
               child: const Text('Button'),
             ),
             const SizedBox(height: 10),
-            ASButton.secondary(
+            AsButton.secondary(
               onPressed: () => context.showBanner(
                 message: 'Button clicked successfully!',
                 type: AlertType.warning,
@@ -33,7 +33,7 @@ class ButtonPage extends StatelessWidget {
               child: const Text('Secondary'),
             ),
             const SizedBox(height: 10),
-            ASButton.destructive(
+            AsButton.destructive(
               onPressed: () => context.showBanner(
                 message: 'Button clicked successfully!',
                 type: AlertType.error,
@@ -41,35 +41,32 @@ class ButtonPage extends StatelessWidget {
               child: const Text('Destructive'),
             ),
             const SizedBox(height: 10),
-            ASButton.outline(
+            AsButton.outlined(
               onPressed: () {},
               child: const Text('Outline'),
             ),
             const SizedBox(height: 10),
-            ASButton.ghost(
+            AsButton.ghost(
               onPressed: () {},
               child: const Text('Ghost'),
             ),
             const SizedBox(height: 10),
-            ASButton.link(
+            AsButton.link(
               onPressed: () {},
               child: const Text('Link'),
             ),
             const SizedBox(height: 10),
-            ASButton.outline(
+            AsIconButton.outlined(
               onPressed: () {},
-              child: const Icon(
-                Icons.arrow_forward_ios,
-                size: 10,
-              ),
+              icon: Icons.person,
             ),
             const SizedBox(height: 10),
-            ASButton.ghost(
+            AsIconButton.ghost(
               onPressed: () {},
-              child: const Icon(Icons.mail_outline),
+              icon: Icons.mail_outline,
             ),
             const SizedBox(height: 10),
-            ASButton(
+            AsButton(
               onPressed: () {},
               isLoading: true,
               child: const Text('Please wait'),
