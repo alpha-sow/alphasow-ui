@@ -1,8 +1,8 @@
 import 'package:alphasow_ui/alphasow_ui.dart';
 import 'package:flutter/material.dart';
 
-class ListTileUiWidget extends StatelessWidget {
-  const ListTileUiWidget({super.key});
+class ListTilePage extends StatelessWidget {
+  const ListTilePage({super.key});
 
   @override
   Widget build(BuildContext context) {

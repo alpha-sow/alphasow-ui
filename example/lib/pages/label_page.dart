@@ -1,8 +1,8 @@
 import 'package:alphasow_ui/alphasow_ui.dart';
 import 'package:flutter/material.dart';
 
-class LabelWidget extends StatelessWidget {
-  const LabelWidget({super.key});
+class LabelPage extends StatelessWidget {
+  const LabelPage({super.key});
 
   @override
   Widget build(BuildContext context) {

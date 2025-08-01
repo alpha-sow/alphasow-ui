@@ -1,8 +1,8 @@
 import 'package:alphasow_ui/alphasow_ui.dart';
 import 'package:flutter/material.dart';
 
-class ShowAlertDialog extends StatelessWidget {
-  const ShowAlertDialog({super.key});
+class ShowAlertDialogPage extends StatelessWidget {
+  const ShowAlertDialogPage({super.key});
 
   @override
   Widget build(BuildContext context) {

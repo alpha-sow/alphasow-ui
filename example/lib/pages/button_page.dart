@@ -1,8 +1,8 @@
 import 'package:alphasow_ui/alphasow_ui.dart';
 import 'package:flutter/material.dart';
 
-class ButtonWidget extends StatelessWidget {
-  const ButtonWidget({super.key});
+class ButtonPage extends StatelessWidget {
+  const ButtonPage({super.key});
 
   @override
   Widget build(BuildContext context) {

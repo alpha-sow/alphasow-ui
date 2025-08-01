@@ -38,7 +38,7 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({
     required this.title,
     required this.onThemeToggle,
@@ -51,37 +51,69 @@ class HomePage extends StatelessWidget {
   final bool isDarkMode;
 
   @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int selectedIndex = 0;
+
+  final List<PageItem> pages = [
+    PageItem('Buttons', Icons.smart_button, const ButtonPage()),
+    PageItem('Inputs', Icons.input, const InputPage()),
+    PageItem('Labels', Icons.label, const LabelPage()),
+    PageItem('Alert Dialog', Icons.warning, const ShowAlertDialogPage()),
+    PageItem('Loaders', Icons.refresh, const LoaderPage()),
+    PageItem('Banners', Icons.campaign, const BannerPage()),
+    PageItem('List Tiles', Icons.list, const ListTilePage()),
+  ];
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(title),
+        title: Text(widget.title),
         actions: [
           ASButton.ghost(
-            onPressed: onThemeToggle,
-            child: Icon(isDarkMode ? Icons.light_mode : Icons.dark_mode),
+            onPressed: widget.onThemeToggle,
+            child: Icon(widget.isDarkMode ? Icons.light_mode : Icons.dark_mode),
           )
         ],
       ),
-      body: ListView(
-        children: const [
-          Padding(
-            padding: EdgeInsets.all(20),
-            child: Column(
-              spacing: 8,
-              children: [
-                ButtonWidget(),
-                InputWidget(),
-                LabelWidget(),
-                ShowAlertDialog(),
-                LoaderWidget(),
-                BannerWidget(),
-                ListTileUiWidget()
-              ],
+      body: Row(
+        children: [
+          NavigationRail(
+            selectedIndex: selectedIndex,
+            onDestinationSelected: (int index) {
+              setState(() {
+                selectedIndex = index;
+              });
+            },
+            labelType: NavigationRailLabelType.all,
+            destinations: pages.map((page) {
+              return NavigationRailDestination(
+                icon: Icon(page.icon),
+                label: Text(page.title),
+              );
+            }).toList(),
+          ),
+          const VerticalDivider(thickness: 1, width: 1),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: pages[selectedIndex].page,
             ),
           ),
         ],
       ),
     );
   }
+}
+
+class PageItem {
+  PageItem(this.title, this.icon, this.page);
+
+  final String title;
+  final IconData icon;
+  final Widget page;
 }

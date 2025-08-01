@@ -1,14 +1,14 @@
 import 'package:alphasow_ui/alphasow_ui.dart';
 import 'package:flutter/material.dart';
 
-class InputWidget extends StatefulWidget {
-  const InputWidget({super.key});
+class InputPage extends StatefulWidget {
+  const InputPage({super.key});
 
   @override
-  State<InputWidget> createState() => _InputWidgetState();
+  State<InputPage> createState() => _InputPageState();
 }
 
-class _InputWidgetState extends State<InputWidget> {
+class _InputPageState extends State<InputPage> {
   final TextEditingController _textInputControl = TextEditingController();
   @override
   Widget build(BuildContext context) {

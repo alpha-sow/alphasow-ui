@@ -1,8 +1,8 @@
 import 'package:alphasow_ui/alphasow_ui.dart';
 import 'package:flutter/material.dart';
 
-class BannerWidget extends StatelessWidget {
-  const BannerWidget({super.key});
+class BannerPage extends StatelessWidget {
+  const BannerPage({super.key});
 
   @override
   Widget build(BuildContext context) {
