@@ -1,6 +1,6 @@
 import 'package:alphasow_ui/alphasow_ui.dart';
-import 'package:example/theme.dart';
 import 'package:example/pages/widgets.dart';
+import 'package:example/theme.dart';
 import 'package:flutter/material.dart';
 
 void main() {
