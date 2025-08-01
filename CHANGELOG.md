@@ -1,3 +1,15 @@
+# [1.8.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.7.0...v1.8.0) (2025-08-01)
+
+
+### Features
+
+* add Firebase configuration and GitHub Actions workflow for web app deployment ([8739fed](https://github.com/alpha-sow/alphasow-ui/commit/8739fed2148914906ab89bae64c645bad185166c))
+* convert widget pages to stateful and implement navigation structure ([ffc02ac](https://github.com/alpha-sow/alphasow-ui/commit/ffc02acf0cc6195b8e3f62f06f05666fcf67a165))
+* implement custom loading screen with styles and initialization logic ([4e9fcd1](https://github.com/alpha-sow/alphasow-ui/commit/4e9fcd1da3e512e366393e4167e86ab91a3fdfcc))
+* refactor widget structure by moving to pages and removing unused widgets ([2fb5962](https://github.com/alpha-sow/alphasow-ui/commit/2fb59624ab55fbd155b4c00a30e0ab26acfe55d4))
+* update Flutter version in GitHub Actions workflow and reorder imports in main.dart ([6a840bf](https://github.com/alpha-sow/alphasow-ui/commit/6a840bfc1d60837a0b9a10152769f21579fc22c6))
+* update titles in InputPage and ListTilePage for consistency ([6a00c57](https://github.com/alpha-sow/alphasow-ui/commit/6a00c57b1a4e63fda2e0610d888a5ecfee4aabe9))
+
 # [1.7.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.6.0...v1.7.0) (2025-07-31)
 
 
