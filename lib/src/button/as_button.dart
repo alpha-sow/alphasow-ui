@@ -101,13 +101,13 @@ extension _VariantExtension on Variant {
 /// The Button widget provides a consistent interface for various button styles
 /// including primary, secondary, destructive, outline, ghost, and link variants.
 /// It supports loading states and haptic feedback.
-class ASButton extends StatefulWidget {
+class AsButton extends StatefulWidget {
   /// Creates a primary button (default variant).
   ///
   /// [child] The widget to display inside the button
   /// [onPressed] Callback executed when button is tapped (null disables button)
   /// [isLoading] Whether to show loading indicator (defaults to false)
-  const ASButton({
+  const AsButton({
     required this.child,
     required this.onPressed,
     super.key,
@@ -119,7 +119,7 @@ class ASButton extends StatefulWidget {
   /// [child] The widget to display inside the button
   /// [onPressed] Callback executed when button is tapped (null disables button)
   /// [isLoading] Whether to show loading indicator (defaults to false)
-  const ASButton.secondary({
+  const AsButton.secondary({
     required this.child,
     required this.onPressed,
     super.key,
@@ -131,7 +131,7 @@ class ASButton extends StatefulWidget {
   /// [child] The widget to display inside the button
   /// [onPressed] Callback executed when button is tapped (null disables button)
   /// [isLoading] Whether to show loading indicator (defaults to false)
-  const ASButton.destructive({
+  const AsButton.destructive({
     required this.child,
     required this.onPressed,
     super.key,
@@ -143,7 +143,7 @@ class ASButton extends StatefulWidget {
   /// [child] The widget to display inside the button
   /// [onPressed] Callback executed when button is tapped (null disables button)
   /// [isLoading] Whether to show loading indicator (defaults to false)
-  const ASButton.outline({
+  const AsButton.outlined({
     required this.child,
     required this.onPressed,
     super.key,
@@ -155,7 +155,7 @@ class ASButton extends StatefulWidget {
   /// [child] The widget to display inside the button
   /// [onPressed] Callback executed when button is tapped (null disables button)
   /// [isLoading] Whether to show loading indicator (defaults to false)
-  const ASButton.ghost({
+  const AsButton.ghost({
     required this.child,
     required this.onPressed,
     super.key,
@@ -167,7 +167,7 @@ class ASButton extends StatefulWidget {
   /// [child] The widget to display inside the button
   /// [onPressed] Callback executed when button is tapped (null disables button)
   /// [isLoading] Whether to show loading indicator (defaults to false)
-  const ASButton.link({
+  const AsButton.link({
     required this.child,
     required this.onPressed,
     super.key,
@@ -187,10 +187,10 @@ class ASButton extends StatefulWidget {
   final Variant? _variant;
 
   @override
-  State<ASButton> createState() => _ASButtonState();
+  State<AsButton> createState() => _AsButtonState();
 }
 
-class _ASButtonState extends State<ASButton> {
+class _AsButtonState extends State<AsButton> {
   bool _isPressed = false;
 
   @override
@@ -240,7 +240,7 @@ class _ASButtonState extends State<ASButton> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             if (widget.isLoading) ...[
-              ASLoadingCircular(color: finalTextColor),
+              AsLoadingCircular(color: finalTextColor),
               const SizedBox(width: 8),
             ],
             DefaultTextStyle(

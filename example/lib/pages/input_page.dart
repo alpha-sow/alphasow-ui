@@ -12,7 +12,8 @@ class _InputPageState extends State<InputPage> {
   final TextEditingController _textInputControl = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return ListView(
+      padding: const EdgeInsets.all(20),
       children: [
         Padding(
           padding: const EdgeInsets.all(20),
@@ -21,11 +22,11 @@ class _InputPageState extends State<InputPage> {
             style: Theme.of(context).textTheme.displayMedium,
           ),
         ),
-        const ASTextField(hintText: 'Email'),
+        const AsTextField(hintText: 'Email'),
         const SizedBox(height: 10),
-        const ASTextField(hintText: 'Email', disabled: true),
+        const AsTextField(hintText: 'Email', disabled: true),
         const SizedBox(height: 10),
-        const ASTextField(
+        const AsTextField(
           label: 'Username',
           hintText: 'alphasow_ui',
         ),
@@ -33,7 +34,7 @@ class _InputPageState extends State<InputPage> {
         Row(
           children: [
             Flexible(
-              child: ASTextField(
+              child: AsTextField(
                 controller: _textInputControl,
                 hintText: 'Email',
                 onSubmitted: (_) =>
@@ -41,7 +42,7 @@ class _InputPageState extends State<InputPage> {
               ),
             ),
             const SizedBox(width: 4),
-            ASButton(
+            AsButton(
               child: const Text('Subscribe'),
               onPressed: () {
                 context.showBanner(message: _textInputControl.text);
@@ -54,12 +55,12 @@ class _InputPageState extends State<InputPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const ASTextField(
+              const AsTextField(
                 label: 'Username',
                 hintText: 'alphasow_ui',
                 description: 'This is your public display name.',
               ),
-              ASButton(
+              AsButton(
                 child: const Text('Submit'),
                 onPressed: () {},
               )

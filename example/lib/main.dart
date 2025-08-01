@@ -1,5 +1,5 @@
 import 'package:alphasow_ui/alphasow_ui.dart';
-import 'package:example/pages/widgets.dart';
+import 'package:example/pages/pages.dart';
 import 'package:example/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -29,6 +29,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: isDarkMode ? themeDark : theme,
+      cupertinoTheme: isDarkMode ? cupertinoThemeDark : cupertinoTheme,
       home: HomePage(
         title: 'alphasow_ui',
         onThemeToggle: toggleTheme,
@@ -65,44 +66,42 @@ class _HomePageState extends State<HomePage> {
     PageItem('Loaders', Icons.refresh, const LoaderPage()),
     PageItem('Banners', Icons.campaign, const BannerPage()),
     PageItem('List Tiles', Icons.list, const ListTilePage()),
+    PageItem('Avatar', Icons.person, const AvatarPage()),
   ];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
+    return AsScaffold(
+      appBar: AsAppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
         actions: [
-          ASButton.ghost(
+          AsIconButton.ghost(
             onPressed: widget.onThemeToggle,
-            child: Icon(widget.isDarkMode ? Icons.light_mode : Icons.dark_mode),
+            icon: widget.isDarkMode ? Icons.light_mode : Icons.dark_mode,
           )
         ],
       ),
       body: Row(
         children: [
-          NavigationRail(
+          AsNavigationRail(
             selectedIndex: selectedIndex,
             onDestinationSelected: (int index) {
               setState(() {
                 selectedIndex = index;
               });
             },
-            labelType: NavigationRailLabelType.all,
+            labelType: AsNavigationRailLabelType.all,
             destinations: pages.map((page) {
-              return NavigationRailDestination(
+              return AsNavigationRailDestination(
                 icon: Icon(page.icon),
-                label: Text(page.title),
+                label: page.title,
               );
             }).toList(),
           ),
           const VerticalDivider(thickness: 1, width: 1),
           Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(20),
-              child: pages[selectedIndex].page,
-            ),
+            child: pages[selectedIndex].page,
           ),
         ],
       ),

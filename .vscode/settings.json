@@ -1,5 +1,5 @@
 {
   "java.compile.nullAnalysis.mode": "automatic",
   "java.project.sourcePaths": ["lib/src"],
-  "cSpell.words": ["theming"]
+  "cSpell.words": ["Picsum", "theming"]
 }

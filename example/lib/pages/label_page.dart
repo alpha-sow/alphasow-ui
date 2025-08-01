@@ -6,7 +6,8 @@ class LabelPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return ListView(
+      padding: const EdgeInsets.all(20),
       children: [
         Padding(
           padding: const EdgeInsets.all(20),
@@ -15,12 +16,12 @@ class LabelPage extends StatelessWidget {
             style: Theme.of(context).textTheme.displayMedium,
           ),
         ),
-        ASLabel(
+        AsLabel(
           title: 'Accept terms and conditions',
           onChanged: (value) {},
         ),
         const SizedBox(height: 10),
-        ASLabel(
+        AsLabel(
           title: 'Accept terms and conditions',
           onChanged: (value) {},
           description: 'You agree to our Terms of Service and Privacy Policy.',

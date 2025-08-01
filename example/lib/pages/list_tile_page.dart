@@ -6,7 +6,8 @@ class ListTilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return ListView(
+      padding: const EdgeInsets.all(20),
       children: [
         Padding(
           padding: const EdgeInsets.all(20),

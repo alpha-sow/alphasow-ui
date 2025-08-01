@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 ///
 /// This widget provides a styled checkbox that integrates with the app's
 /// theme and maintains consistent sizing and appearance.
-class ASCheckbox extends StatelessWidget {
+class AsCheckbox extends StatelessWidget {
   /// Creates a themed checkbox.
   ///
   /// [onChanged] Callback executed when the checkbox state changes
   /// [value] The current state of the checkbox (true, false, or null for indeterminate)
-  const ASCheckbox({
+  const AsCheckbox({
     required this.onChanged,
     super.key,
     this.value,
@@ -24,18 +24,49 @@ class ASCheckbox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final isChecked = value ?? true;
+    final isIndeterminate = value == null;
 
-    return SizedBox(
-      width: 20,
-      height: 20,
-      child: Checkbox(
-        value: value,
-        onChanged: onChanged,
-        activeColor: theme.colorScheme.primary,
-        splashRadius: 0,
-        shape: RoundedRectangleBorder(
+    return GestureDetector(
+      onTap: onChanged != null
+          ? () {
+              if (value == false) {
+                onChanged!(true);
+              } else {
+                onChanged!(false);
+              }
+            }
+          : null,
+      child: Container(
+        width: 20,
+        height: 20,
+        decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(4),
+          border: Border.all(
+            color: isChecked || isIndeterminate
+                ? theme.colorScheme.primary
+                : theme.colorScheme.outline,
+            width: 2,
+          ),
+          color: isChecked || isIndeterminate
+              ? theme.colorScheme.primary
+              : Colors.transparent,
         ),
+        child: isChecked
+            ? const Icon(
+                Icons.check,
+                size: 14,
+                color: Colors.white,
+              )
+            : isIndeterminate
+                ? Container(
+                    margin: const EdgeInsets.all(4),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(1),
+                    ),
+                  )
+                : null,
       ),
     );
   }
