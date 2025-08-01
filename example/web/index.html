@@ -102,29 +102,24 @@
   </div>
 
   <script>
-    // Custom Flutter initialization with loading screen management
+    {{flutter_js}}
+    {{flutter_build_config}}
+
     window.addEventListener('load', function(ev) {
-      // Download main.dart.js
-      _flutter.loader.loadEntrypoint({
-        serviceWorker: {
-          serviceWorkerVersion: null,
-        },
+      _flutter.loader.load({
         onEntrypointLoaded: function(engineInitializer) {
-          engineInitializer.initializeEngine().then(function(appRunner) {
-            appRunner.runApp().then(function() {
+          return engineInitializer.initializeEngine().then(function(appRunner) {
+            return appRunner.runApp().then(function() {
               // Hide loading screen when Flutter app is ready
+              document.body.classList.add('flutter-loaded');
               setTimeout(function() {
-                document.body.classList.add('flutter-loaded');
-                setTimeout(function() {
-                  document.getElementById('loading').style.display = 'none';
-                }, 300);
-              }, 100);
+                document.getElementById('loading').style.display = 'none';
+              }, 300);
             });
           });
         }
       });
     });
   </script>
-  <script src="flutter.js" defer></script>
 </body>
 </html>
