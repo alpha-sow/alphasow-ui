@@ -1,0 +1,37 @@
+name: Deploy Web App
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    env:
+      PUB_TOKEN: ${{ secrets.PUB_TOKEN }}
+      PUB_HOSTED_URL: "https://repo.alphasow.dev/artifactory/api/pub/repo-pub"
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.24.0"
+          channel: "stable"
+
+      - name: Get dependencies
+        run: flutter pub get
+
+      - name: Build web app
+        run: flutter build web --release --web-renderer html
+        working-directory: example
+
+      - name: Deploy to Firebase Hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_ALPHASOW_UI }}"
+          projectId: alphasow-ui
+          channelId: live
