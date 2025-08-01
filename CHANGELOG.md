@@ -1,3 +1,10 @@
+## [1.8.2](https://github.com/alpha-sow/alphasow-ui/compare/v1.8.1...v1.8.2) (2025-08-01)
+
+
+### Bug Fixes
+
+* remove unnecessary web-renderer option in Flutter build step ([c4bfa4e](https://github.com/alpha-sow/alphasow-ui/commit/c4bfa4e910c93c7e9a2071d0a35d49d10456c382))
+
 ## [1.8.1](https://github.com/alpha-sow/alphasow-ui/compare/v1.8.0...v1.8.1) (2025-08-01)
 
 
