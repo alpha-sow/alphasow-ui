@@ -17,7 +17,7 @@ class _InputPageState extends State<InputPage> {
         Padding(
           padding: const EdgeInsets.all(20),
           child: Text(
-            'Input UI',
+            'Input',
             style: Theme.of(context).textTheme.displayMedium,
           ),
         ),

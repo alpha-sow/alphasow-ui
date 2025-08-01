@@ -11,7 +11,7 @@ class ListTilePage extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(20),
           child: Text(
-            'List Tile UI',
+            'List Tile',
             style: Theme.of(context).textTheme.displayMedium,
           ),
         ),
