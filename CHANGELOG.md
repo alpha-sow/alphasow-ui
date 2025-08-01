@@ -1,3 +1,10 @@
+## [1.8.1](https://github.com/alpha-sow/alphasow-ui/compare/v1.8.0...v1.8.1) (2025-08-01)
+
+
+### Bug Fixes
+
+* add setup for pub credentials in GitHub Actions workflow ([f70e912](https://github.com/alpha-sow/alphasow-ui/commit/f70e91253a9238105165406910913aa5c4d061dc))
+
 # [1.8.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.7.0...v1.8.0) (2025-08-01)
 
 
