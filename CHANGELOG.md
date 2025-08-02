@@ -1,3 +1,10 @@
+## [1.11.1](https://github.com/alpha-sow/alphasow-ui/compare/v1.11.0...v1.11.1) (2025-08-02)
+
+
+### Bug Fixes
+
+* correct method name for showing alert dialog in DialogPage and AsAlertDialog extension ([3d300eb](https://github.com/alpha-sow/alphasow-ui/commit/3d300ebbe9a0063b4f95290c81a1f36ce9b5eabe))
+
 # [1.11.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.10.0...v1.11.0) (2025-08-02)
 
 
