@@ -1,3 +1,10 @@
+# [1.11.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.10.0...v1.11.0) (2025-08-02)
+
+
+### Features
+
+* update label text color in AsTextField for better visibility ([30ff77b](https://github.com/alpha-sow/alphasow-ui/commit/30ff77baebb3c93c481350c915a6f1967abb6a8d))
+
 # [1.10.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.9.0...v1.10.0) (2025-08-02)
 
 
