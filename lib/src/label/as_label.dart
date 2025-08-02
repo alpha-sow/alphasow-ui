@@ -67,12 +67,14 @@ class _AsLabelState extends State<AsLabel> {
           onChanged: (value) => onChanged(value: value),
         ),
         const SizedBox(width: 4),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
             GestureDetector(
               child: Text(
                 widget.title,
+                overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onSurface,
                   fontWeight: FontWeight.w700,
@@ -91,7 +93,8 @@ class _AsLabelState extends State<AsLabel> {
               )
             else
               const SizedBox.shrink(),
-          ],
+            ],
+          ),
         ),
       ],
     );
