@@ -225,7 +225,7 @@ class _AsButtonState extends State<AsButton> {
               widget.onPressed?.call();
             },
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         decoration: BoxDecoration(
           color: finalBackgroundColor,
           borderRadius: BorderRadius.circular(8),

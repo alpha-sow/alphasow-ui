@@ -319,7 +319,7 @@ class AsTextField extends StatelessWidget {
         else
           const SizedBox.shrink(),
         SizedBox(
-          height: 42,
+          height: 36,
           child: PlatformType.currentPlatform() == PlatformType.cupertino
               ? _CupertinoTextFieldWidget(
                   controller: controller,
@@ -590,7 +590,7 @@ class _CupertinoTextFieldWidget extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(
           color: CupertinoColors.systemGrey4,
-          width: 1.5,
+          width: 1,
         ),
         borderRadius: BorderRadius.circular(8),
       ),
@@ -788,17 +788,17 @@ class _MaterialTextFieldWidget extends StatelessWidget {
             hintText: hintText,
             disabledBorder: OutlineInputBorder(
               borderSide: BorderSide(
-                  color: Theme.of(context).colorScheme.outline, width: 1.5),
+                  color: Theme.of(context).colorScheme.outline, width: 1),
               borderRadius: BorderRadius.circular(8),
             ),
             enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(
-                  color: Theme.of(context).colorScheme.outline, width: 1.5),
+                  color: Theme.of(context).colorScheme.outline, width: 1),
               borderRadius: BorderRadius.circular(8),
             ),
             focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(
-                  color: Theme.of(context).colorScheme.primary, width: 2),
+                  color: Theme.of(context).colorScheme.primary, width: 1.5),
               borderRadius: BorderRadius.circular(8),
             ),
           ),
