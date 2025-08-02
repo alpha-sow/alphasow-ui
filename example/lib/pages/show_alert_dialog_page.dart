@@ -27,12 +27,13 @@ class ShowAlertDialogPage extends StatelessWidget {
             content: const Text(
                 'This action cannot be undone. This will permanently delete '
                 'your account and remove your data from our servers.'),
-            actions: <Widget>[
-              AsButton.outlined(
-                child: const Text('Cancel'),
+            actions: <AsDialogAction>[
+              AsDialogAction(
                 onPressed: () => Navigator.pop(context),
+                isDestructiveAction: true,
+                child: const Text('Cancel'),
               ),
-              AsButton(
+              AsDialogAction(
                 child: const Text('Continue'),
                 onPressed: () => Navigator.pop(context),
               ),
