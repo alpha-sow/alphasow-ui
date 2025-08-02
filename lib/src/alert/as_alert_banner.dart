@@ -17,6 +17,24 @@ enum AlertType {
   error
 }
 
+/// Defines the different animation types for banner appearance.
+enum BannerAnimationType {
+  /// Simple fade in/out animation
+  fade,
+
+  /// Slide down from top animation
+  slideDown,
+
+  /// Scale up from center animation
+  scale,
+
+  /// Combined slide, fade and scale animation
+  combined,
+
+  /// No animation
+  none
+}
+
 /// A singleton manager for handling banner notifications throughout the app.
 ///
 /// This class manages the display and dismissal of banner notifications,
@@ -45,6 +63,7 @@ class _BannerManager extends ChangeNotifier {
   /// [action] Optional widget to display as an action button
   /// [onDismiss] Callback executed when the banner is dismissed
   /// [opacity] Background opacity of the banner (0.0 to 1.0)
+  /// [animationType] The animation style for banner appearance
   void showBanner({
     required String message,
     AlertType type = AlertType.info,
@@ -52,6 +71,7 @@ class _BannerManager extends ChangeNotifier {
     Widget? action,
     VoidCallback? onDismiss,
     double opacity = 0.5,
+    BannerAnimationType animationType = BannerAnimationType.combined,
   }) {
     final banner = _BannerItem(
       id: DateTime.now().millisecondsSinceEpoch.toString(),
@@ -60,6 +80,7 @@ class _BannerManager extends ChangeNotifier {
       action: action,
       onDismiss: onDismiss,
       opacity: opacity,
+      animationType: animationType,
     );
 
     _banners.add(banner);
@@ -101,6 +122,7 @@ class _BannerItem {
   /// [action] Optional action widget
   /// [onDismiss] Callback for dismissal
   /// [opacity] Background opacity (defaults to 0.5)
+  /// [animationType] The animation style for banner appearance
   _BannerItem({
     required this.id,
     required this.message,
@@ -108,6 +130,7 @@ class _BannerItem {
     this.action,
     this.onDismiss,
     this.opacity = 0.5,
+    this.animationType = BannerAnimationType.combined,
   });
 
   /// Unique identifier for this banner instance
@@ -127,6 +150,9 @@ class _BannerItem {
 
   /// Background opacity of the banner (0.0 to 1.0)
   final double opacity;
+
+  /// The animation style for banner appearance
+  final BannerAnimationType animationType;
 }
 
 /// Extension on BuildContext to provide convenient banner display methods.
@@ -141,12 +167,14 @@ extension AlertBannerExtention on BuildContext {
   /// [duration] How long the banner stays visible
   /// [action] Optional widget to display as an action button
   /// [onDismiss] Callback executed when the banner is dismissed
+  /// [animationType] The animation style for banner appearance
   void showBanner({
     required String message,
     AlertType type = AlertType.info,
     Duration? duration,
     Widget? action,
     VoidCallback? onDismiss,
+    BannerAnimationType animationType = BannerAnimationType.combined,
   }) {
     _BannerManager().showBanner(
       message: message,
@@ -155,6 +183,7 @@ extension AlertBannerExtention on BuildContext {
       action: action,
       onDismiss: onDismiss,
       opacity: 1,
+      animationType: animationType,
     );
   }
 }
@@ -190,8 +219,8 @@ class BannerOverlay extends StatelessWidget {
                 children: banners.map((banner) {
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 8),
-                    child: AnimatedContainer(
-                      duration: const Duration(milliseconds: 300),
+                    child: _BannerAnimation(
+                      animationType: banner.animationType,
                       child: ASAlertBanner(
                         message: banner.message,
                         type: banner.type,
@@ -211,6 +240,107 @@ class BannerOverlay extends StatelessWidget {
         ),
       ],
     );
+  }
+}
+
+/// Internal widget that handles different animation types for banners.
+class _BannerAnimation extends StatefulWidget {
+  const _BannerAnimation({
+    required this.animationType,
+    required this.child,
+  });
+
+  final BannerAnimationType animationType;
+  final Widget child;
+
+  @override
+  State<_BannerAnimation> createState() => _BannerAnimationState();
+}
+
+class _BannerAnimationState extends State<_BannerAnimation>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _fadeAnimation;
+  late Animation<Offset> _slideAnimation;
+  late Animation<double> _scaleAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 400),
+      vsync: this,
+    );
+
+    _fadeAnimation = Tween<double>(
+      begin: 0,
+      end: 1,
+    ).animate(CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeOut,
+    ));
+
+    _slideAnimation = Tween<Offset>(
+      begin: const Offset(0, -0.5),
+      end: Offset.zero,
+    ).animate(CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeOutBack,
+    ));
+
+    _scaleAnimation = Tween<double>(
+      begin: 0.8,
+      end: 1,
+    ).animate(CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeOutBack,
+    ));
+
+    _controller.forward();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    switch (widget.animationType) {
+      case BannerAnimationType.fade:
+        return FadeTransition(
+          opacity: _fadeAnimation,
+          child: widget.child,
+        );
+
+      case BannerAnimationType.slideDown:
+        return SlideTransition(
+          position: _slideAnimation,
+          child: widget.child,
+        );
+
+      case BannerAnimationType.scale:
+        return ScaleTransition(
+          scale: _scaleAnimation,
+          child: widget.child,
+        );
+
+      case BannerAnimationType.combined:
+        return SlideTransition(
+          position: _slideAnimation,
+          child: FadeTransition(
+            opacity: _fadeAnimation,
+            child: ScaleTransition(
+              scale: _scaleAnimation,
+              child: widget.child,
+            ),
+          ),
+        );
+
+      case BannerAnimationType.none:
+        return widget.child;
+    }
   }
 }
 
