@@ -1,3 +1,22 @@
+# [1.10.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.9.0...v1.10.0) (2025-08-02)
+
+
+### Bug Fixes
+
+* adjust banner overlay position to account for toolbar height ([2794041](https://github.com/alpha-sow/alphasow-ui/commit/27940410abde11ba9d0a650c8fea603f5f0244cd))
+* adjust button padding and text field border widths for improved styling ([b7990ff](https://github.com/alpha-sow/alphasow-ui/commit/b7990ff8520b6cf45fd8f60121a75a80184de7b0))
+* correct text formatting in alert dialog and clean up border width definitions in text fields ([ca5d4dc](https://github.com/alpha-sow/alphasow-ui/commit/ca5d4dce239eccf2daab622fd2fdd7e15293221a))
+
+
+### Features
+
+* add adaptive bottom sheet functionality and integrate into DialogPage ([7653202](https://github.com/alpha-sow/alphasow-ui/commit/7653202478543542f5082a464dc610bac04c7734))
+* add support for multiple banner animation types and update showBanner method ([0a4da7e](https://github.com/alpha-sow/alphasow-ui/commit/0a4da7eeccda2ae7b7b4b3076eb01ca6fb7bc7cf))
+* add text overflow handling for title in AsLabel widget ([e8fb9c0](https://github.com/alpha-sow/alphasow-ui/commit/e8fb9c02a76804b08a7f164f7f20a6c5c3d7513e))
+* enhance alert dialog actions with adaptive AsDialogAction component ([e53659f](https://github.com/alpha-sow/alphasow-ui/commit/e53659fb52535a81e4b9604147800aca965d8e5a))
+* replace ShowAlertDialogPage with DialogPage and update navigation ([200485d](https://github.com/alpha-sow/alphasow-ui/commit/200485ddf23858642ef1befa167c2f3bd3a4c559))
+* update package version to 1.9.0 in pubspec.lock ([cc1a676](https://github.com/alpha-sow/alphasow-ui/commit/cc1a676a94179fe66b53668c71d0b18bdb4db6b0))
+
 # [1.9.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.8.2...v1.9.0) (2025-08-02)
 
 
