@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.8.2...v1.9.0) (2025-08-02)
+
+
+### Features
+
+* add AvatarPage and ASAvatar component; update dependencies and settings ([96c2221](https://github.com/alpha-sow/alphasow-ui/commit/96c2221b9894480cba2527fb01490e0797760a15))
+
 ## [1.8.2](https://github.com/alpha-sow/alphasow-ui/compare/v1.8.1...v1.8.2) (2025-08-01)
 
 
