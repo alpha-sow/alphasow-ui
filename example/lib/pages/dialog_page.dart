@@ -51,6 +51,24 @@ class DialogPage extends StatelessWidget {
               ),
               child: const Text('Show Banner'),
             ),
+            AsButton.outlined(
+              onPressed: () => context.showAsActionBottomSheet<void>(
+                title: const Text('Bottom Sheet Title'),
+                message: const Text('This is the content of the bottom sheet.'),
+                actions: <AsDialogAction>[
+                  AsDialogAction(
+                    isDestructiveAction: true,
+                    onPressed: () => Navigator.pop(context),
+                    child: const Text('Close'),
+                  ),
+                ],
+                cancelAction: AsDialogAction(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text('Cancel'),
+                ),
+              ),
+              child: const Text('Show Bottom Sheet'),
+            ),
           ],
         ),
       ],
