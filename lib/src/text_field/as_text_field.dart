@@ -590,7 +590,6 @@ class _CupertinoTextFieldWidget extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(
           color: CupertinoColors.systemGrey4,
-          width: 1,
         ),
         borderRadius: BorderRadius.circular(8),
       ),
@@ -787,13 +786,13 @@ class _MaterialTextFieldWidget extends StatelessWidget {
             fillColor: Theme.of(context).colorScheme.surface,
             hintText: hintText,
             disabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                  color: Theme.of(context).colorScheme.outline, width: 1),
+              borderSide:
+                  BorderSide(color: Theme.of(context).colorScheme.outline),
               borderRadius: BorderRadius.circular(8),
             ),
             enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                  color: Theme.of(context).colorScheme.outline, width: 1),
+              borderSide:
+                  BorderSide(color: Theme.of(context).colorScheme.outline),
               borderRadius: BorderRadius.circular(8),
             ),
             focusedBorder: OutlineInputBorder(
