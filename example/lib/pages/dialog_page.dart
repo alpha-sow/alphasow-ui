@@ -20,7 +20,7 @@ class DialogPage extends StatelessWidget {
               ),
             ),
             AsButton.outlined(
-              onPressed: () => context.showASAlertDialog<void>(
+              onPressed: () => context.showAsAlertDialog<void>(
                 title: const Text(
                   'Are you absolutely sure?',
                   style: TextStyle(

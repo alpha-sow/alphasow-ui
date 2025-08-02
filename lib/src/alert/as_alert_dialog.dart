@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 ///
 /// This extension allows any widget to easily show alert dialogs by calling
 /// `context.showAlertDialog()` directly.
-extension AlertDialogUi on BuildContext {
+extension AsAlertDialog on BuildContext {
   /// Shows a customizable alert dialog with optional title, content, and actions.
   ///
   /// [title] Optional widget to display as the dialog title
@@ -15,7 +15,7 @@ extension AlertDialogUi on BuildContext {
   ///
   /// Returns a Future that completes when the dialog is dismissed,
   /// optionally with a value of type [T].
-  Future<T?> showASAlertDialog<T>({
+  Future<T?> showAsAlertDialog<T>({
     Widget? title,
     Widget? content,
     List<AsDialogAction>? actions,
