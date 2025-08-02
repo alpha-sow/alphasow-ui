@@ -62,7 +62,7 @@ class _HomePageState extends State<HomePage> {
     PageItem('Buttons', Icons.smart_button, const ButtonPage()),
     PageItem('Inputs', Icons.input, const InputPage()),
     PageItem('Labels', Icons.label, const LabelPage()),
-    PageItem('Alert Dialog', Icons.warning, const ShowAlertDialogPage()),
+    PageItem('Alert Dialog', Icons.warning, const DialogPage()),
     PageItem('Loaders', Icons.refresh, const LoaderPage()),
     PageItem('Banners', Icons.campaign, const BannerPage()),
     PageItem('List Tiles', Icons.list, const ListTilePage()),
