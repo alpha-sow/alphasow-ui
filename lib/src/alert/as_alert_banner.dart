@@ -208,7 +208,7 @@ class BannerOverlay extends StatelessWidget {
       children: [
         child,
         Positioned(
-          top: MediaQuery.of(context).padding.top + 16,
+          top: MediaQuery.of(context).padding.top + kToolbarHeight + 16,
           left: 16,
           right: 16,
           child: ListenableBuilder(
