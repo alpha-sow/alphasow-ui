@@ -17,6 +17,7 @@ class _MenuPageState extends State<MenuPage> {
       padding: const EdgeInsets.all(20),
       children: [
         Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           spacing: 10,
           children: [
             Padding(
@@ -34,6 +35,7 @@ class _MenuPageState extends State<MenuPage> {
                 const AsMenuDownItem.divider(),
                 AsMenuDownItem.withIcon(icon: Icons.logout, text: 'Logout'),
               ],
+              position: MenuPosition.right,
               child: ASListTile(
                 title: const Text('Long Press Me'),
                 leading: const Icon(Icons.menu),

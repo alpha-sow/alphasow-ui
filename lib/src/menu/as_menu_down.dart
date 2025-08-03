@@ -13,6 +13,21 @@ enum MenuTriggerMode {
   both,
 }
 
+/// Defines where the menu should appear relative to the trigger widget.
+enum MenuPosition {
+  /// Menu appears below the trigger widget (default)
+  bottom,
+
+  /// Menu appears above the trigger widget
+  top,
+
+  /// Menu appears to the left of the trigger widget
+  left,
+
+  /// Menu appears to the right of the trigger widget
+  right,
+}
+
 /// A customizable popup menu widget that appears on click.
 ///
 /// The AsMenuDown provides a clean popup menu interface with rounded corners
@@ -25,6 +40,7 @@ class AsMenuDown extends StatefulWidget {
   /// [borderRadius] Custom border radius (defaults to 8.0)
   /// [offset] Custom offset for menu position
   /// [triggerMode] How the menu should be triggered (tap, longPress, or both)
+  /// [position] Where the menu should appear relative to the trigger widget
   const AsMenuDown({
     required this.child,
     required this.items,
@@ -32,6 +48,7 @@ class AsMenuDown extends StatefulWidget {
     this.borderRadius = 8.0,
     this.offset = const Offset(0, 4),
     this.triggerMode = MenuTriggerMode.tap,
+    this.position = MenuPosition.bottom,
   });
 
   /// Creates a popup menu with an AsButton trigger containing text.
@@ -42,6 +59,7 @@ class AsMenuDown extends StatefulWidget {
   /// [borderRadius] Custom border radius (defaults to 8.0)
   /// [offset] Custom offset for menu position
   /// [triggerMode] How the menu should be triggered (tap, longPress, or both)
+  /// [position] Where the menu should appear relative to the trigger widget
   AsMenuDown.buttonText({
     required String text,
     required this.items,
@@ -50,6 +68,7 @@ class AsMenuDown extends StatefulWidget {
     this.borderRadius = 8.0,
     this.offset = const Offset(0, 4),
     this.triggerMode = MenuTriggerMode.tap,
+    this.position = MenuPosition.bottom,
   }) : child = _createButton(text: text, variant: variant);
 
   /// Creates a popup menu with an AsButton trigger containing an icon.
@@ -60,6 +79,7 @@ class AsMenuDown extends StatefulWidget {
   /// [borderRadius] Custom border radius (defaults to 8.0)
   /// [offset] Custom offset for menu position
   /// [triggerMode] How the menu should be triggered (tap, longPress, or both)
+  /// [position] Where the menu should appear relative to the trigger widget
   AsMenuDown.buttonIcon({
     required IconData icon,
     required this.items,
@@ -68,6 +88,7 @@ class AsMenuDown extends StatefulWidget {
     this.borderRadius = 8.0,
     this.offset = const Offset(0, 4),
     this.triggerMode = MenuTriggerMode.tap,
+    this.position = MenuPosition.bottom,
   }) : child = _createButton(icon: icon, variant: variant);
 
   /// Creates a popup menu with an AsButton trigger containing both icon and text.
@@ -79,6 +100,7 @@ class AsMenuDown extends StatefulWidget {
   /// [borderRadius] Custom border radius (defaults to 8.0)
   /// [offset] Custom offset for menu position
   /// [triggerMode] How the menu should be triggered (tap, longPress, or both)
+  /// [position] Where the menu should appear relative to the trigger widget
   AsMenuDown.buttonIconText({
     required String text,
     required IconData icon,
@@ -88,6 +110,7 @@ class AsMenuDown extends StatefulWidget {
     this.borderRadius = 8.0,
     this.offset = const Offset(0, 4),
     this.triggerMode = MenuTriggerMode.tap,
+    this.position = MenuPosition.bottom,
   }) : child = _createButton(text: text, icon: icon, variant: variant);
 
   static Widget _createButton({
@@ -145,6 +168,9 @@ class AsMenuDown extends StatefulWidget {
   /// How the menu should be triggered
   final MenuTriggerMode triggerMode;
 
+  /// Where the menu should appear relative to the trigger widget
+  final MenuPosition position;
+
   @override
   State<AsMenuDown> createState() => _AsMenuDownState();
 }
@@ -172,6 +198,68 @@ class _AsMenuDownState extends State<AsMenuDown> {
     final renderBox = _key.currentContext!.findRenderObject()! as RenderBox;
     final size = renderBox.size;
     final offset = renderBox.localToGlobal(Offset.zero);
+    final screenSize = MediaQuery.of(context).size;
+
+    // Calculate menu position based on MenuPosition with screen boundary checks
+    double? left;
+    double? top;
+    double? right;
+    double? bottom;
+    
+    switch (widget.position) {
+      case MenuPosition.bottom:
+        left = offset.dx + widget.offset.dx;
+        top = offset.dy + size.height + widget.offset.dy;
+        // Ensure menu doesn't go off right edge
+        if (left > screenSize.width - 200) {
+          left = screenSize.width - 200;
+        }
+        // Ensure menu doesn't go off left edge
+        if (left < 0) {
+          left = 0;
+        }
+      case MenuPosition.top:
+        left = offset.dx + widget.offset.dx;
+        bottom = screenSize.height - offset.dy + widget.offset.dy;
+        // Ensure menu doesn't go off right edge
+        if (left > screenSize.width - 200) {
+          left = screenSize.width - 200;
+        }
+        // Ensure menu doesn't go off left edge
+        if (left < 0) {
+          left = 0;
+        }
+      case MenuPosition.left:
+        right = screenSize.width - offset.dx + widget.offset.dx;
+        top = offset.dy + widget.offset.dy;
+        // Ensure menu doesn't go off top edge
+        if (top < 0) {
+          top = 0;
+        }
+        // Ensure menu doesn't go off bottom edge
+        if (top > screenSize.height - 200) {
+          top = screenSize.height - 200;
+        }
+      case MenuPosition.right:
+        left = offset.dx + size.width + widget.offset.dx;
+        top = offset.dy + widget.offset.dy;
+        // Check if menu would go off right edge, if so position it to the left instead
+        if (left + 200 > screenSize.width) {
+          left = offset.dx - 200 + widget.offset.dx;
+          // If still off screen, clamp to right edge
+          if (left < 0) {
+            left = screenSize.width - 200;
+          }
+        }
+        // Ensure menu doesn't go off top edge
+        if (top < 0) {
+          top = 0;
+        }
+        // Ensure menu doesn't go off bottom edge
+        if (top > screenSize.height - 200) {
+          top = screenSize.height - 200;
+        }
+    }
 
     _overlayEntry = OverlayEntry(
       builder: (context) => GestureDetector(
@@ -180,8 +268,10 @@ class _AsMenuDownState extends State<AsMenuDown> {
         child: Stack(
           children: [
             Positioned(
-              left: offset.dx + widget.offset.dx,
-              top: offset.dy + size.height + widget.offset.dy,
+              left: left,
+              top: top,
+              right: right,
+              bottom: bottom,
               child: _PopupMenu(
                 items: widget.items,
                 onItemSelected: _closeMenu,
