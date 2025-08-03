@@ -200,6 +200,7 @@ class AsButton extends StatefulWidget {
 
 class _AsButtonState extends State<AsButton> {
   bool _isPressed = false;
+  bool _isHovered = false;
 
   @override
   Widget build(BuildContext context) {
@@ -211,56 +212,78 @@ class _AsButtonState extends State<AsButton> {
         );
 
     final isDisabled = widget.isLoading || widget.onPressed == null;
+
+    // Calculate hover and press effects that work in both light and dark modes
+    Color getInteractiveColor(Color baseColor, double intensity) {
+      // For dark mode (low brightness), lighten the color
+      // For light mode (high brightness), darken the color
+      final isLightMode = theme.brightness == Brightness.light;
+      final targetColor = isLightMode
+          ? Colors.black.withValues(alpha: intensity)
+          : Colors.white.withValues(alpha: intensity);
+
+      return Color.alphaBlend(targetColor, baseColor);
+    }
+
     final finalBackgroundColor = isDisabled
         ? theme.colorScheme.onSurface.withValues(alpha: 0.12)
         : _isPressed
-            ? Color.lerp(
-                colors.backgroundColor, theme.colorScheme.onSurface, 0.08)!
-            : colors.backgroundColor;
+            ? getInteractiveColor(colors.backgroundColor, theme.brightness == Brightness.dark ? 0.30 : 0.20)
+            : _isHovered
+                ? getInteractiveColor(colors.backgroundColor, theme.brightness == Brightness.dark ? 0.25 : 0.15)
+                : colors.backgroundColor;
 
     final finalTextColor = isDisabled
         ? theme.colorScheme.onSurface.withValues(alpha: 0.38)
         : colors.textColor;
 
-    return GestureDetector(
-      onTapDown: isDisabled ? null : (_) => setState(() => _isPressed = true),
-      onTapUp: isDisabled ? null : (_) => setState(() => _isPressed = false),
-      onTapCancel: isDisabled ? null : () => setState(() => _isPressed = false),
-      onTap: isDisabled
-          ? null
-          : () {
-              HapticFeedback.lightImpact();
-              widget.onPressed?.call();
-            },
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        decoration: BoxDecoration(
-          color: finalBackgroundColor,
-          borderRadius: BorderRadius.circular(8),
-          border: colors.outline
-              ? Border.all(
-                  color: theme.colorScheme.outline,
-                )
-              : null,
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            if (widget.isLoading) ...[
-              AsLoadingCircular(color: finalTextColor),
-              const SizedBox(width: 8),
-            ],
-            DefaultTextStyle(
-              style: TextStyle(
-                color: finalTextColor,
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-                decoration: colors.underline ? TextDecoration.underline : null,
+    return MouseRegion(
+      onEnter: isDisabled ? null : (_) => setState(() => _isHovered = true),
+      onExit: isDisabled ? null : (_) => setState(() => _isHovered = false),
+      cursor:
+          isDisabled ? SystemMouseCursors.forbidden : SystemMouseCursors.click,
+      child: GestureDetector(
+        onTapDown: isDisabled ? null : (_) => setState(() => _isPressed = true),
+        onTapUp: isDisabled ? null : (_) => setState(() => _isPressed = false),
+        onTapCancel:
+            isDisabled ? null : () => setState(() => _isPressed = false),
+        onTap: isDisabled
+            ? null
+            : () {
+                HapticFeedback.lightImpact();
+                widget.onPressed?.call();
+              },
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          decoration: BoxDecoration(
+            color: finalBackgroundColor,
+            borderRadius: BorderRadius.circular(8),
+            border: colors.outline
+                ? Border.all(
+                    color: theme.colorScheme.outline,
+                  )
+                : null,
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              if (widget.isLoading) ...[
+                AsLoadingCircular(color: finalTextColor),
+                const SizedBox(width: 8),
+              ],
+              DefaultTextStyle(
+                style: TextStyle(
+                  color: finalTextColor,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                  decoration:
+                      colors.underline ? TextDecoration.underline : null,
+                ),
+                child: widget.child,
               ),
-              child: widget.child,
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
