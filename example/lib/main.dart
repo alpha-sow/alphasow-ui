@@ -77,9 +77,14 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
         actions: [
-          AsIconButton.ghost(
-            onPressed: widget.onThemeToggle,
-            icon: widget.isDarkMode ? Icons.light_mode : Icons.dark_mode,
+          Padding(
+            padding: PlatformType.currentPlatform() == PlatformType.cupertino
+                ? EdgeInsets.zero
+                : const EdgeInsets.symmetric(horizontal: 8),
+            child: AsIconButton.ghost(
+              onPressed: widget.onThemeToggle,
+              icon: widget.isDarkMode ? Icons.light_mode : Icons.dark_mode,
+            ),
           )
         ],
       ),

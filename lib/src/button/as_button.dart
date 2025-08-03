@@ -202,6 +202,10 @@ class _AsButtonState extends State<AsButton> {
   bool _isPressed = false;
   bool _isHovered = false;
 
+  bool _hasIconOnly() {
+    return widget.child is Icon;
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -228,9 +232,11 @@ class _AsButtonState extends State<AsButton> {
     final finalBackgroundColor = isDisabled
         ? theme.colorScheme.onSurface.withValues(alpha: 0.12)
         : _isPressed
-            ? getInteractiveColor(colors.backgroundColor, theme.brightness == Brightness.dark ? 0.30 : 0.20)
+            ? getInteractiveColor(colors.backgroundColor,
+                theme.brightness == Brightness.dark ? 0.30 : 0.20)
             : _isHovered
-                ? getInteractiveColor(colors.backgroundColor, theme.brightness == Brightness.dark ? 0.25 : 0.15)
+                ? getInteractiveColor(colors.backgroundColor,
+                    theme.brightness == Brightness.dark ? 0.25 : 0.15)
                 : colors.backgroundColor;
 
     final finalTextColor = isDisabled
@@ -254,7 +260,9 @@ class _AsButtonState extends State<AsButton> {
                 widget.onPressed?.call();
               },
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          padding: _hasIconOnly()
+              ? EdgeInsets.zero
+              : const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           decoration: BoxDecoration(
             color: finalBackgroundColor,
             borderRadius: BorderRadius.circular(8),
