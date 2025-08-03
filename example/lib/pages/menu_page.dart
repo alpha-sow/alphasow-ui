@@ -22,7 +22,7 @@ class _MenuPageState extends State<MenuPage> {
             Padding(
               padding: const EdgeInsets.all(20),
               child: Text(
-                'Menu Dropdown',
+                'Menu',
                 style: Theme.of(context).textTheme.displayMedium,
               ),
             ),
@@ -34,7 +34,11 @@ class _MenuPageState extends State<MenuPage> {
                 const AsMenuDownItem.divider(),
                 AsMenuDownItem.withIcon(icon: Icons.logout, text: 'Logout'),
               ],
-              child: const ASListTile(title: Text('Long Press Me')),
+              child: ASListTile(
+                title: const Text('Long Press Me'),
+                leading: const Icon(Icons.menu),
+                onTap: () {},
+              ),
             ),
             AsMenuDown.buttonText(
               items: [
