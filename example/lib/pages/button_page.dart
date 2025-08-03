@@ -51,9 +51,19 @@ class ButtonPage extends StatelessWidget {
               child: const Text('Ghost'),
             ),
             const SizedBox(height: 10),
-            AsButton.link(
+            AsIconButton(
               onPressed: () {},
-              child: const Text('Link'),
+              icon: Icons.favorite,
+            ),
+            const SizedBox(height: 10),
+            AsIconButton.secondary(
+              onPressed: () {},
+              icon: Icons.settings,
+            ),
+            const SizedBox(height: 10),
+            AsIconButton.destructive(
+              onPressed: () {},
+              icon: Icons.delete,
             ),
             const SizedBox(height: 10),
             AsIconButton.outlined(

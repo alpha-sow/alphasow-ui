@@ -19,10 +19,7 @@ enum Variant {
   outline,
 
   /// Ghost button with transparent background and no border
-  ghost,
-
-  /// Link-style button with underlined text
-  link
+  ghost
 }
 
 /// Holds the color configuration for button styling.
@@ -35,12 +32,10 @@ class _ButtonColors {
   /// [textColor] The color of text and icons in the button
   /// [backgroundColor] The background color of the button
   /// [outline] Whether the button should have a border outline
-  /// [underline] Whether the text should be underlined
   const _ButtonColors({
     required this.textColor,
     required this.backgroundColor,
     this.outline = false,
-    this.underline = false,
   });
 
   /// The color used for text and icons
@@ -51,9 +46,6 @@ class _ButtonColors {
 
   /// Whether to display an outline border
   final bool outline;
-
-  /// Whether to underline the button text
-  final bool underline;
 }
 
 /// Extension providing color configuration for each button variant.
@@ -94,12 +86,6 @@ extension _VariantExtension on Variant {
           textColor: theme.colorScheme.onSurface,
           backgroundColor: Colors.transparent,
         );
-      case Variant.link:
-        return _ButtonColors(
-          textColor: theme.colorScheme.primary,
-          backgroundColor: Colors.transparent,
-          underline: true,
-        );
     }
   }
 }
@@ -115,11 +101,17 @@ class AsButton extends StatefulWidget {
   /// [child] The widget to display inside the button
   /// [onPressed] Callback executed when button is tapped (null disables button)
   /// [isLoading] Whether to show loading indicator (defaults to false)
+  /// [disableHover] Whether to disable hover effects (defaults to false)
+  /// [disablePress] Whether to disable press effects (defaults to false)
+  /// [padding] Custom padding for the button (defaults to symmetric horizontal: 16, vertical: 8)
   const AsButton({
     required this.child,
     required this.onPressed,
     super.key,
     this.isLoading = false,
+    this.disableHover = false,
+    this.disablePress = false,
+    this.padding,
   }) : _variant = null;
 
   /// Creates a secondary button with muted styling.
@@ -127,11 +119,17 @@ class AsButton extends StatefulWidget {
   /// [child] The widget to display inside the button
   /// [onPressed] Callback executed when button is tapped (null disables button)
   /// [isLoading] Whether to show loading indicator (defaults to false)
+  /// [disableHover] Whether to disable hover effects (defaults to false)
+  /// [disablePress] Whether to disable press effects (defaults to false)
+  /// [padding] Custom padding for the button (defaults to symmetric horizontal: 16, vertical: 8)
   const AsButton.secondary({
     required this.child,
     required this.onPressed,
     super.key,
     this.isLoading = false,
+    this.disableHover = false,
+    this.disablePress = false,
+    this.padding,
   }) : _variant = Variant.secondary;
 
   /// Creates a destructive button with error/danger styling.
@@ -139,11 +137,17 @@ class AsButton extends StatefulWidget {
   /// [child] The widget to display inside the button
   /// [onPressed] Callback executed when button is tapped (null disables button)
   /// [isLoading] Whether to show loading indicator (defaults to false)
+  /// [disableHover] Whether to disable hover effects (defaults to false)
+  /// [disablePress] Whether to disable press effects (defaults to false)
+  /// [padding] Custom padding for the button (defaults to symmetric horizontal: 16, vertical: 8)
   const AsButton.destructive({
     required this.child,
     required this.onPressed,
     super.key,
     this.isLoading = false,
+    this.disableHover = false,
+    this.disablePress = false,
+    this.padding,
   }) : _variant = Variant.destructive;
 
   /// Creates an outline button with transparent background and border.
@@ -151,11 +155,17 @@ class AsButton extends StatefulWidget {
   /// [child] The widget to display inside the button
   /// [onPressed] Callback executed when button is tapped (null disables button)
   /// [isLoading] Whether to show loading indicator (defaults to false)
+  /// [disableHover] Whether to disable hover effects (defaults to false)
+  /// [disablePress] Whether to disable press effects (defaults to false)
+  /// [padding] Custom padding for the button (defaults to symmetric horizontal: 16, vertical: 8)
   const AsButton.outlined({
     required this.child,
     required this.onPressed,
     super.key,
     this.isLoading = false,
+    this.disableHover = false,
+    this.disablePress = false,
+    this.padding,
   }) : _variant = Variant.outline;
 
   /// Creates a ghost button with transparent background and no border.
@@ -163,24 +173,19 @@ class AsButton extends StatefulWidget {
   /// [child] The widget to display inside the button
   /// [onPressed] Callback executed when button is tapped (null disables button)
   /// [isLoading] Whether to show loading indicator (defaults to false)
+  /// [disableHover] Whether to disable hover effects (defaults to false)
+  /// [disablePress] Whether to disable press effects (defaults to false)
+  /// [padding] Custom padding for the button (defaults to symmetric horizontal: 16, vertical: 8)
   const AsButton.ghost({
     required this.child,
     required this.onPressed,
     super.key,
     this.isLoading = false,
+    this.disableHover = false,
+    this.disablePress = false,
+    this.padding,
   }) : _variant = Variant.ghost;
 
-  /// Creates a link-style button with underlined text.
-  ///
-  /// [child] The widget to display inside the button
-  /// [onPressed] Callback executed when button is tapped (null disables button)
-  /// [isLoading] Whether to show loading indicator (defaults to false)
-  const AsButton.link({
-    required this.child,
-    required this.onPressed,
-    super.key,
-    this.isLoading = false,
-  }) : _variant = Variant.link;
 
   /// The widget to display inside the button (typically Text or Icon)
   final Widget child;
@@ -190,6 +195,15 @@ class AsButton extends StatefulWidget {
 
   /// Whether to show a loading indicator instead of the child widget
   final bool isLoading;
+
+  /// Whether to disable hover effects
+  final bool disableHover;
+
+  /// Whether to disable press effects
+  final bool disablePress;
+
+  /// Custom padding for the button
+  final EdgeInsetsGeometry? padding;
 
   /// The internal variant determining the button's visual style
   final Variant? _variant;
@@ -202,9 +216,6 @@ class _AsButtonState extends State<AsButton> {
   bool _isPressed = false;
   bool _isHovered = false;
 
-  bool _hasIconOnly() {
-    return widget.child is Icon;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -231,10 +242,10 @@ class _AsButtonState extends State<AsButton> {
 
     final finalBackgroundColor = isDisabled
         ? theme.colorScheme.onSurface.withValues(alpha: 0.12)
-        : _isPressed
+        : (_isPressed && !widget.disablePress)
             ? getInteractiveColor(colors.backgroundColor,
                 theme.brightness == Brightness.dark ? 0.30 : 0.20)
-            : _isHovered
+            : (_isHovered && !widget.disableHover)
                 ? getInteractiveColor(colors.backgroundColor,
                     theme.brightness == Brightness.dark ? 0.25 : 0.15)
                 : colors.backgroundColor;
@@ -244,15 +255,24 @@ class _AsButtonState extends State<AsButton> {
         : colors.textColor;
 
     return MouseRegion(
-      onEnter: isDisabled ? null : (_) => setState(() => _isHovered = true),
-      onExit: isDisabled ? null : (_) => setState(() => _isHovered = false),
+      onEnter: (isDisabled || widget.disableHover)
+          ? null
+          : (_) => setState(() => _isHovered = true),
+      onExit: (isDisabled || widget.disableHover)
+          ? null
+          : (_) => setState(() => _isHovered = false),
       cursor:
           isDisabled ? SystemMouseCursors.forbidden : SystemMouseCursors.click,
       child: GestureDetector(
-        onTapDown: isDisabled ? null : (_) => setState(() => _isPressed = true),
-        onTapUp: isDisabled ? null : (_) => setState(() => _isPressed = false),
-        onTapCancel:
-            isDisabled ? null : () => setState(() => _isPressed = false),
+        onTapDown: (isDisabled || widget.disablePress)
+            ? null
+            : (_) => setState(() => _isPressed = true),
+        onTapUp: (isDisabled || widget.disablePress)
+            ? null
+            : (_) => setState(() => _isPressed = false),
+        onTapCancel: (isDisabled || widget.disablePress)
+            ? null
+            : () => setState(() => _isPressed = false),
         onTap: isDisabled
             ? null
             : () {
@@ -260,9 +280,7 @@ class _AsButtonState extends State<AsButton> {
                 widget.onPressed?.call();
               },
         child: Container(
-          padding: _hasIconOnly()
-              ? EdgeInsets.zero
-              : const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          padding: widget.padding ?? const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           decoration: BoxDecoration(
             color: finalBackgroundColor,
             borderRadius: BorderRadius.circular(8),
@@ -285,8 +303,6 @@ class _AsButtonState extends State<AsButton> {
                   color: finalTextColor,
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
-                  decoration:
-                      colors.underline ? TextDecoration.underline : null,
                 ),
                 child: widget.child,
               ),

@@ -160,8 +160,6 @@ class AsMenuDown extends StatefulWidget {
         return AsButton.outlined(onPressed: () {}, child: child);
       case Variant.ghost:
         return AsButton.ghost(onPressed: () {}, child: child);
-      case Variant.link:
-        return AsButton.link(onPressed: () {}, child: child);
     }
   }
 
@@ -217,7 +215,7 @@ class _AsMenuDownState extends State<AsMenuDown> {
     double? top;
     double? right;
     double? bottom;
-    
+
     switch (widget.position) {
       case MenuPosition.bottom:
         left = offset.dx + widget.offset.dx;
@@ -274,19 +272,19 @@ class _AsMenuDownState extends State<AsMenuDown> {
       case MenuPosition.bottomLeft:
         left = offset.dx + widget.offset.dx;
         top = offset.dy + size.height + widget.offset.dy;
-        // No horizontal clamping - let it align to left edge of trigger
+      // No horizontal clamping - let it align to left edge of trigger
       case MenuPosition.bottomRight:
         right = screenSize.width - (offset.dx + size.width) + widget.offset.dx;
         top = offset.dy + size.height + widget.offset.dy;
-        // No horizontal clamping - let it align to right edge of trigger
+      // No horizontal clamping - let it align to right edge of trigger
       case MenuPosition.topLeft:
         left = offset.dx + widget.offset.dx;
         bottom = screenSize.height - offset.dy + widget.offset.dy;
-        // No horizontal clamping - let it align to left edge of trigger
+      // No horizontal clamping - let it align to left edge of trigger
       case MenuPosition.topRight:
         right = screenSize.width - (offset.dx + size.width) + widget.offset.dx;
         bottom = screenSize.height - offset.dy + widget.offset.dy;
-        // No horizontal clamping - let it align to right edge of trigger
+      // No horizontal clamping - let it align to right edge of trigger
     }
 
     _overlayEntry = OverlayEntry(
@@ -514,11 +512,6 @@ class _ButtonMenuItem extends StatelessWidget {
           onPressed: () {},
           child: child,
         );
-      case Variant.link:
-        return AsButton.link(
-          onPressed: () {},
-          child: child,
-        );
     }
   }
 }
@@ -575,11 +568,6 @@ class _ButtonMenuItemWrapper extends StatelessWidget {
         );
       case Variant.ghost:
         button = AsButton.ghost(
-          onPressed: item.enabled ? onTap : null,
-          child: child,
-        );
-      case Variant.link:
-        button = AsButton.link(
           onPressed: item.enabled ? onTap : null,
           child: child,
         );
@@ -681,11 +669,11 @@ class _PopupMenuItemState extends State<_PopupMenuItem> {
       if (!widget.item.enabled) {
         return Colors.transparent;
       }
-      
+
       // Use theme-adaptive intensity based on state
       final isLightMode = theme.brightness == Brightness.light;
       double intensity;
-      
+
       if (_isPressed) {
         // Stronger effect when pressed
         intensity = isLightMode ? 0.16 : 0.20;
@@ -695,11 +683,11 @@ class _PopupMenuItemState extends State<_PopupMenuItem> {
       } else {
         return Colors.transparent;
       }
-      
-      final overlayColor = isLightMode 
+
+      final overlayColor = isLightMode
           ? Colors.black.withValues(alpha: intensity)
           : Colors.white.withValues(alpha: intensity);
-      
+
       return Color.alphaBlend(overlayColor, theme.colorScheme.surface);
     }
 
@@ -709,16 +697,18 @@ class _PopupMenuItemState extends State<_PopupMenuItem> {
       onExit: widget.item.enabled
           ? (_) => setState(() => _isHovered = false)
           : null,
-      cursor: widget.item.enabled ? SystemMouseCursors.click : SystemMouseCursors.basic,
+      cursor: widget.item.enabled
+          ? SystemMouseCursors.click
+          : SystemMouseCursors.basic,
       child: GestureDetector(
-        onTapDown: widget.item.enabled 
-            ? (_) => setState(() => _isPressed = true) 
+        onTapDown: widget.item.enabled
+            ? (_) => setState(() => _isPressed = true)
             : null,
-        onTapUp: widget.item.enabled 
-            ? (_) => setState(() => _isPressed = false) 
+        onTapUp: widget.item.enabled
+            ? (_) => setState(() => _isPressed = false)
             : null,
-        onTapCancel: widget.item.enabled 
-            ? () => setState(() => _isPressed = false) 
+        onTapCancel: widget.item.enabled
+            ? () => setState(() => _isPressed = false)
             : null,
         onTap: widget.item.enabled ? widget.onTap : null,
         child: Container(
