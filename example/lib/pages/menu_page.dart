@@ -26,6 +26,16 @@ class _MenuPageState extends State<MenuPage> {
                 style: Theme.of(context).textTheme.displayMedium,
               ),
             ),
+            AsMenuDown(
+              triggerMode: MenuTriggerMode.longPress,
+              items: [
+                AsMenuDownItem.withIcon(icon: Icons.person, text: 'Profile'),
+                AsMenuDownItem.withIcon(icon: Icons.settings, text: 'Settings'),
+                const AsMenuDownItem.divider(),
+                AsMenuDownItem.withIcon(icon: Icons.logout, text: 'Logout'),
+              ],
+              child: const ASListTile(title: Text('Long Press Me')),
+            ),
             AsMenuDown.buttonText(
               items: [
                 AsMenuDownItem.withIcon(

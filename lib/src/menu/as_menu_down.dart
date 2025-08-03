@@ -1,6 +1,18 @@
 import 'package:alphasow_ui/alphasow_ui.dart';
 import 'package:flutter/material.dart';
 
+/// Defines how the menu should be triggered.
+enum MenuTriggerMode {
+  /// Menu appears only on tap
+  tap,
+
+  /// Menu appears only on long press
+  longPress,
+
+  /// Menu appears on both tap and long press
+  both,
+}
+
 /// A customizable popup menu widget that appears on click.
 ///
 /// The AsMenuDown provides a clean popup menu interface with rounded corners
@@ -12,12 +24,14 @@ class AsMenuDown extends StatefulWidget {
   /// [items] The list of menu items to display
   /// [borderRadius] Custom border radius (defaults to 8.0)
   /// [offset] Custom offset for menu position
+  /// [triggerMode] How the menu should be triggered (tap, longPress, or both)
   const AsMenuDown({
     required this.child,
     required this.items,
     super.key,
     this.borderRadius = 8.0,
     this.offset = const Offset(0, 4),
+    this.triggerMode = MenuTriggerMode.tap,
   });
 
   /// Creates a popup menu with an AsButton trigger containing text.
@@ -27,6 +41,7 @@ class AsMenuDown extends StatefulWidget {
   /// [variant] The button variant (defaults to primary)
   /// [borderRadius] Custom border radius (defaults to 8.0)
   /// [offset] Custom offset for menu position
+  /// [triggerMode] How the menu should be triggered (tap, longPress, or both)
   AsMenuDown.buttonText({
     required String text,
     required this.items,
@@ -34,6 +49,7 @@ class AsMenuDown extends StatefulWidget {
     Variant variant = Variant.primary,
     this.borderRadius = 8.0,
     this.offset = const Offset(0, 4),
+    this.triggerMode = MenuTriggerMode.tap,
   }) : child = _createButton(text: text, variant: variant);
 
   /// Creates a popup menu with an AsButton trigger containing an icon.
@@ -43,6 +59,7 @@ class AsMenuDown extends StatefulWidget {
   /// [variant] The button variant (defaults to primary)
   /// [borderRadius] Custom border radius (defaults to 8.0)
   /// [offset] Custom offset for menu position
+  /// [triggerMode] How the menu should be triggered (tap, longPress, or both)
   AsMenuDown.buttonIcon({
     required IconData icon,
     required this.items,
@@ -50,6 +67,7 @@ class AsMenuDown extends StatefulWidget {
     Variant variant = Variant.primary,
     this.borderRadius = 8.0,
     this.offset = const Offset(0, 4),
+    this.triggerMode = MenuTriggerMode.tap,
   }) : child = _createButton(icon: icon, variant: variant);
 
   /// Creates a popup menu with an AsButton trigger containing both icon and text.
@@ -60,6 +78,7 @@ class AsMenuDown extends StatefulWidget {
   /// [variant] The button variant (defaults to primary)
   /// [borderRadius] Custom border radius (defaults to 8.0)
   /// [offset] Custom offset for menu position
+  /// [triggerMode] How the menu should be triggered (tap, longPress, or both)
   AsMenuDown.buttonIconText({
     required String text,
     required IconData icon,
@@ -68,6 +87,7 @@ class AsMenuDown extends StatefulWidget {
     Variant variant = Variant.primary,
     this.borderRadius = 8.0,
     this.offset = const Offset(0, 4),
+    this.triggerMode = MenuTriggerMode.tap,
   }) : child = _createButton(text: text, icon: icon, variant: variant);
 
   static Widget _createButton({
@@ -121,6 +141,9 @@ class AsMenuDown extends StatefulWidget {
 
   /// Offset for menu position relative to the trigger widget
   final Offset offset;
+
+  /// How the menu should be triggered
+  final MenuTriggerMode triggerMode;
 
   @override
   State<AsMenuDown> createState() => _AsMenuDownState();
@@ -182,11 +205,22 @@ class _AsMenuDownState extends State<AsMenuDown> {
 
   @override
   Widget build(BuildContext context) {
+    final onTapHandler = (widget.triggerMode == MenuTriggerMode.tap ||
+            widget.triggerMode == MenuTriggerMode.both)
+        ? _toggleMenu
+        : null;
+    final onLongPressHandler =
+        (widget.triggerMode == MenuTriggerMode.longPress ||
+                widget.triggerMode == MenuTriggerMode.both)
+            ? _toggleMenu
+            : null;
+
     // If the child is an AsButton, we need to wrap it to override its onPressed
     if (widget.child is AsButton) {
       return GestureDetector(
         key: _key,
-        onTap: _toggleMenu,
+        onTap: onTapHandler,
+        onLongPress: onLongPressHandler,
         child: AbsorbPointer(
           child: widget.child,
         ),
@@ -195,7 +229,8 @@ class _AsMenuDownState extends State<AsMenuDown> {
 
     return GestureDetector(
       key: _key,
-      onTap: _toggleMenu,
+      onTap: onTapHandler,
+      onLongPress: onLongPressHandler,
       child: widget.child,
     );
   }
@@ -269,7 +304,6 @@ class AsMenuDownItem {
 
   /// Whether the item is enabled
   final bool enabled;
-
 }
 
 class _IconTextMenuItem extends StatelessWidget {
@@ -398,7 +432,7 @@ class _ButtonMenuItemWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     final buttonChild = item.child as _ButtonMenuItem;
     final child = _buildButtonChild(buttonChild);
-    
+
     Widget button;
     switch (buttonChild.variant) {
       case Variant.primary:
