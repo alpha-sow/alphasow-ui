@@ -26,6 +26,18 @@ enum MenuPosition {
 
   /// Menu appears to the right of the trigger widget
   right,
+
+  /// Menu appears at the bottom-left corner of the trigger widget
+  bottomLeft,
+
+  /// Menu appears at the bottom-right corner of the trigger widget
+  bottomRight,
+
+  /// Menu appears at the top-left corner of the trigger widget
+  topLeft,
+
+  /// Menu appears at the top-right corner of the trigger widget
+  topRight,
 }
 
 /// A customizable popup menu widget that appears on click.
@@ -259,6 +271,22 @@ class _AsMenuDownState extends State<AsMenuDown> {
         if (top > screenSize.height - 200) {
           top = screenSize.height - 200;
         }
+      case MenuPosition.bottomLeft:
+        left = offset.dx + widget.offset.dx;
+        top = offset.dy + size.height + widget.offset.dy;
+        // No horizontal clamping - let it align to left edge of trigger
+      case MenuPosition.bottomRight:
+        right = screenSize.width - (offset.dx + size.width) + widget.offset.dx;
+        top = offset.dy + size.height + widget.offset.dy;
+        // No horizontal clamping - let it align to right edge of trigger
+      case MenuPosition.topLeft:
+        left = offset.dx + widget.offset.dx;
+        bottom = screenSize.height - offset.dy + widget.offset.dy;
+        // No horizontal clamping - let it align to left edge of trigger
+      case MenuPosition.topRight:
+        right = screenSize.width - (offset.dx + size.width) + widget.offset.dx;
+        bottom = screenSize.height - offset.dy + widget.offset.dy;
+        // No horizontal clamping - let it align to right edge of trigger
     }
 
     _overlayEntry = OverlayEntry(
@@ -642,10 +670,38 @@ class _PopupMenuItem extends StatefulWidget {
 
 class _PopupMenuItemState extends State<_PopupMenuItem> {
   bool _isHovered = false;
+  bool _isPressed = false;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+
+    // Enhanced interactive effects that work well in both light and dark modes
+    Color getInteractiveColor() {
+      if (!widget.item.enabled) {
+        return Colors.transparent;
+      }
+      
+      // Use theme-adaptive intensity based on state
+      final isLightMode = theme.brightness == Brightness.light;
+      double intensity;
+      
+      if (_isPressed) {
+        // Stronger effect when pressed
+        intensity = isLightMode ? 0.16 : 0.20;
+      } else if (_isHovered) {
+        // Subtle effect when hovered
+        intensity = isLightMode ? 0.08 : 0.12;
+      } else {
+        return Colors.transparent;
+      }
+      
+      final overlayColor = isLightMode 
+          ? Colors.black.withValues(alpha: intensity)
+          : Colors.white.withValues(alpha: intensity);
+      
+      return Color.alphaBlend(overlayColor, theme.colorScheme.surface);
+    }
 
     return MouseRegion(
       onEnter:
@@ -653,14 +709,22 @@ class _PopupMenuItemState extends State<_PopupMenuItem> {
       onExit: widget.item.enabled
           ? (_) => setState(() => _isHovered = false)
           : null,
+      cursor: widget.item.enabled ? SystemMouseCursors.click : SystemMouseCursors.basic,
       child: GestureDetector(
+        onTapDown: widget.item.enabled 
+            ? (_) => setState(() => _isPressed = true) 
+            : null,
+        onTapUp: widget.item.enabled 
+            ? (_) => setState(() => _isPressed = false) 
+            : null,
+        onTapCancel: widget.item.enabled 
+            ? () => setState(() => _isPressed = false) 
+            : null,
         onTap: widget.item.enabled ? widget.onTap : null,
         child: Container(
           width: double.infinity,
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-          color: widget.item.enabled && _isHovered
-              ? theme.colorScheme.onSurface.withValues(alpha: 0.08)
-              : Colors.transparent,
+          color: getInteractiveColor(),
           child: DefaultTextStyle(
             style: TextStyle(
               color: widget.item.enabled

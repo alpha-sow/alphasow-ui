@@ -35,7 +35,7 @@ class _MenuPageState extends State<MenuPage> {
                 const AsMenuDownItem.divider(),
                 AsMenuDownItem.withIcon(icon: Icons.logout, text: 'Logout'),
               ],
-              position: MenuPosition.right,
+              position: MenuPosition.bottomRight,
               child: ASListTile(
                 title: const Text('Long Press Me'),
                 leading: const Icon(Icons.menu),
