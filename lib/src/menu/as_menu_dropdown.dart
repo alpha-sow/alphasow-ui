@@ -216,22 +216,48 @@ class _DropdownMenuItem<T> extends StatefulWidget {
 
 class _DropdownMenuItemState<T> extends State<_DropdownMenuItem<T>> {
   bool _isHovered = false;
+  bool _isPressed = false;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
+    // Enhanced interactive effects that work well in both light and dark modes
+    Color getInteractiveColor() {
+      // Use theme-adaptive intensity based on state
+      final isLightMode = theme.brightness == Brightness.light;
+      double intensity;
+      
+      if (_isPressed) {
+        // Stronger effect when pressed
+        intensity = isLightMode ? 0.16 : 0.20;
+      } else if (_isHovered) {
+        // Subtle effect when hovered
+        intensity = isLightMode ? 0.08 : 0.12;
+      } else {
+        return Colors.transparent;
+      }
+      
+      final overlayColor = isLightMode 
+          ? Colors.black.withValues(alpha: intensity)
+          : Colors.white.withValues(alpha: intensity);
+      
+      return Color.alphaBlend(overlayColor, theme.colorScheme.surface);
+    }
+
     return MouseRegion(
       onEnter: (_) => setState(() => _isHovered = true),
       onExit: (_) => setState(() => _isHovered = false),
+      cursor: SystemMouseCursors.click,
       child: GestureDetector(
+        onTapDown: (_) => setState(() => _isPressed = true),
+        onTapUp: (_) => setState(() => _isPressed = false),
+        onTapCancel: () => setState(() => _isPressed = false),
         onTap: widget.onTap,
         child: Container(
           width: double.infinity,
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-          color: _isHovered 
-            ? theme.colorScheme.onSurface.withValues(alpha: 0.08)
-            : Colors.transparent,
+          color: getInteractiveColor(),
           child: widget.item.child,
         ),
       ),
