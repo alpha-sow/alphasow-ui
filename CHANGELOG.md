@@ -1,3 +1,10 @@
+# [1.13.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.12.0...v1.13.0) (2025-08-03)
+
+
+### Features
+
+* improve button padding handling for icon-only state and enhance theme toggle button layout ([b035778](https://github.com/alpha-sow/alphasow-ui/commit/b035778eeb04c07d830a4b9ac566e12f7ed8f142))
+
 # [1.12.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.11.1...v1.12.0) (2025-08-03)
 
 
