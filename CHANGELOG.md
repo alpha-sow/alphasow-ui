@@ -1,3 +1,20 @@
+# [1.12.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.11.1...v1.12.0) (2025-08-03)
+
+
+### Bug Fixes
+
+* update menu label and improve ASListTile structure in MenuPage ([e965e5e](https://github.com/alpha-sow/alphasow-ui/commit/e965e5edd8e36c2a18d29385ebfeb715729c5c63))
+
+
+### Features
+
+* add hover effect to AsButton and improve interactive color handling ([1c03396](https://github.com/alpha-sow/alphasow-ui/commit/1c03396c6126689d32789301150b6b1eb21c4213))
+* add MenuPage and dropdown menu components for enhanced navigation ([6b2056f](https://github.com/alpha-sow/alphasow-ui/commit/6b2056fb762529a55d48370514e9df1159004de7))
+* add MenuPosition enum and implement position handling in AsMenuDown ([387cdce](https://github.com/alpha-sow/alphasow-ui/commit/387cdce563c938ea0bed011b3c09b93029f8d74c))
+* enhance AsMenuDown with trigger mode options and add profile/settings menu items ([e1c08d8](https://github.com/alpha-sow/alphasow-ui/commit/e1c08d8cf1a63184935351438724de11639f50ad))
+* enhance interactive effects in _DropdownMenuItem for better user experience ([2a27732](https://github.com/alpha-sow/alphasow-ui/commit/2a2773255127b2bdf1161f72a4d8f61a0966573e))
+* update MenuPosition enum and enhance AsMenuDown with new positioning options ([11a3c6c](https://github.com/alpha-sow/alphasow-ui/commit/11a3c6cb3ed7521cc67eec9826f316e7c2ebc08d))
+
 ## [1.11.1](https://github.com/alpha-sow/alphasow-ui/compare/v1.11.0...v1.11.1) (2025-08-02)
 
 
