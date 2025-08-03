@@ -6,6 +6,9 @@ import 'package:flutter/services.dart';
 ///
 /// Each variant provides different styling to match various UI contexts.
 enum Variant {
+  /// Primary button with main brand colors
+  primary,
+
   /// Secondary button with muted colors
   secondary,
 
@@ -65,6 +68,11 @@ extension _VariantExtension on Variant {
     final theme = Theme.of(context);
 
     switch (this) {
+      case Variant.primary:
+        return _ButtonColors(
+          textColor: theme.colorScheme.onPrimary,
+          backgroundColor: theme.colorScheme.primary,
+        );
       case Variant.secondary:
         return _ButtonColors(
           textColor: theme.colorScheme.onSecondary,

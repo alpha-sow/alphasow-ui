@@ -6,3 +6,4 @@ export 'input_page.dart';
 export 'label_page.dart';
 export 'list_tile_page.dart';
 export 'loader_page.dart';
+export 'menu_page.dart';

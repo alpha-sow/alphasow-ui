@@ -91,6 +91,12 @@ class AsIconButton extends StatelessWidget {
     }
 
     switch (_variant) {
+      case Variant.primary:
+        return AsButton(
+          onPressed: onPressed,
+          isLoading: isLoading,
+          child: Icon(icon, size: size),
+        );
       case Variant.secondary:
         return AsButton.secondary(
           onPressed: onPressed,

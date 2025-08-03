@@ -67,6 +67,7 @@ class _HomePageState extends State<HomePage> {
     PageItem('Banners', Icons.campaign, const BannerPage()),
     PageItem('List Tiles', Icons.list, const ListTilePage()),
     PageItem('Avatar', Icons.person, const AvatarPage()),
+    PageItem('Menu Dropdown', Icons.menu, const MenuPage()),
   ];
 
   @override
