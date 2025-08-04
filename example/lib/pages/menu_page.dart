@@ -37,7 +37,7 @@ class _MenuPageState extends State<MenuPage> {
               ],
               position: MenuPosition.bottomRight,
               child: ASListTile(
-                title: const Text('Long Press Me'),
+                title: const Text('Menu Down Long Press Me'),
                 leading: const Icon(Icons.menu),
                 onTap: () {},
               ),
@@ -62,7 +62,7 @@ class _MenuPageState extends State<MenuPage> {
                 ),
               ],
               variant: Variant.secondary,
-              text: 'Actions',
+              text: 'Menu Down Button',
             ),
             AsMenuDropdown<String>(
               hint: 'Select an option',
