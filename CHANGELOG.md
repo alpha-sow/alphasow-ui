@@ -1,3 +1,17 @@
+# [1.14.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.13.0...v1.14.0) (2025-08-04)
+
+
+### Features
+
+* add AsLinkButton with multiple variants and interactive states ([bd27c4d](https://github.com/alpha-sow/alphasow-ui/commit/bd27c4d614e522792ebd4fd42dfeb13fa87ec076))
+* enhance Cupertino theme handling with dynamic color selection ([a5f0c7c](https://github.com/alpha-sow/alphasow-ui/commit/a5f0c7c88122f48fc4d0b773416689f2fe8ea51e))
+* implement theme color selection in MyApp and enhance AsMenuDown for theme toggling ([6bd2e36](https://github.com/alpha-sow/alphasow-ui/commit/6bd2e3622d02e964a8983d6150f41a0544e3c8e0))
+* refine documentation and improve interactive color handling in AsIconButton ([822071b](https://github.com/alpha-sow/alphasow-ui/commit/822071b4925e8a520db632e3909219c97bdbb277))
+* remove loading state buttons and clean up link button examples in ButtonPage ([76a201e](https://github.com/alpha-sow/alphasow-ui/commit/76a201eb05bb7ee71e7c1d2a115ee590dd02b3d8))
+* remove unnecessary key from AlphasowUiApp and clean up theme handling ([0ada5bc](https://github.com/alpha-sow/alphasow-ui/commit/0ada5bce9ee332d045759f2a545b939c37b5e837))
+* replace AsButton.link with AsIconButton and remove link variant from button styles ([9408732](https://github.com/alpha-sow/alphasow-ui/commit/940873218ba1060f940c3f081c91b2f88ffcbb95))
+* update menu item titles for clarity in MenuPage ([119ebe3](https://github.com/alpha-sow/alphasow-ui/commit/119ebe33777326868d9790ef8fce2f581d34dd98))
+
 # [1.13.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.12.0...v1.13.0) (2025-08-03)
 
 
