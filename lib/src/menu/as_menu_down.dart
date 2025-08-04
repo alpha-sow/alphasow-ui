@@ -180,18 +180,15 @@ class _AsMenuDownState extends State<AsMenuDown> {
     if (text == null && icon != null) {
       switch (variant) {
         case Variant.primary:
-          return AsIconButton(icon: icon, onPressed: onPressed, size: 16);
+          return AsIconButton(icon: icon, onPressed: onPressed);
         case Variant.secondary:
-          return AsIconButton.secondary(
-              icon: icon, onPressed: onPressed, size: 16);
+          return AsIconButton.secondary(icon: icon, onPressed: onPressed);
         case Variant.destructive:
-          return AsIconButton.destructive(
-              icon: icon, onPressed: onPressed, size: 16);
+          return AsIconButton.destructive(icon: icon, onPressed: onPressed);
         case Variant.outline:
-          return AsIconButton.outlined(
-              icon: icon, onPressed: onPressed, size: 16);
+          return AsIconButton.outlined(icon: icon, onPressed: onPressed);
         case Variant.ghost:
-          return AsIconButton.ghost(icon: icon, onPressed: onPressed, size: 16);
+          return AsIconButton.ghost(icon: icon, onPressed: onPressed);
       }
     }
 
