@@ -39,7 +39,9 @@ class _MyAppState extends State<MyApp> {
       theme: isDarkMode
           ? getDarkTheme(currentThemeColor)
           : getLightTheme(currentThemeColor),
-      cupertinoTheme: isDarkMode ? cupertinoThemeDark : cupertinoTheme,
+      cupertinoTheme: isDarkMode 
+          ? getDarkCupertinoTheme(currentThemeColor) 
+          : getLightCupertinoTheme(currentThemeColor),
       home: HomePage(
         title: 'alphasow_ui',
         onThemeToggle: toggleTheme,

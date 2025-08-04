@@ -55,36 +55,59 @@ ThemeData getDarkTheme(ThemeColor themeColor) {
 final ThemeData theme = getLightTheme(ThemeColor.blue);
 final ThemeData themeDark = getDarkTheme(ThemeColor.blue);
 
-const CupertinoThemeData cupertinoTheme = CupertinoThemeData(
-  brightness: Brightness.light,
-  primaryColor: Color(0xFF2196F3),
-  primaryContrastingColor: Colors.white,
-  barBackgroundColor: Color(0xFFF8F9FA),
-  scaffoldBackgroundColor: Colors.white,
-  textTheme: CupertinoTextThemeData(
-    primaryColor: Color(0xFF000000),
-    textStyle: TextStyle(
-      fontFamily: '.SF Pro Text',
-      fontSize: 17,
-      letterSpacing: -0.41,
-      color: Color(0xFF000000),
-    ),
-  ),
-);
+CupertinoThemeData getLightCupertinoTheme(ThemeColor themeColor) {
+  final primaryColor = switch (themeColor) {
+    ThemeColor.blue => const Color(0xFF2196F3),
+    ThemeColor.red => const Color(0xFFF44336),
+    ThemeColor.green => const Color(0xFF4CAF50),
+    ThemeColor.orange => const Color(0xFFFF9800),
+  };
 
-const CupertinoThemeData cupertinoThemeDark = CupertinoThemeData(
-  brightness: Brightness.dark,
-  primaryColor: Color(0xFF64B5F6),
-  primaryContrastingColor: Colors.black,
-  barBackgroundColor: Color(0xFF1C1C1E),
-  scaffoldBackgroundColor: Color(0xFF000000),
-  textTheme: CupertinoTextThemeData(
-    primaryColor: Color(0xFFFFFFFF),
-    textStyle: TextStyle(
-      fontFamily: '.SF Pro Text',
-      fontSize: 17,
-      letterSpacing: -0.41,
-      color: Color(0xFFFFFFFF),
+  return CupertinoThemeData(
+    brightness: Brightness.light,
+    primaryColor: primaryColor,
+    primaryContrastingColor: Colors.white,
+    barBackgroundColor: const Color(0xFFF8F9FA),
+    scaffoldBackgroundColor: Colors.white,
+    textTheme: const CupertinoTextThemeData(
+      primaryColor: Color(0xFF000000),
+      textStyle: TextStyle(
+        fontFamily: '.SF Pro Text',
+        fontSize: 17,
+        letterSpacing: -0.41,
+        color: Color(0xFF000000),
+      ),
     ),
-  ),
-);
+  );
+}
+
+CupertinoThemeData getDarkCupertinoTheme(ThemeColor themeColor) {
+  final primaryColor = switch (themeColor) {
+    ThemeColor.blue => const Color(0xFF64B5F6),
+    ThemeColor.red => const Color(0xFFEF5350),
+    ThemeColor.green => const Color(0xFF66BB6A),
+    ThemeColor.orange => const Color(0xFFFFB74D),
+  };
+
+  return CupertinoThemeData(
+    brightness: Brightness.dark,
+    primaryColor: primaryColor,
+    primaryContrastingColor: Colors.black,
+    barBackgroundColor: const Color(0xFF1C1C1E),
+    scaffoldBackgroundColor: const Color(0xFF000000),
+    textTheme: const CupertinoTextThemeData(
+      primaryColor: Color(0xFFFFFFFF),
+      textStyle: TextStyle(
+        fontFamily: '.SF Pro Text',
+        fontSize: 17,
+        letterSpacing: -0.41,
+        color: Color(0xFFFFFFFF),
+      ),
+    ),
+  );
+}
+
+final CupertinoThemeData cupertinoTheme =
+    getLightCupertinoTheme(ThemeColor.blue);
+final CupertinoThemeData cupertinoThemeDark =
+    getDarkCupertinoTheme(ThemeColor.blue);
