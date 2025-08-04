@@ -1,28 +1,21 @@
 import 'package:alphasow_ui/alphasow_ui.dart';
 import 'package:flutter/material.dart';
 
-/// Holds the color configuration for button styling.
 class _ButtonColors {
-  /// Creates a button color configuration.
   const _ButtonColors({
     required this.textColor,
     required this.backgroundColor,
     this.outline = false,
   });
 
-  /// The color used for text and icons
   final Color textColor;
 
-  /// The background color of the button
   final Color backgroundColor;
 
-  /// Whether to display an outline border
   final bool outline;
 }
 
-/// Extension providing color configuration for each button variant.
 extension _VariantExtension on Variant {
-  /// Returns the color configuration for this variant.
   _ButtonColors getColors(BuildContext context) {
     final theme = Theme.of(context);
 
@@ -57,17 +50,12 @@ extension _VariantExtension on Variant {
   }
 }
 
-/// A customizable icon button widget with multiple visual variants.
-///
-/// The AsIconButton widget extends AsButton to provide icon-specific functionality
-/// while maintaining all the styling variants (primary, secondary, destructive, etc.).
+/// An icon button widget that supports various variants and interactive states.
+/// 
+/// This widget provides hover and press visual feedback with adaptive colors
+/// based on the current theme brightness (dark/light mode).
 class AsIconButton extends StatefulWidget {
-  /// Creates a primary icon button (default variant).
-  ///
-  /// [icon] The icon to display in the button
-  /// [onPressed] Callback executed when button is tapped (null disables button)
-  /// [isLoading] Whether to show loading indicator (defaults to false)
-  /// [size] The size of the icon (defaults to 20)
+  /// Creates a primary icon button.
   const AsIconButton({
     required this.icon,
     required this.onPressed,
@@ -76,7 +64,7 @@ class AsIconButton extends StatefulWidget {
     this.size = 20,
   }) : _variant = null;
 
-  /// Creates a secondary icon button with muted styling.
+  /// Creates a secondary variant icon button.
   const AsIconButton.secondary({
     required this.icon,
     required this.onPressed,
@@ -85,7 +73,7 @@ class AsIconButton extends StatefulWidget {
     this.size = 20,
   }) : _variant = Variant.secondary;
 
-  /// Creates a destructive icon button with error/danger styling.
+  /// Creates a destructive variant icon button.
   const AsIconButton.destructive({
     required this.icon,
     required this.onPressed,
@@ -94,7 +82,7 @@ class AsIconButton extends StatefulWidget {
     this.size = 20,
   }) : _variant = Variant.destructive;
 
-  /// Creates an outline icon button with transparent background and border.
+  /// Creates an outlined variant icon button.
   const AsIconButton.outlined({
     required this.icon,
     required this.onPressed,
@@ -103,7 +91,7 @@ class AsIconButton extends StatefulWidget {
     this.size = 20,
   }) : _variant = Variant.outline;
 
-  /// Creates a ghost icon button with transparent background and no border.
+  /// Creates a ghost variant icon button.
   const AsIconButton.ghost({
     required this.icon,
     required this.onPressed,
@@ -112,20 +100,18 @@ class AsIconButton extends StatefulWidget {
     this.size = 20,
   }) : _variant = Variant.ghost;
 
-
-  /// The icon to display in the button
+  /// The icon to display in the button.
   final IconData icon;
 
-  /// Callback executed when the button is tapped (null disables the button)
+  /// Callback function called when the button is pressed.
   final void Function()? onPressed;
 
-  /// Whether to show a loading indicator instead of the icon
+  /// Whether the button should show a loading state.
   final bool isLoading;
 
-  /// The size of the icon
+  /// The size of the icon in logical pixels.
   final double size;
 
-  /// The internal variant determining the button's visual style
   final Variant? _variant;
 
   @override
@@ -141,33 +127,29 @@ class _AsIconButtonState extends State<AsIconButton> {
     final theme = Theme.of(context);
     final isDisabled = widget.isLoading || widget.onPressed == null;
 
-    // Get the button colors for the current variant
     final colors = widget._variant?.getColors(context) ??
         _ButtonColors(
           textColor: theme.colorScheme.onPrimary,
           backgroundColor: theme.colorScheme.primary,
         );
 
-    // Calculate interactive effects for icon color
+    /// Returns the appropriate icon color based on the current interactive state.
+    /// 
+    /// Uses adaptive colors (white/black with alpha) for hover and press states
+    /// based on the current theme brightness.
     Color getInteractiveIconColor(Color baseColor) {
       if (isDisabled) return baseColor;
 
       if (_isPressed) {
-        // Use inverse of icon color for pressed state
-        return Color.fromARGB(
-          (baseColor.a * 255.0).round() & 0xff,
-          255 - ((baseColor.r * 255.0).round() & 0xff),
-          255 - ((baseColor.g * 255.0).round() & 0xff),
-          255 - ((baseColor.b * 255.0).round() & 0xff),
-        );
+        final isDark = theme.brightness == Brightness.dark;
+        return isDark
+            ? Colors.white.withValues(alpha: 0.8)
+            : Colors.black.withValues(alpha: 0.6);
       } else if (_isHovered) {
-        // Use inverse of icon color for hovered state with reduced alpha
-        return Color.fromARGB(
-          (baseColor.a * 0.6 * 255.0).round() & 0xff,
-          255 - ((baseColor.r * 255.0).round() & 0xff),
-          255 - ((baseColor.g * 255.0).round() & 0xff),
-          255 - ((baseColor.b * 255.0).round() & 0xff),
-        );
+        final isDark = theme.brightness == Brightness.dark;
+        return isDark
+            ? Colors.white.withValues(alpha: 0.6)
+            : Colors.black.withValues(alpha: 0.4);
       }
 
       return baseColor;
