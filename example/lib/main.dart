@@ -16,6 +16,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   bool isDarkMode = false;
+  ThemeColor currentThemeColor = ThemeColor.blue;
 
   void toggleTheme() {
     setState(() {
@@ -23,17 +24,28 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  void changeThemeColor(ThemeColor newColor) {
+    setState(() {
+      currentThemeColor = newColor;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return AlphasowUiApp(
+      key: ValueKey('${isDarkMode}_${currentThemeColor.name}'),
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: isDarkMode ? themeDark : theme,
+      theme: isDarkMode
+          ? getDarkTheme(currentThemeColor)
+          : getLightTheme(currentThemeColor),
       cupertinoTheme: isDarkMode ? cupertinoThemeDark : cupertinoTheme,
       home: HomePage(
         title: 'alphasow_ui',
         onThemeToggle: toggleTheme,
+        onThemeColorChange: changeThemeColor,
         isDarkMode: isDarkMode,
+        currentThemeColor: currentThemeColor,
       ),
     );
   }
@@ -43,13 +55,17 @@ class HomePage extends StatefulWidget {
   const HomePage({
     required this.title,
     required this.onThemeToggle,
+    required this.onThemeColorChange,
     required this.isDarkMode,
+    required this.currentThemeColor,
     super.key,
   });
 
   final String title;
   final VoidCallback onThemeToggle;
+  final ValueChanged<ThemeColor> onThemeColorChange;
   final bool isDarkMode;
+  final ThemeColor currentThemeColor;
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -78,14 +94,69 @@ class _HomePageState extends State<HomePage> {
         title: Text(widget.title),
         actions: [
           Padding(
-            padding: PlatformType.currentPlatform() == PlatformType.cupertino
-                ? EdgeInsets.zero
-                : const EdgeInsets.symmetric(horizontal: 8),
-            child: AsIconButton.ghost(
-              onPressed: widget.onThemeToggle,
-              icon: widget.isDarkMode ? Icons.light_mode : Icons.dark_mode,
+            padding: const EdgeInsets.only(right: 10),
+            child: AsMenuDown.buttonIcon(
+              variant: Variant.ghost,
+              position: MenuPosition.bottomRight,
+              items: [
+                AsMenuDownItem.withIcon(
+                  text: widget.isDarkMode ? 'Light Mode' : 'Dark Mode',
+                  icon: widget.isDarkMode ? Icons.light_mode : Icons.dark_mode,
+                  onTap: widget.onThemeToggle,
+                ),
+                const AsMenuDownItem.divider(),
+                AsMenuDownItem(
+                  child: ColoredBox(
+                    color: Colors.red,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: widget.currentThemeColor == ThemeColor.red
+                          ? const Icon(Icons.check, color: Colors.white)
+                          : const SizedBox.shrink(),
+                    ),
+                  ),
+                  onTap: () => widget.onThemeColorChange(ThemeColor.red),
+                ),
+                AsMenuDownItem(
+                  child: ColoredBox(
+                    color: Colors.orange,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: widget.currentThemeColor == ThemeColor.orange
+                          ? const Icon(Icons.check, color: Colors.white)
+                          : const SizedBox.shrink(),
+                    ),
+                  ),
+                  onTap: () => widget.onThemeColorChange(ThemeColor.orange),
+                ),
+                AsMenuDownItem(
+                  child: ColoredBox(
+                    color: Colors.green,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: widget.currentThemeColor == ThemeColor.green
+                          ? const Icon(Icons.check, color: Colors.white)
+                          : const SizedBox.shrink(),
+                    ),
+                  ),
+                  onTap: () => widget.onThemeColorChange(ThemeColor.green),
+                ),
+                AsMenuDownItem(
+                  child: ColoredBox(
+                    color: Colors.blue,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: widget.currentThemeColor == ThemeColor.blue
+                          ? const Icon(Icons.check, color: Colors.white)
+                          : const SizedBox.shrink(),
+                    ),
+                  ),
+                  onTap: () => widget.onThemeColorChange(ThemeColor.blue),
+                ),
+              ],
+              icon: Icons.color_lens,
             ),
-          )
+          ),
         ],
       ),
       body: Row(

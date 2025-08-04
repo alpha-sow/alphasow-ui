@@ -81,7 +81,7 @@ class AsMenuDown extends StatefulWidget {
     this.offset = const Offset(0, 4),
     this.triggerMode = MenuTriggerMode.tap,
     this.position = MenuPosition.bottom,
-  }) : child = _createButton(text: text, variant: variant);
+  }) : child = _ButtonChild(text: text, variant: variant);
 
   /// Creates a popup menu with an AsButton trigger containing an icon.
   ///
@@ -101,7 +101,7 @@ class AsMenuDown extends StatefulWidget {
     this.offset = const Offset(0, 4),
     this.triggerMode = MenuTriggerMode.tap,
     this.position = MenuPosition.bottom,
-  }) : child = _createButton(icon: icon, variant: variant);
+  }) : child = _ButtonChild(icon: icon, variant: variant);
 
   /// Creates a popup menu with an AsButton trigger containing both icon and text.
   ///
@@ -123,45 +123,7 @@ class AsMenuDown extends StatefulWidget {
     this.offset = const Offset(0, 4),
     this.triggerMode = MenuTriggerMode.tap,
     this.position = MenuPosition.bottom,
-  }) : child = _createButton(text: text, icon: icon, variant: variant);
-
-  static Widget _createButton({
-    required Variant variant,
-    String? text,
-    IconData? icon,
-  }) {
-    Widget child;
-
-    if (text != null && icon != null) {
-      child = Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(icon, size: 16),
-          const SizedBox(width: 8),
-          Text(text),
-        ],
-      );
-    } else if (icon != null) {
-      child = Icon(icon, size: 16);
-    } else if (text != null) {
-      child = Text(text);
-    } else {
-      child = const Icon(Icons.more_vert, size: 16);
-    }
-
-    switch (variant) {
-      case Variant.primary:
-        return AsButton(onPressed: () {}, child: child);
-      case Variant.secondary:
-        return AsButton.secondary(onPressed: () {}, child: child);
-      case Variant.destructive:
-        return AsButton.destructive(onPressed: () {}, child: child);
-      case Variant.outline:
-        return AsButton.outlined(onPressed: () {}, child: child);
-      case Variant.ghost:
-        return AsButton.ghost(onPressed: () {}, child: child);
-    }
-  }
+  }) : child = _ButtonChild(text: text, icon: icon, variant: variant);
 
   /// The widget that triggers the menu when clicked
   final Widget child;
@@ -185,10 +147,85 @@ class AsMenuDown extends StatefulWidget {
   State<AsMenuDown> createState() => _AsMenuDownState();
 }
 
+class _ButtonChild extends StatelessWidget {
+  const _ButtonChild({
+    required this.variant,
+    this.text,
+    this.icon,
+  });
+
+  final Variant variant;
+  final String? text;
+  final IconData? icon;
+
+  @override
+  Widget build(BuildContext context) {
+    // This widget is just a placeholder - the actual button is built in _AsMenuDownState
+    return const SizedBox.shrink();
+  }
+}
+
 class _AsMenuDownState extends State<AsMenuDown> {
   final GlobalKey _key = GlobalKey();
   OverlayEntry? _overlayEntry;
   bool _isOpen = false;
+
+  Widget _createButton({
+    required Variant variant,
+    required VoidCallback onPressed,
+    String? text,
+    IconData? icon,
+  }) {
+    // For icon-only buttons, use AsIconButton
+    if (text == null && icon != null) {
+      switch (variant) {
+        case Variant.primary:
+          return AsIconButton(icon: icon, onPressed: onPressed, size: 16);
+        case Variant.secondary:
+          return AsIconButton.secondary(
+              icon: icon, onPressed: onPressed, size: 16);
+        case Variant.destructive:
+          return AsIconButton.destructive(
+              icon: icon, onPressed: onPressed, size: 16);
+        case Variant.outline:
+          return AsIconButton.outlined(
+              icon: icon, onPressed: onPressed, size: 16);
+        case Variant.ghost:
+          return AsIconButton.ghost(icon: icon, onPressed: onPressed, size: 16);
+      }
+    }
+
+    // For text or text+icon buttons, use AsButton
+    Widget child;
+
+    if (text != null && icon != null) {
+      child = Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, size: 16),
+          const SizedBox(width: 8),
+          Text(text),
+        ],
+      );
+    } else if (text != null) {
+      child = Text(text);
+    } else {
+      child = const Icon(Icons.more_vert, size: 16);
+    }
+
+    switch (variant) {
+      case Variant.primary:
+        return AsButton(onPressed: onPressed, child: child);
+      case Variant.secondary:
+        return AsButton.secondary(onPressed: onPressed, child: child);
+      case Variant.destructive:
+        return AsButton.destructive(onPressed: onPressed, child: child);
+      case Variant.outline:
+        return AsButton.outlined(onPressed: onPressed, child: child);
+      case Variant.ghost:
+        return AsButton.ghost(onPressed: onPressed, child: child);
+    }
+  }
 
   @override
   void dispose() {
@@ -331,8 +368,24 @@ class _AsMenuDownState extends State<AsMenuDown> {
             ? _toggleMenu
             : null;
 
-    // If the child is an AsButton, we need to wrap it to override its onPressed
-    if (widget.child is AsButton) {
+    // If the child is a _ButtonChild, create the actual button with onPressed
+    if (widget.child is _ButtonChild) {
+      final buttonChild = widget.child as _ButtonChild;
+      final actualButton = _createButton(
+        variant: buttonChild.variant,
+        onPressed: _toggleMenu,
+        text: buttonChild.text,
+        icon: buttonChild.icon,
+      );
+
+      return Container(
+        key: _key,
+        child: actualButton,
+      );
+    }
+
+    // If the child is an AsButton or AsIconButton, we need to wrap it to override its onPressed
+    if (widget.child is AsButton || widget.child is AsIconButton) {
       return GestureDetector(
         key: _key,
         onTap: onTapHandler,

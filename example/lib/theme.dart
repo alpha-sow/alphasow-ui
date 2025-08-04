@@ -2,35 +2,58 @@ import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-final ThemeData theme = FlexThemeData.light(
-  scheme: FlexScheme.blue,
-  surfaceMode: FlexSurfaceMode.levelSurfacesLowScaffold,
-  blendLevel: 7,
-  subThemesData: const FlexSubThemesData(
-    blendOnLevel: 10,
-    useM2StyleDividerInM3: true,
-    alignedDropdown: true,
-    useInputDecoratorThemeInDialogs: true,
-  ),
-  visualDensity: FlexColorScheme.comfortablePlatformDensity,
-  useMaterial3ErrorColors: true,
-  swapLegacyOnMaterial3: true,
-);
+enum ThemeColor { blue, red, green, orange }
 
-final ThemeData themeDark = FlexThemeData.dark(
-  scheme: FlexScheme.blue,
-  surfaceMode: FlexSurfaceMode.levelSurfacesLowScaffold,
-  blendLevel: 13,
-  subThemesData: const FlexSubThemesData(
-    blendOnLevel: 20,
-    useM2StyleDividerInM3: true,
-    alignedDropdown: true,
-    useInputDecoratorThemeInDialogs: true,
-  ),
-  visualDensity: FlexColorScheme.comfortablePlatformDensity,
-  useMaterial3ErrorColors: true,
-  swapLegacyOnMaterial3: true,
-);
+ThemeData getLightTheme(ThemeColor themeColor) {
+  final scheme = switch (themeColor) {
+    ThemeColor.blue => FlexScheme.blue,
+    ThemeColor.red => FlexScheme.red,
+    ThemeColor.green => FlexScheme.green,
+    ThemeColor.orange => FlexScheme.orangeM3,
+  };
+
+  return FlexThemeData.light(
+    scheme: scheme,
+    surfaceMode: FlexSurfaceMode.levelSurfacesLowScaffold,
+    blendLevel: 7,
+    subThemesData: const FlexSubThemesData(
+      blendOnLevel: 10,
+      useM2StyleDividerInM3: true,
+      alignedDropdown: true,
+      useInputDecoratorThemeInDialogs: true,
+    ),
+    visualDensity: FlexColorScheme.comfortablePlatformDensity,
+    useMaterial3ErrorColors: true,
+    swapLegacyOnMaterial3: true,
+  );
+}
+
+ThemeData getDarkTheme(ThemeColor themeColor) {
+  final scheme = switch (themeColor) {
+    ThemeColor.blue => FlexScheme.blue,
+    ThemeColor.red => FlexScheme.red,
+    ThemeColor.green => FlexScheme.green,
+    ThemeColor.orange => FlexScheme.orangeM3,
+  };
+
+  return FlexThemeData.dark(
+    scheme: scheme,
+    surfaceMode: FlexSurfaceMode.levelSurfacesLowScaffold,
+    blendLevel: 13,
+    subThemesData: const FlexSubThemesData(
+      blendOnLevel: 20,
+      useM2StyleDividerInM3: true,
+      alignedDropdown: true,
+      useInputDecoratorThemeInDialogs: true,
+    ),
+    visualDensity: FlexColorScheme.comfortablePlatformDensity,
+    useMaterial3ErrorColors: true,
+    swapLegacyOnMaterial3: true,
+  );
+}
+
+final ThemeData theme = getLightTheme(ThemeColor.blue);
+final ThemeData themeDark = getDarkTheme(ThemeColor.blue);
 
 const CupertinoThemeData cupertinoTheme = CupertinoThemeData(
   brightness: Brightness.light,
