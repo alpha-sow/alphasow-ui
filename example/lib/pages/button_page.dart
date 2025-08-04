@@ -76,12 +76,6 @@ class ButtonPage extends StatelessWidget {
               icon: Icons.mail_outline,
             ),
             const SizedBox(height: 10),
-            AsButton(
-              onPressed: () {},
-              isLoading: true,
-              child: const Text('Please wait'),
-            ),
-            const SizedBox(height: 20),
             AsLinkButton(
               text: 'Link Button',
               onPressed: () => context.showBanner(
@@ -93,7 +87,6 @@ class ButtonPage extends StatelessWidget {
               text: 'Secondary Link',
               onPressed: () => context.showBanner(
                 message: 'Secondary link clicked!',
-                type: AlertType.info,
               ),
             ),
             const SizedBox(height: 10),
@@ -109,7 +102,6 @@ class ButtonPage extends StatelessWidget {
               text: 'Outlined Link',
               onPressed: () => context.showBanner(
                 message: 'Outlined link clicked!',
-                type: AlertType.info,
               ),
             ),
             const SizedBox(height: 10),
@@ -117,14 +109,7 @@ class ButtonPage extends StatelessWidget {
               text: 'Ghost Link',
               onPressed: () => context.showBanner(
                 message: 'Ghost link clicked!',
-                type: AlertType.info,
               ),
-            ),
-            const SizedBox(height: 10),
-            const AsLinkButton(
-              text: 'Loading Link',
-              onPressed: null,
-              isLoading: true,
             ),
           ],
         ),
