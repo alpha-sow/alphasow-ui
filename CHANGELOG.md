@@ -1,3 +1,10 @@
+## [1.16.1](https://github.com/alpha-sow/alphasow-ui/compare/v1.16.0...v1.16.1) (2025-08-04)
+
+
+### Bug Fixes
+
+* correct casing of AsListTile class and instances for consistency ([1a1ee35](https://github.com/alpha-sow/alphasow-ui/commit/1a1ee35e42be5ee065d39f96f7d99090df37dc56))
+
 # [1.16.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.15.0...v1.16.0) (2025-08-04)
 
 
