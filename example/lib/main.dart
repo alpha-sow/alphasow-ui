@@ -33,14 +33,13 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return AlphasowUiApp(
-      key: ValueKey('${isDarkMode}_${currentThemeColor.name}'),
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: isDarkMode
           ? getDarkTheme(currentThemeColor)
           : getLightTheme(currentThemeColor),
-      cupertinoTheme: isDarkMode 
-          ? getDarkCupertinoTheme(currentThemeColor) 
+      cupertinoTheme: isDarkMode
+          ? getDarkCupertinoTheme(currentThemeColor)
           : getLightCupertinoTheme(currentThemeColor),
       home: HomePage(
         title: 'alphasow_ui',
