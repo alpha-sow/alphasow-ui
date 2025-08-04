@@ -1,3 +1,10 @@
+# [1.15.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.14.0...v1.15.0) (2025-08-04)
+
+
+### Features
+
+* update AsIconButton to remove size parameter and adjust icon color handling ([c1b7c55](https://github.com/alpha-sow/alphasow-ui/commit/c1b7c55b8b3efadef4b6c6c587846ce3777663a1))
+
 # [1.14.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.13.0...v1.14.0) (2025-08-04)
 
 
