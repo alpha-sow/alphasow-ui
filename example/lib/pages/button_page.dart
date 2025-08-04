@@ -81,6 +81,51 @@ class ButtonPage extends StatelessWidget {
               isLoading: true,
               child: const Text('Please wait'),
             ),
+            const SizedBox(height: 20),
+            AsLinkButton(
+              text: 'Link Button',
+              onPressed: () => context.showBanner(
+                message: 'Link button clicked!',
+              ),
+            ),
+            const SizedBox(height: 10),
+            AsLinkButton.secondary(
+              text: 'Secondary Link',
+              onPressed: () => context.showBanner(
+                message: 'Secondary link clicked!',
+                type: AlertType.info,
+              ),
+            ),
+            const SizedBox(height: 10),
+            AsLinkButton.destructive(
+              text: 'Destructive Link',
+              onPressed: () => context.showBanner(
+                message: 'Destructive link clicked!',
+                type: AlertType.error,
+              ),
+            ),
+            const SizedBox(height: 10),
+            AsLinkButton.outlined(
+              text: 'Outlined Link',
+              onPressed: () => context.showBanner(
+                message: 'Outlined link clicked!',
+                type: AlertType.info,
+              ),
+            ),
+            const SizedBox(height: 10),
+            AsLinkButton.ghost(
+              text: 'Ghost Link',
+              onPressed: () => context.showBanner(
+                message: 'Ghost link clicked!',
+                type: AlertType.info,
+              ),
+            ),
+            const SizedBox(height: 10),
+            const AsLinkButton(
+              text: 'Loading Link',
+              onPressed: null,
+              isLoading: true,
+            ),
           ],
         ),
       ],
