@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 ///
 /// ListTileUI provides a flexible way to display information in a list format
 /// with support for leading icons, titles, subtitles, trailing widgets, and tap actions.
-class ASListTile extends StatefulWidget {
+class AsListTile extends StatefulWidget {
   /// Creates a list tile.
   ///
   /// [title] The primary content of the list item
@@ -16,7 +16,7 @@ class ASListTile extends StatefulWidget {
   /// [trailing] Optional widget displayed after the title (typically an icon or button)
   /// [enabled] Whether the tile is interactive (defaults to true)
   /// [dense] Whether to use a more compact layout (defaults to false)
-  const ASListTile({
+  const AsListTile({
     required this.title,
     super.key,
     this.onTap,
@@ -52,7 +52,7 @@ class ASListTile extends StatefulWidget {
   /// inserted between them.
   ///
   /// This is a convenience method that mimics Flutter's [ListTile.divideTiles].
-  /// It takes an iterable of widgets (typically [ASListTile] widgets) and returns
+  /// It takes an iterable of widgets (typically [AsListTile] widgets) and returns
   /// an iterable with [AsDivider] widgets inserted between each tile.
   ///
   /// The dividers can be customized by providing optional parameters:
@@ -101,10 +101,10 @@ class ASListTile extends StatefulWidget {
   }
 
   @override
-  State<ASListTile> createState() => _ASListTileState();
+  State<AsListTile> createState() => _AsListTileState();
 }
 
-class _ASListTileState extends State<ASListTile> {
+class _AsListTileState extends State<AsListTile> {
   bool _isPressed = false;
 
   @override
