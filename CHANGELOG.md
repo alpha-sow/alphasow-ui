@@ -1,3 +1,10 @@
+# [1.16.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.15.0...v1.16.0) (2025-08-04)
+
+
+### Features
+
+* update AsIconButton size parameter to 24 for consistency across variants ([6a7bdba](https://github.com/alpha-sow/alphasow-ui/commit/6a7bdba721c35d81543b4b2cc4cf6394b9e0d392))
+
 # [1.15.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.14.0...v1.15.0) (2025-08-04)
 
 
