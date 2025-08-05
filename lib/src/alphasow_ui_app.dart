@@ -155,7 +155,7 @@ class AlphasowUiApp extends StatelessWidget {
     final Widget app = routerConfig != null
         ? WidgetsApp.router(
             key: key,
-            routerConfig: routerConfig!,
+            routerConfig: routerConfig,
             builder: builder != null
                 ? (context, child) {
                     final wrappedChild = child != null
@@ -195,13 +195,16 @@ class AlphasowUiApp extends StatelessWidget {
         : WidgetsApp(
             key: key,
             navigatorKey: navigatorKey,
-            home: home != null ? _wrapWithPlatformWidget(home!, isCupertino) : null,
+            home: home != null
+                ? _wrapWithPlatformWidget(home!, isCupertino)
+                : null,
             routes: _wrapRoutesWithPlatformWidget(routes, isCupertino),
             initialRoute: initialRoute,
             onGenerateRoute:
                 _wrapRouteWithPlatformWidget(onGenerateRoute, isCupertino),
             onGenerateInitialRoutes: onGenerateInitialRoutes,
-            onUnknownRoute: _wrapRouteWithPlatformWidget(onUnknownRoute, isCupertino),
+            onUnknownRoute:
+                _wrapRouteWithPlatformWidget(onUnknownRoute, isCupertino),
             navigatorObservers: navigatorObservers,
             builder: builder != null
                 ? (context, child) {
@@ -239,7 +242,8 @@ class AlphasowUiApp extends StatelessWidget {
             actions: actions,
             restorationScopeId: restorationScopeId,
             pageRouteBuilder: pageRouteBuilder ??
-                <T extends Object?>(RouteSettings settings, WidgetBuilder builder) =>
+                <T extends Object?>(RouteSettings settings,
+                        WidgetBuilder builder) =>
                     _defaultPageRouteBuilder<T>(settings, builder, isCupertino),
           );
 
