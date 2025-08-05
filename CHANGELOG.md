@@ -1,3 +1,15 @@
+# [1.17.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.16.1...v1.17.0) (2025-08-05)
+
+
+### Bug Fixes
+
+* improve formatting and readability of router configuration in AlphasowUiApp ([0deb8f0](https://github.com/alpha-sow/alphasow-ui/commit/0deb8f00427313acea99eb55603d5b97cad557b7))
+
+
+### Features
+
+* add router configuration support for declarative routing in AlphasowUiApp ([14a5a12](https://github.com/alpha-sow/alphasow-ui/commit/14a5a1233f48b00e2d6f4f6830f721bb54ff6008))
+
 ## [1.16.1](https://github.com/alpha-sow/alphasow-ui/compare/v1.16.0...v1.16.1) (2025-08-04)
 
 
