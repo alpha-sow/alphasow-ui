@@ -20,11 +20,13 @@ class AlphasowUiApp extends StatelessWidget {
   /// [home] The widget for the home page of the app
   /// [routes] The application's top-level routing table
   /// [initialRoute] The name of the first route to show
+  /// [routerConfig] Router configuration for declarative routing (e.g., GoRouter)
   /// [theme] The Material theme to use for the app (defaults to blue theme)
   /// [cupertinoTheme] The Cupertino theme to use for iOS (optional)
   /// [locale] The locale to use for the app
   /// [supportedLocales] The list of locales supported by the app
   ///
+  /// When [routerConfig] is provided, it takes precedence over traditional routing parameters.
   /// All other parameters follow standard Flutter app configuration.
   const AlphasowUiApp({
     super.key,
@@ -53,6 +55,7 @@ class AlphasowUiApp extends StatelessWidget {
     this.actions,
     this.restorationScopeId,
     this.pageRouteBuilder,
+    this.routerConfig,
   });
 
   /// A key to use when building the Navigator
@@ -130,6 +133,9 @@ class AlphasowUiApp extends StatelessWidget {
   /// Factory for creating page routes
   final PageRouteFactory? pageRouteBuilder;
 
+  /// Router configuration for declarative routing (e.g., GoRouter)
+  final RouterConfig<Object>? routerConfig;
+
   @override
   Widget build(BuildContext context) {
     final platformType = PlatformType.currentPlatform();
@@ -146,55 +152,96 @@ class AlphasowUiApp extends StatelessWidget {
           primaryColor: Color(0xFF2196F3),
         );
 
-    final Widget app = WidgetsApp(
-      key: key,
-      navigatorKey: navigatorKey,
-      home: home != null ? _wrapWithPlatformWidget(home!, isCupertino) : null,
-      routes: _wrapRoutesWithPlatformWidget(routes, isCupertino),
-      initialRoute: initialRoute,
-      onGenerateRoute:
-          _wrapRouteWithPlatformWidget(onGenerateRoute, isCupertino),
-      onGenerateInitialRoutes: onGenerateInitialRoutes,
-      onUnknownRoute: _wrapRouteWithPlatformWidget(onUnknownRoute, isCupertino),
-      navigatorObservers: navigatorObservers,
-      builder: builder != null
-          ? (context, child) {
-              final wrappedChild = child != null
-                  ? _wrapWithPlatformWidget(child, isCupertino)
-                  : null;
-              return _buildScaffoldMessenger(
-                BannerOverlay(
-                  child: builder!(context, wrappedChild),
-                ),
-                isCupertino,
-              );
-            }
-          : (context, child) => _buildScaffoldMessenger(
-                BannerOverlay(
-                  child: _wrapWithPlatformWidget(
-                      child ?? Container(), isCupertino),
-                ),
-                isCupertino,
-              ),
-      title: title,
-      onGenerateTitle: onGenerateTitle,
-      color:
-          isCupertino ? appCupertinoTheme.primaryColor : appTheme.primaryColor,
-      locale: locale,
-      localizationsDelegates: _buildLocalizationsDelegates(),
-      localeListResolutionCallback: localeListResolutionCallback,
-      localeResolutionCallback: localeResolutionCallback,
-      supportedLocales: supportedLocales,
-      showPerformanceOverlay: showPerformanceOverlay,
-      showSemanticsDebugger: showSemanticsDebugger,
-      debugShowCheckedModeBanner: debugShowCheckedModeBanner,
-      shortcuts: shortcuts,
-      actions: actions,
-      restorationScopeId: restorationScopeId,
-      pageRouteBuilder: pageRouteBuilder ??
-          <T extends Object?>(RouteSettings settings, WidgetBuilder builder) =>
-              _defaultPageRouteBuilder<T>(settings, builder, isCupertino),
-    );
+    final Widget app = routerConfig != null
+        ? WidgetsApp.router(
+            key: key,
+            routerConfig: routerConfig!,
+            builder: builder != null
+                ? (context, child) {
+                    final wrappedChild = child != null
+                        ? _wrapWithPlatformWidget(child, isCupertino)
+                        : null;
+                    return _buildScaffoldMessenger(
+                      BannerOverlay(
+                        child: builder!(context, wrappedChild),
+                      ),
+                      isCupertino,
+                    );
+                  }
+                : (context, child) => _buildScaffoldMessenger(
+                      BannerOverlay(
+                        child: _wrapWithPlatformWidget(
+                            child ?? Container(), isCupertino),
+                      ),
+                      isCupertino,
+                    ),
+            title: title,
+            onGenerateTitle: onGenerateTitle,
+            color: isCupertino
+                ? appCupertinoTheme.primaryColor
+                : appTheme.primaryColor,
+            locale: locale,
+            localizationsDelegates: _buildLocalizationsDelegates(),
+            localeListResolutionCallback: localeListResolutionCallback,
+            localeResolutionCallback: localeResolutionCallback,
+            supportedLocales: supportedLocales,
+            showPerformanceOverlay: showPerformanceOverlay,
+            showSemanticsDebugger: showSemanticsDebugger,
+            debugShowCheckedModeBanner: debugShowCheckedModeBanner,
+            shortcuts: shortcuts,
+            actions: actions,
+            restorationScopeId: restorationScopeId,
+          )
+        : WidgetsApp(
+            key: key,
+            navigatorKey: navigatorKey,
+            home: home != null ? _wrapWithPlatformWidget(home!, isCupertino) : null,
+            routes: _wrapRoutesWithPlatformWidget(routes, isCupertino),
+            initialRoute: initialRoute,
+            onGenerateRoute:
+                _wrapRouteWithPlatformWidget(onGenerateRoute, isCupertino),
+            onGenerateInitialRoutes: onGenerateInitialRoutes,
+            onUnknownRoute: _wrapRouteWithPlatformWidget(onUnknownRoute, isCupertino),
+            navigatorObservers: navigatorObservers,
+            builder: builder != null
+                ? (context, child) {
+                    final wrappedChild = child != null
+                        ? _wrapWithPlatformWidget(child, isCupertino)
+                        : null;
+                    return _buildScaffoldMessenger(
+                      BannerOverlay(
+                        child: builder!(context, wrappedChild),
+                      ),
+                      isCupertino,
+                    );
+                  }
+                : (context, child) => _buildScaffoldMessenger(
+                      BannerOverlay(
+                        child: _wrapWithPlatformWidget(
+                            child ?? Container(), isCupertino),
+                      ),
+                      isCupertino,
+                    ),
+            title: title,
+            onGenerateTitle: onGenerateTitle,
+            color: isCupertino
+                ? appCupertinoTheme.primaryColor
+                : appTheme.primaryColor,
+            locale: locale,
+            localizationsDelegates: _buildLocalizationsDelegates(),
+            localeListResolutionCallback: localeListResolutionCallback,
+            localeResolutionCallback: localeResolutionCallback,
+            supportedLocales: supportedLocales,
+            showPerformanceOverlay: showPerformanceOverlay,
+            showSemanticsDebugger: showSemanticsDebugger,
+            debugShowCheckedModeBanner: debugShowCheckedModeBanner,
+            shortcuts: shortcuts,
+            actions: actions,
+            restorationScopeId: restorationScopeId,
+            pageRouteBuilder: pageRouteBuilder ??
+                <T extends Object?>(RouteSettings settings, WidgetBuilder builder) =>
+                    _defaultPageRouteBuilder<T>(settings, builder, isCupertino),
+          );
 
     if (isCupertino) {
       return CupertinoTheme(
