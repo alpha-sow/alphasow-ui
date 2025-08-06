@@ -141,25 +141,8 @@ class _AsIconButtonState extends State<AsIconButton> {
           backgroundColor: theme.colorScheme.primary,
         );
 
-    /// Returns the appropriate icon color based on the current interactive state.
-    ///
-    /// Uses adaptive colors (white/black with alpha) for hover and press states
-    /// based on the current theme brightness.
+    /// Returns the base icon color without changes for hover/press states.
     Color getInteractiveIconColor(Color baseColor) {
-      if (isDisabled) return baseColor;
-
-      if (_isPressed) {
-        final isDark = theme.brightness == Brightness.dark;
-        return isDark
-            ? Colors.white.withValues(alpha: 0.8)
-            : Colors.black.withValues(alpha: 0.6);
-      } else if (_isHovered) {
-        final isDark = theme.brightness == Brightness.dark;
-        return isDark
-            ? Colors.white.withValues(alpha: 0.6)
-            : Colors.black.withValues(alpha: 0.4);
-      }
-
       return baseColor;
     }
 
@@ -167,10 +150,30 @@ class _AsIconButtonState extends State<AsIconButton> {
         getInteractiveIconColor(widget.iconColor ?? colors.iconColor);
 
     Widget buildButtonWithVariant() {
-      final iconWidget = IconTheme(
+      Widget iconWidget = IconTheme(
         data: IconThemeData(color: iconColor, size: widget.size),
         child: Icon(widget.icon, size: widget.size, color: iconColor),
       );
+
+      // Add white or black overlay when hovered or pressed
+      if (_isHovered || _isPressed) {
+        const overlayAlpha = 0.4;
+        final isWhiteIcon = iconColor == Colors.white;
+        final overlayColor = isWhiteIcon
+            ? Colors.black.withValues(alpha: overlayAlpha)
+            : Colors.white.withValues(alpha: overlayAlpha);
+
+        iconWidget = Stack(
+          alignment: Alignment.center,
+          children: [
+            iconWidget,
+            IconTheme(
+                data: IconThemeData(color: overlayColor, size: widget.size),
+                child:
+                    Icon(widget.icon, size: widget.size, color: overlayColor)),
+          ],
+        );
+      }
 
       if (widget._variant == null) {
         return AsButton(
