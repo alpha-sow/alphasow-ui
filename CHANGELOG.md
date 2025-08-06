@@ -1,3 +1,10 @@
+## [1.17.1](https://github.com/alpha-sow/alphasow-ui/compare/v1.17.0...v1.17.1) (2025-08-06)
+
+
+### Bug Fixes
+
+* simplify interactive icon color logic and enhance hover/press overlay effect in AsIconButton ([f0f5a66](https://github.com/alpha-sow/alphasow-ui/commit/f0f5a6640f8b464b56c9f3ba90a0132d26946e83))
+
 # [1.17.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.16.1...v1.17.0) (2025-08-05)
 
 
