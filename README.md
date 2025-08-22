@@ -1,6 +1,6 @@
 # Alphasow UI
 
-[![Version](https://img.shields.io/badge/version-1.17.0-blue.svg)](https://github.com/alpha-sow/alphasow-ui)
+[![Version](https://img.shields.io/badge/version-1.18.0-blue.svg)](https://github.com/alpha-sow/alphasow-ui)
 [![Flutter](https://img.shields.io/badge/Flutter-%3E%3D3.16.0-blue.svg)](https://flutter.dev)
 [![Dart](https://img.shields.io/badge/Dart-%5E3.5.3-blue.svg)](https://dart.dev)
 
@@ -16,33 +16,26 @@ A Flutter package providing a comprehensive collection of reusable UI components
 
 ## Installation
 
-### Repository Configuration
+### Using GitHub
 
-This package is hosted on a private repository. Configure your pub client:
-
-```bash
-# Set the hosted URL for pub
-flutter pub deps --hosted-url=https://repo.alphasow.dev/artifactory/api/pub/repo-pub
-```
-
-Or configure globally by creating/editing `~/.pub-cache/credentials.json`:
-
-```json
-{
-  "hosted": [
-    {
-      "name": "repo.alphasow.dev",
-      "url": "https://repo.alphasow.dev/artifactory/api/pub/repo-pub"
-    }
-  ]
-}
-```
-
-### Add to pubspec.yaml
+Add this to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  alphasow_ui: ^1.17.0
+  alphasow_ui:
+    git:
+      url: https://github.com/alpha-sow/alphasow-ui.git
+      ref: main
+```
+
+Or for a specific version:
+
+```yaml
+dependencies:
+  alphasow_ui:
+    git:
+      url: https://github.com/alpha-sow/alphasow-ui.git
+      ref: v1.18.0
 ```
 
 Then run:
@@ -188,7 +181,7 @@ Components automatically adapt based on the current platform:
 
 - **Flutter SDK**: >=3.16.0
 - **Dart SDK**: ^3.5.3
-- **Version**: 1.17.0
+- **Version**: 1.18.0
 
 ## Contributing
 
