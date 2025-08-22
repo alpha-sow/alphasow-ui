@@ -14,13 +14,15 @@ class MyApp extends StatefulWidget {
   State<MyApp> createState() => _MyAppState();
 }
 
+enum ThemeMode { light, dark, system }
+
 class _MyAppState extends State<MyApp> {
-  bool isDarkMode = false;
+  ThemeMode themeMode = ThemeMode.system;
   ThemeColor currentThemeColor = ThemeColor.blue;
 
-  void toggleTheme() {
+  void changeThemeMode(ThemeMode newMode) {
     setState(() {
-      isDarkMode = !isDarkMode;
+      themeMode = newMode;
     });
   }
 
@@ -28,6 +30,17 @@ class _MyAppState extends State<MyApp> {
     setState(() {
       currentThemeColor = newColor;
     });
+  }
+
+  bool get isDarkMode {
+    switch (themeMode) {
+      case ThemeMode.light:
+        return false;
+      case ThemeMode.dark:
+        return true;
+      case ThemeMode.system:
+        return MediaQuery.platformBrightnessOf(context) == Brightness.dark;
+    }
   }
 
   @override
@@ -43,8 +56,9 @@ class _MyAppState extends State<MyApp> {
           : getLightCupertinoTheme(currentThemeColor),
       home: HomePage(
         title: 'alphasow_ui',
-        onThemeToggle: toggleTheme,
+        onThemeModeChange: changeThemeMode,
         onThemeColorChange: changeThemeColor,
+        themeMode: themeMode,
         isDarkMode: isDarkMode,
         currentThemeColor: currentThemeColor,
       ),
@@ -55,16 +69,18 @@ class _MyAppState extends State<MyApp> {
 class HomePage extends StatefulWidget {
   const HomePage({
     required this.title,
-    required this.onThemeToggle,
+    required this.onThemeModeChange,
     required this.onThemeColorChange,
+    required this.themeMode,
     required this.isDarkMode,
     required this.currentThemeColor,
     super.key,
   });
 
   final String title;
-  final VoidCallback onThemeToggle;
+  final ValueChanged<ThemeMode> onThemeModeChange;
   final ValueChanged<ThemeColor> onThemeColorChange;
+  final ThemeMode themeMode;
   final bool isDarkMode;
   final ThemeColor currentThemeColor;
 
@@ -101,9 +117,19 @@ class _HomePageState extends State<HomePage> {
               position: MenuPosition.bottomRight,
               items: [
                 AsMenuDownItem.withIcon(
-                  text: widget.isDarkMode ? 'Light Mode' : 'Dark Mode',
-                  icon: widget.isDarkMode ? Icons.light_mode : Icons.dark_mode,
-                  onTap: widget.onThemeToggle,
+                  text: 'Light Theme',
+                  icon: Icons.light_mode,
+                  onTap: () => widget.onThemeModeChange(ThemeMode.light),
+                ),
+                AsMenuDownItem.withIcon(
+                  text: 'Dark Theme',
+                  icon: Icons.dark_mode,
+                  onTap: () => widget.onThemeModeChange(ThemeMode.dark),
+                ),
+                AsMenuDownItem.withIcon(
+                  text: 'System Theme',
+                  icon: Icons.brightness_auto,
+                  onTap: () => widget.onThemeModeChange(ThemeMode.system),
                 ),
                 const AsMenuDownItem.divider(),
                 AsMenuDownItem(
