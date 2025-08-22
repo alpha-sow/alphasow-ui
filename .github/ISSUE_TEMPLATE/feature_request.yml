@@ -1,0 +1,149 @@
+name: ✨ Feature Request
+description: Suggest a new feature or enhancement for Alphasow UI
+title: "[Feature]: "
+labels: ["enhancement", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for suggesting a new feature! Please provide as much detail as possible about your idea.
+
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: Feature Description
+      description: A clear and concise description of the feature you'd like to see
+      placeholder: Describe the feature you would like to request...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: feature-type
+    attributes:
+      label: Feature Type
+      description: What type of feature is this?
+      options:
+        - New Component
+        - Component Enhancement
+        - Theme/Styling Enhancement
+        - Platform Support
+        - Accessibility Improvement
+        - Performance Improvement
+        - Developer Experience
+        - Documentation
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem-statement
+    attributes:
+      label: Problem Statement
+      description: What problem does this feature solve? Is your feature request related to a problem?
+      placeholder: I'm frustrated when... / It would be helpful if... / Currently there's no way to...
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: Proposed Solution
+      description: Describe the solution you'd like to see implemented
+      placeholder: I think it would be great if...
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternative Solutions
+      description: Describe any alternative solutions or features you've considered
+      placeholder: I also considered... / An alternative approach could be...
+    validations:
+      required: false
+
+  - type: dropdown
+    id: component-category
+    attributes:
+      label: Component Category
+      description: If this is a new component or enhancement, which category does it belong to?
+      options:
+        - Buttons
+        - Form Controls
+        - Alerts & Notifications
+        - Navigation & Layout
+        - Visual Elements
+        - Menus
+        - Data Display
+        - Feedback
+        - Other
+    validations:
+      required: false
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: How important is this feature to you?
+      options:
+        - Low - Nice to have
+        - Medium - Would be helpful
+        - High - Important for my use case
+        - Critical - Blocking my project
+    validations:
+      required: true
+
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Use Case
+      description: Describe your specific use case for this feature
+      placeholder: I need this feature because I'm building... / In my app, users need to...
+    validations:
+      required: true
+
+  - type: textarea
+    id: api-proposal
+    attributes:
+      label: API Proposal (Optional)
+      description: If you have ideas about how this feature should be used, provide an API example
+      render: dart
+      placeholder: |
+        // Example of how the feature might be used
+        NewComponent(
+          property: value,
+          onAction: () => {},
+        )
+    validations:
+      required: false
+
+  - type: textarea
+    id: design-considerations
+    attributes:
+      label: Design Considerations
+      description: Any thoughts on design, accessibility, or platform considerations?
+      placeholder: This should work on... / Consider accessibility for... / Design should follow...
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Any other context, screenshots, mockups, or examples that help explain your request
+      placeholder: Add any other context about the feature request here...
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      description: Please confirm the following
+      options:
+        - label: I have searched existing issues and feature requests to avoid duplicates
+          required: true
+        - label: I have considered how this feature fits with the existing design system
+          required: true
+        - label: I understand this is a request and not a guarantee of implementation
+          required: true

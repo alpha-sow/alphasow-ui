@@ -1,0 +1,148 @@
+name: ❓ Question
+description: Ask a question about Alphasow UI usage or implementation
+title: "[Question]: "
+labels: ["question", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Have a question about Alphasow UI? We're here to help! Please provide as much context as possible.
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Your Question
+      description: What would you like to know?
+      placeholder: Ask your question here...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: question-type
+    attributes:
+      label: Question Type
+      description: What type of question is this?
+      options:
+        - Component Usage
+        - Theme/Styling
+        - Platform Compatibility
+        - Integration Help
+        - Best Practices
+        - API Documentation
+        - Migration Help
+        - Performance
+        - Accessibility
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Provide context about what you're trying to achieve
+      placeholder: I'm trying to... / My goal is to... / I want to build...
+    validations:
+      required: true
+
+  - type: textarea
+    id: current-approach
+    attributes:
+      label: What Have You Tried?
+      description: What approaches have you already attempted?
+      placeholder: I tried... / I looked at... / I attempted to...
+    validations:
+      required: false
+
+  - type: textarea
+    id: code-sample
+    attributes:
+      label: Code Sample (Optional)
+      description: Share relevant code that relates to your question
+      render: dart
+      placeholder: |
+        import 'package:alphasow_ui/alphasow_ui.dart';
+        
+        // Your code here
+    validations:
+      required: false
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: Related Component (Optional)
+      description: Which component is your question about?
+      options:
+        - AsButton
+        - AsIconButton
+        - AsLinkButton
+        - AsTextField
+        - AsCheckbox
+        - AsAlertDialog
+        - AsAlertBanner
+        - AsBottomSheet
+        - AsScaffold
+        - AsAppBar
+        - AsNavigationRail
+        - AsListTile
+        - AsAvatar
+        - AsLabel
+        - AsDivider
+        - AsLoadingCircular
+        - AsLoadingSpinner
+        - AsMenuDropdown
+        - AsMenuDown
+        - AlphasowUiApp
+        - Theme System
+        - Platform Adaptation
+        - General
+    validations:
+      required: false
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform (Optional)
+      description: Which platform is your question related to?
+      multiple: true
+      options:
+        - Android
+        - iOS
+        - Web
+        - macOS
+        - Windows
+        - Linux
+        - All Platforms
+    validations:
+      required: false
+
+  - type: input
+    id: alphasow-ui-version
+    attributes:
+      label: Alphasow UI Version (Optional)
+      description: Which version of Alphasow UI are you using?
+      placeholder: "e.g. 1.17.0"
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-info
+    attributes:
+      label: Additional Information
+      description: Any other details that might help us answer your question
+      placeholder: Any additional context, screenshots, or examples...
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      description: Please confirm the following
+      options:
+        - label: I have searched existing issues and discussions for similar questions
+          required: true
+        - label: I have checked the documentation and example app
+          required: true
+        - label: I have provided sufficient context for others to understand my question
+          required: true

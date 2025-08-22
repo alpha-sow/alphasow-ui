@@ -1,0 +1,169 @@
+name: 🐛 Bug Report
+description: Report a bug or unexpected behavior in Alphasow UI
+title: "[Bug]: "
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reporting a bug! Please provide as much detail as possible to help us resolve the issue.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of what the bug is
+      placeholder: Describe the issue you encountered...
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: Steps to reproduce the behavior
+      placeholder: |
+        1. Use component '...'
+        2. Set property '...'
+        3. Perform action '...'
+        4. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What you expected to happen
+      placeholder: Describe what should have happened instead...
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: What actually happened
+      placeholder: Describe what actually happened...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      description: Which component is affected?
+      options:
+        - AsButton
+        - AsIconButton
+        - AsLinkButton
+        - AsTextField
+        - AsCheckbox
+        - AsAlertDialog
+        - AsAlertBanner
+        - AsBottomSheet
+        - AsScaffold
+        - AsAppBar
+        - AsNavigationRail
+        - AsListTile
+        - AsAvatar
+        - AsLabel
+        - AsDivider
+        - AsLoadingCircular
+        - AsLoadingSpinner
+        - AsMenuDropdown
+        - AsMenuDown
+        - AlphasowUiApp
+        - Theme System
+        - Platform Adaptation
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      description: Which platform(s) are affected?
+      multiple: true
+      options:
+        - Android
+        - iOS
+        - Web
+        - macOS
+        - Windows
+        - Linux
+    validations:
+      required: true
+
+  - type: input
+    id: flutter-version
+    attributes:
+      label: Flutter Version
+      description: Which version of Flutter are you using?
+      placeholder: "e.g. 3.16.0"
+    validations:
+      required: true
+
+  - type: input
+    id: dart-version
+    attributes:
+      label: Dart Version
+      description: Which version of Dart are you using?
+      placeholder: "e.g. 3.5.3"
+    validations:
+      required: true
+
+  - type: input
+    id: alphasow-ui-version
+    attributes:
+      label: Alphasow UI Version
+      description: Which version of Alphasow UI are you using?
+      placeholder: "e.g. 1.17.0"
+    validations:
+      required: true
+
+  - type: textarea
+    id: code-sample
+    attributes:
+      label: Code Sample
+      description: Minimal code sample that reproduces the issue
+      render: dart
+      placeholder: |
+        import 'package:alphasow_ui/alphasow_ui.dart';
+        
+        // Your code here
+    validations:
+      required: false
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs/Error Messages
+      description: Any relevant logs, error messages, or stack traces
+      render: text
+      placeholder: Paste logs here...
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Any other context about the problem (screenshots, videos, etc.)
+      placeholder: Add any other context about the problem here...
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      description: Please confirm the following
+      options:
+        - label: I have searched existing issues to avoid duplicates
+          required: true
+        - label: I have tested this with the latest version of Alphasow UI
+          required: true
+        - label: I have provided a minimal code sample that reproduces the issue
+          required: false
