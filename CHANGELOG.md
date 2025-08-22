@@ -1,3 +1,10 @@
+# [1.18.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.17.1...v1.18.0) (2025-08-22)
+
+
+### Features
+
+* add comprehensive issue templates for bug reports, feature requests, and questions ([ba50725](https://github.com/alpha-sow/alphasow-ui/commit/ba507258e973d80984a366442137f2a7097c2342))
+
 ## [1.17.1](https://github.com/alpha-sow/alphasow-ui/compare/v1.17.0...v1.17.1) (2025-08-06)
 
 
