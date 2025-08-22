@@ -1,3 +1,10 @@
+# [1.19.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.18.0...v1.19.0) (2025-08-22)
+
+
+### Features
+
+* implement theme mode switching and update pubspec.lock to version 1.18.0 ([1a123d9](https://github.com/alpha-sow/alphasow-ui/commit/1a123d9516178a5b3a487173cab93c3a2bbb4315))
+
 # [1.18.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.17.1...v1.18.0) (2025-08-22)
 
 
