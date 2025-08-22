@@ -192,4 +192,12 @@ Components automatically adapt based on the current platform:
 
 ## Contributing
 
-For issues, feature requests, and contributions, please refer to the project repository.
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details on:
+
+- Setting up the development environment
+- Component development guidelines
+- Testing requirements
+- Code style and formatting
+- Pull request process
+
+For issues and feature requests, please use our [GitHub issue templates](.github/ISSUE_TEMPLATE/).

@@ -13,10 +13,6 @@ jobs:
       issues: write
       pull-requests: write
 
-    env:
-      PUB_TOKEN: ${{ secrets.PUB_TOKEN }}
-      PUB_HOSTED_URL: "https://repo.alphasow.dev/artifactory/api/pub/repo-pub"
-
     steps:
       - uses: actions/checkout@v4
         with:
@@ -27,8 +23,7 @@ jobs:
         with:
           flutter-version: "3.32.5"
           channel: "stable"
-      - name: Setup pub credentials
-        run: dart pub token add "https://repo.alphasow.dev/artifactory/api/pub/repo-pub" --env-var PUB_TOKEN
+
       - name: Get dependencies
         run: flutter pub get
 
@@ -54,9 +49,3 @@ jobs:
         run: semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Check publish warnings
-        run: flutter pub publish --dry-run
-
-      - name: Publish to Alphasow Repository
-        run: flutter pub publish --force

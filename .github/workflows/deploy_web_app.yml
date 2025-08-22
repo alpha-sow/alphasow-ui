@@ -21,9 +21,6 @@ jobs:
           flutter-version: "3.32.5"
           channel: "stable"
 
-      - name: Setup pub credentials
-        run: dart pub token add "https://repo.alphasow.dev/artifactory/api/pub/repo-pub" --env-var PUB_TOKEN
-
       - name: Get dependencies
         run: flutter pub get
 
