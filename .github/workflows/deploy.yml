@@ -36,10 +36,12 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
 
       - name: Install semantic-release
         run: |
+          npm config set registry https://registry.npmjs.org/
+          npm cache clean --force
           npm install semantic-release @semantic-release/changelog @semantic-release/git @semantic-release/exec
 
       - name: Semantic Release
