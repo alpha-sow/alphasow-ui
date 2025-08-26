@@ -1,3 +1,10 @@
+# [1.20.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.19.0...v1.20.0) (2025-08-26)
+
+
+### Features
+
+* update package description to clarify purpose and features ([8a2ccc8](https://github.com/alpha-sow/alphasow-ui/commit/8a2ccc8893847dd4ff0df32232512a04656246d4))
+
 # [1.19.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.18.0...v1.19.0) (2025-08-22)
 
 
