@@ -1,10 +1,6 @@
 name: alphasow_ui
 description: "A new Flutter package project."
-version: 1.19.0
-homepage: https://github.com/alpha-sow/alphasow-ui/blob/main/README.md
-repository: https://github.com/alpha-sow/alphasow-ui
-documentation: https://github.com/alpha-sow/alphasow-ui/blob/main/README.md
-publish_to: none
+version: 1.18.0
 
 environment:
   sdk: ^3.5.3
