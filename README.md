@@ -16,26 +16,11 @@ A Flutter package providing a comprehensive collection of reusable UI components
 
 ## Installation
 
-### Using GitHub
-
 Add this to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  alphasow_ui:
-    git:
-      url: https://github.com/alpha-sow/alphasow-ui.git
-      ref: main
-```
-
-Or for a specific version:
-
-```yaml
-dependencies:
-  alphasow_ui:
-    git:
-      url: https://github.com/alpha-sow/alphasow-ui.git
-      ref: v1.18.0
+  alphasow_ui: ^1.18.0
 ```
 
 Then run:
