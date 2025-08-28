@@ -210,24 +210,26 @@ class AsMenuDrawer extends StatelessWidget {
           ),
         ],
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          if (header != null) header!,
-          Expanded(
-            child: ListView(
-              padding: EdgeInsets.zero,
-              children: [
-                for (final item in items) 
-                  _DrawerItemWidget(
-                    item: item, 
-                    onDismiss: onDismiss,
-                  ),
-              ],
+      child: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            if (header != null) header!,
+            Expanded(
+              child: ListView(
+                padding: EdgeInsets.zero,
+                children: [
+                  for (final item in items)
+                    _DrawerItemWidget(
+                      item: item,
+                      onDismiss: onDismiss,
+                    ),
+                ],
+              ),
             ),
-          ),
-          if (footer != null) footer!,
-        ],
+            if (footer != null) footer!,
+          ],
+        ),
       ),
     );
 

@@ -115,7 +115,19 @@ class _HomePageState extends State<HomePage> {
             : Builder(
                 builder: (context) => IconButton(
                   icon: const Icon(Icons.menu),
-                  onPressed: () => context.showAsMenuDrawer(items: drawerItems),
+                  onPressed: () => context.showAsMenuDrawer(
+                    header: Center(
+                      child: Text(
+                        'Widget',
+                        style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    items: drawerItems,
+                  ),
                 ),
               ),
         actions: [
