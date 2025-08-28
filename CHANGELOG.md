@@ -1,3 +1,14 @@
+# [1.21.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.20.0...v1.21.0) (2025-08-28)
+
+
+### Features
+
+* enhance AsMenuDrawer by adding a header parameter and improving layout with SafeArea ([436e093](https://github.com/alpha-sow/alphasow-ui/commit/436e093699d5ad6f26cad47ca6216f7c695e57d0))
+* enhance AsMenuDrawerItem with context-aware styling and add onDismiss callback for improved interaction ([250ddfb](https://github.com/alpha-sow/alphasow-ui/commit/250ddfb3ae25edd784a596fa36ed4b35f87f3412))
+* enhance theme management by refining theme selection logic and updating MaterialApp usage ([7a33eed](https://github.com/alpha-sow/alphasow-ui/commit/7a33eed41f51bfc0651dcc08197287d26797ee68))
+* implement AsMenuDrawer for adaptive navigation and enhance HomePage with dynamic drawer items ([5721711](https://github.com/alpha-sow/alphasow-ui/commit/5721711fd2d8e4327fae811c126343c5803ae699))
+* integrate auto_route for navigation and add HomePage ([b047020](https://github.com/alpha-sow/alphasow-ui/commit/b0470202fa552693bc760f011dc372a646ebe9ac))
+
 # [1.20.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.19.0...v1.20.0) (2025-08-26)
 
 
