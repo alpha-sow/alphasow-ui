@@ -28,12 +28,87 @@ class _HomePageState extends State<HomePage> {
     MenuRoute(),
   ];
 
+  void _navigateToIndex(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+    context.router.navigate(routes[index]);
+  }
+
+  List<AsMenuDrawerItem> get drawerItems => [
+        AsMenuDrawerItem.withIcon(
+          icon: Icons.smart_button_outlined,
+          text: 'Button',
+          selected: _selectedIndex == 0,
+          onTap: () => _navigateToIndex(0),
+        ),
+        AsMenuDrawerItem.withIcon(
+          icon: Icons.account_circle_outlined,
+          text: 'Avatar',
+          selected: _selectedIndex == 1,
+          onTap: () => _navigateToIndex(1),
+        ),
+        AsMenuDrawerItem.withIcon(
+          icon: Icons.campaign_outlined,
+          text: 'Banner',
+          selected: _selectedIndex == 2,
+          onTap: () => _navigateToIndex(2),
+        ),
+        AsMenuDrawerItem.withIcon(
+          icon: Icons.chat_bubble_outline,
+          text: 'Dialog',
+          selected: _selectedIndex == 3,
+          onTap: () => _navigateToIndex(3),
+        ),
+        AsMenuDrawerItem.withIcon(
+          icon: Icons.input_outlined,
+          text: 'Input',
+          selected: _selectedIndex == 4,
+          onTap: () => _navigateToIndex(4),
+        ),
+        AsMenuDrawerItem.withIcon(
+          icon: Icons.label_outline,
+          text: 'Label',
+          selected: _selectedIndex == 5,
+          onTap: () => _navigateToIndex(5),
+        ),
+        AsMenuDrawerItem.withIcon(
+          icon: Icons.view_list_outlined,
+          text: 'ListTile',
+          selected: _selectedIndex == 6,
+          onTap: () => _navigateToIndex(6),
+        ),
+        AsMenuDrawerItem.withIcon(
+          icon: Icons.hourglass_empty,
+          text: 'Loader',
+          selected: _selectedIndex == 7,
+          onTap: () => _navigateToIndex(7),
+        ),
+        AsMenuDrawerItem.withIcon(
+          icon: Icons.menu_outlined,
+          text: 'Menu',
+          selected: _selectedIndex == 8,
+          onTap: () => _navigateToIndex(8),
+        ),
+      ];
+
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isLargeScreen = screenWidth >= 768;
+
     return AsScaffold(
       appBar: AsAppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text('Alphasow UI Example'),
+        leading: isLargeScreen
+            ? null
+            : Builder(
+                builder: (context) => IconButton(
+                  icon: const Icon(Icons.menu),
+                  onPressed: () => context.showAsMenuDrawer(items: drawerItems),
+                ),
+              ),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 10),
@@ -136,133 +211,109 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Row(
         children: [
-          Container(
-            width: 200,
-            decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.surfaceContainerLow,
-              border: Border(
-                right: BorderSide(
-                  color: Theme.of(context).colorScheme.outlineVariant,
-                ),
-              ),
+          if (isLargeScreen)
+            AsMenuDrawer(
+              items: drawerItems,
             ),
-            child: Column(
-              children: [
-                SideBarItem(
-                  title: 'Button',
-                  icon: Icons.smart_button_outlined,
-                  index: 0,
-                  selectedIndex: _selectedIndex,
-                  onTap: () {
-                    setState(() {
-                      _selectedIndex = 0;
-                    });
-                    context.router.navigate(routes[0]);
-                  },
-                ),
-                SideBarItem(
-                  title: 'Avatar',
-                  icon: Icons.account_circle_outlined,
-                  index: 1,
-                  selectedIndex: _selectedIndex,
-                  onTap: () {
-                    setState(() {
-                      _selectedIndex = 1;
-                    });
-                    context.router.navigate(routes[1]);
-                  },
-                ),
-                SideBarItem(
-                  title: 'Banner',
-                  icon: Icons.campaign_outlined,
-                  index: 2,
-                  selectedIndex: _selectedIndex,
-                  onTap: () {
-                    setState(() {
-                      _selectedIndex = 2;
-                    });
-                    context.router.navigate(routes[2]);
-                  },
-                ),
-                SideBarItem(
-                  title: 'Dialog',
-                  icon: Icons.chat_bubble_outline,
-                  index: 3,
-                  selectedIndex: _selectedIndex,
-                  onTap: () {
-                    setState(() {
-                      _selectedIndex = 3;
-                    });
-                    context.router.navigate(routes[3]);
-                  },
-                ),
-                SideBarItem(
-                  title: 'Input',
-                  icon: Icons.input_outlined,
-                  index: 4,
-                  selectedIndex: _selectedIndex,
-                  onTap: () {
-                    setState(() {
-                      _selectedIndex = 4;
-                    });
-                    context.router.navigate(routes[4]);
-                  },
-                ),
-                SideBarItem(
-                  title: 'Label',
-                  icon: Icons.label_outline,
-                  index: 5,
-                  selectedIndex: _selectedIndex,
-                  onTap: () {
-                    setState(() {
-                      _selectedIndex = 5;
-                    });
-                    context.router.navigate(routes[5]);
-                  },
-                ),
-                SideBarItem(
-                  title: 'ListTile',
-                  icon: Icons.view_list_outlined,
-                  index: 6,
-                  selectedIndex: _selectedIndex,
-                  onTap: () {
-                    setState(() {
-                      _selectedIndex = 6;
-                    });
-                    context.router.navigate(routes[6]);
-                  },
-                ),
-                SideBarItem(
-                  title: 'Loader',
-                  icon: Icons.hourglass_empty,
-                  index: 7,
-                  selectedIndex: _selectedIndex,
-                  onTap: () {
-                    setState(() {
-                      _selectedIndex = 7;
-                    });
-                    context.router.navigate(routes[7]);
-                  },
-                ),
-                SideBarItem(
-                  title: 'Menu',
-                  icon: Icons.menu_outlined,
-                  index: 8,
-                  selectedIndex: _selectedIndex,
-                  onTap: () {
-                    setState(() {
-                      _selectedIndex = 8;
-                    });
-                    context.router.navigate(routes[8]);
-                  },
-                ),
-              ],
-            ),
-          ),
           Expanded(
             child: AutoTabsScaffold(
               routes: routes,
             ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class NavigationMenu extends StatelessWidget {
+  const NavigationMenu({
+    required this.selectedIndex,
+    required this.routes,
+    required this.onItemTap,
+    super.key,
+  });
+
+  final int selectedIndex;
+  final List<PageRouteInfo> routes;
+  final ValueChanged<int> onItemTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 200,
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.surfaceContainerLow,
+        border: Border(
+          right: BorderSide(
+            color: Theme.of(context).colorScheme.outlineVariant,
+          ),
+        ),
+      ),
+      child: Column(
+        children: [
+          SideBarItem(
+            title: 'Button',
+            icon: Icons.smart_button_outlined,
+            index: 0,
+            selectedIndex: selectedIndex,
+            onTap: () => onItemTap(0),
+          ),
+          SideBarItem(
+            title: 'Avatar',
+            icon: Icons.account_circle_outlined,
+            index: 1,
+            selectedIndex: selectedIndex,
+            onTap: () => onItemTap(1),
+          ),
+          SideBarItem(
+            title: 'Banner',
+            icon: Icons.campaign_outlined,
+            index: 2,
+            selectedIndex: selectedIndex,
+            onTap: () => onItemTap(2),
+          ),
+          SideBarItem(
+            title: 'Dialog',
+            icon: Icons.chat_bubble_outline,
+            index: 3,
+            selectedIndex: selectedIndex,
+            onTap: () => onItemTap(3),
+          ),
+          SideBarItem(
+            title: 'Input',
+            icon: Icons.input_outlined,
+            index: 4,
+            selectedIndex: selectedIndex,
+            onTap: () => onItemTap(4),
+          ),
+          SideBarItem(
+            title: 'Label',
+            icon: Icons.label_outline,
+            index: 5,
+            selectedIndex: selectedIndex,
+            onTap: () => onItemTap(5),
+          ),
+          SideBarItem(
+            title: 'ListTile',
+            icon: Icons.view_list_outlined,
+            index: 6,
+            selectedIndex: selectedIndex,
+            onTap: () => onItemTap(6),
+          ),
+          SideBarItem(
+            title: 'Loader',
+            icon: Icons.hourglass_empty,
+            index: 7,
+            selectedIndex: selectedIndex,
+            onTap: () => onItemTap(7),
+          ),
+          SideBarItem(
+            title: 'Menu',
+            icon: Icons.menu_outlined,
+            index: 8,
+            selectedIndex: selectedIndex,
+            onTap: () => onItemTap(8),
           ),
         ],
       ),
