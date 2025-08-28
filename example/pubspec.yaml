@@ -12,6 +12,7 @@ dependencies:
   alphasow_ui:
     path: ../
 
+  auto_route: ^10.1.2
   cupertino_icons: ^1.0.8
   faker: ^2.2.0
   flex_color_scheme: ^8.0.2
@@ -19,6 +20,8 @@ dependencies:
     sdk: flutter
 
 dev_dependencies:
+  auto_route_generator: ^10.1.0
+  build_runner: ^2.5.4
   flutter_lints: ^4.0.0
   flutter_test:
     sdk: flutter

@@ -1,7 +1,9 @@
 import 'package:alphasow_ui/alphasow_ui.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:example/utils/utils.dart';
 import 'package:flutter/material.dart';
 
+@RoutePage()
 class AvatarPage extends StatelessWidget {
   const AvatarPage({super.key});
 

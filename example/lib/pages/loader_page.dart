@@ -1,6 +1,8 @@
 import 'package:alphasow_ui/alphasow_ui.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
+@RoutePage()
 class LoaderPage extends StatelessWidget {
   const LoaderPage({super.key});
 
