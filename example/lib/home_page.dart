@@ -37,54 +37,63 @@ class _HomePageState extends State<HomePage> {
 
   List<AsMenuDrawerItem> get drawerItems => [
         AsMenuDrawerItem.withIcon(
+          context: context,
           icon: Icons.smart_button_outlined,
           text: 'Button',
           selected: _selectedIndex == 0,
           onTap: () => _navigateToIndex(0),
         ),
         AsMenuDrawerItem.withIcon(
+          context: context,
           icon: Icons.account_circle_outlined,
           text: 'Avatar',
           selected: _selectedIndex == 1,
           onTap: () => _navigateToIndex(1),
         ),
         AsMenuDrawerItem.withIcon(
+          context: context,
           icon: Icons.campaign_outlined,
           text: 'Banner',
           selected: _selectedIndex == 2,
           onTap: () => _navigateToIndex(2),
         ),
         AsMenuDrawerItem.withIcon(
+          context: context,
           icon: Icons.chat_bubble_outline,
           text: 'Dialog',
           selected: _selectedIndex == 3,
           onTap: () => _navigateToIndex(3),
         ),
         AsMenuDrawerItem.withIcon(
+          context: context,
           icon: Icons.input_outlined,
           text: 'Input',
           selected: _selectedIndex == 4,
           onTap: () => _navigateToIndex(4),
         ),
         AsMenuDrawerItem.withIcon(
+          context: context,
           icon: Icons.label_outline,
           text: 'Label',
           selected: _selectedIndex == 5,
           onTap: () => _navigateToIndex(5),
         ),
         AsMenuDrawerItem.withIcon(
+          context: context,
           icon: Icons.view_list_outlined,
           text: 'ListTile',
           selected: _selectedIndex == 6,
           onTap: () => _navigateToIndex(6),
         ),
         AsMenuDrawerItem.withIcon(
+          context: context,
           icon: Icons.hourglass_empty,
           text: 'Loader',
           selected: _selectedIndex == 7,
           onTap: () => _navigateToIndex(7),
         ),
         AsMenuDrawerItem.withIcon(
+          context: context,
           icon: Icons.menu_outlined,
           text: 'Menu',
           selected: _selectedIndex == 8,

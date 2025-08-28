@@ -31,6 +31,7 @@ extension AsMenuDrawerContext on BuildContext {
           header: header,
           footer: footer,
           isOverlay: true,
+          onDismiss: () => overlayEntry.remove(),
         ),
         onDismiss: () => overlayEntry.remove(),
         barrierDismissible: barrierDismissible,
@@ -161,6 +162,7 @@ class AsMenuDrawer extends StatelessWidget {
     this.header,
     this.footer,
     this.isOverlay = false,
+    this.onDismiss,
   });
 
   /// The list of menu items to display
@@ -177,6 +179,9 @@ class AsMenuDrawer extends StatelessWidget {
 
   /// Whether this drawer is used in an overlay
   final bool isOverlay;
+
+  /// Callback to dismiss the drawer (used for overlay mode)
+  final VoidCallback? onDismiss;
 
   @override
   Widget build(BuildContext context) {
@@ -213,7 +218,11 @@ class AsMenuDrawer extends StatelessWidget {
             child: ListView(
               padding: EdgeInsets.zero,
               children: [
-                for (final item in items) _DrawerItemWidget(item: item),
+                for (final item in items) 
+                  _DrawerItemWidget(
+                    item: item, 
+                    onDismiss: onDismiss,
+                  ),
               ],
             ),
           ),
@@ -254,12 +263,28 @@ class AsMenuDrawerItem {
   /// [enabled] Whether the item is enabled (defaults to true)
   /// [selected] Whether the item is currently selected (defaults to false)
   AsMenuDrawerItem.withIcon({
+    required BuildContext context,
     required IconData icon,
     required String text,
     this.onTap,
     this.enabled = true,
     bool selected = false,
-  }) : child = _IconTextDrawerItem(icon: icon, text: text, selected: selected);
+  }) : child = Row(
+          children: [
+            Icon(icon,
+                color: selected
+                    ? Theme.of(context).colorScheme.primary
+                    : Theme.of(context).colorScheme.onSurface),
+            const SizedBox(width: 8),
+            Text(text,
+                style: TextStyle(
+                  color: selected
+                      ? Theme.of(context).colorScheme.primary
+                      : Theme.of(context).colorScheme.onSurface,
+                  fontWeight: selected ? FontWeight.w600 : FontWeight.w400,
+                )),
+          ],
+        );
 
   /// Creates a drawer menu item with only text.
   ///
@@ -268,11 +293,18 @@ class AsMenuDrawerItem {
   /// [enabled] Whether the item is enabled (defaults to true)
   /// [selected] Whether the item is currently selected (defaults to false)
   AsMenuDrawerItem.text({
+    required BuildContext context,
     required String text,
     this.onTap,
     this.enabled = true,
     bool selected = false,
-  }) : child = _TextDrawerItem(text: text, selected: selected);
+  }) : child = Text(text,
+            style: TextStyle(
+              color: selected
+                  ? Theme.of(context).colorScheme.primary
+                  : Theme.of(context).colorScheme.onSurface,
+              fontWeight: selected ? FontWeight.w600 : FontWeight.w400,
+            ));
 
   /// Creates a divider item.
   const AsMenuDrawerItem.divider()
@@ -299,103 +331,6 @@ class AsMenuDrawerItem {
 
   /// Whether the item is enabled
   final bool enabled;
-}
-
-class _IconTextDrawerItem extends StatelessWidget {
-  const _IconTextDrawerItem({
-    required this.icon,
-    required this.text,
-    required this.selected,
-  });
-
-  final IconData icon;
-  final String text;
-  final bool selected;
-
-  @override
-  Widget build(BuildContext context) {
-    final platformType = PlatformType.currentPlatform();
-    final isCupertino = platformType == PlatformType.cupertino;
-    final theme = Theme.of(context);
-
-    Color iconColor;
-    Color textColor;
-
-    if (isCupertino) {
-      final cupertinoTheme = CupertinoTheme.of(context);
-      iconColor = selected
-          ? cupertinoTheme.primaryColor
-          : CupertinoColors.label.resolveFrom(context);
-      textColor = selected
-          ? cupertinoTheme.primaryColor
-          : CupertinoColors.label.resolveFrom(context);
-    } else {
-      iconColor = selected
-          ? theme.colorScheme.primary
-          : theme.colorScheme.onSurface.withValues(alpha: 0.7);
-      textColor =
-          selected ? theme.colorScheme.primary : theme.colorScheme.onSurface;
-    }
-
-    return Row(
-      children: [
-        Icon(
-          icon,
-          size: 20,
-          color: iconColor,
-        ),
-        const SizedBox(width: 16),
-        Expanded(
-          child: Text(
-            text,
-            style: TextStyle(
-              color: textColor,
-              fontSize: 16,
-              fontWeight: selected ? FontWeight.w600 : FontWeight.w400,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class _TextDrawerItem extends StatelessWidget {
-  const _TextDrawerItem({
-    required this.text,
-    required this.selected,
-  });
-
-  final String text;
-  final bool selected;
-
-  @override
-  Widget build(BuildContext context) {
-    final platformType = PlatformType.currentPlatform();
-    final isCupertino = platformType == PlatformType.cupertino;
-    final theme = Theme.of(context);
-
-    Color textColor;
-
-    if (isCupertino) {
-      final cupertinoTheme = CupertinoTheme.of(context);
-      textColor = selected
-          ? cupertinoTheme.primaryColor
-          : CupertinoColors.label.resolveFrom(context);
-    } else {
-      textColor =
-          selected ? theme.colorScheme.primary : theme.colorScheme.onSurface;
-    }
-
-    return Text(
-      text,
-      style: TextStyle(
-        color: textColor,
-        fontSize: 16,
-        fontWeight: selected ? FontWeight.w600 : FontWeight.w400,
-      ),
-    );
-  }
 }
 
 class _HeaderDrawerItem extends StatelessWidget {
@@ -454,114 +389,28 @@ class _HeaderDrawerItem extends StatelessWidget {
 class _DrawerItemWidget extends StatefulWidget {
   const _DrawerItemWidget({
     required this.item,
+    this.onDismiss,
   });
 
   final AsMenuDrawerItem item;
+  final VoidCallback? onDismiss;
 
   @override
   State<_DrawerItemWidget> createState() => _DrawerItemWidgetState();
 }
 
 class _DrawerItemWidgetState extends State<_DrawerItemWidget> {
-  bool _isHovered = false;
-  bool _isPressed = false;
-
   @override
   Widget build(BuildContext context) {
-    final platformType = PlatformType.currentPlatform();
-    final isCupertino = platformType == PlatformType.cupertino;
-    final theme = Theme.of(context);
-
-    // Handle dividers and headers separately
-    if (widget.item.child is AsDivider) {
-      return Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8),
-        child: widget.item.child,
-      );
-    }
-
-    if (widget.item.child is _HeaderDrawerItem) {
-      return Padding(
-        padding: const EdgeInsets.all(16),
-        child: widget.item.child,
-      );
-    }
-
-    // Interactive color for normal items
-    Color getInteractiveColor() {
-      if (!widget.item.enabled) {
-        return Colors.transparent;
-      }
-
-      if (isCupertino) {
-        if (_isPressed) {
-          return CupertinoColors.systemFill.resolveFrom(context);
-        } else if (_isHovered) {
-          return CupertinoColors.systemGrey6.resolveFrom(context);
-        }
-        return Colors.transparent;
-      } else {
-        // Material design interactive colors
-        final isLightMode = theme.brightness == Brightness.light;
-        double intensity;
-
-        if (_isPressed) {
-          intensity = isLightMode ? 0.12 : 0.16;
-        } else if (_isHovered) {
-          intensity = isLightMode ? 0.04 : 0.08;
-        } else {
-          return Colors.transparent;
-        }
-
-        final overlayColor = isLightMode
-            ? Colors.black.withValues(alpha: intensity)
-            : Colors.white.withValues(alpha: intensity);
-
-        return Color.alphaBlend(overlayColor, theme.colorScheme.surface);
-      }
-    }
-
-    final content = Container(
-      width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      color: getInteractiveColor(),
-      child: DefaultTextStyle(
-        style: TextStyle(
-          color: widget.item.enabled
-              ? (isCupertino
-                  ? CupertinoColors.label.resolveFrom(context)
-                  : theme.colorScheme.onSurface)
-              : (isCupertino
-                  ? CupertinoColors.quaternaryLabel.resolveFrom(context)
-                  : theme.colorScheme.onSurface.withValues(alpha: 0.38)),
-        ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+      child: AsButton.ghost(
+        onPressed: () {
+          widget.item.onTap?.call();
+          widget.onDismiss?.call();
+        },
         child: widget.item.child,
       ),
     );
-
-    if (!widget.item.enabled || widget.item.onTap == null) {
-      return content;
-    }
-
-    if (isCupertino) {
-      return CupertinoButton(
-        padding: EdgeInsets.zero,
-        onPressed: widget.item.onTap,
-        child: content,
-      );
-    } else {
-      return MouseRegion(
-        onEnter: (_) => setState(() => _isHovered = true),
-        onExit: (_) => setState(() => _isHovered = false),
-        cursor: SystemMouseCursors.click,
-        child: GestureDetector(
-          onTapDown: (_) => setState(() => _isPressed = true),
-          onTapUp: (_) => setState(() => _isPressed = false),
-          onTapCancel: () => setState(() => _isPressed = false),
-          onTap: widget.item.onTap,
-          child: content,
-        ),
-      );
-    }
   }
 }
