@@ -71,28 +71,28 @@ class _AsLabelState extends State<AsLabel> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-            GestureDetector(
-              child: Text(
-                widget.title,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.onSurface,
-                  fontWeight: FontWeight.w700,
+              GestureDetector(
+                child: Text(
+                  widget.title,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSurface,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
+                onTap: () => onChanged(value: !checkboxValue),
               ),
-              onTap: () => onChanged(value: !checkboxValue),
-            ),
-            if (widget.description != null)
-              Text(
-                widget.description!,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.onSurface,
-                  fontWeight: FontWeight.w100,
-                ),
-              )
-            else
-              const SizedBox.shrink(),
+              if (widget.description != null)
+                Text(
+                  widget.description!,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSurface,
+                    fontWeight: FontWeight.w100,
+                  ),
+                )
+              else
+                const SizedBox.shrink(),
             ],
           ),
         ),

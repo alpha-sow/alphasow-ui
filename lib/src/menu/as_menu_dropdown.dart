@@ -94,7 +94,8 @@ class _AsMenuDropdownState<T> extends State<AsMenuDropdown<T>> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final selectedItem = widget.items.where((item) => item.value == widget.value).firstOrNull;
+    final selectedItem =
+        widget.items.where((item) => item.value == widget.value).firstOrNull;
 
     return GestureDetector(
       key: _key,
@@ -112,13 +113,13 @@ class _AsMenuDropdownState<T> extends State<AsMenuDropdown<T>> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Expanded(
-              child: selectedItem?.child ?? 
-                Text(
-                  widget.hint ?? 'Select an option',
-                  style: TextStyle(
-                    color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
+              child: selectedItem?.child ??
+                  Text(
+                    widget.hint ?? 'Select an option',
+                    style: TextStyle(
+                      color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
+                    ),
                   ),
-                ),
             ),
             Icon(
               _isOpen ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down,
@@ -227,7 +228,7 @@ class _DropdownMenuItemState<T> extends State<_DropdownMenuItem<T>> {
       // Use theme-adaptive intensity based on state
       final isLightMode = theme.brightness == Brightness.light;
       double intensity;
-      
+
       if (_isPressed) {
         // Stronger effect when pressed
         intensity = isLightMode ? 0.16 : 0.20;
@@ -237,11 +238,11 @@ class _DropdownMenuItemState<T> extends State<_DropdownMenuItem<T>> {
       } else {
         return Colors.transparent;
       }
-      
-      final overlayColor = isLightMode 
+
+      final overlayColor = isLightMode
           ? Colors.black.withValues(alpha: intensity)
           : Colors.white.withValues(alpha: intensity);
-      
+
       return Color.alphaBlend(overlayColor, theme.colorScheme.surface);
     }
 

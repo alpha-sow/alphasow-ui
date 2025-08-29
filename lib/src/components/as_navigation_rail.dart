@@ -36,8 +36,10 @@ class AsNavigationRailDestination {
 enum AsNavigationRailLabelType {
   /// No labels are shown.
   none,
+
   /// Labels are shown for the selected destination only.
   selected,
+
   /// Labels are shown for all destinations.
   all,
 }
@@ -139,10 +141,10 @@ class _AsNavigationRailState extends State<AsNavigationRail> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    
+
     final width = widget.extended ? widget.minExtendedWidth : widget.minWidth;
     final backgroundColor = widget.backgroundColor ?? colorScheme.surface;
-    
+
     return Material(
       color: backgroundColor,
       elevation: widget.elevation,
@@ -184,27 +186,27 @@ class _AsNavigationRailState extends State<AsNavigationRail> {
     );
   }
 
-  Widget _buildDestination(BuildContext context, int index, AsNavigationRailDestination destination) {
+  Widget _buildDestination(BuildContext context, int index,
+      AsNavigationRailDestination destination) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final isSelected = widget.selectedIndex == index;
     final isHovered = _hoveredIndex == index;
-    
-    final showLabel = widget.extended || 
+
+    final showLabel = widget.extended ||
         widget.labelType == AsNavigationRailLabelType.all ||
         (widget.labelType == AsNavigationRailLabelType.selected && isSelected);
 
-    final iconColor = isSelected 
+    final iconColor = isSelected
         ? colorScheme.onSecondaryContainer
         : colorScheme.onSurfaceVariant;
-        
-    final textColor = isSelected
-        ? colorScheme.onSurface
-        : colorScheme.onSurfaceVariant;
+
+    final textColor =
+        isSelected ? colorScheme.onSurface : colorScheme.onSurfaceVariant;
 
     final backgroundColor = isSelected && widget.useIndicator
         ? widget.indicatorColor ?? colorScheme.secondaryContainer
-        : isHovered 
+        : isHovered
             ? colorScheme.onSurface.withValues(alpha: 0.08)
             : Colors.transparent;
 
@@ -214,15 +216,17 @@ class _AsNavigationRailState extends State<AsNavigationRail> {
         Container(
           width: widget.extended ? null : 56,
           height: widget.extended ? null : 32,
-          padding: widget.extended 
+          padding: widget.extended
               ? const EdgeInsets.symmetric(horizontal: 12, vertical: 8)
               : EdgeInsets.zero,
           decoration: BoxDecoration(
             color: backgroundColor,
-            borderRadius: widget.indicatorShape != null 
-                ? null 
+            borderRadius: widget.indicatorShape != null
+                ? null
                 : BorderRadius.circular(16),
-            shape: widget.indicatorShape != null ? BoxShape.rectangle : BoxShape.rectangle,
+            shape: widget.indicatorShape != null
+                ? BoxShape.rectangle
+                : BoxShape.rectangle,
           ),
           child: widget.extended
               ? Row(
@@ -277,7 +281,8 @@ class _AsNavigationRailState extends State<AsNavigationRail> {
     );
 
     return Padding(
-      padding: destination.padding ?? const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      padding: destination.padding ??
+          const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       child: MouseRegion(
         onEnter: (_) => setState(() => _hoveredIndex = index),
         onExit: (_) => setState(() => _hoveredIndex = null),

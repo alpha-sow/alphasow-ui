@@ -1,6 +1,7 @@
 export 'avatar_page.dart';
 export 'banner_page.dart';
 export 'button_page.dart';
+export 'card_page.dart';
 export 'dialog_page.dart';
 export 'input_page.dart';
 export 'label_page.dart';

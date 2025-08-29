@@ -14,7 +14,7 @@ enum PlatformType {
     if (kIsWeb) {
       return PlatformType.material;
     }
-    
+
     return switch (Platform.operatingSystem) {
       'ios' => PlatformType.cupertino,
       'macos' => PlatformType.cupertino,

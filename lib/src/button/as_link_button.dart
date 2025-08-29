@@ -137,8 +137,10 @@ class _AsLinkButtonState extends State<AsLinkButton> {
         onExit: isDisabled ? null : (_) => setState(() => _isHovered = false),
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 150),
-          decoration: ((_isHovered && !isDisabled && widget._variant != Variant.ghost) || 
-                      widget._variant == Variant.outline)
+          decoration: ((_isHovered &&
+                      !isDisabled &&
+                      widget._variant != Variant.ghost) ||
+                  widget._variant == Variant.outline)
               ? BoxDecoration(
                   border: Border(
                     bottom: BorderSide(

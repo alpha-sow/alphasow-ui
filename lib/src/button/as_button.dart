@@ -186,7 +186,6 @@ class AsButton extends StatefulWidget {
     this.padding,
   }) : _variant = Variant.ghost;
 
-
   /// The widget to display inside the button (typically Text or Icon)
   final Widget child;
 
@@ -215,7 +214,6 @@ class AsButton extends StatefulWidget {
 class _AsButtonState extends State<AsButton> {
   bool _isPressed = false;
   bool _isHovered = false;
-
 
   @override
   Widget build(BuildContext context) {
@@ -280,7 +278,8 @@ class _AsButtonState extends State<AsButton> {
                 widget.onPressed?.call();
               },
         child: Container(
-          padding: widget.padding ?? const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          padding: widget.padding ??
+              const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           decoration: BoxDecoration(
             color: finalBackgroundColor,
             borderRadius: BorderRadius.circular(8),

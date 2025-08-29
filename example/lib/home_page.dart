@@ -26,6 +26,7 @@ class _HomePageState extends State<HomePage> {
     ListTileRoute(),
     LoaderRoute(),
     MenuRoute(),
+    CardRoute(),
   ];
 
   void _navigateToIndex(int index) {
@@ -98,6 +99,13 @@ class _HomePageState extends State<HomePage> {
           text: 'Menu',
           selected: _selectedIndex == 8,
           onTap: () => _navigateToIndex(8),
+        ),
+        AsMenuDrawerItem.withIcon(
+          context: context,
+          icon: Icons.credit_card_outlined,
+          text: 'Card',
+          selected: _selectedIndex == 9,
+          onTap: () => _navigateToIndex(9),
         ),
       ];
 
@@ -227,6 +235,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           if (isLargeScreen)
             AsMenuDrawer(
+              width: 180,
               items: drawerItems,
             ),
           Expanded(
@@ -328,6 +337,13 @@ class NavigationMenu extends StatelessWidget {
             index: 8,
             selectedIndex: selectedIndex,
             onTap: () => onItemTap(8),
+          ),
+          SideBarItem(
+            title: 'Card',
+            icon: Icons.credit_card_outlined,
+            index: 9,
+            selectedIndex: selectedIndex,
+            onTap: () => onItemTap(9),
           ),
         ],
       ),

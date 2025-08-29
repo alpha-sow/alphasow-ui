@@ -18,6 +18,7 @@ class AppRouter extends RootStackRouter {
             AutoRoute(path: 'list-tile', page: ListTileRoute.page),
             AutoRoute(path: 'loader', page: LoaderRoute.page),
             AutoRoute(path: 'menu', page: MenuRoute.page),
+            AutoRoute(path: 'card', page: CardRoute.page),
           ],
         ),
       ];
