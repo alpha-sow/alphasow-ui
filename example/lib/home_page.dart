@@ -113,19 +113,12 @@ class _HomePageState extends State<HomePage> {
         leading: isLargeScreen
             ? null
             : Builder(
-                builder: (context) => IconButton(
-                  icon: const Icon(Icons.menu),
+                builder: (context) => AsIconButton.ghost(
+                  icon: Icons.menu,
                   onPressed: () => context.showAsMenuDrawer(
-                    header: Center(
-                      child: Text(
-                        'Widget',
-                        style: TextStyle(
-                          color: Theme.of(context).primaryColor,
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
+                    header: const AsAppBar(
+                      title: Text('Widget'),
+                    ).adaptive,
                     items: drawerItems,
                   ),
                 ),
