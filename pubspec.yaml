@@ -1,6 +1,6 @@
 name: alphasow_ui
 description: "A Flutter package providing reusable UI components with consistent theming and platform-adaptive design for Material and Cupertino styling."
-version: 1.21.0
+version: 1.22.0
 
 environment:
   sdk: ^3.5.3

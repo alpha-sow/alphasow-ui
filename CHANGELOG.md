@@ -1,3 +1,12 @@
+# [1.22.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.21.0...v1.22.0) (2025-08-29)
+
+
+### Features
+
+* add CardPage and AsCard component for improved UI and navigation ([6c04b9d](https://github.com/alpha-sow/alphasow-ui/commit/6c04b9de85071049d02d61dd155040db56024c5a))
+* add flutter_web_plugins dependency and configure URL strategy for improved routing ([c3eb5a5](https://github.com/alpha-sow/alphasow-ui/commit/c3eb5a52f0d02ee11c5fee8a64eef4e18f7a5198))
+* replace IconButton with AsIconButton.ghost and update drawer header to use AsAppBar for improved UI consistency ([fc1a636](https://github.com/alpha-sow/alphasow-ui/commit/fc1a63632c7e9ccb9031498bd6a1ce2e6b3f73b3))
+
 # [1.21.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.20.0...v1.21.0) (2025-08-28)
 
 
