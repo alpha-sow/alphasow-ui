@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:example/router.gr.dart';
 
-@AutoRouterConfig()
+@AutoRouterConfig(replaceInRouteName: 'Page,Route')
 class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
@@ -9,15 +9,15 @@ class AppRouter extends RootStackRouter {
           page: HomeRoute.page,
           initial: true,
           children: [
-            AutoRoute(page: AvatarRoute.page),
-            AutoRoute(page: BannerRoute.page),
-            AutoRoute(page: ButtonRoute.page, initial: true),
-            AutoRoute(page: DialogRoute.page),
-            AutoRoute(page: InputRoute.page),
-            AutoRoute(page: LabelRoute.page),
-            AutoRoute(page: ListTileRoute.page),
-            AutoRoute(page: LoaderRoute.page),
-            AutoRoute(page: MenuRoute.page),
+            AutoRoute(path: 'avatar', page: AvatarRoute.page),
+            AutoRoute(path: 'banner', page: BannerRoute.page),
+            AutoRoute(path: 'button', page: ButtonRoute.page, initial: true),
+            AutoRoute(path: 'dialog', page: DialogRoute.page),
+            AutoRoute(path: 'input', page: InputRoute.page),
+            AutoRoute(path: 'label', page: LabelRoute.page),
+            AutoRoute(path: 'list-tile', page: ListTileRoute.page),
+            AutoRoute(path: 'loader', page: LoaderRoute.page),
+            AutoRoute(path: 'menu', page: MenuRoute.page),
           ],
         ),
       ];

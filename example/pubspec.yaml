@@ -18,6 +18,8 @@ dependencies:
   flex_color_scheme: ^8.0.2
   flutter:
     sdk: flutter
+  flutter_web_plugins:
+    sdk: flutter
 
 dev_dependencies:
   auto_route_generator: ^10.1.0
