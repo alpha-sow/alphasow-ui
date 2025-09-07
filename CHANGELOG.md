@@ -1,3 +1,11 @@
+# [1.23.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.22.0...v1.23.0) (2025-09-07)
+
+
+### Features
+
+* remove unused SVG imports from HomepageFeatures component ([1e44ddd](https://github.com/alpha-sow/alphasow-ui/commit/1e44ddd6fae9f4abc4cc2f98c9fb22f2d9e27950))
+* update documentation structure and remove outdated tutorial files ([be88cf9](https://github.com/alpha-sow/alphasow-ui/commit/be88cf91447264f6b17a7e826e353502245f1398))
+
 # [1.22.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.21.0...v1.22.0) (2025-08-29)
 
 
