@@ -9,6 +9,7 @@ Thank you for your interest in contributing to Alphasow UI! This guide will help
 - [Development Setup](#development-setup)
 - [Contributing Guidelines](#contributing-guidelines)
 - [Component Development](#component-development)
+- [Documentation Contributions](#documentation-contributions)
 - [Testing](#testing)
 - [Code Style](#code-style)
 - [Submitting Changes](#submitting-changes)
@@ -29,32 +30,44 @@ By participating in this project, you agree to abide by our Code of Conduct. Ple
 
 ### Repository Access
 
-This project uses a private repository. Ensure you have proper access and authentication configured for `repo.alphasow.dev`.
+This is an open-source project hosted on GitHub. Fork the repository to contribute changes.
 
 ## Development Setup
 
-1. **Clone the repository**:
+1. **Fork and clone the repository**:
    ```bash
-   git clone https://github.com/alpha-sow/alphasow-ui.git
+   git clone https://github.com/YOUR_USERNAME/alphasow-ui.git
    cd alphasow-ui
    ```
 
-2. **Install dependencies**:
+2. **Install Flutter dependencies**:
    ```bash
    flutter pub get
    ```
 
-3. **Run the example app**:
+3. **Install documentation dependencies** (if contributing to docs):
+   ```bash
+   cd docs
+   npm install
+   ```
+
+4. **Run the example app**:
    ```bash
    cd example
    flutter pub get
    flutter run
    ```
 
-4. **Verify setup**:
+5. **Verify setup**:
    ```bash
    flutter analyze
    flutter test
+   ```
+
+6. **Start documentation site** (optional):
+   ```bash
+   cd docs
+   npm start
    ```
 
 ## Contributing Guidelines
@@ -64,7 +77,7 @@ This project uses a private repository. Ensure you have proper access and authen
 - **Bug fixes**: Fix existing issues or unexpected behaviors
 - **New components**: Add new UI components following our design system
 - **Component enhancements**: Improve existing components with new features
-- **Documentation**: Improve README, code comments, or examples
+- **Documentation**: Improve README, code comments, examples, or website docs
 - **Tests**: Add or improve test coverage
 - **Performance**: Optimize component performance
 
@@ -144,6 +157,126 @@ class AsButton extends StatelessWidget {
   }
 }
 ```
+
+## Documentation Contributions
+
+### Documentation Structure
+
+The project has two types of documentation:
+
+1. **Code Documentation**: Dartdoc comments in Dart code
+2. **Website Documentation**: Markdown files in the `docs/` directory
+
+### Contributing to Website Documentation
+
+The documentation website is built with Docusaurus and deployed automatically.
+
+#### Setup
+
+```bash
+cd docs
+npm install
+npm start  # Starts development server at http://localhost:3000
+```
+
+#### Structure
+
+```
+docs/
+├── docs/
+│   ├── intro.md                    # Getting started guide
+│   ├── components/
+│   │   ├── overview.md             # Component overview
+│   │   ├── buttons/
+│   │   │   ├── as-button.md        # Individual component docs
+│   │   │   └── as-icon-button.md
+│   │   └── forms/
+│   └── guides/
+│       └── quick-start.md
+├── src/
+│   ├── components/
+│   │   └── HomepageFeatures/       # Homepage components
+│   ├── css/
+│   │   └── custom.css              # Custom styling
+│   └── pages/
+│       └── index.tsx               # Homepage
+└── docusaurus.config.ts            # Site configuration
+```
+
+#### Writing Component Documentation
+
+When adding a new component, create comprehensive documentation:
+
+```markdown
+---
+sidebar_position: 1
+---
+
+# AsNewComponent
+
+A brief description of what the component does.
+
+## Import
+
+\`\`\`dart
+import 'package:alphasow_ui/alphasow_ui.dart';
+\`\`\`
+
+## Basic Usage
+
+\`\`\`dart
+AsNewComponent(
+  property: 'value',
+  onAction: () {},
+)
+\`\`\`
+
+## API Reference
+
+### Properties
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `property` | `String` | required | Description of the property |
+
+## Examples
+
+### Advanced Usage
+\`\`\`dart
+// More complex examples
+\`\`\`
+
+## See Also
+
+- [Related Component](./related-component)
+```
+
+#### Guidelines for Documentation
+
+- **Clear examples**: Include practical, copy-paste ready code examples
+- **Complete API coverage**: Document all public properties and methods
+- **Cross-references**: Link to related components and guides
+- **Platform notes**: Mention platform-specific behavior
+- **Accessibility**: Document accessibility features
+
+#### Building and Testing Documentation
+
+```bash
+# Build for production
+npm run build
+
+# Test the production build locally
+npm run serve
+
+# Type check
+npm run typecheck
+```
+
+#### Documentation Deployment
+
+- **Automatic**: Pushes to main branch automatically deploy to [docs site](https://ui.alphasow.dev)
+- **Preview**: Pull requests generate preview deployments
+- **Firebase**: Hosted on Firebase Hosting
 
 ## Testing
 
@@ -257,6 +390,10 @@ import '../utils/platform.dart';
    flutter analyze
    flutter test
    cd example && flutter run  # Manual testing
+   
+   # If documentation changes:
+   cd docs
+   npm run build          # Test documentation build
    ```
 
 4. **Commit changes**:
@@ -300,10 +437,15 @@ Examples:
 
 ### What to Expect
 
-1. **Automated checks**: CI will run tests and analysis
+1. **Automated checks**: GitHub Actions will run:
+   - Flutter analyzer (`flutter analyze`)
+   - Flutter tests (`flutter test`)
+   - Documentation build (for docs changes)
+   - Semantic release process (on main branch)
 2. **Code review**: Maintainers will review your code
 3. **Feedback**: You may receive requests for changes
-4. **Approval**: Once approved, your PR will be merged
+4. **Preview deployment**: Documentation PRs get preview deployments
+5. **Approval**: Once approved, your PR will be merged
 
 ### Review Criteria
 
