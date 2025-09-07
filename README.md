@@ -20,7 +20,7 @@ Add this to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  alphasow_ui: ^1.23.1
+  alphasow_ui: ^1.23.2
 ```
 
 Then run:

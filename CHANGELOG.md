@@ -1,3 +1,10 @@
+## [1.23.2](https://github.com/alpha-sow/alphasow-ui/compare/v1.23.1...v1.23.2) (2025-09-07)
+
+
+### Bug Fixes
+
+* update Firebase deployment configuration and correct project identifiers ([f194c79](https://github.com/alpha-sow/alphasow-ui/commit/f194c794f26f83e4eacdf3981d6229d6d289784c))
+
 ## [1.23.1](https://github.com/alpha-sow/alphasow-ui/compare/v1.23.0...v1.23.1) (2025-09-07)
 
 
