@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # AsLoadingCircular
 
-A circular progress indicator component for showing determinate or indeterminate progress.
+Un composant d'indicateur de progrès circulaire pour afficher un progrès déterminé ou indéterminé.
 
 ## Import
 
@@ -12,35 +12,35 @@ A circular progress indicator component for showing determinate or indeterminate
 import 'package:alphasow_ui/alphasow_ui.dart';
 ```
 
-## Basic Usage (Indeterminate)
+## Utilisation de Base (Indéterminé)
 
 ```dart
 AsLoadingCircular()
 ```
 
-## Progress Indicator (Determinate)
+## Indicateur de Progrès (Déterminé)
 
 ```dart
 AsLoadingCircular(
-  value: 0.7, // 70% progress
+  value: 0.7, // 70% de progrès
 )
 ```
 
-## API Reference
+## Référence API
 
-### Properties
+### Propriétés
 
-| Property | Type | Default | Description |
+| Propriété | Type | Défaut | Description |
 |----------|------|---------|-------------|
-| `value` | `double?` | null | Progress value (0.0 to 1.0). null for indeterminate |
-| `size` | `double?` | `24` | Size of the indicator |
-| `color` | `Color?` | null | Color of the indicator |
-| `backgroundColor` | `Color?` | null | Background color |
-| `strokeWidth` | `double?` | `4.0` | Width of the progress stroke |
+| `value` | `double?` | null | Valeur de progrès (0.0 à 1.0). null pour indéterminé |
+| `size` | `double?` | `24` | Taille de l'indicateur |
+| `color` | `Color?` | null | Couleur de l'indicateur |
+| `backgroundColor` | `Color?` | null | Couleur d'arrière-plan |
+| `strokeWidth` | `double?` | `4.0` | Largeur du trait de progrès |
 
-## Examples
+## Exemples
 
-### Progress Bar
+### Barre de Progrès
 ```dart
 class ProgressExample extends StatefulWidget {
   @override
@@ -65,7 +65,7 @@ class _ProgressExampleState extends State<ProgressExample> {
           onPressed: () {
             setState(() => _progress = (_progress + 0.1).clamp(0.0, 1.0));
           },
-          child: Text('Increment'),
+          child: Text('Incrémenter'),
         ),
       ],
     );
@@ -73,7 +73,7 @@ class _ProgressExampleState extends State<ProgressExample> {
 }
 ```
 
-## See Also
+## Voir Aussi
 
-- [AsLoadingSpinner](./as-loading-spinner) - For simple spinners
-- [Loader Examples](https://ui.alphasow.dev/loaders) - Live demo
+- [AsLoadingSpinner](./as-loading-spinner) - Pour les indicateurs simples
+- [Exemples de Chargement](https://ui.alphasow.dev/loaders) - Démo en direct

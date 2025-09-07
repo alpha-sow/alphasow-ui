@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # AsAlertBanner
 
-An inline banner component for displaying alerts, notifications, and status messages with different severity levels.
+Un composant de bannière intégré pour afficher des alertes, notifications et messages d'état avec différents niveaux de gravité.
 
 ## Import
 
@@ -12,65 +12,65 @@ An inline banner component for displaying alerts, notifications, and status mess
 import 'package:alphasow_ui/alphasow_ui.dart';
 ```
 
-## Basic Usage
+## Utilisation de Base
 
 ```dart
 AsAlertBanner(
-  message: 'This is an informational message',
+  message: 'Ceci est un message informatif',
   type: AlertType.info,
 )
 ```
 
-## Alert Types
+## Types d'Alerte
 
-### Info Banner
+### Bannière d'Information
 ```dart
 AsAlertBanner(
-  message: 'Information: Your profile has been updated',
+  message: 'Information : Votre profil a été mis à jour',
   type: AlertType.info,
 )
 ```
 
-### Success Banner
+### Bannière de Succès
 ```dart
 AsAlertBanner(
-  message: 'Success: Your changes have been saved',
+  message: 'Succès : Vos modifications ont été sauvegardées',
   type: AlertType.success,
 )
 ```
 
-### Warning Banner
+### Bannière d'Avertissement
 ```dart
 AsAlertBanner(
-  message: 'Warning: This action cannot be undone',
+  message: 'Avertissement : Cette action ne peut pas être annulée',
   type: AlertType.warning,
 )
 ```
 
-### Error Banner
+### Bannière d'Erreur
 ```dart
 AsAlertBanner(
-  message: 'Error: Failed to save your changes',
+  message: 'Erreur : Échec de la sauvegarde de vos modifications',
   type: AlertType.error,
 )
 ```
 
-## With Action Button
+## Avec Bouton d'Action
 
 ```dart
 AsAlertBanner(
-  message: 'Your session will expire soon',
+  message: 'Votre session va bientôt expirer',
   type: AlertType.warning,
   action: AsLinkButton(
-    text: 'Extend Session',
+    text: 'Prolonger la Session',
     onPressed: () {
-      // Handle session extension
+      // Gérer l'extension de session
     },
   ),
 )
 ```
 
-## Dismissible Banner
+## Bannière Rejetable
 
 ```dart
 class DismissibleBanner extends StatefulWidget {
@@ -86,7 +86,7 @@ class _DismissibleBannerState extends State<DismissibleBanner> {
     if (!_showBanner) return SizedBox.shrink();
     
     return AsAlertBanner(
-      message: 'This banner can be dismissed',
+      message: 'Cette bannière peut être rejetée',
       type: AlertType.info,
       onDismiss: () {
         setState(() {
@@ -98,29 +98,29 @@ class _DismissibleBannerState extends State<DismissibleBanner> {
 }
 ```
 
-## API Reference
+## Référence API
 
-### Properties
+### Propriétés
 
-| Property | Type | Default | Description |
+| Propriété | Type | Défaut | Description |
 |----------|------|---------|-------------|
-| `message` | `String` | required | The message to display |
-| `type` | `AlertType` | required | The type/severity of the alert |
-| `action` | `Widget?` | null | Optional action button or widget |
-| `onDismiss` | `VoidCallback?` | null | Called when dismiss button is pressed |
-| `icon` | `IconData?` | null | Custom icon (overrides default type icon) |
-| `backgroundColor` | `Color?` | null | Custom background color |
-| `textColor` | `Color?` | null | Custom text color |
-| `borderRadius` | `BorderRadius?` | null | Custom border radius |
+| `message` | `String` | requis | Le message à afficher |
+| `type` | `AlertType` | requis | Le type/gravité de l'alerte |
+| `action` | `Widget?` | null | Bouton ou widget d'action optionnel |
+| `onDismiss` | `VoidCallback?` | null | Appelé quand le bouton de rejet est pressé |
+| `icon` | `IconData?` | null | Icône personnalisée (remplace l'icône de type par défaut) |
+| `backgroundColor` | `Color?` | null | Couleur d'arrière-plan personnalisée |
+| `textColor` | `Color?` | null | Couleur de texte personnalisée |
+| `borderRadius` | `BorderRadius?` | null | Rayon de bordure personnalisé |
 
 ### AlertType
 
-- `AlertType.info` - Blue color scheme with info icon
-- `AlertType.success` - Green color scheme with check icon  
-- `AlertType.warning` - Orange color scheme with warning icon
-- `AlertType.error` - Red color scheme with error icon
+- `AlertType.info` - Palette de couleurs bleue avec icône d'information
+- `AlertType.success` - Palette de couleurs verte avec icône de validation
+- `AlertType.warning` - Palette de couleurs orange avec icône d'avertissement
+- `AlertType.error` - Palette de couleurs rouge avec icône d'erreur
 
-## Examples
+## Exemples
 
 ### Custom Styled Banner
 ```dart
@@ -263,21 +263,21 @@ class _AnimatedBannerState extends State<AnimatedBanner>
 }
 ```
 
-## Platform Differences
+## Différences de Plateforme
 
 ### Material (Android/Web)
-- Material Design alert styling
-- Material color scheme
-- Material icons and typography
+- Style d'alerte Material Design
+- Palette de couleurs Material
+- Icônes et typographie Material
 
 ### Cupertino (iOS/macOS)
-- iOS-style alert appearance
-- Cupertino color scheme
-- iOS system icons
+- Apparence d'alerte de style iOS
+- Palette de couleurs Cupertino
+- Icônes système iOS
 
-## See Also
+## Voir Aussi
 
-- [AsAlertDialog](./as-alert-dialog) - For modal alerts
-- [AsBottomSheet](./as-bottom-sheet) - For bottom sheet alerts
-- [Banner System](./banner-system) - For global overlay banners
-- [Alert Examples](https://ui.alphasow.dev/alerts) - Live demo
+- [AsAlertDialog](./as-alert-dialog) - Pour les alertes modales
+- [AsBottomSheet](./as-bottom-sheet) - Pour les alertes en feuille inférieure
+- [Système de Bannières](./banner-system) - Pour les bannières de superposition globale
+- [Exemples d'Alertes](https://ui.alphasow.dev/alerts) - Démo en direct

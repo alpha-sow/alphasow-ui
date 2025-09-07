@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # AsCheckbox
 
-A checkbox component with customizable styling and platform-adaptive appearance for boolean input.
+Un composant de case à cocher avec un style personnalisable et une apparence adaptative à la plateforme pour les saisies booléennes.
 
 ## Import
 
@@ -12,7 +12,7 @@ A checkbox component with customizable styling and platform-adaptive appearance 
 import 'package:alphasow_ui/alphasow_ui.dart';
 ```
 
-## Basic Usage
+## Utilisation de Base
 
 ```dart
 bool isChecked = false;
@@ -27,14 +27,14 @@ AsCheckbox(
 )
 ```
 
-## With Label
+## Avec Étiquette
 
 ```dart
 bool acceptTerms = false;
 
 AsCheckbox(
   value: acceptTerms,
-  label: 'I accept the terms and conditions',
+  label: 'J'accepte les termes et conditions',
   onChanged: (value) {
     setState(() {
       acceptTerms = value ?? false;
@@ -43,10 +43,10 @@ AsCheckbox(
 )
 ```
 
-## Tristate Checkbox
+## Case à Cocher Trois États
 
 ```dart
-bool? triState = null; // null = indeterminate, true = checked, false = unchecked
+bool? triState = null; // null = indéterminé, true = coché, false = décoché
 
 AsCheckbox(
   value: triState,
@@ -59,35 +59,35 @@ AsCheckbox(
 )
 ```
 
-## Disabled Checkbox
+## Case à Cocher Désactivée
 
 ```dart
 AsCheckbox(
   value: true,
-  onChanged: null, // null makes the checkbox disabled
-  label: 'Disabled checkbox',
+  onChanged: null, // null désactive la case à cocher
+  label: 'Case à cocher désactivée',
 )
 ```
 
-## API Reference
+## Référence API
 
-### Properties
+### Propriétés
 
-| Property | Type | Default | Description |
+| Propriété | Type | Défaut | Description |
 |----------|------|---------|-------------|
-| `value` | `bool?` | required | Current state of the checkbox |
-| `onChanged` | `ValueChanged<bool?>?` | required | Called when checkbox state changes. null disables the checkbox |
-| `label` | `String?` | null | Text label displayed next to checkbox |
-| `tristate` | `bool` | `false` | Whether checkbox supports indeterminate state |
-| `activeColor` | `Color?` | null | Color when checkbox is checked |
-| `checkColor` | `Color?` | null | Color of the check mark |
-| `focusColor` | `Color?` | null | Color when checkbox has focus |
-| `hoverColor` | `Color?` | null | Color when checkbox is hovered |
-| `semanticsLabel` | `String?` | null | Accessibility label |
+| `value` | `bool?` | requis | État actuel de la case à cocher |
+| `onChanged` | `ValueChanged<bool?>?` | requis | Appelé quand l'état de la case à cocher change. null désactive la case |
+| `label` | `String?` | null | Étiquette de texte affichée à côté de la case à cocher |
+| `tristate` | `bool` | `false` | Si la case à cocher supporte l'état indéterminé |
+| `activeColor` | `Color?` | null | Couleur quand la case à cocher est cochée |
+| `checkColor` | `Color?` | null | Couleur de la coche |
+| `focusColor` | `Color?` | null | Couleur quand la case à cocher a le focus |
+| `hoverColor` | `Color?` | null | Couleur quand la case à cocher est survolée |
+| `semanticsLabel` | `String?` | null | Étiquette d'accessibilité |
 
-## Examples
+## Exemples
 
-### Form Checkbox List
+### Liste de Cases à Cocher de Formulaire
 ```dart
 class CheckboxForm extends StatefulWidget {
   @override
@@ -107,7 +107,7 @@ class _CheckboxFormState extends State<CheckboxForm> {
       children: [
         AsCheckbox(
           value: preferences['notifications'],
-          label: 'Enable notifications',
+          label: 'Activer les notifications',
           onChanged: (value) {
             setState(() {
               preferences['notifications'] = value ?? false;
@@ -116,7 +116,7 @@ class _CheckboxFormState extends State<CheckboxForm> {
         ),
         AsCheckbox(
           value: preferences['newsletter'],
-          label: 'Subscribe to newsletter',
+          label: 'S'abonner à la newsletter',
           onChanged: (value) {
             setState(() {
               preferences['newsletter'] = value ?? false;
@@ -125,7 +125,7 @@ class _CheckboxFormState extends State<CheckboxForm> {
         ),
         AsCheckbox(
           value: preferences['marketing'],
-          label: 'Receive marketing emails',
+          label: 'Recevoir les emails marketing',
           onChanged: (value) {
             setState(() {
               preferences['marketing'] = value ?? false;
@@ -138,7 +138,7 @@ class _CheckboxFormState extends State<CheckboxForm> {
 }
 ```
 
-### Select All Checkbox
+### Case à Cocher Tout Sélectionner
 ```dart
 class SelectAllCheckbox extends StatefulWidget {
   @override
@@ -152,7 +152,7 @@ class _SelectAllCheckboxState extends State<SelectAllCheckbox> {
   bool? get selectAllValue {
     if (selectedItems.isEmpty) return false;
     if (selectedItems.length == items.length) return true;
-    return null; // Indeterminate
+    return null; // Indéterminé
   }
 
   @override
@@ -162,7 +162,7 @@ class _SelectAllCheckboxState extends State<SelectAllCheckbox> {
         AsCheckbox(
           value: selectAllValue,
           tristate: true,
-          label: 'Select All',
+          label: 'Tout Sélectionner',
           onChanged: (value) {
             setState(() {
               if (value == true) {
@@ -193,13 +193,13 @@ class _SelectAllCheckboxState extends State<SelectAllCheckbox> {
 }
 ```
 
-### Custom Colors
+### Couleurs Personnalisées
 ```dart
 AsCheckbox(
   value: isChecked,
   activeColor: Colors.green,
   checkColor: Colors.white,
-  label: 'Custom styled checkbox',
+  label: 'Case à cocher avec style personnalisé',
   onChanged: (value) {
     setState(() {
       isChecked = value ?? false;
@@ -208,7 +208,7 @@ AsCheckbox(
 )
 ```
 
-### Agreement Checkbox
+### Case à Cocher d'Accord
 ```dart
 bool agreedToTerms = false;
 
@@ -221,39 +221,39 @@ Column(
           agreedToTerms = value ?? false;
         });
       },
-      label: 'I have read and agree to the Terms of Service',
+      label: 'J'ai lu et j'accepte les Conditions de Service',
     ),
     AsButton(
       onPressed: agreedToTerms ? () {
-        // Proceed with registration
+        // Procéder à l'inscription
       } : null,
-      child: Text('Register'),
+      child: Text('S'inscrire'),
     ),
   ],
 )
 ```
 
-## Platform Differences
+## Différences de Plateforme
 
 ### Material (Android/Web)
-- Uses `Checkbox` with Material styling
-- Material ripple effects
-- Material Design color scheme
+- Utilise `Checkbox` avec le style Material
+- Effets de vague Material
+- Palette de couleurs Material Design
 
 ### Cupertino (iOS/macOS)
-- Uses `CupertinoSwitch` styled as checkbox
-- iOS-style animations
-- Follows iOS Human Interface Guidelines
+- Utilise `CupertinoSwitch` stylé comme case à cocher
+- Animations de style iOS
+- Suit les directives iOS Human Interface Guidelines
 
-## Accessibility
+## Accessibilité
 
-AsCheckbox automatically includes:
-- Proper semantic roles for screen readers
-- Keyboard navigation support
-- Focus indicators
-- State announcements
+AsCheckbox inclut automatiquement :
+- Rôles sémantiques appropriés pour les lecteurs d'écran
+- Support de navigation clavier
+- Indicateurs de focus
+- Annonces d'état
 
-## See Also
+## Voir Aussi
 
-- [AsTextField](./as-text-field) - For text input
-- [Form Examples](https://ui.alphasow.dev/forms) - Live demo
+- [AsTextField](./as-text-field) - Pour la saisie de texte
+- [Exemples de Formulaires](https://ui.alphasow.dev/forms) - Démo en direct

@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # AsTextField
 
-A versatile text input component with platform-adaptive styling, validation support, and customizable appearance.
+Un composant de saisie de texte polyvalent avec un style adaptatif à la plateforme, support de validation et apparence personnalisable.
 
 ## Import
 
@@ -12,40 +12,40 @@ A versatile text input component with platform-adaptive styling, validation supp
 import 'package:alphasow_ui/alphasow_ui.dart';
 ```
 
-## Basic Usage
+## Utilisation de Base
 
 ```dart
 AsTextField(
-  labelText: 'Enter your name',
+  labelText: 'Entrez votre nom',
   onChanged: (value) {
-    print('Text changed: $value');
+    print('Texte modifié : $value');
   },
 )
 ```
 
-## With Hint and Helper Text
+## Avec Texte d'Aide et Assistant
 
 ```dart
 AsTextField(
   labelText: 'Email',
-  hintText: 'example@domain.com',
-  helperText: 'We will never share your email',
+  hintText: 'exemple@domaine.com',
+  helperText: 'Nous ne partagerons jamais votre email',
   onChanged: (value) {},
 )
 ```
 
-## Password Field
+## Champ Mot de Passe
 
 ```dart
 AsTextField(
-  labelText: 'Password',
+  labelText: 'Mot de passe',
   obscureText: true,
   suffixIcon: Icons.visibility,
   onChanged: (value) {},
 )
 ```
 
-## With Validation
+## Avec Validation
 
 ```dart
 class MyForm extends StatefulWidget {
@@ -67,10 +67,10 @@ class _MyFormState extends State<MyForm> {
             keyboardType: TextInputType.emailAddress,
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'Please enter an email';
+                return 'Veuillez saisir un email';
               }
               if (!value.contains('@')) {
-                return 'Please enter a valid email';
+                return 'Veuillez saisir un email valide';
               }
               return null;
             },
@@ -79,7 +79,7 @@ class _MyFormState extends State<MyForm> {
           AsButton(
             onPressed: () {
               if (_formKey.currentState!.validate()) {
-                // Form is valid
+                // Le formulaire est valide
               }
             },
             child: Text('Submit'),
@@ -91,7 +91,7 @@ class _MyFormState extends State<MyForm> {
 }
 ```
 
-## Multiline Text Field
+## Champ de Texte Multiligne
 
 ```dart
 AsTextField(
@@ -102,71 +102,71 @@ AsTextField(
 )
 ```
 
-## With Prefix and Suffix
+## Avec Préfixe et Suffixe
 
 ```dart
 AsTextField(
-  labelText: 'Phone',
+  labelText: 'Téléphone',
   prefixIcon: Icons.phone,
-  suffixText: 'Required',
+  suffixText: 'Requis',
   keyboardType: TextInputType.phone,
   onChanged: (value) {},
 )
 ```
 
-## API Reference
+## Référence API
 
-### Properties
+### Propriétés
 
-| Property | Type | Default | Description |
+| Propriété | Type | Défaut | Description |
 |----------|------|---------|-------------|
-| `controller` | `TextEditingController?` | null | Controls the text being edited |
-| `labelText` | `String?` | null | Label text displayed above the field |
-| `hintText` | `String?` | null | Hint text displayed when field is empty |
-| `helperText` | `String?` | null | Helper text displayed below the field |
-| `errorText` | `String?` | null | Error text displayed when validation fails |
-| `obscureText` | `bool` | `false` | Whether to hide the text being edited |
-| `enabled` | `bool` | `true` | Whether the text field is enabled |
-| `readOnly` | `bool` | `false` | Whether the text field is read-only |
-| `maxLines` | `int?` | `1` | Maximum number of lines |
-| `minLines` | `int?` | null | Minimum number of lines |
-| `maxLength` | `int?` | null | Maximum number of characters |
-| `keyboardType` | `TextInputType?` | null | Type of keyboard to show |
-| `textInputAction` | `TextInputAction?` | null | Action button on the keyboard |
-| `validator` | `String? Function(String?)?` | null | Form validation function |
-| `onChanged` | `ValueChanged<String>?` | null | Called when text changes |
-| `onSubmitted` | `ValueChanged<String>?` | null | Called when user submits |
-| `prefixIcon` | `IconData?` | null | Icon displayed at the start |
-| `suffixIcon` | `IconData?` | null | Icon displayed at the end |
-| `prefixText` | `String?` | null | Text displayed at the start |
-| `suffixText` | `String?` | null | Text displayed at the end |
+| `controller` | `TextEditingController?` | null | Contrôle le texte en cours d'édition |
+| `labelText` | `String?` | null | Texte d'étiquette affiché au-dessus du champ |
+| `hintText` | `String?` | null | Texte d'indice affiché quand le champ est vide |
+| `helperText` | `String?` | null | Texte d'aide affiché sous le champ |
+| `errorText` | `String?` | null | Texte d'erreur affiché quand la validation échoue |
+| `obscureText` | `bool` | `false` | Si le texte en cours d'édition doit être masqué |
+| `enabled` | `bool` | `true` | Si le champ de texte est activé |
+| `readOnly` | `bool` | `false` | Si le champ de texte est en lecture seule |
+| `maxLines` | `int?` | `1` | Nombre maximum de lignes |
+| `minLines` | `int?` | null | Nombre minimum de lignes |
+| `maxLength` | `int?` | null | Nombre maximum de caractères |
+| `keyboardType` | `TextInputType?` | null | Type de clavier à afficher |
+| `textInputAction` | `TextInputAction?` | null | Bouton d'action sur le clavier |
+| `validator` | `String? Function(String?)?` | null | Fonction de validation de formulaire |
+| `onChanged` | `ValueChanged<String>?` | null | Appelé quand le texte change |
+| `onSubmitted` | `ValueChanged<String>?` | null | Appelé quand l'utilisateur soumet |
+| `prefixIcon` | `IconData?` | null | Icône affichée au début |
+| `suffixIcon` | `IconData?` | null | Icône affichée à la fin |
+| `prefixText` | `String?` | null | Texte affiché au début |
+| `suffixText` | `String?` | null | Texte affiché à la fin |
 
-## Examples
+## Exemples
 
-### Search Field
+### Champ de Recherche
 ```dart
 AsTextField(
-  labelText: 'Search',
+  labelText: 'Recherche',
   prefixIcon: Icons.search,
-  hintText: 'Search for items...',
+  hintText: 'Rechercher des éléments...',
   onChanged: (value) {
-    // Perform search
+    // Effectuer la recherche
   },
 )
 ```
 
-### Number Input
+### Saisie Numérique
 ```dart
 AsTextField(
-  labelText: 'Age',
+  labelText: 'Âge',
   keyboardType: TextInputType.number,
   validator: (value) {
     if (value == null || value.isEmpty) {
-      return 'Please enter your age';
+      return 'Veuillez saisir votre âge';
     }
     final age = int.tryParse(value);
     if (age == null || age < 0 || age > 150) {
-      return 'Please enter a valid age';
+      return 'Veuillez saisir un âge valide';
     }
     return null;
   },
@@ -174,17 +174,17 @@ AsTextField(
 )
 ```
 
-### Currency Input
+### Saisie de Devise
 ```dart
 AsTextField(
-  labelText: 'Price',
-  prefixText: '\$',
+  labelText: 'Prix',
+  prefixText: '€',
   keyboardType: TextInputType.numberWithOptions(decimal: true),
   onChanged: (value) {},
 )
 ```
 
-### Controlled Input
+### Saisie Contrôlée
 ```dart
 class ControlledTextField extends StatefulWidget {
   @override
@@ -206,14 +206,14 @@ class _ControlledTextFieldState extends State<ControlledTextField> {
       children: [
         AsTextField(
           controller: _controller,
-          labelText: 'Controlled Input',
+          labelText: 'Saisie Contrôlée',
           onChanged: (value) {},
         ),
         AsButton(
           onPressed: () {
             _controller.clear();
           },
-          child: Text('Clear'),
+          child: Text('Effacer'),
         ),
       ],
     );
@@ -221,19 +221,19 @@ class _ControlledTextFieldState extends State<ControlledTextField> {
 }
 ```
 
-## Platform Differences
+## Différences de Plateforme
 
 ### Material (Android/Web)
-- Uses `TextFormField` with Material styling
-- Material Design input decoration
-- Material focus and error states
+- Utilise `TextFormField` avec le style Material
+- Décoration d'entrée Material Design
+- États de focus et d'erreur Material
 
 ### Cupertino (iOS/macOS)
-- Uses `CupertinoTextFormFieldRow`
-- iOS-style input styling
-- Native iOS keyboard behavior
+- Utilise `CupertinoTextFormFieldRow`
+- Style de saisie iOS
+- Comportement clavier iOS natif
 
-## See Also
+## Voir Aussi
 
-- [AsCheckbox](./as-checkbox) - For boolean inputs
-- [Form Examples](https://ui.alphasow.dev/forms) - Live demo
+- [AsCheckbox](./as-checkbox) - Pour les saisies booléennes
+- [Exemples de Formulaires](https://ui.alphasow.dev/forms) - Démo en direct

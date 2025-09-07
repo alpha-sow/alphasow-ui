@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # AsLoadingSpinner
 
-A customizable loading spinner component for indicating loading states.
+Un composant d'indicateur de chargement personnalisable pour indiquer les états de chargement.
 
 ## Import
 
@@ -12,13 +12,13 @@ A customizable loading spinner component for indicating loading states.
 import 'package:alphasow_ui/alphasow_ui.dart';
 ```
 
-## Basic Usage
+## Utilisation de Base
 
 ```dart
 AsLoadingSpinner()
 ```
 
-## Custom Size and Color
+## Taille et Couleur Personnalisées
 
 ```dart
 AsLoadingSpinner(
@@ -27,19 +27,19 @@ AsLoadingSpinner(
 )
 ```
 
-## API Reference
+## Référence API
 
-### Properties
+### Propriétés
 
-| Property | Type | Default | Description |
+| Propriété | Type | Défaut | Description |
 |----------|------|---------|-------------|
-| `size` | `double?` | `24` | Size of the spinner |
-| `color` | `Color?` | null | Color of the spinner |
-| `strokeWidth` | `double?` | `2.0` | Width of the spinner stroke |
+| `size` | `double?` | `24` | Taille de l'indicateur |
+| `color` | `Color?` | null | Couleur de l'indicateur |
+| `strokeWidth` | `double?` | `2.0` | Largeur du trait de l'indicateur |
 
-## Examples
+## Exemples
 
-### In Button
+### Dans un Bouton
 ```dart
 AsButton(
   loading: isLoading,
@@ -48,11 +48,11 @@ AsButton(
     await performAsyncOperation();
     setState(() => isLoading = false);
   },
-  child: Text('Submit'),
+  child: Text('Soumettre'),
 )
 ```
 
-### Centered Loading
+### Chargement Centré
 ```dart
 Center(
   child: AsLoadingSpinner(
@@ -62,7 +62,7 @@ Center(
 )
 ```
 
-## See Also
+## Voir Aussi
 
-- [AsLoadingCircular](./as-loading-circular) - For circular progress indicator
-- [Loader Examples](https://ui.alphasow.dev/loaders) - Live demo
+- [AsLoadingCircular](./as-loading-circular) - Pour l'indicateur de progrès circulaire
+- [Exemples de Chargement](https://ui.alphasow.dev/loaders) - Démo en direct

@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # AsAppBar
 
-A platform-adaptive application bar component that provides navigation, titles, and actions at the top of screens.
+Un composant de barre d'application adaptatif à la plateforme qui fournit la navigation, les titres et les actions en haut des écrans.
 
 ## Import
 
@@ -12,15 +12,15 @@ A platform-adaptive application bar component that provides navigation, titles, 
 import 'package:alphasow_ui/alphasow_ui.dart';
 ```
 
-## Basic Usage
+## Utilisation de Base
 
 ```dart
 AsAppBar(
-  title: Text('My App'),
+  title: Text('Mon Application'),
 )
 ```
 
-## With Actions
+## Avec Actions
 
 ```dart
 AsAppBar(
@@ -38,7 +38,7 @@ AsAppBar(
 )
 ```
 
-## With Leading Widget
+## Avec Widget Principal
 
 ```dart
 AsAppBar(
@@ -46,29 +46,29 @@ AsAppBar(
     icon: Icons.menu,
     onPressed: () => Scaffold.of(context).openDrawer(),
   ),
-  title: Text('Custom Leading'),
+  title: Text('Principal Personnalisé'),
   centerTitle: true,
 )
 ```
 
-## API Reference
+## Référence API
 
-### Properties
+### Propriétés
 
-| Property | Type | Default | Description |
+| Propriété | Type | Défaut | Description |
 |----------|------|---------|-------------|
-| `title` | `Widget?` | null | App bar title widget |
-| `leading` | `Widget?` | null | Leading widget (usually back button or menu) |
-| `actions` | `List<Widget>?` | null | Action widgets on the right side |
-| `backgroundColor` | `Color?` | null | Background color |
-| `foregroundColor` | `Color?` | null | Text and icon color |
-| `elevation` | `double?` | null | Shadow elevation (Material only) |
-| `centerTitle` | `bool?` | null | Whether to center the title |
-| `automaticallyImplyLeading` | `bool` | `true` | Whether to show back button automatically |
+| `title` | `Widget?` | null | Widget du titre de la barre d'application |
+| `leading` | `Widget?` | null | Widget principal (généralement bouton retour ou menu) |
+| `actions` | `List<Widget>?` | null | Widgets d'action sur le côté droit |
+| `backgroundColor` | `Color?` | null | Couleur d'arrière-plan |
+| `foregroundColor` | `Color?` | null | Couleur du texte et des icônes |
+| `elevation` | `double?` | null | Élévation de l'ombre (Material uniquement) |
+| `centerTitle` | `bool?` | null | Si le titre doit être centré |
+| `automaticallyImplyLeading` | `bool` | `true` | Si le bouton retour doit être affiché automatiquement |
 
-## Examples
+## Exemples
 
-### Search App Bar
+### Barre d'Application de Recherche
 ```dart
 class SearchAppBar extends StatefulWidget {
   @override
@@ -85,10 +85,10 @@ class _SearchAppBarState extends State<SearchAppBar> {
       title: _isSearching
           ? AsTextField(
               controller: _searchController,
-              hintText: 'Search...',
+              hintText: 'Rechercher...',
               autofocus: true,
             )
-          : Text('Search Demo'),
+          : Text('Démo Recherche'),
       leading: _isSearching
           ? AsIconButton(
               icon: Icons.arrow_back,
@@ -115,7 +115,7 @@ class _SearchAppBarState extends State<SearchAppBar> {
 }
 ```
 
-## See Also
+## Voir Aussi
 
-- [AsScaffold](./as-scaffold) - For screen structure
-- [Layout Examples](https://ui.alphasow.dev/layout) - Live demo
+- [AsScaffold](./as-scaffold) - Pour la structure d'écran
+- [Exemples de Mise en Page](https://ui.alphasow.dev/layout) - Démo en direct

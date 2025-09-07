@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # AsAlertDialog
 
-A modal dialog component for displaying important messages, confirmations, and user interactions.
+Un composant de dialogue modal pour afficher des messages importants, confirmations et interactions utilisateur.
 
 ## Import
 
@@ -12,37 +12,37 @@ A modal dialog component for displaying important messages, confirmations, and u
 import 'package:alphasow_ui/alphasow_ui.dart';
 ```
 
-## Basic Usage
+## Utilisation de Base
 
 ```dart
 AsAlertDialog.show(
   context: context,
   title: 'Confirmation',
-  message: 'Are you sure you want to continue?',
+  message: 'Êtes-vous sûr de vouloir continuer ?',
   actions: [
     AsAlertDialogAction(
-      text: 'Cancel',
+      text: 'Annuler',
       onPressed: () => Navigator.of(context).pop(),
     ),
     AsAlertDialogAction(
-      text: 'Continue',
+      text: 'Continuer',
       isDestructive: true,
       onPressed: () {
         Navigator.of(context).pop();
-        // Handle continue action
+        // Gérer l'action continuer
       },
     ),
   ],
 )
 ```
 
-## Information Dialog
+## Dialogue d'Information
 
 ```dart
 AsAlertDialog.show(
   context: context,
   title: 'Information',
-  message: 'Your profile has been successfully updated.',
+  message: 'Votre profil a été mis à jour avec succès.',
   actions: [
     AsAlertDialogAction(
       text: 'OK',
@@ -52,22 +52,22 @@ AsAlertDialog.show(
 )
 ```
 
-## Confirmation Dialog
+## Dialogue de Confirmation
 
 ```dart
 void _showDeleteConfirmation() {
   AsAlertDialog.show(
     context: context,
-    title: 'Delete Item',
-    message: 'This action cannot be undone. Are you sure you want to delete this item?',
+    title: 'Supprimer l'Élément',
+    message: 'Cette action ne peut pas être annulée. Êtes-vous sûr de vouloir supprimer cet élément ?',
     type: AlertType.error,
     actions: [
       AsAlertDialogAction(
-        text: 'Cancel',
+        text: 'Annuler',
         onPressed: () => Navigator.of(context).pop(false),
       ),
       AsAlertDialogAction(
-        text: 'Delete',
+        text: 'Supprimer',
         isDestructive: true,
         onPressed: () {
           Navigator.of(context).pop(true);
@@ -77,31 +77,31 @@ void _showDeleteConfirmation() {
     ],
   ).then((confirmed) {
     if (confirmed == true) {
-      // Item was deleted
+      // L'élément a été supprimé
     }
   });
 }
 ```
 
-## Custom Dialog
+## Dialogue Personnalisé
 
 ```dart
 AsAlertDialog(
-  title: Text('Custom Dialog'),
+  title: Text('Dialogue Personnalisé'),
   content: Column(
     mainAxisSize: MainAxisSize.min,
     children: [
-      Text('This is a custom dialog with multiple widgets'),
+      Text('Ceci est un dialogue personnalisé avec plusieurs widgets'),
       SizedBox(height: 16),
       AsTextField(
-        labelText: 'Enter value',
+        labelText: 'Saisissez une valeur',
         onChanged: (value) {},
       ),
     ],
   ),
   actions: [
     AsAlertDialogAction(
-      text: 'Cancel',
+      text: 'Annuler',
       onPressed: () => Navigator.of(context).pop(),
     ),
     AsAlertDialogAction(
@@ -112,7 +112,7 @@ AsAlertDialog(
 )
 ```
 
-## API Reference
+## Référence API
 
 ### AsAlertDialog Properties
 
@@ -201,7 +201,7 @@ Future<String?> _showInputDialog() {
       ),
       actions: [
         AsAlertDialogAction(
-          text: 'Cancel',
+          text: 'Annuler',
           onPressed: () => Navigator.of(context).pop(),
         ),
         AsAlertDialogAction(
@@ -232,7 +232,7 @@ Future<String?> _showChoiceDialog() {
         onPressed: () => Navigator.of(context).pop('B'),
       ),
       AsAlertDialogAction(
-        text: 'Cancel',
+        text: 'Annuler',
         onPressed: () => Navigator.of(context).pop(),
       ),
     ],
@@ -266,28 +266,28 @@ void _showErrorDialog(String error, String details) {
 }
 ```
 
-## Platform Differences
+## Différences de Plateforme
 
 ### Material (Android/Web)
-- Uses `AlertDialog` with Material styling
-- Material Design button layout
-- Material animations and transitions
+- Utilise `AlertDialog` avec le style Material
+- Disposition de boutons Material Design
+- Animations et transitions Material
 
 ### Cupertino (iOS/macOS)
-- Uses `CupertinoAlertDialog`
-- iOS-style button layout and spacing
-- Native iOS animations
+- Utilise `CupertinoAlertDialog`
+- Disposition et espacement de boutons de style iOS
+- Animations iOS natives
 
-## Best Practices
+## Bonnes Pratiques
 
-1. **Use sparingly** - Dialogs interrupt user flow
-2. **Clear actions** - Use descriptive button labels
-3. **Destructive actions** - Mark dangerous actions with `isDestructive: true`
-4. **Default action** - Mark primary action with `isDefault: true`
-5. **Barrier dismissible** - Allow users to dismiss non-critical dialogs
+1. **Utiliser avec parcimonie** - Les dialogues interrompent le flux utilisateur
+2. **Actions claires** - Utilisez des étiquettes de bouton descriptives
+3. **Actions destructives** - Marquez les actions dangereuses avec `isDestructive: true`
+4. **Action par défaut** - Marquez l'action principale avec `isDefault: true`
+5. **Barrière rejetable** - Permettez aux utilisateurs de fermer les dialogues non critiques
 
-## See Also
+## Voir Aussi
 
-- [AsAlertBanner](./as-alert-banner) - For inline alerts
-- [AsBottomSheet](./as-bottom-sheet) - For bottom sheet modals
-- [Dialog Examples](https://ui.alphasow.dev/alerts) - Live demo
+- [AsAlertBanner](./as-alert-banner) - Pour les alertes intégrées
+- [AsBottomSheet](./as-bottom-sheet) - Pour les modales en feuille inférieure
+- [Exemples de Dialogues](https://ui.alphasow.dev/alerts) - Démo en direct

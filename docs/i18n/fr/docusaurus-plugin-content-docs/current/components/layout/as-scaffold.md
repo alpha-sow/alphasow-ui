@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # AsScaffold
 
-A platform-adaptive scaffold component that provides the basic structure for screens with app bar, body, and optional elements.
+Un composant de structure adaptatif à la plateforme qui fournit la structure de base pour les écrans avec barre d'application, corps et éléments optionnels.
 
 ## Import
 
@@ -12,41 +12,41 @@ A platform-adaptive scaffold component that provides the basic structure for scr
 import 'package:alphasow_ui/alphasow_ui.dart';
 ```
 
-## Basic Usage
+## Utilisation de Base
 
 ```dart
 AsScaffold(
   appBar: AsAppBar(
-    title: Text('My App'),
+    title: Text('Mon Application'),
   ),
   body: Center(
-    child: Text('Hello, World!'),
+    child: Text('Bonjour le Monde !'),
   ),
 )
 ```
 
-## With Floating Action Button
+## Avec Bouton d'Action Flottant
 
 ```dart
 AsScaffold(
   appBar: AsAppBar(
-    title: Text('My App'),
+    title: Text('Mon Application'),
   ),
   body: ListView(
     children: [
-      // List items
+      // Éléments de liste
     ],
   ),
   floatingActionButton: AsIconButton(
     icon: Icons.add,
     onPressed: () {
-      // Add new item
+      // Ajouter un nouvel élément
     },
   ),
 )
 ```
 
-## With Bottom Navigation
+## Avec Navigation du Bas
 
 ```dart
 class TabScreen extends StatefulWidget {
@@ -90,12 +90,12 @@ class _TabScreenState extends State<TabScreen> {
 }
 ```
 
-## With Drawer
+## Avec Tiroir
 
 ```dart
 AsScaffold(
   appBar: AsAppBar(
-    title: Text('My App'),
+    title: Text('Mon Application'),
   ),
   drawer: AsMenuDrawer(
     header: DrawerHeader(
@@ -123,29 +123,29 @@ AsScaffold(
 )
 ```
 
-## API Reference
+## Référence API
 
-### Properties
+### Propriétés
 
-| Property | Type | Default | Description |
+| Propriété | Type | Défaut | Description |
 |----------|------|---------|-------------|
-| `appBar` | `PreferredSizeWidget?` | null | App bar widget |
-| `body` | `Widget?` | null | Main content widget |
-| `floatingActionButton` | `Widget?` | null | Floating action button |
-| `floatingActionButtonLocation` | `FloatingActionButtonLocation?` | null | FAB location |
-| `drawer` | `Widget?` | null | Left drawer widget |
-| `endDrawer` | `Widget?` | null | Right drawer widget |
-| `bottomNavigationBar` | `Widget?` | null | Bottom navigation bar |
-| `bottomSheet` | `Widget?` | null | Persistent bottom sheet |
-| `backgroundColor` | `Color?` | null | Background color |
-| `resizeToAvoidBottomInset` | `bool?` | null | Whether to resize when keyboard appears |
-| `primary` | `bool` | `true` | Whether scaffold is primary scaffold |
-| `extendBody` | `bool` | `false` | Whether body extends behind bottom navigation |
-| `extendBodyBehindAppBar` | `bool` | `false` | Whether body extends behind app bar |
+| `appBar` | `PreferredSizeWidget?` | null | Widget de la barre d'application |
+| `body` | `Widget?` | null | Widget du contenu principal |
+| `floatingActionButton` | `Widget?` | null | Bouton d'action flottant |
+| `floatingActionButtonLocation` | `FloatingActionButtonLocation?` | null | Emplacement du bouton d'action flottant |
+| `drawer` | `Widget?` | null | Widget du tiroir gauche |
+| `endDrawer` | `Widget?` | null | Widget du tiroir droit |
+| `bottomNavigationBar` | `Widget?` | null | Barre de navigation du bas |
+| `bottomSheet` | `Widget?` | null | Feuille inférieure persistante |
+| `backgroundColor` | `Color?` | null | Couleur d'arrière-plan |
+| `resizeToAvoidBottomInset` | `bool?` | null | Si le redimensionnement doit avoir lieu quand le clavier apparaît |
+| `primary` | `bool` | `true` | Si la structure est la structure principale |
+| `extendBody` | `bool` | `false` | Si le corps s'étend derrière la navigation du bas |
+| `extendBodyBehindAppBar` | `bool` | `false` | Si le corps s'étend derrière la barre d'application |
 
-## Examples
+## Exemples
 
-### Simple Screen
+### Écran Simple
 ```dart
 class SimpleScreen extends StatelessWidget {
   @override
@@ -376,27 +376,27 @@ class _MasterDetailScreenState extends State<MasterDetailScreen> {
 }
 ```
 
-## Platform Differences
+## Différences de Plateforme
 
 ### Material (Android/Web)
-- Uses `Scaffold` with Material styling
-- Material app bar and navigation
-- Material floating action button
+- Utilise `Scaffold` avec le style Material
+- Barre d'application et navigation Material
+- Bouton d'action flottant Material
 
 ### Cupertino (iOS/macOS)
-- Uses `CupertinoPageScaffold`
-- iOS-style navigation bar
-- Native iOS scrolling behavior
+- Utilise `CupertinoPageScaffold`
+- Barre de navigation de style iOS
+- Comportement de défilement iOS natif
 
-## Best Practices
+## Bonnes Pratiques
 
-1. **Consistent structure** - Use AsScaffold for all main screens
-2. **App bar usage** - Include app bar for navigation context
-3. **Safe area** - AsScaffold handles safe area automatically
-4. **Keyboard handling** - Use `resizeToAvoidBottomInset` for forms
-5. **Floating action button** - Use for primary actions only
+1. **Structure cohérente** - Utilisez AsScaffold pour tous les écrans principaux
+2. **Utilisation de la barre d'application** - Incluez la barre d'application pour le contexte de navigation
+3. **Zone sécurisée** - AsScaffold gère automatiquement la zone sécurisée
+4. **Gestion du clavier** - Utilisez `resizeToAvoidBottomInset` pour les formulaires
+5. **Bouton d'action flottant** - À utiliser uniquement pour les actions principales
 
-## See Also
+## Voir Aussi
 
-- [AsAppBar](./as-app-bar) - For app bar component
-- [Layout Examples](https://ui.alphasow.dev/layout) - Live demo
+- [AsAppBar](./as-app-bar) - Pour le composant de barre d'application
+- [Exemples de Mise en Page](https://ui.alphasow.dev/layout) - Démo en direct
