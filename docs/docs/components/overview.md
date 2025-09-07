@@ -34,16 +34,16 @@ Components for app structure and navigation.
 
 - **[AsScaffold](./layout/as-scaffold)** - Platform-adaptive scaffold
 - **[AsAppBar](./layout/as-app-bar)** - Application bar component
-- **[AsNavigationRail](./layout/as-navigation-rail)** - Side navigation
-- **[AsListTile](./layout/as-list-tile)** - List item component
+- **AsNavigationRail** - Side navigation
+- **AsListTile** - List item component
 
 ### 🎨 Visual Elements
 Components for visual presentation and feedback.
 
-- **[AsAvatar](./visual/as-avatar)** - User avatar component
-- **[AsCard](./visual/as-card)** - Card container component
-- **[AsLabel](./visual/as-label)** - Text labels with styling
-- **[AsDivider](./visual/as-divider)** - Visual separators
+- **AsAvatar** - User avatar component
+- **AsCard** - Card container component
+- **AsLabel** - Text labels with styling
+- **AsDivider** - Visual separators
 
 ### ⏳ Loading Indicators
 Components for showing loading states.
@@ -54,9 +54,9 @@ Components for showing loading states.
 ### 📋 Menus
 Dropdown and contextual menu components.
 
-- **[AsMenuDropdown](./menus/as-menu-dropdown)** - Dropdown menu component
-- **[AsMenuDown](./menus/as-menu-down)** - Contextual dropdown menus
-- **[AsMenuDrawer](./menus/as-menu-drawer)** - Navigation drawer component
+- **AsMenuDropdown** - Dropdown menu component
+- **AsMenuDown** - Contextual dropdown menus
+- **AsMenuDrawer** - Navigation drawer component
 
 ## Platform Adaptation
 
@@ -153,5 +153,4 @@ AsButton(
 ## Next Steps
 
 - Explore specific [component documentation](./buttons/as-button)
-- Learn about [theming and customization](../guides/theming)
 - Check out the [live demo](https://ui.alphasow.dev) to see components in action

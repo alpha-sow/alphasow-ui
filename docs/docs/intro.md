@@ -125,8 +125,6 @@ No additional configuration needed - it works out of the box!
 ## Next Steps
 
 - 📖 [Explore Components](./components/overview) - Learn about all available components
-- 🎨 [Theming Guide](./guides/theming) - Customize the look and feel
-- 🔔 [Banner System](./guides/banner-system) - Master the notification system
 - 🌐 [Live Demo](https://ui.alphasow.dev) - See components in action
 
 ## Need Help?

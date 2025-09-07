@@ -104,8 +104,6 @@ By using `AlphasowUiApp`, you automatically get:
 ## Next Steps
 
 - Explore the [Component Library](../components/overview)
-- Learn about [Theming](./theming)
-- Check out [Platform Adaptation](./platform-adaptation)
 - See the [Live Demo](https://ui.alphasow.dev)
 
 ## Common Issues

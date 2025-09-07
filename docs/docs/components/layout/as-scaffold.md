@@ -399,6 +399,4 @@ class _MasterDetailScreenState extends State<MasterDetailScreen> {
 ## See Also
 
 - [AsAppBar](./as-app-bar) - For app bar component
-- [AsListTile](./as-list-tile) - For list items
-- [AsNavigationRail](./as-navigation-rail) - For side navigation
 - [Layout Examples](https://ui.alphasow.dev/layout) - Live demo

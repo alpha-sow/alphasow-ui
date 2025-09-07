@@ -94,7 +94,7 @@ const config: Config = {
             },
             {
               label: 'Components',
-              to: '/docs/components',
+              to: '/docs/components/overview',
             },
           ],
         },
