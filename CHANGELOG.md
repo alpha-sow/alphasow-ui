@@ -1,3 +1,11 @@
+## [1.23.3](https://github.com/alpha-sow/alphasow-ui/compare/v1.23.2...v1.23.3) (2025-09-07)
+
+
+### Bug Fixes
+
+* update version badge in README.md to reflect the latest release ([540762b](https://github.com/alpha-sow/alphasow-ui/commit/540762b1b5384cb892affd8a8163c559997470e2))
+* update workflow triggers for deployment and documentation jobs ([afd8d91](https://github.com/alpha-sow/alphasow-ui/commit/afd8d91eb525ac3032de8392a162d209c44f5d90))
+
 ## [1.23.2](https://github.com/alpha-sow/alphasow-ui/compare/v1.23.1...v1.23.2) (2025-09-07)
 
 
