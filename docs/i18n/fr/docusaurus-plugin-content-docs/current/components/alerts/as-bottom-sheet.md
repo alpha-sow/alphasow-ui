@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # AsBottomSheet
 
-A modal bottom sheet component that slides up from the bottom of the screen for contextual actions and content.
+Un composant de feuille inférieure modale qui glisse vers le haut depuis le bas de l'écran pour des actions contextuelles et du contenu.
 
 ## Import
 
@@ -12,7 +12,7 @@ A modal bottom sheet component that slides up from the bottom of the screen for 
 import 'package:alphasow_ui/alphasow_ui.dart';
 ```
 
-## Basic Usage
+## Utilisation de Base
 
 ```dart
 AsBottomSheet.show(
