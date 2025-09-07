@@ -28,10 +28,11 @@ jobs:
         run: flutter build web --release
         working-directory: example
 
-      - name: Deploy to Firebase Hosting
+      - name: Deploy Example App to Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_ALPHASOW_UI }}"
           projectId: alphasow-ui
           channelId: live
+          entryPoint: example
