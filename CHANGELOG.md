@@ -1,3 +1,10 @@
+## [1.23.1](https://github.com/alpha-sow/alphasow-ui/compare/v1.23.0...v1.23.1) (2025-09-07)
+
+
+### Bug Fixes
+
+* add Firebase configuration files for project setup ([c8e0ee7](https://github.com/alpha-sow/alphasow-ui/commit/c8e0ee71443b819d7f70916667e986158b98481c))
+
 # [1.23.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.22.0...v1.23.0) (2025-09-07)
 
 
