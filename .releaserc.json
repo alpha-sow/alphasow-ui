@@ -7,13 +7,13 @@
     [
       "@semantic-release/exec",
       {
-        "prepareCmd": "sed -i.bak 's/version: .*/version: ${nextRelease.version}/' pubspec.yaml && rm pubspec.yaml.bak"
+        "prepareCmd": "echo 'Updating version to ${nextRelease.version}' && sed -i.bak 's/version: .*/version: ${nextRelease.version}/' pubspec.yaml && rm pubspec.yaml.bak && echo 'Updated pubspec.yaml' && sed -i.bak 's/alphasow_ui: \\^[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+/alphasow_ui: ^${nextRelease.version}/' README.md && rm README.md.bak && echo 'Updated README.md' && sed -i.bak 's/alphasow_ui: \\^[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+/alphasow_ui: ^${nextRelease.version}/' docs/docs/intro.md && rm docs/docs/intro.md.bak && echo 'Updated docs/docs/intro.md'"
       }
     ],
     [
       "@semantic-release/git",
       {
-        "assets": ["pubspec.yaml", "CHANGELOG.md"],
+        "assets": ["pubspec.yaml", "CHANGELOG.md", "README.md", "docs/docs/intro.md"],
         "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
       }
     ],
