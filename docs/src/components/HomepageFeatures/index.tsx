@@ -5,14 +5,12 @@ import styles from './styles.module.css';
 
 type FeatureItem = {
   title: string;
-  Svg: React.ComponentType<React.ComponentProps<'svg'>>;
   description: ReactNode;
 };
 
 const FeatureList: FeatureItem[] = [
   {
     title: 'Platform Adaptive',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
         Components automatically adapt between Material Design (Android) and
@@ -22,7 +20,6 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Consistent Theming',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
         Built-in theming system with dark/light mode support and customizable
@@ -32,7 +29,6 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Rich Component Library',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
         Comprehensive collection of UI components including buttons, forms,
@@ -42,12 +38,9 @@ const FeatureList: FeatureItem[] = [
   },
 ];
 
-function Feature({title, Svg, description}: FeatureItem) {
+function Feature({title, description}: FeatureItem) {
   return (
     <div className={clsx('col col--4')}>
-      <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
-      </div>
       <div className="text--center padding-horiz--md">
         <Heading as="h3">{title}</Heading>
         <p>{description}</p>
