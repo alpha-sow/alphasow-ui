@@ -1,0 +1,34 @@
+{
+  "version.label": {
+    "message": "Suivant",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.Guides": {
+    "message": "Guides",
+    "description": "The label for category Guides in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Components": {
+    "message": "Composants",
+    "description": "The label for category Components in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Buttons": {
+    "message": "Boutons",
+    "description": "The label for category Buttons in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Alerts": {
+    "message": "Alertes",
+    "description": "The label for category Alerts in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Forms": {
+    "message": "Formulaires",
+    "description": "The label for category Forms in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Layout": {
+    "message": "Mise en Page",
+    "description": "The label for category Layout in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Loaders": {
+    "message": "Chargeurs",
+    "description": "The label for category Loaders in sidebar tutorialSidebar"
+  }
+}
