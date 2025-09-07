@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "alphasow-ui"
+    "default": "alphasow-ui",
+    "live": "alphasow-ui"
   }
 }

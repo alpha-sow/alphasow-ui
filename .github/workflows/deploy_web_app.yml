@@ -20,6 +20,10 @@ jobs:
       - name: Get dependencies
         run: flutter pub get
 
+      - name: Get example dependencies
+        run: flutter pub get
+        working-directory: example
+
       - name: Build web app
         run: flutter build web --release
         working-directory: example

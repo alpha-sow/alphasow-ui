@@ -1,8 +1,0 @@
-{
-  "projects": {
-    "default": "alphasow-ui",
-    "live": "alphasow-ui"
-  },
-  "targets": {},
-  "etags": {}
-}
