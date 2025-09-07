@@ -7,7 +7,7 @@
     [
       "@semantic-release/exec",
       {
-        "prepareCmd": "echo 'Updating version to ${nextRelease.version}' && sed -i.bak 's/version: .*/version: ${nextRelease.version}/' pubspec.yaml && rm pubspec.yaml.bak && echo 'Updated pubspec.yaml' && sed -i.bak 's/alphasow_ui: \\^[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+/alphasow_ui: ^${nextRelease.version}/' README.md && rm README.md.bak && echo 'Updated README.md' && sed -i.bak 's/alphasow_ui: \\^[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+/alphasow_ui: ^${nextRelease.version}/' docs/docs/intro.md && rm docs/docs/intro.md.bak && echo 'Updated docs/docs/intro.md'"
+        "prepareCmd": "echo 'Updating version to ${nextRelease.version}' && sed -i.bak 's/version: .*/version: ${nextRelease.version}/' pubspec.yaml && rm pubspec.yaml.bak && echo 'Updated pubspec.yaml' && sed -i.bak 's/alphasow_ui: \\^[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+/alphasow_ui: ^${nextRelease.version}/' README.md && rm README.md.bak && echo 'Updated README.md dependency' && sed -i.bak 's/version-[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+-blue/version-${nextRelease.version}-blue/' README.md && rm README.md.bak && echo 'Updated README.md version badge' && sed -i.bak 's/alphasow_ui: \\^[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+/alphasow_ui: ^${nextRelease.version}/' docs/docs/intro.md && rm docs/docs/intro.md.bak && echo 'Updated docs/docs/intro.md'"
       }
     ],
     [
