@@ -3,6 +3,7 @@ description: "A Flutter package providing reusable UI components with consistent
 version: 1.23.3
 repository: https://github.com/alpha-sow/alphasow-ui
 homepage: https://github.com/alpha-sow/alphasow-ui
+documentation: https://docs-alphasow.web.app/
 
 environment:
   sdk: ^3.5.3
