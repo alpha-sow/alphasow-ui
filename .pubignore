@@ -1,0 +1,15 @@
+# Exclude Docusaurus documentation site
+docs/
+
+# Exclude Makefile
+Makefile
+
+# Exclude build artifacts
+build/
+
+# Exclude IDE files
+*.iml
+.idea/
+
+# Exclude Claude Code instructions
+CLAUDE.md
