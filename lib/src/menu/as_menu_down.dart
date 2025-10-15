@@ -243,6 +243,7 @@ class _AsMenuDownState extends State<AsMenuDown> {
     final size = renderBox.size;
     final offset = renderBox.localToGlobal(Offset.zero);
     final screenSize = MediaQuery.of(context).size;
+    final padding = MediaQuery.of(context).padding;
 
     // Calculate menu position based on MenuPosition with screen boundary checks
     double? left;
@@ -254,71 +255,99 @@ class _AsMenuDownState extends State<AsMenuDown> {
       case MenuPosition.bottom:
         left = offset.dx + widget.offset.dx;
         top = offset.dy + size.height + widget.offset.dy;
-        // Ensure menu doesn't go off right edge
-        if (left > screenSize.width - 200) {
-          left = screenSize.width - 200;
+        // Ensure menu doesn't go off right edge (accounting for safe area)
+        if (left > screenSize.width - 200 - padding.right) {
+          left = screenSize.width - 200 - padding.right;
         }
-        // Ensure menu doesn't go off left edge
-        if (left < 0) {
-          left = 0;
+        // Ensure menu doesn't go off left edge (accounting for safe area)
+        if (left < padding.left) {
+          left = padding.left;
         }
       case MenuPosition.top:
         left = offset.dx + widget.offset.dx;
         bottom = screenSize.height - offset.dy + widget.offset.dy;
-        // Ensure menu doesn't go off right edge
-        if (left > screenSize.width - 200) {
-          left = screenSize.width - 200;
+        // Ensure menu doesn't go off right edge (accounting for safe area)
+        if (left > screenSize.width - 200 - padding.right) {
+          left = screenSize.width - 200 - padding.right;
         }
-        // Ensure menu doesn't go off left edge
-        if (left < 0) {
-          left = 0;
+        // Ensure menu doesn't go off left edge (accounting for safe area)
+        if (left < padding.left) {
+          left = padding.left;
+        }
+        // Ensure bottom respects safe area
+        if (bottom < padding.bottom) {
+          bottom = padding.bottom;
         }
       case MenuPosition.left:
         right = screenSize.width - offset.dx + widget.offset.dx;
         top = offset.dy + widget.offset.dy;
-        // Ensure menu doesn't go off top edge
-        if (top < 0) {
-          top = 0;
+        // Ensure menu doesn't go off top edge (accounting for safe area)
+        if (top < padding.top) {
+          top = padding.top;
         }
-        // Ensure menu doesn't go off bottom edge
-        if (top > screenSize.height - 200) {
-          top = screenSize.height - 200;
+        // Ensure menu doesn't go off bottom edge (accounting for safe area)
+        if (top > screenSize.height - 200 - padding.bottom) {
+          top = screenSize.height - 200 - padding.bottom;
+        }
+        // Ensure right respects safe area
+        if (right < padding.right) {
+          right = padding.right;
         }
       case MenuPosition.right:
         left = offset.dx + size.width + widget.offset.dx;
         top = offset.dy + widget.offset.dy;
-        // Check if menu would go off right edge, if so position it to the left instead
-        if (left + 200 > screenSize.width) {
+        // Check if menu would go off right edge (accounting for safe area)
+        if (left + 200 > screenSize.width - padding.right) {
           left = offset.dx - 200 + widget.offset.dx;
-          // If still off screen, clamp to right edge
-          if (left < 0) {
-            left = screenSize.width - 200;
+          // If still off screen, clamp to right edge with safe area
+          if (left < padding.left) {
+            left = screenSize.width - 200 - padding.right;
           }
         }
-        // Ensure menu doesn't go off top edge
-        if (top < 0) {
-          top = 0;
+        // Ensure menu doesn't go off top edge (accounting for safe area)
+        if (top < padding.top) {
+          top = padding.top;
         }
-        // Ensure menu doesn't go off bottom edge
-        if (top > screenSize.height - 200) {
-          top = screenSize.height - 200;
+        // Ensure menu doesn't go off bottom edge (accounting for safe area)
+        if (top > screenSize.height - 200 - padding.bottom) {
+          top = screenSize.height - 200 - padding.bottom;
         }
       case MenuPosition.bottomLeft:
         left = offset.dx + widget.offset.dx;
+        // Ensure left doesn't go into left safe area
+        if (left < padding.left) {
+          left = padding.left;
+        }
         top = offset.dy + size.height + widget.offset.dy;
-      // No horizontal clamping - let it align to left edge of trigger
       case MenuPosition.bottomRight:
         right = screenSize.width - (offset.dx + size.width) + widget.offset.dx;
+        // Ensure right doesn't go into right safe area
+        if (right < padding.right) {
+          right = padding.right;
+        }
         top = offset.dy + size.height + widget.offset.dy;
-      // No horizontal clamping - let it align to right edge of trigger
       case MenuPosition.topLeft:
         left = offset.dx + widget.offset.dx;
+        // Ensure left doesn't go into left safe area
+        if (left < padding.left) {
+          left = padding.left;
+        }
         bottom = screenSize.height - offset.dy + widget.offset.dy;
-      // No horizontal clamping - let it align to left edge of trigger
+        // Ensure bottom doesn't go into bottom safe area
+        if (bottom < padding.bottom) {
+          bottom = padding.bottom;
+        }
       case MenuPosition.topRight:
         right = screenSize.width - (offset.dx + size.width) + widget.offset.dx;
+        // Ensure right doesn't go into right safe area
+        if (right < padding.right) {
+          right = padding.right;
+        }
         bottom = screenSize.height - offset.dy + widget.offset.dy;
-      // No horizontal clamping - let it align to right edge of trigger
+        // Ensure bottom doesn't go into bottom safe area
+        if (bottom < padding.bottom) {
+          bottom = padding.bottom;
+        }
     }
 
     _overlayEntry = OverlayEntry(

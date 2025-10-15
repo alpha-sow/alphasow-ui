@@ -110,8 +110,9 @@ class AsScaffold extends StatelessWidget {
 
   /// A bottom navigation bar to display at the bottom of the scaffold.
   ///
-  /// Only supported on Material platforms. Ignored on Cupertino platforms.
-  final Widget? bottomNavigationBar;
+  /// Supports both Material and Cupertino platforms. On Cupertino platforms,
+  /// the navigation bar is positioned at the bottom of the content area.
+  final AsBottomNavigationBar? bottomNavigationBar;
 
   /// A persistent bottom sheet to show below the scaffold's body.
   ///
@@ -179,11 +180,32 @@ class AsScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (PlatformType.currentPlatform()) {
       case PlatformType.cupertino:
+        if (bottomNavigationBar != null) {
+          final cupertinoTabBar = bottomNavigationBar!
+              .getPlatformWidget(context) as CupertinoTabBar;
+          return CupertinoTabScaffold(
+            tabBar: cupertinoTabBar,
+            tabBuilder: (context, index) {
+              return CupertinoPageScaffold(
+                navigationBar:
+                    appBar?.adaptive as ObstructingPreferredSizeWidget?,
+                backgroundColor: backgroundColor,
+                resizeToAvoidBottomInset: resizeToAvoidBottomInset ?? true,
+                child: body ?? const SizedBox.shrink(),
+              );
+            },
+          );
+        }
         return CupertinoPageScaffold(
           navigationBar: appBar?.adaptive as ObstructingPreferredSizeWidget?,
           backgroundColor: backgroundColor,
           resizeToAvoidBottomInset: resizeToAvoidBottomInset ?? true,
-          child: body ?? const SizedBox.shrink(),
+          child: Column(
+            children: [
+              Expanded(child: body ?? const SizedBox.shrink()),
+              if (bottomNavigationBar != null) bottomNavigationBar!,
+            ],
+          ),
         );
       case PlatformType.material:
         return Scaffold(

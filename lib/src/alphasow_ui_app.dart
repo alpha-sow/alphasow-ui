@@ -248,9 +248,12 @@ class AlphasowUiApp extends StatelessWidget {
           );
 
     if (isCupertino) {
-      return CupertinoTheme(
-        data: appCupertinoTheme,
-        child: app,
+      return Theme(
+        data: appTheme,
+        child: CupertinoTheme(
+          data: appCupertinoTheme,
+          child: app,
+        ),
       );
     } else {
       return Theme(

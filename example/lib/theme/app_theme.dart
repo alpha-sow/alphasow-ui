@@ -1,15 +1,21 @@
+import 'package:example/theme/protect_u_theme.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-enum ThemeColor { blue, red, green, orange }
+enum ThemeColor { blue, red, green, orange, protectU }
 
 ThemeData getLightTheme(ThemeColor themeColor) {
+  if (themeColor == ThemeColor.protectU) {
+    return getProtectULightTheme();
+  }
+
   final scheme = switch (themeColor) {
     ThemeColor.blue => FlexScheme.blue,
     ThemeColor.red => FlexScheme.red,
     ThemeColor.green => FlexScheme.green,
     ThemeColor.orange => FlexScheme.orangeM3,
+    ThemeColor.protectU => FlexScheme.blackWhite,
   };
 
   return FlexThemeData.light(
@@ -29,11 +35,16 @@ ThemeData getLightTheme(ThemeColor themeColor) {
 }
 
 ThemeData getDarkTheme(ThemeColor themeColor) {
+  if (themeColor == ThemeColor.protectU) {
+    return getProtectUDarkTheme();
+  }
+
   final scheme = switch (themeColor) {
     ThemeColor.blue => FlexScheme.blue,
     ThemeColor.red => FlexScheme.red,
     ThemeColor.green => FlexScheme.green,
     ThemeColor.orange => FlexScheme.orangeM3,
+    ThemeColor.protectU => FlexScheme.blackWhite,
   };
 
   return FlexThemeData.dark(
@@ -56,11 +67,16 @@ final ThemeData theme = getLightTheme(ThemeColor.blue);
 final ThemeData themeDark = getDarkTheme(ThemeColor.blue);
 
 CupertinoThemeData getLightCupertinoTheme(ThemeColor themeColor) {
+  if (themeColor == ThemeColor.protectU) {
+    return getProtectULightCupertinoTheme();
+  }
+
   final primaryColor = switch (themeColor) {
     ThemeColor.blue => const Color(0xFF2196F3),
     ThemeColor.red => const Color(0xFFF44336),
     ThemeColor.green => const Color(0xFF4CAF50),
     ThemeColor.orange => const Color(0xFFFF9800),
+    ThemeColor.protectU => const Color(0xFF000000),
   };
 
   return CupertinoThemeData(
@@ -82,11 +98,16 @@ CupertinoThemeData getLightCupertinoTheme(ThemeColor themeColor) {
 }
 
 CupertinoThemeData getDarkCupertinoTheme(ThemeColor themeColor) {
+  if (themeColor == ThemeColor.protectU) {
+    return getProtectUDarkCupertinoTheme();
+  }
+
   final primaryColor = switch (themeColor) {
     ThemeColor.blue => const Color(0xFF64B5F6),
     ThemeColor.red => const Color(0xFFEF5350),
     ThemeColor.green => const Color(0xFF66BB6A),
     ThemeColor.orange => const Color(0xFFFFB74D),
+    ThemeColor.protectU => const Color(0xFFFFFFFF),
   };
 
   return CupertinoThemeData(

@@ -11,6 +11,10 @@ class AppRouter extends RootStackRouter {
           children: [
             AutoRoute(path: 'avatar', page: AvatarRoute.page),
             AutoRoute(path: 'banner', page: BannerRoute.page),
+            AutoRoute(
+              path: 'bottom-navigation',
+              page: BottomNavigationRoute.page,
+            ),
             AutoRoute(path: 'button', page: ButtonRoute.page, initial: true),
             AutoRoute(path: 'dialog', page: DialogRoute.page),
             AutoRoute(path: 'input', page: InputRoute.page),
