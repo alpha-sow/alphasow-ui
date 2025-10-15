@@ -2,7 +2,7 @@ import 'package:alphasow_ui/alphasow_ui.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:example/main.dart';
 import 'package:example/router.gr.dart';
-import 'package:example/theme.dart';
+import 'package:example/theme/theme.dart';
 import 'package:flutter/material.dart' hide DialogRoute;
 
 @RoutePage()
