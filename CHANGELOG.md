@@ -1,3 +1,17 @@
+# [1.24.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.23.3...v1.24.0) (2025-10-15)
+
+
+### Bug Fixes
+
+* update color theme handling and fix formatting in multiple pages ([ae64fee](https://github.com/alpha-sow/alphasow-ui/commit/ae64feedb292fccd15f0013319a7587943fb1172))
+* update Flutter version to 3.35.5 in deployment workflows ([756e019](https://github.com/alpha-sow/alphasow-ui/commit/756e0194ee74e19115aa806ee64016fb26875735))
+* update version to 1.24.1 in pubspec.yaml ([6bf6123](https://github.com/alpha-sow/alphasow-ui/commit/6bf6123c83732ac0c7e5d673815d8eb01c33a7f9))
+
+
+### Features
+
+* add bottom navigation and fix exemple app color ([e1332de](https://github.com/alpha-sow/alphasow-ui/commit/e1332de6621f102a03683a467f7d8a57e04a6c52))
+
 ## [1.23.3](https://github.com/alpha-sow/alphasow-ui/compare/v1.23.2...v1.23.3) (2025-09-07)
 
 
