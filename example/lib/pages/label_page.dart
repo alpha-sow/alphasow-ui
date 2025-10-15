@@ -27,7 +27,7 @@ class LabelPage extends StatelessWidget {
           title: 'Accept terms and conditions',
           onChanged: (value) {},
           description: 'You agree to our Terms of Service and Privacy Policy.',
-        )
+        ),
       ],
     );
   }
