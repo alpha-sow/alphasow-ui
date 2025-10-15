@@ -37,7 +37,8 @@ class ListTilePage extends StatelessWidget {
               AsListTile(
                 title: const Text('With Subtitle'),
                 subtitle: const Text(
-                    'This is a subtitle with additional information'),
+                  'This is a subtitle with additional information',
+                ),
                 leading: const Icon(Icons.mail),
                 onTap: () => context.showBanner(
                   message: 'List tile with subtitle tapped!',

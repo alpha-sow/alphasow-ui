@@ -181,28 +181,37 @@ class _HomePageState extends State<HomePage> {
                           Container(
                             width: 24,
                             height: 24,
-                            color: getLightTheme(ThemeColor.orange).colorScheme.primary,
+                            color: getLightTheme(ThemeColor.orange)
+                                .colorScheme
+                                .primary,
                           ),
                           Container(
                             width: 24,
                             height: 24,
-                            color: getLightTheme(ThemeColor.orange).colorScheme.secondary,
+                            color: getLightTheme(ThemeColor.orange)
+                                .colorScheme
+                                .secondary,
                           ),
                           Container(
                             width: 24,
                             height: 24,
-                            color: getLightTheme(ThemeColor.orange).colorScheme.tertiary,
+                            color: getLightTheme(ThemeColor.orange)
+                                .colorScheme
+                                .tertiary,
                           ),
                           Container(
                             width: 24,
                             height: 24,
-                            color: getLightTheme(ThemeColor.orange).colorScheme.error,
+                            color: getLightTheme(ThemeColor.orange)
+                                .colorScheme
+                                .error,
                           ),
                         ],
                       ),
                       const SizedBox(width: 12),
                       const Expanded(child: Text('Orange')),
-                      if (ThemeNotifier.of(context)?.currentThemeColor == ThemeColor.orange)
+                      if (ThemeNotifier.of(context)?.currentThemeColor ==
+                          ThemeColor.orange)
                         const Icon(Icons.check, size: 20),
                     ],
                   ),
@@ -219,28 +228,37 @@ class _HomePageState extends State<HomePage> {
                           Container(
                             width: 24,
                             height: 24,
-                            color: getLightTheme(ThemeColor.green).colorScheme.primary,
+                            color: getLightTheme(ThemeColor.green)
+                                .colorScheme
+                                .primary,
                           ),
                           Container(
                             width: 24,
                             height: 24,
-                            color: getLightTheme(ThemeColor.green).colorScheme.secondary,
+                            color: getLightTheme(ThemeColor.green)
+                                .colorScheme
+                                .secondary,
                           ),
                           Container(
                             width: 24,
                             height: 24,
-                            color: getLightTheme(ThemeColor.green).colorScheme.tertiary,
+                            color: getLightTheme(ThemeColor.green)
+                                .colorScheme
+                                .tertiary,
                           ),
                           Container(
                             width: 24,
                             height: 24,
-                            color: getLightTheme(ThemeColor.green).colorScheme.error,
+                            color: getLightTheme(ThemeColor.green)
+                                .colorScheme
+                                .error,
                           ),
                         ],
                       ),
                       const SizedBox(width: 12),
                       const Expanded(child: Text('Green')),
-                      if (ThemeNotifier.of(context)?.currentThemeColor == ThemeColor.green)
+                      if (ThemeNotifier.of(context)?.currentThemeColor ==
+                          ThemeColor.green)
                         const Icon(Icons.check, size: 20),
                     ],
                   ),
@@ -257,28 +275,37 @@ class _HomePageState extends State<HomePage> {
                           Container(
                             width: 24,
                             height: 24,
-                            color: getLightTheme(ThemeColor.blue).colorScheme.primary,
+                            color: getLightTheme(ThemeColor.blue)
+                                .colorScheme
+                                .primary,
                           ),
                           Container(
                             width: 24,
                             height: 24,
-                            color: getLightTheme(ThemeColor.blue).colorScheme.secondary,
+                            color: getLightTheme(ThemeColor.blue)
+                                .colorScheme
+                                .secondary,
                           ),
                           Container(
                             width: 24,
                             height: 24,
-                            color: getLightTheme(ThemeColor.blue).colorScheme.tertiary,
+                            color: getLightTheme(ThemeColor.blue)
+                                .colorScheme
+                                .tertiary,
                           ),
                           Container(
                             width: 24,
                             height: 24,
-                            color: getLightTheme(ThemeColor.blue).colorScheme.error,
+                            color: getLightTheme(ThemeColor.blue)
+                                .colorScheme
+                                .error,
                           ),
                         ],
                       ),
                       const SizedBox(width: 12),
                       const Expanded(child: Text('Blue')),
-                      if (ThemeNotifier.of(context)?.currentThemeColor == ThemeColor.blue)
+                      if (ThemeNotifier.of(context)?.currentThemeColor ==
+                          ThemeColor.blue)
                         const Icon(Icons.check, size: 20),
                     ],
                   ),
@@ -295,28 +322,37 @@ class _HomePageState extends State<HomePage> {
                           Container(
                             width: 24,
                             height: 24,
-                            color: getLightTheme(ThemeColor.protectU).colorScheme.primary,
+                            color: getLightTheme(ThemeColor.protectU)
+                                .colorScheme
+                                .primary,
                           ),
                           Container(
                             width: 24,
                             height: 24,
-                            color: getLightTheme(ThemeColor.protectU).colorScheme.secondary,
+                            color: getLightTheme(ThemeColor.protectU)
+                                .colorScheme
+                                .secondary,
                           ),
                           Container(
                             width: 24,
                             height: 24,
-                            color: getLightTheme(ThemeColor.protectU).colorScheme.tertiary,
+                            color: getLightTheme(ThemeColor.protectU)
+                                .colorScheme
+                                .tertiary,
                           ),
                           Container(
                             width: 24,
                             height: 24,
-                            color: getLightTheme(ThemeColor.protectU).colorScheme.error,
+                            color: getLightTheme(ThemeColor.protectU)
+                                .colorScheme
+                                .error,
                           ),
                         ],
                       ),
                       const SizedBox(width: 12),
                       const Expanded(child: Text('ProtectU')),
-                      if (ThemeNotifier.of(context)?.currentThemeColor == ThemeColor.protectU)
+                      if (ThemeNotifier.of(context)?.currentThemeColor ==
+                          ThemeColor.protectU)
                         const Icon(Icons.check, size: 20),
                     ],
                   ),

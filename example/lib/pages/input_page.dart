@@ -49,7 +49,7 @@ class _InputPageState extends State<InputPage> {
               onPressed: () {
                 context.showBanner(message: _textInputControl.text);
               },
-            )
+            ),
           ],
         ),
         const SizedBox(height: 10),
@@ -65,7 +65,7 @@ class _InputPageState extends State<InputPage> {
               AsButton(
                 child: const Text('Submit'),
                 onPressed: () {},
-              )
+              ),
             ],
           ),
         ),
