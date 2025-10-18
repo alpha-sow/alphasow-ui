@@ -115,6 +115,8 @@ class AsTextField extends StatelessWidget {
     this.canRequestFocus = true,
     this.spellCheckConfiguration,
     this.magnifierConfiguration,
+    this.prefix,
+    this.suffix,
   });
 
   /// The preset input type (email, password) with automatic configuration
@@ -303,6 +305,12 @@ class AsTextField extends StatelessWidget {
   /// Configuration for text magnification
   final TextMagnifierConfiguration? magnifierConfiguration;
 
+  /// Widget to display before the input field
+  final Widget? prefix;
+
+  /// Widget to display after the input field
+  final Widget? suffix;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -321,16 +329,17 @@ class AsTextField extends StatelessWidget {
         else
           const SizedBox.shrink(),
         SizedBox(
-          height: 36,
+          height: 44,
           child: PlatformType.currentPlatform() == PlatformType.cupertino
               ? _CupertinoTextFieldWidget(
                   controller: controller,
                   focusNode: focusNode,
+                  decoration: decoration,
                   keyboardType:
                       keyboardType ?? type?.keyboardType ?? TextInputType.text,
                   textInputAction: textInputAction,
                   textCapitalization: textCapitalization,
-                  style: style ?? const TextStyle(fontSize: 14),
+                  style: style,
                   strutStyle: strutStyle,
                   textAlign: textAlign,
                   textAlignVertical: textAlignVertical,
@@ -370,6 +379,8 @@ class AsTextField extends StatelessWidget {
                   restorationId: restorationId,
                   enableIMEPersonalizedLearning: enableIMEPersonalizedLearning,
                   hintText: hintText,
+                  prefix: prefix,
+                  suffix: suffix,
                 )
               : _MaterialTextFieldWidget(
                   controller: controller,
@@ -431,6 +442,8 @@ class AsTextField extends StatelessWidget {
                   spellCheckConfiguration: spellCheckConfiguration,
                   magnifierConfiguration: magnifierConfiguration,
                   hintText: hintText,
+                  prefix: prefix,
+                  suffix: suffix,
                 ),
         ),
         if (description != null)
@@ -449,6 +462,7 @@ class _CupertinoTextFieldWidget extends StatelessWidget {
   const _CupertinoTextFieldWidget({
     this.controller,
     this.focusNode,
+    this.decoration,
     this.keyboardType,
     this.textInputAction,
     this.textCapitalization = TextCapitalization.none,
@@ -492,10 +506,13 @@ class _CupertinoTextFieldWidget extends StatelessWidget {
     this.restorationId,
     this.enableIMEPersonalizedLearning = true,
     this.hintText,
+    this.prefix,
+    this.suffix,
   });
 
   final TextEditingController? controller;
   final FocusNode? focusNode;
+  final InputDecoration? decoration;
   final TextInputType? keyboardType;
   final TextInputAction? textInputAction;
   final TextCapitalization textCapitalization;
@@ -539,6 +556,102 @@ class _CupertinoTextFieldWidget extends StatelessWidget {
   final String? restorationId;
   final bool enableIMEPersonalizedLearning;
   final String? hintText;
+  final Widget? prefix;
+  final Widget? suffix;
+
+  /// Converts InputDecoration to BoxDecoration for CupertinoTextField
+  BoxDecoration _getBoxDecoration(BuildContext context) {
+    if (decoration != null) {
+      // Extract properties from InputDecoration
+      Border? border;
+      BorderRadius? borderRadius;
+      Color? fillColor;
+      List<BoxShadow>? boxShadow;
+      Gradient? gradient;
+      DecorationImage? image;
+      var shape = BoxShape.rectangle;
+
+      // Get border from enabledBorder, focusedBorder, or border
+      final inputBorder = decoration!.enabledBorder ??
+          decoration!.focusedBorder ??
+          decoration!.border;
+
+      if (inputBorder is OutlineInputBorder) {
+        // Handle OutlineInputBorder
+        final borderSide = inputBorder.borderSide;
+        border = Border.all(
+          color: borderSide.color,
+          width: borderSide.width,
+          style: borderSide.style == BorderStyle.none
+              ? BorderStyle.none
+              : BorderStyle.solid,
+          strokeAlign: borderSide.strokeAlign,
+        );
+        borderRadius = inputBorder.borderRadius;
+      } else if (inputBorder is UnderlineInputBorder) {
+        // Handle UnderlineInputBorder
+        final borderSide = inputBorder.borderSide;
+        border = Border(
+          bottom: BorderSide(
+            color: borderSide.color,
+            width: borderSide.width,
+            style: borderSide.style,
+            strokeAlign: borderSide.strokeAlign,
+          ),
+        );
+        borderRadius = inputBorder.borderRadius;
+      } else if (inputBorder != null && inputBorder != InputBorder.none) {
+        // Handle other border types (treat as outline)
+        border = Border.all(
+          color: CupertinoColors.systemGrey4,
+        );
+      }
+
+      // Get fill color
+      if (decoration!.filled ?? false) {
+        fillColor = decoration!.fillColor;
+      }
+
+      // Add subtle shadow if there's a border and fill
+      if (border != null && fillColor != null) {
+        boxShadow = [
+          BoxShadow(
+            color: CupertinoColors.systemGrey.withOpacity(0.1),
+            blurRadius: 2,
+            offset: const Offset(0, 1),
+          ),
+        ];
+      }
+
+      // Determine shape based on borderRadius
+      if (borderRadius != null) {
+        shape = BoxShape.rectangle;
+      }
+
+      return BoxDecoration(
+        color: fillColor,
+        border: border ??
+            Border.all(
+              color: CupertinoColors.systemGrey4,
+            ),
+        borderRadius: shape == BoxShape.rectangle
+            ? borderRadius ?? BorderRadius.circular(8)
+            : null,
+        boxShadow: boxShadow,
+        gradient: gradient,
+        image: image,
+        shape: shape,
+      );
+    }
+
+    // Default decoration
+    return BoxDecoration(
+      border: Border.all(
+        color: CupertinoColors.systemGrey4,
+      ),
+      borderRadius: BorderRadius.circular(8),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -548,8 +661,8 @@ class _CupertinoTextFieldWidget extends StatelessWidget {
       keyboardType: keyboardType,
       textInputAction: textInputAction,
       textCapitalization: textCapitalization,
-      style: style,
-      strutStyle: strutStyle,
+      style: style ?? const TextStyle(fontSize: 14),
+      strutStyle: strutStyle ?? const StrutStyle(height: 1.4),
       textAlign: textAlign,
       textAlignVertical: textAlignVertical,
       textDirection: textDirection,
@@ -573,7 +686,7 @@ class _CupertinoTextFieldWidget extends StatelessWidget {
       inputFormatters: inputFormatters,
       enabled: enabled ?? true,
       cursorWidth: cursorWidth,
-      cursorHeight: cursorHeight ?? 14,
+      cursorHeight: cursorHeight ?? 20,
       cursorRadius: cursorRadius ?? const Radius.circular(2),
       cursorColor: cursorColor,
       keyboardAppearance: keyboardAppearance ?? Brightness.light,
@@ -588,13 +701,20 @@ class _CupertinoTextFieldWidget extends StatelessWidget {
       restorationId: restorationId,
       enableIMEPersonalizedLearning: enableIMEPersonalizedLearning,
       placeholder: hintText,
-      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 14),
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: CupertinoColors.systemGrey4,
-        ),
-        borderRadius: BorderRadius.circular(8),
-      ),
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 14),
+      decoration: enabled ?? true ? _getBoxDecoration(context) : null,
+      prefix: prefix != null
+          ? Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: prefix,
+            )
+          : null,
+      suffix: suffix != null
+          ? Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: suffix,
+            )
+          : null,
     );
   }
 }
@@ -659,6 +779,8 @@ class _MaterialTextFieldWidget extends StatelessWidget {
     this.spellCheckConfiguration,
     this.magnifierConfiguration,
     this.hintText,
+    this.prefix,
+    this.suffix,
   });
 
   final TextEditingController? controller;
@@ -719,6 +841,8 @@ class _MaterialTextFieldWidget extends StatelessWidget {
   final SpellCheckConfiguration? spellCheckConfiguration;
   final TextMagnifierConfiguration? magnifierConfiguration;
   final String? hintText;
+  final Widget? prefix;
+  final Widget? suffix;
 
   @override
   Widget build(BuildContext context) {
@@ -754,7 +878,7 @@ class _MaterialTextFieldWidget extends StatelessWidget {
       inputFormatters: inputFormatters,
       enabled: enabled,
       cursorWidth: cursorWidth,
-      cursorHeight: cursorHeight ?? 14,
+      cursorHeight: cursorHeight ?? 20,
       cursorRadius: cursorRadius,
       cursorColor: cursorColor,
       selectionHeightStyle: selectionHeightStyle,
@@ -782,7 +906,7 @@ class _MaterialTextFieldWidget extends StatelessWidget {
       decoration: decoration ??
           InputDecoration(
             contentPadding: const EdgeInsets.symmetric(
-              vertical: 4,
+              vertical: 8,
               horizontal: 14,
             ),
             fillColor: Theme.of(context).colorScheme.surface,
@@ -802,6 +926,8 @@ class _MaterialTextFieldWidget extends StatelessWidget {
                   color: Theme.of(context).colorScheme.primary, width: 1.5),
               borderRadius: BorderRadius.circular(8),
             ),
+            suffixIcon: suffix,
+            prefixIcon: prefix,
           ),
     );
   }

@@ -3,6 +3,7 @@ export 'alphasow_ui_app.dart';
 export 'button/button.dart';
 export 'checkbox/checkbox.dart';
 export 'components/components.dart';
+export 'form/form.dart';
 export 'label/label.dart';
 export 'loader/loader.dart';
 export 'menu/menu.dart';
