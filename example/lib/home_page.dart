@@ -367,8 +367,10 @@ class _HomePageState extends State<HomePage> {
         children: [
           if (isLargeScreen)
             AsMenuDrawer(
-              width: 180,
+              width: 220,
               items: drawerItems,
+              resizable: true,
+              isOverlay: true,
             ),
           Expanded(
             child: AutoTabsScaffold(

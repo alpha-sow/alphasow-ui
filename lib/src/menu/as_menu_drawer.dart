@@ -12,6 +12,7 @@ extension AsMenuDrawerContext on BuildContext {
   /// [footer] Optional footer widget to display at the bottom
   /// [barrierDismissible] Whether tapping outside closes the drawer (defaults to true)
   /// [barrierColor] Color of the barrier behind the drawer (defaults to semi-transparent black)
+  /// [resizable] Whether the drawer can be resized by dragging its edge (defaults to false)
   void showAsMenuDrawer({
     required List<AsMenuDrawerItem> items,
     double width = 280.0,
@@ -19,6 +20,7 @@ extension AsMenuDrawerContext on BuildContext {
     Widget? footer,
     bool barrierDismissible = true,
     Color? barrierColor,
+    bool resizable = false,
   }) {
     final overlay = Overlay.of(this);
     late OverlayEntry overlayEntry;
@@ -31,6 +33,7 @@ extension AsMenuDrawerContext on BuildContext {
           header: header,
           footer: footer,
           isOverlay: true,
+          resizable: resizable,
           onDismiss: () => overlayEntry.remove(),
         ),
         onDismiss: () => overlayEntry.remove(),
@@ -40,6 +43,74 @@ extension AsMenuDrawerContext on BuildContext {
     );
 
     overlay.insert(overlayEntry);
+  }
+}
+
+class _DrawerContent extends StatelessWidget {
+  const _DrawerContent({
+    required this.items,
+    required this.width,
+    this.header,
+    this.footer,
+    this.onDismiss,
+  });
+
+  final List<AsMenuDrawerItem> items;
+  final double width;
+  final Widget? header;
+  final Widget? footer;
+  final VoidCallback? onDismiss;
+
+  @override
+  Widget build(BuildContext context) {
+    final platformType = PlatformType.currentPlatform();
+    final isCupertino = platformType == PlatformType.cupertino;
+
+    return Container(
+      width: width,
+      clipBehavior: Clip.hardEdge,
+      decoration: BoxDecoration(
+        color: isCupertino
+            ? CupertinoTheme.of(context).scaffoldBackgroundColor
+            : Theme.of(context).colorScheme.surface,
+        border: Border(
+          right: BorderSide(
+            color: isCupertino
+                ? CupertinoColors.separator
+                : Theme.of(context).colorScheme.outlineVariant,
+            width: 0.5,
+          ),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.1),
+            blurRadius: 8,
+            offset: const Offset(2, 0),
+          ),
+        ],
+      ),
+      child: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            if (header != null) header!,
+            Expanded(
+              child: ListView(
+                padding: EdgeInsets.zero,
+                children: [
+                  for (final item in items)
+                    _DrawerItemWidget(
+                      item: item,
+                      onDismiss: onDismiss,
+                    ),
+                ],
+              ),
+            ),
+            if (footer != null) footer!,
+          ],
+        ),
+      ),
+    );
   }
 }
 
@@ -60,14 +131,83 @@ class _DrawerOverlay extends StatefulWidget {
   State<_DrawerOverlay> createState() => _DrawerOverlayState();
 }
 
+class _ResizeHandle extends StatefulWidget {
+  const _ResizeHandle({
+    required this.onWidthChanged,
+    required this.currentWidth,
+  });
+
+  final ValueChanged<double> onWidthChanged;
+  final double currentWidth;
+
+  @override
+  State<_ResizeHandle> createState() => _ResizeHandleState();
+}
+
+class _ResizeHandleState extends State<_ResizeHandle> {
+  static const double _minWidth = 200;
+  static const double _maxWidth = 500;
+  bool _isHovering = false;
+
+  void _handleDragUpdate(DragUpdateDetails details) {
+    final newWidth =
+        (widget.currentWidth + details.delta.dx).clamp(_minWidth, _maxWidth);
+    widget.onWidthChanged(newWidth);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final platformType = PlatformType.currentPlatform();
+    final isCupertino = platformType == PlatformType.cupertino;
+
+    return MouseRegion(
+      cursor: SystemMouseCursors.resizeColumn,
+      onEnter: (_) => setState(() => _isHovering = true),
+      onExit: (_) => setState(() => _isHovering = false),
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onHorizontalDragUpdate: _handleDragUpdate,
+        child: Container(
+          width: 16,
+          color: _isHovering
+              ? (isCupertino
+                  ? CupertinoColors.systemGrey.withValues(alpha: 0.2)
+                  : Theme.of(context).colorScheme.primary.withValues(alpha: 0.1))
+              : Colors.transparent,
+          child: Center(
+            child: Container(
+              width: 3,
+              decoration: BoxDecoration(
+                color: _isHovering
+                    ? (isCupertino
+                        ? CupertinoColors.systemGrey
+                        : Theme.of(context).colorScheme.primary)
+                    : (isCupertino
+                        ? CupertinoColors.separator
+                        : Theme.of(context)
+                            .colorScheme
+                            .outlineVariant
+                            .withValues(alpha: 0.5)),
+                borderRadius: BorderRadius.circular(1.5),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class _DrawerOverlayState extends State<_DrawerOverlay>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
+  late double _drawerWidth;
 
   @override
   void initState() {
     super.initState();
+    _drawerWidth = widget.drawer.width;
     _animationController = AnimationController(
       duration: const Duration(milliseconds: 250),
       vsync: this,
@@ -122,16 +262,44 @@ class _DrawerOverlayState extends State<_DrawerOverlay>
                 left: 0,
                 top: 0,
                 bottom: 0,
-                width: widget.drawer.width,
+                width: _drawerWidth,
                 child: SlideTransition(
                   position: Tween<Offset>(
                     begin: const Offset(-1, 0),
                     end: Offset.zero,
                   ).animate(_animationController),
-                  child: GestureDetector(
-                    onTap: () {}, // Prevent taps from going through to barrier
-                    child: widget.drawer,
-                  ),
+                  child: widget.drawer.resizable
+                      ? Stack(
+                          children: [
+                            Positioned(
+                              left: 0,
+                              top: 0,
+                              bottom: 0,
+                              right: 16,
+                              child: _DrawerContent(
+                                items: widget.drawer.items,
+                                width: _drawerWidth - 16,
+                                header: widget.drawer.header,
+                                footer: widget.drawer.footer,
+                                onDismiss: widget.drawer.onDismiss,
+                              ),
+                            ),
+                            Positioned(
+                              right: 0,
+                              top: 0,
+                              bottom: 0,
+                              child: _ResizeHandle(
+                                onWidthChanged: (newWidth) {
+                                  setState(() {
+                                    _drawerWidth = newWidth;
+                                  });
+                                },
+                                currentWidth: _drawerWidth,
+                              ),
+                            ),
+                          ],
+                        )
+                      : widget.drawer,
                 ),
               ),
             ],
@@ -155,6 +323,7 @@ class AsMenuDrawer extends StatelessWidget {
   /// [header] Optional header widget to display at the top
   /// [footer] Optional footer widget to display at the bottom
   /// [isOverlay] Whether this drawer is used in an overlay (defaults to false)
+  /// [resizable] Whether the drawer can be resized by dragging its edge (defaults to false)
   const AsMenuDrawer({
     required this.items,
     super.key,
@@ -162,6 +331,7 @@ class AsMenuDrawer extends StatelessWidget {
     this.header,
     this.footer,
     this.isOverlay = false,
+    this.resizable = false,
     this.onDismiss,
   });
 
@@ -180,6 +350,9 @@ class AsMenuDrawer extends StatelessWidget {
   /// Whether this drawer is used in an overlay
   final bool isOverlay;
 
+  /// Whether the drawer can be resized by dragging its edge
+  final bool resizable;
+
   /// Callback to dismiss the drawer (used for overlay mode)
   final VoidCallback? onDismiss;
 
@@ -188,57 +361,20 @@ class AsMenuDrawer extends StatelessWidget {
     final platformType = PlatformType.currentPlatform();
     final isCupertino = platformType == PlatformType.cupertino;
 
-    final drawerContent = Container(
+    final content = _DrawerContent(
+      items: items,
       width: width,
-      decoration: BoxDecoration(
-        color: isCupertino
-            ? CupertinoTheme.of(context).scaffoldBackgroundColor
-            : Theme.of(context).colorScheme.surface,
-        border: Border(
-          right: BorderSide(
-            color: isCupertino
-                ? CupertinoColors.separator
-                : Theme.of(context).colorScheme.outlineVariant,
-            width: 0.5,
-          ),
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.1),
-            blurRadius: 8,
-            offset: const Offset(2, 0),
-          ),
-        ],
-      ),
-      child: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            if (header != null) header!,
-            Expanded(
-              child: ListView(
-                padding: EdgeInsets.zero,
-                children: [
-                  for (final item in items)
-                    _DrawerItemWidget(
-                      item: item,
-                      onDismiss: onDismiss,
-                    ),
-                ],
-              ),
-            ),
-            if (footer != null) footer!,
-          ],
-        ),
-      ),
+      header: header,
+      footer: footer,
+      onDismiss: onDismiss,
     );
 
     if (isOverlay || isCupertino) {
-      return drawerContent;
+      return content;
     } else {
       return Drawer(
         width: width,
-        child: drawerContent,
+        child: content,
       );
     }
   }
