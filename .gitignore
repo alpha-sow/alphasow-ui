@@ -35,3 +35,5 @@ CLAUDE.md
 docs/node_modules/
 docs/package-lock.json
 docs/.npm/
+node_modules
+package-lock.json
