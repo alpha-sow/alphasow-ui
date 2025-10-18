@@ -3,22 +3,22 @@
   "plugins": [
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",
-    "@semantic-release/changelog",
+    [
+      "@semantic-release/changelog",
+      {
+        "changelogFile": "CHANGELOG.md"
+      }
+    ],
     [
       "@semantic-release/exec",
       {
-        "prepareCmd": "echo 'Updating version to ${nextRelease.version}' && sed -i.bak 's/version: .*/version: ${nextRelease.version}/' pubspec.yaml && rm pubspec.yaml.bak && echo 'Updated pubspec.yaml' && sed -i.bak 's/alphasow_ui: \\^[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+/alphasow_ui: ^${nextRelease.version}/' README.md && rm README.md.bak && echo 'Updated README.md dependency' && sed -i.bak 's/version-[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+-blue/version-${nextRelease.version}-blue/' README.md && rm README.md.bak && echo 'Updated README.md version badge' && sed -i.bak 's/alphasow_ui: \\^[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+/alphasow_ui: ^${nextRelease.version}/' docs/docs/intro.md && rm docs/docs/intro.md.bak && echo 'Updated docs/docs/intro.md'"
+        "prepareCmd": "./scripts/update_version.sh ${nextRelease.version}"
       }
     ],
     [
       "@semantic-release/git",
       {
-        "assets": [
-          "pubspec.yaml",
-          "CHANGELOG.md",
-          "README.md",
-          "docs/docs/intro.md"
-        ],
+        "assets": ["pubspec.yaml", "README.md", "CHANGELOG.md", "package.json"],
         "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
       }
     ],
