@@ -1,3 +1,11 @@
+# [1.25.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.24.0...v1.25.0) (2025-10-18)
+
+
+### Features
+
+* add AsForm and AsTextFormField components with validation support and update documentation ([419092c](https://github.com/alpha-sow/alphasow-ui/commit/419092cbb0036ee15126636e0e257ef8610705b0))
+* add form validation support with AsForm and AsTextFormField components ([2685510](https://github.com/alpha-sow/alphasow-ui/commit/2685510da6a5123442cec6af971d3f9aebd4ffe7))
+
 # [1.24.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.23.3...v1.24.0) (2025-10-15)
 
 

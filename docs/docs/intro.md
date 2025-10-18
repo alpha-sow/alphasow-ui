@@ -27,7 +27,7 @@ Add Alphasow UI to your Flutter project by adding it to your `pubspec.yaml` file
 
 ```yaml
 dependencies:
-  alphasow_ui: ^1.24.0
+  alphasow_ui: ^1.25.0
 ```
 
 Then run:
