@@ -34,6 +34,8 @@ const sidebars: SidebarsConfig = {
           type: 'category',
           label: 'Forms',
           items: [
+            'components/forms/as-form',
+            'components/forms/as-text-form-field',
             'components/forms/as-text-field',
             'components/forms/as-checkbox',
           ],
