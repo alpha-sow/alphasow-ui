@@ -1,3 +1,10 @@
+## [1.25.1](https://github.com/alpha-sow/alphasow-ui/compare/v1.25.0...v1.25.1) (2026-02-07)
+
+
+### Bug Fixes
+
+* use flex_color_scheme ([80f1032](https://github.com/alpha-sow/alphasow-ui/commit/80f10327f415a98184049b26c5718840034b8d77))
+
 # [1.25.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.24.0...v1.25.0) (2025-10-18)
 
 
