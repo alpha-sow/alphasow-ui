@@ -92,13 +92,78 @@ class HomeScreen extends StatelessWidget {
 }
 ```
 
+## Theming
+
+### Simple Theming
+
+Use `AsTheme` with a primary color and brightness:
+
+```dart
+AlphasowUiApp(
+  asTheme: AsTheme(
+    primaryColor: Colors.indigo,
+    brightness: Brightness.light,
+  ),
+  home: const HomeScreen(),
+)
+```
+
+### Advanced Theming with FlexColorScheme
+
+For richer theming, pass pre-built `ThemeData` via `materialTheme` and `darkMaterialTheme`. This works with any theme generator, such as [FlexColorScheme](https://pub.dev/packages/flex_color_scheme):
+
+```dart
+AlphasowUiApp(
+  asTheme: AsTheme(
+    brightness: brightness,
+    materialTheme: FlexThemeData.light(
+      scheme: FlexScheme.shadRed,
+      subThemesData: const FlexSubThemesData(
+        interactionEffects: true,
+        inputDecoratorBorderType: FlexInputBorderType.outline,
+      ),
+      visualDensity: FlexColorScheme.comfortablePlatformDensity,
+      cupertinoOverrideTheme:
+          const CupertinoThemeData(applyThemeToAll: true),
+    ),
+    darkMaterialTheme: FlexThemeData.dark(
+      scheme: FlexScheme.shadRed,
+      subThemesData: const FlexSubThemesData(
+        interactionEffects: true,
+        blendOnColors: true,
+        inputDecoratorBorderType: FlexInputBorderType.outline,
+      ),
+      visualDensity: FlexColorScheme.comfortablePlatformDensity,
+      cupertinoOverrideTheme:
+          const CupertinoThemeData(applyThemeToAll: true),
+    ),
+  ),
+  home: const HomeScreen(),
+)
+```
+
+You can also pass a custom `CupertinoThemeData` via the `cupertinoTheme` parameter when running on iOS/macOS.
+
+### AsTheme Properties
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `primaryColor` | `Color` | `Color(0xFF2196F3)` | Primary color for generated themes |
+| `brightness` | `Brightness` | `Brightness.light` | Light or dark mode |
+| `colorSchemeSeed` | `Color?` | null | Seed color for Material 3 `ColorScheme.fromSeed` |
+| `materialTheme` | `ThemeData?` | null | Pre-built light Material theme |
+| `darkMaterialTheme` | `ThemeData?` | null | Pre-built dark Material theme |
+| `cupertinoTheme` | `CupertinoThemeData?` | null | Pre-built Cupertino theme |
+
+When `materialTheme` or `darkMaterialTheme` is provided, `AsTheme` returns it directly instead of generating a theme from `primaryColor`.
+
 ## Key Features Enabled
 
 By using `AlphasowUiApp`, you automatically get:
 
 - **Platform adaptation** - Components switch between Material and Cupertino styles
 - **Banner system** - Global notification overlay via `context.showBanner()`
-- **Consistent theming** - Centralized theme management
+- **Consistent theming** - Centralized theme management with support for pre-built themes
 - **Accessibility support** - Built-in screen reader and keyboard navigation
 
 ## Next Steps

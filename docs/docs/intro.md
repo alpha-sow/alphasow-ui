@@ -113,7 +113,33 @@ class HomePage extends StatelessWidget {
 }
 ```
 
-### 3. Platform Adaptation
+### 3. Customize Your Theme
+
+Use `AsTheme` for simple color-based theming:
+
+```dart
+AlphasowUiApp(
+  asTheme: AsTheme(
+    primaryColor: Colors.green,
+    brightness: Brightness.dark,
+  ),
+  home: const HomePage(),
+)
+```
+
+Or pass pre-built `ThemeData` for advanced theming (e.g. with [FlexColorScheme](https://pub.dev/packages/flex_color_scheme)):
+
+```dart
+AlphasowUiApp(
+  asTheme: AsTheme(
+    materialTheme: FlexThemeData.light(scheme: FlexScheme.shadRed),
+    darkMaterialTheme: FlexThemeData.dark(scheme: FlexScheme.shadRed),
+  ),
+  home: const HomePage(),
+)
+```
+
+### 4. Platform Adaptation
 
 Alphasow UI automatically adapts to your platform:
 
