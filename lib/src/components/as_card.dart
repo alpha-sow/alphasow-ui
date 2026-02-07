@@ -98,7 +98,7 @@ class AsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final effectivePlatformType = PlatformType.currentPlatform();
+    final effectivePlatformType = PlatformType.of(context);
 
     var cardChild = child;
 
@@ -229,7 +229,7 @@ class AsCardHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final effectivePlatformType = PlatformType.currentPlatform();
+    final effectivePlatformType = PlatformType.of(context);
     final effectivePadding = padding ?? const EdgeInsets.all(16);
 
     return Padding(

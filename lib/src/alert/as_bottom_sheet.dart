@@ -22,7 +22,7 @@ extension ShowAsBottomSheet on BuildContext {
     List<AsDialogAction>? actions,
     AsDialogAction? cancelAction,
   }) {
-    return switch (PlatformType.currentPlatform()) {
+    return switch (PlatformType.of(this)) {
       PlatformType.cupertino => showCupertinoModalPopup<T>(
           context: this,
           builder: (BuildContext context) => CupertinoActionSheet(

@@ -1,7 +1,6 @@
 import 'package:alphasow_ui/alphasow_ui.dart';
 import 'package:example/router.dart';
 import 'package:example/theme/theme.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MyApp extends StatefulWidget {
@@ -30,25 +29,15 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    ThemeData effectiveTheme;
-    CupertinoThemeData effectiveCupertinoTheme;
+    final Brightness brightness;
 
     switch (_themeMode) {
       case ThemeMode.dark:
-        effectiveTheme = getDarkTheme(_themeColor);
-        effectiveCupertinoTheme = getDarkCupertinoTheme(_themeColor);
+        brightness = Brightness.dark;
       case ThemeMode.light:
-        effectiveTheme = getLightTheme(_themeColor);
-        effectiveCupertinoTheme = getLightCupertinoTheme(_themeColor);
+        brightness = Brightness.light;
       case ThemeMode.system:
-        final brightness = MediaQuery.platformBrightnessOf(context);
-        if (brightness == Brightness.dark) {
-          effectiveTheme = getDarkTheme(_themeColor);
-          effectiveCupertinoTheme = getDarkCupertinoTheme(_themeColor);
-        } else {
-          effectiveTheme = getLightTheme(_themeColor);
-          effectiveCupertinoTheme = getLightCupertinoTheme(_themeColor);
-        }
+        brightness = MediaQuery.platformBrightnessOf(context);
     }
 
     return ThemeNotifier(
@@ -56,10 +45,10 @@ class _MyAppState extends State<MyApp> {
       changeColor: changeColor,
       currentThemeColor: _themeColor,
       child: AlphasowUiApp(
+        platformMode: AsPlatformMode.material,
         debugShowCheckedModeBanner: false,
         title: 'Alphasow UI Example',
-        theme: effectiveTheme,
-        cupertinoTheme: effectiveCupertinoTheme,
+        asTheme: getAsTheme(_themeColor, brightness),
         routerConfig: _appRouter.config(),
       ),
     );

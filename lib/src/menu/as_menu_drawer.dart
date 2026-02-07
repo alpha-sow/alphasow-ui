@@ -97,7 +97,7 @@ class _DrawerOverlayState extends State<_DrawerOverlay>
 
   @override
   Widget build(BuildContext context) {
-    final platformType = PlatformType.currentPlatform();
+    final platformType = PlatformType.of(context);
     final isCupertino = platformType == PlatformType.cupertino;
 
     return GestureDetector(
@@ -185,7 +185,7 @@ class AsMenuDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final platformType = PlatformType.currentPlatform();
+    final platformType = PlatformType.of(context);
     final isCupertino = platformType == PlatformType.cupertino;
 
     final drawerContent = Container(
@@ -346,7 +346,7 @@ class _HeaderDrawerItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final platformType = PlatformType.currentPlatform();
+    final platformType = PlatformType.of(context);
     final isCupertino = platformType == PlatformType.cupertino;
     final theme = Theme.of(context);
 

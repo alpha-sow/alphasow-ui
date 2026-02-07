@@ -25,7 +25,7 @@ extension AsAlertDialog on BuildContext {
         builder: (BuildContext context) {
           return ColoredBox(
             color: Colors.black54,
-            child: switch (PlatformType.currentPlatform()) {
+            child: switch (PlatformType.of(this)) {
               PlatformType.cupertino => CupertinoAlertDialog(
                   title: title,
                   content: Container(
@@ -82,7 +82,7 @@ class AsDialogAction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return switch (PlatformType.currentPlatform()) {
+    return switch (PlatformType.of(context)) {
       PlatformType.cupertino => CupertinoDialogAction(
           onPressed: onPressed,
           isDefaultAction: isDefaultAction,

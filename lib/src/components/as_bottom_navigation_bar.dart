@@ -195,7 +195,7 @@ class AsBottomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    switch (PlatformType.currentPlatform()) {
+    switch (PlatformType.of(context)) {
       case PlatformType.cupertino:
         return _buildCupertinoTabBar(context);
       case PlatformType.material:
@@ -206,7 +206,7 @@ class AsBottomNavigationBar extends StatelessWidget {
   /// Gets the platform-specific navigation bar widget.
   /// Returns [CupertinoTabBar] on Cupertino platforms and [BottomNavigationBar] on Material platforms.
   Widget getPlatformWidget(BuildContext context) {
-    switch (PlatformType.currentPlatform()) {
+    switch (PlatformType.of(context)) {
       case PlatformType.cupertino:
         return _buildCupertinoTabBar(context);
       case PlatformType.material:

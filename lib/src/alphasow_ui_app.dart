@@ -1,4 +1,6 @@
 import 'package:alphasow_ui/src/alert/as_alert_banner.dart';
+import 'package:alphasow_ui/src/theme/as_platform_mode.dart';
+import 'package:alphasow_ui/src/theme/as_theme.dart';
 import 'package:alphasow_ui/utils/platform.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -21,8 +23,8 @@ class AlphasowUiApp extends StatelessWidget {
   /// [routes] The application's top-level routing table
   /// [initialRoute] The name of the first route to show
   /// [routerConfig] Router configuration for declarative routing (e.g., GoRouter)
-  /// [theme] The Material theme to use for the app (defaults to blue theme)
-  /// [cupertinoTheme] The Cupertino theme to use for iOS (optional)
+  /// [asTheme] Unified theme configuration that generates both Material and
+  /// Cupertino themes automatically
   /// [locale] The locale to use for the app
   /// [supportedLocales] The list of locales supported by the app
   ///
@@ -41,8 +43,8 @@ class AlphasowUiApp extends StatelessWidget {
     this.builder,
     this.title = '',
     this.onGenerateTitle,
-    this.theme,
-    this.cupertinoTheme,
+    this.asTheme = const AsTheme(),
+    this.platformMode = AsPlatformMode.adaptive,
     this.locale,
     this.localizationsDelegates,
     this.localeListResolutionCallback,
@@ -91,11 +93,16 @@ class AlphasowUiApp extends StatelessWidget {
   /// Generates the app title based on the current locale
   final GenerateAppTitle? onGenerateTitle;
 
-  /// The Material theme to use for the app (defaults to blue theme if null)
-  final ThemeData? theme;
+  /// Unified theme configuration that generates both Material and Cupertino
+  /// themes automatically.
+  final AsTheme asTheme;
 
-  /// The Cupertino theme to use for iOS (optional)
-  final CupertinoThemeData? cupertinoTheme;
+  /// Controls which design language the app uses.
+  ///
+  /// - [AsPlatformMode.adaptive] — auto-detect (default)
+  /// - [AsPlatformMode.material] — always Material
+  /// - [AsPlatformMode.cupertino] — always Cupertino
+  final AsPlatformMode platformMode;
 
   /// The initial locale for the app
   final Locale? locale;
@@ -138,19 +145,15 @@ class AlphasowUiApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final platformType = PlatformType.currentPlatform();
-    final isCupertino = platformType == PlatformType.cupertino;
+    final isCupertino = switch (platformMode) {
+      AsPlatformMode.material => false,
+      AsPlatformMode.cupertino => true,
+      AsPlatformMode.adaptive =>
+        PlatformType.currentPlatform() == PlatformType.cupertino,
+    };
 
-    final appTheme = theme ??
-        ThemeData(
-          primarySwatch: Colors.blue,
-          primaryColor: const Color(0xFF2196F3),
-        );
-
-    final appCupertinoTheme = cupertinoTheme ??
-        const CupertinoThemeData(
-          primaryColor: Color(0xFF2196F3),
-        );
+    final appTheme = asTheme.toMaterialTheme();
+    final appCupertinoTheme = asTheme.toCupertinoTheme();
 
     final Widget app = routerConfig != null
         ? WidgetsApp.router(
@@ -247,18 +250,28 @@ class AlphasowUiApp extends StatelessWidget {
                     _defaultPageRouteBuilder<T>(settings, builder, isCupertino),
           );
 
+    final resolvedPlatform = isCupertino
+        ? PlatformType.cupertino
+        : PlatformType.material;
+
     if (isCupertino) {
-      return Theme(
-        data: appTheme,
-        child: CupertinoTheme(
-          data: appCupertinoTheme,
-          child: app,
+      return AsPlatformProvider(
+        platformType: resolvedPlatform,
+        child: Theme(
+          data: appTheme,
+          child: CupertinoTheme(
+            data: appCupertinoTheme,
+            child: app,
+          ),
         ),
       );
     } else {
-      return Theme(
-        data: appTheme,
-        child: app,
+      return AsPlatformProvider(
+        platformType: resolvedPlatform,
+        child: Theme(
+          data: appTheme,
+          child: app,
+        ),
       );
     }
   }

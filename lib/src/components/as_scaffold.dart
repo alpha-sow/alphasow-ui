@@ -178,7 +178,7 @@ class AsScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    switch (PlatformType.currentPlatform()) {
+    switch (PlatformType.of(context)) {
       case PlatformType.cupertino:
         if (bottomNavigationBar != null) {
           final cupertinoTabBar = bottomNavigationBar!
@@ -188,7 +188,7 @@ class AsScaffold extends StatelessWidget {
             tabBuilder: (context, index) {
               return CupertinoPageScaffold(
                 navigationBar:
-                    appBar?.adaptive as ObstructingPreferredSizeWidget?,
+                    appBar?.adaptiveOf(context) as ObstructingPreferredSizeWidget?,
                 backgroundColor: backgroundColor,
                 resizeToAvoidBottomInset: resizeToAvoidBottomInset ?? true,
                 child: body ?? const SizedBox.shrink(),
@@ -197,7 +197,7 @@ class AsScaffold extends StatelessWidget {
           );
         }
         return CupertinoPageScaffold(
-          navigationBar: appBar?.adaptive as ObstructingPreferredSizeWidget?,
+          navigationBar: appBar?.adaptiveOf(context) as ObstructingPreferredSizeWidget?,
           backgroundColor: backgroundColor,
           resizeToAvoidBottomInset: resizeToAvoidBottomInset ?? true,
           child: Column(
@@ -209,7 +209,7 @@ class AsScaffold extends StatelessWidget {
         );
       case PlatformType.material:
         return Scaffold(
-          appBar: appBar?.adaptive,
+          appBar: appBar?.adaptiveOf(context),
           body: body,
           floatingActionButton: floatingActionButton,
           floatingActionButtonLocation: floatingActionButtonLocation,

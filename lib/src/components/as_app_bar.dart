@@ -228,8 +228,8 @@ class AsAppBar {
   final EdgeInsetsDirectional? padding;
 
   /// App bar that adapts to the current platform.
-  PreferredSizeWidget get adaptive {
-    switch (PlatformType.currentPlatform()) {
+  PreferredSizeWidget adaptiveOf(BuildContext context) {
+    switch (PlatformType.of(context)) {
       case PlatformType.cupertino:
         return CupertinoNavigationBar(
           middle: middle ?? title,

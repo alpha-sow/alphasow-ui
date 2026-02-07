@@ -330,7 +330,7 @@ class AsTextField extends StatelessWidget {
           const SizedBox.shrink(),
         SizedBox(
           height: 44,
-          child: PlatformType.currentPlatform() == PlatformType.cupertino
+          child: PlatformType.of(context) == PlatformType.cupertino
               ? _CupertinoTextFieldWidget(
                   controller: controller,
                   focusNode: focusNode,

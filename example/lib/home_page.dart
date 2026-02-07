@@ -132,7 +132,7 @@ class _HomePageState extends State<HomePage> {
                   onPressed: () => context.showAsMenuDrawer(
                     header: const AsAppBar(
                       title: Text('Widget'),
-                    ).adaptive,
+                    ).adaptiveOf(context),
                     items: drawerItems,
                   ),
                 ),
@@ -181,30 +181,38 @@ class _HomePageState extends State<HomePage> {
                           Container(
                             width: 24,
                             height: 24,
-                            color: getLightTheme(ThemeColor.orange)
-                                .colorScheme
-                                .primary,
+                            color:
+                                getAsTheme(ThemeColor.orange, Brightness.light)
+                                    .toMaterialTheme()
+                                    .colorScheme
+                                    .primary,
                           ),
                           Container(
                             width: 24,
                             height: 24,
-                            color: getLightTheme(ThemeColor.orange)
-                                .colorScheme
-                                .secondary,
+                            color:
+                                getAsTheme(ThemeColor.orange, Brightness.light)
+                                    .toMaterialTheme()
+                                    .colorScheme
+                                    .secondary,
                           ),
                           Container(
                             width: 24,
                             height: 24,
-                            color: getLightTheme(ThemeColor.orange)
-                                .colorScheme
-                                .tertiary,
+                            color:
+                                getAsTheme(ThemeColor.orange, Brightness.light)
+                                    .toMaterialTheme()
+                                    .colorScheme
+                                    .tertiary,
                           ),
                           Container(
                             width: 24,
                             height: 24,
-                            color: getLightTheme(ThemeColor.orange)
-                                .colorScheme
-                                .error,
+                            color:
+                                getAsTheme(ThemeColor.orange, Brightness.light)
+                                    .toMaterialTheme()
+                                    .colorScheme
+                                    .error,
                           ),
                         ],
                       ),
@@ -228,30 +236,38 @@ class _HomePageState extends State<HomePage> {
                           Container(
                             width: 24,
                             height: 24,
-                            color: getLightTheme(ThemeColor.green)
-                                .colorScheme
-                                .primary,
+                            color:
+                                getAsTheme(ThemeColor.green, Brightness.light)
+                                    .toMaterialTheme()
+                                    .colorScheme
+                                    .primary,
                           ),
                           Container(
                             width: 24,
                             height: 24,
-                            color: getLightTheme(ThemeColor.green)
-                                .colorScheme
-                                .secondary,
+                            color:
+                                getAsTheme(ThemeColor.green, Brightness.light)
+                                    .toMaterialTheme()
+                                    .colorScheme
+                                    .secondary,
                           ),
                           Container(
                             width: 24,
                             height: 24,
-                            color: getLightTheme(ThemeColor.green)
-                                .colorScheme
-                                .tertiary,
+                            color:
+                                getAsTheme(ThemeColor.green, Brightness.light)
+                                    .toMaterialTheme()
+                                    .colorScheme
+                                    .tertiary,
                           ),
                           Container(
                             width: 24,
                             height: 24,
-                            color: getLightTheme(ThemeColor.green)
-                                .colorScheme
-                                .error,
+                            color:
+                                getAsTheme(ThemeColor.green, Brightness.light)
+                                    .toMaterialTheme()
+                                    .colorScheme
+                                    .error,
                           ),
                         ],
                       ),
@@ -275,28 +291,32 @@ class _HomePageState extends State<HomePage> {
                           Container(
                             width: 24,
                             height: 24,
-                            color: getLightTheme(ThemeColor.blue)
+                            color: getAsTheme(ThemeColor.blue, Brightness.light)
+                                .toMaterialTheme()
                                 .colorScheme
                                 .primary,
                           ),
                           Container(
                             width: 24,
                             height: 24,
-                            color: getLightTheme(ThemeColor.blue)
+                            color: getAsTheme(ThemeColor.blue, Brightness.light)
+                                .toMaterialTheme()
                                 .colorScheme
                                 .secondary,
                           ),
                           Container(
                             width: 24,
                             height: 24,
-                            color: getLightTheme(ThemeColor.blue)
+                            color: getAsTheme(ThemeColor.blue, Brightness.light)
+                                .toMaterialTheme()
                                 .colorScheme
                                 .tertiary,
                           ),
                           Container(
                             width: 24,
                             height: 24,
-                            color: getLightTheme(ThemeColor.blue)
+                            color: getAsTheme(ThemeColor.blue, Brightness.light)
+                                .toMaterialTheme()
                                 .colorScheme
                                 .error,
                           ),
@@ -322,30 +342,34 @@ class _HomePageState extends State<HomePage> {
                           Container(
                             width: 24,
                             height: 24,
-                            color: getLightTheme(ThemeColor.protectU)
-                                .colorScheme
-                                .primary,
+                            color: getAsTheme(
+                              ThemeColor.protectU,
+                              Brightness.light,
+                            ).toMaterialTheme().colorScheme.primary,
                           ),
                           Container(
                             width: 24,
                             height: 24,
-                            color: getLightTheme(ThemeColor.protectU)
-                                .colorScheme
-                                .secondary,
+                            color: getAsTheme(
+                              ThemeColor.protectU,
+                              Brightness.light,
+                            ).toMaterialTheme().colorScheme.secondary,
                           ),
                           Container(
                             width: 24,
                             height: 24,
-                            color: getLightTheme(ThemeColor.protectU)
-                                .colorScheme
-                                .tertiary,
+                            color: getAsTheme(
+                              ThemeColor.protectU,
+                              Brightness.light,
+                            ).toMaterialTheme().colorScheme.tertiary,
                           ),
                           Container(
                             width: 24,
                             height: 24,
-                            color: getLightTheme(ThemeColor.protectU)
-                                .colorScheme
-                                .error,
+                            color: getAsTheme(
+                              ThemeColor.protectU,
+                              Brightness.light,
+                            ).toMaterialTheme().colorScheme.error,
                           ),
                         ],
                       ),
