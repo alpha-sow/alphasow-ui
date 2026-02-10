@@ -145,7 +145,7 @@ class AsCard extends StatelessWidget {
 
   Widget _buildMaterialCard(BuildContext context, Widget? cardChild) {
     return Card(
-      color: color ?? Colors.transparent,
+      color: color,
       shadowColor: shadowColor,
       surfaceTintColor: surfaceTintColor,
       elevation: elevation ?? 0,
