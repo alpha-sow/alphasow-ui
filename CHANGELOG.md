@@ -1,3 +1,10 @@
+## [1.26.5](https://github.com/alpha-sow/alphasow-ui/compare/v1.26.4...v1.26.5) (2026-02-10)
+
+
+### Bug Fixes
+
+* remove card transparent colors ([baa949e](https://github.com/alpha-sow/alphasow-ui/commit/baa949eecb52316da3bd2f8a2b3b58a83e8d694e))
+
 ## [1.26.4](https://github.com/alpha-sow/alphasow-ui/compare/v1.26.3...v1.26.4) (2026-02-10)
 
 
