@@ -150,12 +150,7 @@ class AsCard extends StatelessWidget {
       surfaceTintColor: surfaceTintColor,
       elevation: elevation ?? 0,
       shape: shape ??
-          RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-            side: BorderSide(
-              color: Theme.of(context).colorScheme.outlineVariant,
-            ),
-          ),
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       clipBehavior: clipBehavior,
       margin: margin,
       semanticContainer: semanticContainer,
@@ -186,9 +181,6 @@ class AsCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: effectiveColor,
         borderRadius: borderRadius,
-        border: Border.all(
-          color: CupertinoColors.separator.resolveFrom(context),
-        ),
       ),
       child: padding != null && cardChild != null
           ? Padding(
