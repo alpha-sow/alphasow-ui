@@ -1,3 +1,10 @@
+## [1.26.1](https://github.com/alpha-sow/alphasow-ui/compare/v1.26.0...v1.26.1) (2026-02-10)
+
+
+### Bug Fixes
+
+* button padding, icon button size ([f72bd73](https://github.com/alpha-sow/alphasow-ui/commit/f72bd73420988dabc612e6af41fddef106f155d2))
+
 # [1.26.0](https://github.com/alpha-sow/alphasow-ui/compare/v1.25.0...v1.26.0) (2026-02-07)
 
 
