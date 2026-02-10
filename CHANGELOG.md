@@ -1,3 +1,10 @@
+## [1.26.4](https://github.com/alpha-sow/alphasow-ui/compare/v1.26.3...v1.26.4) (2026-02-10)
+
+
+### Bug Fixes
+
+* button shape ([ff2eae6](https://github.com/alpha-sow/alphasow-ui/commit/ff2eae660a9f0dbf80a9585068884eda58b8379a))
+
 ## [1.26.3](https://github.com/alpha-sow/alphasow-ui/compare/v1.26.2...v1.26.3) (2026-02-10)
 
 
