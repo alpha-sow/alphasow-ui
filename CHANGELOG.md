@@ -1,3 +1,10 @@
+## [1.26.6](https://github.com/alpha-sow/alphasow-ui/compare/v1.26.5...v1.26.6) (2026-02-10)
+
+
+### Bug Fixes
+
+* remove card border colors ([65f57a4](https://github.com/alpha-sow/alphasow-ui/commit/65f57a41dc9ebc8d7c4b6d1871a80e7761531a2c))
+
 ## [1.26.5](https://github.com/alpha-sow/alphasow-ui/compare/v1.26.4...v1.26.5) (2026-02-10)
 
 

@@ -1,6 +1,6 @@
 # Alphasow UI
 
-[![Version](https://img.shields.io/badge/version-1.26.5-blue.svg)](https://github.com/alpha-sow/alphasow-ui)
+[![Version](https://img.shields.io/badge/version-1.26.6-blue.svg)](https://github.com/alpha-sow/alphasow-ui)
 [![Flutter](https://img.shields.io/badge/Flutter-%3E%3D3.16.0-blue.svg)](https://flutter.dev)
 [![Dart](https://img.shields.io/badge/Dart-%5E3.5.3-blue.svg)](https://dart.dev)
 
