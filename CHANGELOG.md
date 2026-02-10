@@ -1,3 +1,10 @@
+## [1.26.3](https://github.com/alpha-sow/alphasow-ui/compare/v1.26.2...v1.26.3) (2026-02-10)
+
+
+### Bug Fixes
+
+* button shape, nav bottom take widget ([b2b0850](https://github.com/alpha-sow/alphasow-ui/commit/b2b0850e7b0c5335c2d7b69053f17f2977737e58))
+
 ## [1.26.2](https://github.com/alpha-sow/alphasow-ui/compare/v1.26.1...v1.26.2) (2026-02-10)
 
 
