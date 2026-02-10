@@ -36,6 +36,7 @@ class ButtonPage extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             AsButton.destructive(
+              shape: AsButtonShape.pill,
               onPressed: () => context.showBanner(
                 message: 'Button clicked successfully!',
                 type: AlertType.error,

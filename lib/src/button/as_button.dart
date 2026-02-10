@@ -302,8 +302,13 @@ class _AsButtonState extends State<AsButton> {
               const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
           decoration: BoxDecoration(
             color: finalBackgroundColor,
+            shape: switch (widget.shape) {
+              AsButtonShape.rounded => BoxShape.circle,
+              AsButtonShape.pill => BoxShape.rectangle,
+              AsButtonShape.rectangle => BoxShape.rectangle,
+            },
             borderRadius: switch (widget.shape) {
-              AsButtonShape.rounded => BorderRadius.circular(100),
+              AsButtonShape.rounded => null,
               AsButtonShape.pill => BorderRadius.circular(50),
               AsButtonShape.rectangle => BorderRadius.circular(8),
             },
