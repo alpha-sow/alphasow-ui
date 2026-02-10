@@ -1,3 +1,10 @@
+## [1.26.2](https://github.com/alpha-sow/alphasow-ui/compare/v1.26.1...v1.26.2) (2026-02-10)
+
+
+### Bug Fixes
+
+* text filed multiple lines ([93758fc](https://github.com/alpha-sow/alphasow-ui/commit/93758fc5794051db75565bd9c5ce942cf59d880a))
+
 ## [1.26.1](https://github.com/alpha-sow/alphasow-ui/compare/v1.26.0...v1.26.1) (2026-02-10)
 
 
