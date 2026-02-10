@@ -63,6 +63,7 @@ class AsIconButton extends StatefulWidget {
     this.isLoading = false,
     this.size = 18,
     this.iconColor,
+    this.shape = AsButtonShape.rectangle,
   }) : _variant = null;
 
   /// Creates a secondary variant icon button.
@@ -73,6 +74,7 @@ class AsIconButton extends StatefulWidget {
     this.isLoading = false,
     this.size = 18,
     this.iconColor,
+    this.shape = AsButtonShape.rectangle,
   }) : _variant = Variant.secondary;
 
   /// Creates a destructive variant icon button.
@@ -83,6 +85,7 @@ class AsIconButton extends StatefulWidget {
     this.isLoading = false,
     this.size = 18,
     this.iconColor,
+    this.shape = AsButtonShape.rectangle,
   }) : _variant = Variant.destructive;
 
   /// Creates an outlined variant icon button.
@@ -93,6 +96,7 @@ class AsIconButton extends StatefulWidget {
     this.isLoading = false,
     this.size = 18,
     this.iconColor,
+    this.shape = AsButtonShape.rectangle,
   }) : _variant = Variant.outline;
 
   /// Creates a ghost variant icon button.
@@ -103,10 +107,11 @@ class AsIconButton extends StatefulWidget {
     this.isLoading = false,
     this.size = 18,
     this.iconColor,
+    this.shape = AsButtonShape.rectangle,
   }) : _variant = Variant.ghost;
 
-  /// The icon to display in the button.
-  final IconData icon;
+  /// The icon widget to display in the button.
+  final Icon icon;
 
   /// Callback function called when the button is pressed.
   final void Function()? onPressed;
@@ -119,6 +124,9 @@ class AsIconButton extends StatefulWidget {
 
   /// The color of the icon. If null, uses the variant's default color.
   final Color? iconColor;
+
+  /// The shape of the button.
+  final AsButtonShape shape;
 
   final Variant? _variant;
 
@@ -150,9 +158,17 @@ class _AsIconButtonState extends State<AsIconButton> {
         getInteractiveIconColor(widget.iconColor ?? colors.iconColor);
 
     Widget buildButtonWithVariant() {
+      final isGhostDisabled =
+          widget._variant == Variant.ghost && isDisabled;
+      final effectiveIconColor = isGhostDisabled
+          ? theme.colorScheme.onSurface.withValues(alpha: 0.38)
+          : iconColor;
+
+      final iconSize = widget.icon.size ?? widget.size;
+
       Widget iconWidget = IconTheme(
-        data: IconThemeData(color: iconColor, size: widget.size),
-        child: Icon(widget.icon, size: widget.size, color: iconColor),
+        data: IconThemeData(color: effectiveIconColor, size: iconSize),
+        child: widget.icon,
       );
 
       // Add white or black overlay when hovered or pressed
@@ -167,10 +183,11 @@ class _AsIconButtonState extends State<AsIconButton> {
           alignment: Alignment.center,
           children: [
             iconWidget,
-            IconTheme(
-                data: IconThemeData(color: overlayColor, size: widget.size),
-                child:
-                    Icon(widget.icon, size: widget.size, color: overlayColor)),
+            Icon(
+              widget.icon.icon,
+              size: iconSize,
+              color: overlayColor,
+            ),
           ],
         );
       }
@@ -181,6 +198,7 @@ class _AsIconButtonState extends State<AsIconButton> {
           isLoading: widget.isLoading,
           disableHover: true,
           disablePress: true,
+          shape: widget.shape,
           child: iconWidget,
         );
       }
@@ -192,6 +210,7 @@ class _AsIconButtonState extends State<AsIconButton> {
             isLoading: widget.isLoading,
             disableHover: true,
             disablePress: true,
+            shape: widget.shape,
             child: iconWidget,
           );
         case Variant.secondary:
@@ -200,6 +219,7 @@ class _AsIconButtonState extends State<AsIconButton> {
             isLoading: widget.isLoading,
             disableHover: true,
             disablePress: true,
+            shape: widget.shape,
             child: iconWidget,
           );
         case Variant.destructive:
@@ -208,6 +228,7 @@ class _AsIconButtonState extends State<AsIconButton> {
             isLoading: widget.isLoading,
             disableHover: true,
             disablePress: true,
+            shape: widget.shape,
             child: iconWidget,
           );
         case Variant.outline:
@@ -216,15 +237,20 @@ class _AsIconButtonState extends State<AsIconButton> {
             isLoading: widget.isLoading,
             disableHover: true,
             disablePress: true,
+            shape: widget.shape,
             child: iconWidget,
           );
         case Variant.ghost:
+          if (isGhostDisabled) {
+            return iconWidget;
+          }
           return AsButton.ghost(
             onPressed: widget.onPressed,
             isLoading: widget.isLoading,
             disableHover: true,
             disablePress: true,
             padding: EdgeInsets.zero,
+            shape: widget.shape,
             child: iconWidget,
           );
       }

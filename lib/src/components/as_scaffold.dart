@@ -111,8 +111,9 @@ class AsScaffold extends StatelessWidget {
   /// A bottom navigation bar to display at the bottom of the scaffold.
   ///
   /// Supports both Material and Cupertino platforms. On Cupertino platforms,
-  /// the navigation bar is positioned at the bottom of the content area.
-  final AsBottomNavigationBar? bottomNavigationBar;
+  /// if this is an [AsBottomNavigationBar], it uses [CupertinoTabScaffold];
+  /// otherwise, the widget is placed at the bottom of the content area.
+  final Widget? bottomNavigationBar;
 
   /// A persistent bottom sheet to show below the scaffold's body.
   ///
@@ -180,9 +181,10 @@ class AsScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (PlatformType.of(context)) {
       case PlatformType.cupertino:
-        if (bottomNavigationBar != null) {
-          final cupertinoTabBar = bottomNavigationBar!
-              .getPlatformWidget(context) as CupertinoTabBar;
+        final nav = bottomNavigationBar;
+        if (nav is AsBottomNavigationBar) {
+          final cupertinoTabBar =
+              nav.getPlatformWidget(context) as CupertinoTabBar;
           return CupertinoTabScaffold(
             tabBar: cupertinoTabBar,
             tabBuilder: (context, index) {
@@ -203,7 +205,7 @@ class AsScaffold extends StatelessWidget {
           child: Column(
             children: [
               Expanded(child: body ?? const SizedBox.shrink()),
-              if (bottomNavigationBar != null) bottomNavigationBar!,
+              if (nav != null) nav,
             ],
           ),
         );

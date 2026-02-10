@@ -2,6 +2,18 @@ import 'package:alphasow_ui/alphasow_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+/// Defines the shape of a button.
+enum AsButtonShape {
+  /// Rounded rectangle with default corner radius (8)
+  rounded,
+
+  /// Fully rounded ends (stadium/pill shape)
+  pill,
+
+  /// Sharp rectangle with no rounding
+  rectangle,
+}
+
 /// Defines the visual variants available for buttons.
 ///
 /// Each variant provides different styling to match various UI contexts.
@@ -112,6 +124,7 @@ class AsButton extends StatefulWidget {
     this.disableHover = false,
     this.disablePress = false,
     this.padding,
+    this.shape = AsButtonShape.rectangle,
   }) : _variant = null;
 
   /// Creates a secondary button with muted styling.
@@ -130,6 +143,7 @@ class AsButton extends StatefulWidget {
     this.disableHover = false,
     this.disablePress = false,
     this.padding,
+    this.shape = AsButtonShape.rectangle,
   }) : _variant = Variant.secondary;
 
   /// Creates a destructive button with error/danger styling.
@@ -148,6 +162,7 @@ class AsButton extends StatefulWidget {
     this.disableHover = false,
     this.disablePress = false,
     this.padding,
+    this.shape = AsButtonShape.rectangle,
   }) : _variant = Variant.destructive;
 
   /// Creates an outline button with transparent background and border.
@@ -166,6 +181,7 @@ class AsButton extends StatefulWidget {
     this.disableHover = false,
     this.disablePress = false,
     this.padding,
+    this.shape = AsButtonShape.rectangle,
   }) : _variant = Variant.outline;
 
   /// Creates a ghost button with transparent background and no border.
@@ -184,6 +200,7 @@ class AsButton extends StatefulWidget {
     this.disableHover = false,
     this.disablePress = false,
     this.padding,
+    this.shape = AsButtonShape.rectangle,
   }) : _variant = Variant.ghost;
 
   /// The widget to display inside the button (typically Text or Icon)
@@ -203,6 +220,9 @@ class AsButton extends StatefulWidget {
 
   /// Custom padding for the button
   final EdgeInsetsGeometry? padding;
+
+  /// The shape of the button
+  final AsButtonShape shape;
 
   /// The internal variant determining the button's visual style
   final Variant? _variant;
@@ -279,10 +299,14 @@ class _AsButtonState extends State<AsButton> {
               },
         child: Container(
           padding: widget.padding ??
-              const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
           decoration: BoxDecoration(
             color: finalBackgroundColor,
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: switch (widget.shape) {
+              AsButtonShape.rounded => BorderRadius.circular(100),
+              AsButtonShape.pill => BorderRadius.circular(50),
+              AsButtonShape.rectangle => BorderRadius.circular(8),
+            },
             border: colors.outline
                 ? Border.all(
                     color: theme.colorScheme.outline,

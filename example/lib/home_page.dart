@@ -128,7 +128,7 @@ class _HomePageState extends State<HomePage> {
             ? null
             : Builder(
                 builder: (context) => AsIconButton.ghost(
-                  icon: Icons.menu,
+                  icon: const Icon(Icons.menu),
                   onPressed: () => context.showAsMenuDrawer(
                     header: const AsAppBar(
                       title: Text('Widget'),

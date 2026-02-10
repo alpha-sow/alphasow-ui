@@ -55,27 +55,28 @@ class ButtonPage extends StatelessWidget {
             const SizedBox(height: 10),
             AsIconButton(
               onPressed: () {},
-              icon: Icons.favorite,
+              icon: const Icon(Icons.favorite),
             ),
             const SizedBox(height: 10),
             AsIconButton.secondary(
+              shape: AsButtonShape.rounded,
               onPressed: () {},
-              icon: Icons.settings,
+              icon: const Icon(Icons.settings),
             ),
             const SizedBox(height: 10),
             AsIconButton.destructive(
               onPressed: () {},
-              icon: Icons.delete,
+              icon: const Icon(Icons.delete),
             ),
             const SizedBox(height: 10),
             AsIconButton.outlined(
               onPressed: () {},
-              icon: Icons.person,
+              icon: const Icon(Icons.person),
             ),
             const SizedBox(height: 10),
-            AsIconButton.ghost(
-              onPressed: () {},
-              icon: Icons.mail_outline,
+            const AsIconButton.ghost(
+              onPressed: null,
+              icon: Icon(Icons.mail_outline),
             ),
             const SizedBox(height: 10),
             AsLinkButton(
