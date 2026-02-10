@@ -61,7 +61,7 @@ class AsIconButton extends StatefulWidget {
     required this.onPressed,
     super.key,
     this.isLoading = false,
-    this.size = 24,
+    this.size = 18,
     this.iconColor,
   }) : _variant = null;
 
@@ -71,7 +71,7 @@ class AsIconButton extends StatefulWidget {
     required this.onPressed,
     super.key,
     this.isLoading = false,
-    this.size = 24,
+    this.size = 18,
     this.iconColor,
   }) : _variant = Variant.secondary;
 
@@ -81,7 +81,7 @@ class AsIconButton extends StatefulWidget {
     required this.onPressed,
     super.key,
     this.isLoading = false,
-    this.size = 24,
+    this.size = 18,
     this.iconColor,
   }) : _variant = Variant.destructive;
 
@@ -91,7 +91,7 @@ class AsIconButton extends StatefulWidget {
     required this.onPressed,
     super.key,
     this.isLoading = false,
-    this.size = 24,
+    this.size = 18,
     this.iconColor,
   }) : _variant = Variant.outline;
 
@@ -101,7 +101,7 @@ class AsIconButton extends StatefulWidget {
     required this.onPressed,
     super.key,
     this.isLoading = false,
-    this.size = 24,
+    this.size = 18,
     this.iconColor,
   }) : _variant = Variant.ghost;
 

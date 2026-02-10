@@ -279,7 +279,7 @@ class _AsButtonState extends State<AsButton> {
               },
         child: Container(
           padding: widget.padding ??
-              const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           decoration: BoxDecoration(
             color: finalBackgroundColor,
             borderRadius: BorderRadius.circular(8),
