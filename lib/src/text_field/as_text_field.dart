@@ -329,14 +329,17 @@ class AsTextField extends StatelessWidget {
         else
           const SizedBox.shrink(),
         SizedBox(
-          height: 44,
+          height: maxLines == 1 ? 44 : null,
           child: PlatformType.of(context) == PlatformType.cupertino
               ? _CupertinoTextFieldWidget(
                   controller: controller,
                   focusNode: focusNode,
                   decoration: decoration,
-                  keyboardType:
-                      keyboardType ?? type?.keyboardType ?? TextInputType.text,
+                  keyboardType: keyboardType ??
+                      type?.keyboardType ??
+                      (maxLines != 1
+                          ? TextInputType.multiline
+                          : TextInputType.text),
                   textInputAction: textInputAction,
                   textCapitalization: textCapitalization,
                   style: style,
@@ -386,8 +389,11 @@ class AsTextField extends StatelessWidget {
                   controller: controller,
                   focusNode: focusNode,
                   decoration: decoration,
-                  keyboardType:
-                      keyboardType ?? type?.keyboardType ?? TextInputType.text,
+                  keyboardType: keyboardType ??
+                      type?.keyboardType ??
+                      (maxLines != 1
+                          ? TextInputType.multiline
+                          : TextInputType.text),
                   textInputAction: textInputAction,
                   textCapitalization: textCapitalization,
                   style: style ?? const TextStyle(fontSize: 14),

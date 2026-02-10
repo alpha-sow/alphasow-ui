@@ -47,6 +47,11 @@ class _InputPageState extends State<InputPage> {
         const SizedBox(height: 10),
         const AsTextField(hintText: 'Email'),
         const SizedBox(height: 10),
+        const AsTextField(
+          hintText: 'Description',
+          maxLines: 5,
+        ),
+        const SizedBox(height: 10),
         const AsTextField(hintText: 'Email', disabled: true),
         const SizedBox(height: 10),
         const AsTextField(
