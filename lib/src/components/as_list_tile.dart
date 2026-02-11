@@ -1,6 +1,5 @@
 import 'package:alphasow_ui/alphasow_ui.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 /// A customizable list tile widget for displaying structured content.
 ///
