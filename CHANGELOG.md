@@ -1,3 +1,10 @@
+## [1.26.7](https://github.com/alpha-sow/alphasow-ui/compare/v1.26.6...v1.26.7) (2026-02-11)
+
+
+### Bug Fixes
+
+* as button haptic feedback ([37e5336](https://github.com/alpha-sow/alphasow-ui/commit/37e53362bb3cc63f38ece801ec8a72495022e692))
+
 ## [1.26.6](https://github.com/alpha-sow/alphasow-ui/compare/v1.26.5...v1.26.6) (2026-02-10)
 
 
