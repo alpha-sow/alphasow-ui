@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 /// Represents a destination in the navigation rail.
 ///
@@ -287,10 +286,7 @@ class _AsNavigationRailState extends State<AsNavigationRail> {
         onEnter: (_) => setState(() => _hoveredIndex = index),
         onExit: (_) => setState(() => _hoveredIndex = null),
         child: GestureDetector(
-          onTap: () {
-            HapticFeedback.lightImpact();
-            widget.onDestinationSelected?.call(index);
-          },
+          onTap: () => widget.onDestinationSelected?.call(index),
           child: Container(
             width: double.infinity,
             padding: const EdgeInsets.symmetric(vertical: 4),

@@ -141,12 +141,7 @@ class _AsListTileState extends State<AsListTile> {
           !isInteractive ? null : (_) => setState(() => _isPressed = false),
       onTapCancel:
           !isInteractive ? null : () => setState(() => _isPressed = false),
-      onTap: !isInteractive
-          ? null
-          : () {
-              HapticFeedback.lightImpact();
-              widget.onTap?.call();
-            },
+      onTap: !isInteractive ? null : widget.onTap?.call,
       child: Container(
         decoration: BoxDecoration(
           color: backgroundColor,
