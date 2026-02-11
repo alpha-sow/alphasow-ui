@@ -158,8 +158,7 @@ class _AsIconButtonState extends State<AsIconButton> {
         getInteractiveIconColor(widget.iconColor ?? colors.iconColor);
 
     Widget buildButtonWithVariant() {
-      final isGhostDisabled =
-          widget._variant == Variant.ghost && isDisabled;
+      final isGhostDisabled = widget._variant == Variant.ghost && isDisabled;
       final effectiveIconColor = isGhostDisabled
           ? theme.colorScheme.onSurface.withValues(alpha: 0.38)
           : iconColor;
@@ -247,7 +246,6 @@ class _AsIconButtonState extends State<AsIconButton> {
           return AsButton.ghost(
             onPressed: widget.onPressed,
             isLoading: widget.isLoading,
-            disableHover: true,
             disablePress: true,
             padding: EdgeInsets.zero,
             shape: widget.shape,

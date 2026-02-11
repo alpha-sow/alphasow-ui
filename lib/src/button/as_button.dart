@@ -34,6 +34,24 @@ enum Variant {
   ghost
 }
 
+/// Haptic Feedback on pressed
+enum AsButtonHapticFeedback {
+  /// heavy impact
+  heavy,
+
+  /// Light impact
+  light,
+
+  /// Medium impact
+  medium,
+
+  /// Selection impact
+  selection,
+
+  /// Vibration impact
+  vibration,
+}
+
 /// Holds the color configuration for button styling.
 ///
 /// This class encapsulates all visual properties needed to style
@@ -125,6 +143,7 @@ class AsButton extends StatefulWidget {
     this.disablePress = false,
     this.padding,
     this.shape = AsButtonShape.rectangle,
+    this.hapticFeedback,
   }) : _variant = null;
 
   /// Creates a secondary button with muted styling.
@@ -144,6 +163,7 @@ class AsButton extends StatefulWidget {
     this.disablePress = false,
     this.padding,
     this.shape = AsButtonShape.rectangle,
+    this.hapticFeedback,
   }) : _variant = Variant.secondary;
 
   /// Creates a destructive button with error/danger styling.
@@ -163,6 +183,7 @@ class AsButton extends StatefulWidget {
     this.disablePress = false,
     this.padding,
     this.shape = AsButtonShape.rectangle,
+    this.hapticFeedback,
   }) : _variant = Variant.destructive;
 
   /// Creates an outline button with transparent background and border.
@@ -182,6 +203,7 @@ class AsButton extends StatefulWidget {
     this.disablePress = false,
     this.padding,
     this.shape = AsButtonShape.rectangle,
+    this.hapticFeedback,
   }) : _variant = Variant.outline;
 
   /// Creates a ghost button with transparent background and no border.
@@ -197,10 +219,11 @@ class AsButton extends StatefulWidget {
     required this.onPressed,
     super.key,
     this.isLoading = false,
-    this.disableHover = false,
+    this.disableHover = true,
     this.disablePress = false,
     this.padding,
     this.shape = AsButtonShape.rectangle,
+    this.hapticFeedback,
   }) : _variant = Variant.ghost;
 
   /// The widget to display inside the button (typically Text or Icon)
@@ -226,6 +249,9 @@ class AsButton extends StatefulWidget {
 
   /// The internal variant determining the button's visual style
   final Variant? _variant;
+
+  /// Haptic Feed back
+  final AsButtonHapticFeedback? hapticFeedback;
 
   @override
   State<AsButton> createState() => _AsButtonState();
@@ -294,7 +320,19 @@ class _AsButtonState extends State<AsButton> {
         onTap: isDisabled
             ? null
             : () {
-                HapticFeedback.lightImpact();
+                switch (widget.hapticFeedback) {
+                  case AsButtonHapticFeedback.heavy:
+                    HapticFeedback.heavyImpact();
+                  case AsButtonHapticFeedback.light:
+                    HapticFeedback.lightImpact();
+                  case AsButtonHapticFeedback.medium:
+                    HapticFeedback.mediumImpact();
+                  case AsButtonHapticFeedback.selection:
+                    HapticFeedback.selectionClick();
+                  case AsButtonHapticFeedback.vibration:
+                    HapticFeedback.vibrate();
+                  case null:
+                }
                 widget.onPressed?.call();
               },
         child: Container(
