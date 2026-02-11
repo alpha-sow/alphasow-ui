@@ -1,3 +1,11 @@
+## [1.26.8](https://github.com/alpha-sow/alphasow-ui/compare/v1.26.7...v1.26.8) (2026-02-11)
+
+
+### Bug Fixes
+
+* remove HapticFeedback ([0f21033](https://github.com/alpha-sow/alphasow-ui/commit/0f21033907375b458b1ab2712b61c1539142677e))
+* remove HapticFeedback ([1b6ed1e](https://github.com/alpha-sow/alphasow-ui/commit/1b6ed1e3d139fbc20534ad246d895ba381cd0c71))
+
 ## [1.26.7](https://github.com/alpha-sow/alphasow-ui/compare/v1.26.6...v1.26.7) (2026-02-11)
 
 
