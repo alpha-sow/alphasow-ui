@@ -1,3 +1,4 @@
+import 'package:alphasow_ui/alphasow_ui.dart';
 import 'package:flutter/material.dart';
 
 /// A customizable avatar widget for displaying user profile images or initials.
@@ -21,6 +22,9 @@ class AsAvatar extends StatelessWidget {
     this.foregroundColor,
     this.child,
     this.onTap,
+    this.showBorder = false,
+    this.borderColor,
+    this.elevation,
   });
 
   /// Creates an avatar with text initials.
@@ -39,6 +43,9 @@ class AsAvatar extends StatelessWidget {
     Color? textColor,
     double? fontSize,
     this.onTap,
+    this.showBorder = false,
+    this.borderColor,
+    this.elevation,
   })  : backgroundImage = null,
         foregroundColor = textColor,
         child = Text(
@@ -66,6 +73,9 @@ class AsAvatar extends StatelessWidget {
     Color? iconColor,
     double? iconSize,
     this.onTap,
+    this.showBorder = false,
+    this.borderColor,
+    this.elevation,
   })  : backgroundImage = null,
         foregroundColor = iconColor,
         child = Icon(
@@ -92,6 +102,15 @@ class AsAvatar extends StatelessWidget {
   /// Callback executed when the avatar is tapped
   final VoidCallback? onTap;
 
+  /// show border around
+  final bool showBorder;
+
+  /// Border color
+  final Color? borderColor;
+
+  /// Avatar elevation
+  final double? elevation;
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -100,13 +119,21 @@ class AsAvatar extends StatelessWidget {
     final effectiveForegroundColor =
         foregroundColor ?? theme.colorScheme.onSurfaceVariant;
 
-    final avatar = CircleAvatar(
-      radius: radius,
-      backgroundImage: backgroundImage,
-      backgroundColor:
-          backgroundImage == null ? effectiveBackgroundColor : null,
-      foregroundColor: effectiveForegroundColor,
-      child: child,
+    final avatar = AsCard(
+      elevation: elevation,
+      padding: showBorder ? const EdgeInsets.all(2) : null,
+      color: borderColor,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(100),
+      ),
+      child: CircleAvatar(
+        radius: radius,
+        backgroundImage: backgroundImage,
+        backgroundColor:
+            backgroundImage == null ? effectiveBackgroundColor : null,
+        foregroundColor: effectiveForegroundColor,
+        child: child,
+      ),
     );
 
     if (onTap != null) {

@@ -23,6 +23,8 @@ class AvatarPage extends StatelessWidget {
               ),
             ),
             AsAvatar(
+              elevation: 4,
+              showBorder: true,
               backgroundImage: NetworkImage(faker.image.loremPicsum()),
               onTap: () {},
             ),
