@@ -1,3 +1,10 @@
+## [1.26.9](https://github.com/alpha-sow/alphasow-ui/compare/v1.26.8...v1.26.9) (2026-02-16)
+
+
+### Bug Fixes
+
+* add elevation and border on avatar ([00548a9](https://github.com/alpha-sow/alphasow-ui/commit/00548a98929a202481da02a0f6e90e9c559714e8))
+
 ## [1.26.8](https://github.com/alpha-sow/alphasow-ui/compare/v1.26.7...v1.26.8) (2026-02-11)
 
 
